@@ -78,13 +78,9 @@ namespace DockerDesk.Helpers
         public static List<DockerContainer> ParseDockerContainersOutput(string output)
         {
             var containersList = new List<DockerContainer>();
-
-            // Regex per dividere l'output in righe
             var lineRegex = new Regex(@"(.+?\r?\n|\r)");
             var matches = lineRegex.Matches(output);
-
-            // Aggiornare l'espressione regolare per corrispondere alle colonne desiderate
-            var columnRegex = new Regex(@"(\S+)\s+(\S+)\s+(\"".+?\"")\s+(.+ ago)\s+(\S+)\s+(\S+)\s+(.+)");
+            var columnRegex = new Regex(@"(\S+)\s+([\w-]+)\s+\""(.*?)\""\s+([\w\s]+)\s+([\w\s()]+)\s+(\S*)\s+(.+)");
 
             foreach (Match line in matches)
             {
@@ -110,6 +106,8 @@ namespace DockerDesk.Helpers
 
             return containersList;
         }
+
+
 
 
         public static string DockerExecute(string arguments, string workdir)
