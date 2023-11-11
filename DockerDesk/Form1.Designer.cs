@@ -65,11 +65,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.chkHasVolume = new System.Windows.Forms.CheckBox();
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.txtLog = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
+            this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -78,6 +81,7 @@
             this.tabControl1.Controls.Add(this.tabCOntainers);
             this.tabControl1.Controls.Add(this.tabVolume);
             this.tabControl1.Controls.Add(this.tabNetwork);
+            this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 71);
             this.tabControl1.Name = "tabControl1";
@@ -184,7 +188,7 @@
             this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
             this.tabCOntainers.Name = "tabCOntainers";
             this.tabCOntainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCOntainers.Size = new System.Drawing.Size(1086, 480);
+            this.tabCOntainers.Size = new System.Drawing.Size(1086, 461);
             this.tabCOntainers.TabIndex = 1;
             this.tabCOntainers.Text = "Containers";
             this.tabCOntainers.UseVisualStyleBackColor = true;
@@ -193,7 +197,7 @@
             // 
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1086, 508);
+            this.tabVolume.Size = new System.Drawing.Size(1086, 461);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
@@ -202,7 +206,7 @@
             // 
             this.tabNetwork.Location = new System.Drawing.Point(4, 29);
             this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1086, 424);
+            this.tabNetwork.Size = new System.Drawing.Size(1086, 461);
             this.tabNetwork.TabIndex = 3;
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
@@ -421,6 +425,25 @@
             this.toolStripSelectedImage.Size = new System.Drawing.Size(115, 20);
             this.toolStripSelectedImage.Text = "Selected Image:";
             // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.txtLog);
+            this.tabLog.Location = new System.Drawing.Point(4, 29);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Size = new System.Drawing.Size(1086, 461);
+            this.tabLog.TabIndex = 4;
+            this.tabLog.Text = "Logs";
+            this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(0, 0);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.Size = new System.Drawing.Size(1086, 461);
+            this.txtLog.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,6 +468,8 @@
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,6 +514,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkHasVolume;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
+        private System.Windows.Forms.TabPage tabLog;
+        private System.Windows.Forms.TextBox txtLog;
     }
 }
 

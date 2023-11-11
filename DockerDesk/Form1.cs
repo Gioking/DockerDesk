@@ -5,15 +5,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace DockerDesk
 {
     public partial class frmMain : Form
     {
-        DockerImage selectedImage;
+        private DockerImage selectedImage;
         private string WorkingFolderPath = string.Empty;
-        List<DockerImage> imagesList = new List<DockerImage>();
+        private List<DockerImage> imagesList = new List<DockerImage>();
+        private StringBuilder sb = new StringBuilder();
 
         public frmMain()
         {
@@ -58,6 +60,7 @@ namespace DockerDesk
                     using (StreamReader reader = process.StandardOutput)
                     {
                         string result = reader.ReadToEnd();
+                        sb.AppendLine(result);
                         var objImages = DoskerStatus.ParseDockerImagesOutput(result);
                         PopulateListView(objImages);
                     }
@@ -119,14 +122,30 @@ namespace DockerDesk
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
         private void btnRunContainer_Click(object sender, EventArgs e)
         {
+            string result = string.Empty;
+
+            if (selectedImage == null)
+            {
+                MessageBox.Show("Warning.. select an image first!");
+                return;
+            }
+
             if (!chkHasVolume.Checked)
             {
-                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+
             }
             else
             {
-                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
+
+            sb.AppendLine(result);
+
+            txtLog.Text = sb.ToString();
+
+            tabControl1.SelectedTab = tabLog; // Supponendo che tabPage2 sia il riferimento alla scheda che vuoi selezionare
+
         }
 
         private void btnCreateImage_Click(object sender, EventArgs e)
