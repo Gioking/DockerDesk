@@ -13,6 +13,7 @@ namespace DockerDesk
     public partial class frmMain : Form
     {
         private DockerImage selectedImage;
+        private DockerContainer selectedContainer;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
         private List<DockerContainer> containersList = new List<DockerContainer>();
@@ -50,8 +51,6 @@ namespace DockerDesk
                 sb.AppendLine(result);
                 var objImages = DoskerStatus.ParseDockerImagesOutput(result);
                 PopulateImagesListView(objImages);
-                //SetListViewColumnSizes(listViewImages, 50);
-
             }
             catch (Exception e)
             {
@@ -68,8 +67,6 @@ namespace DockerDesk
                 sb.AppendLine(result);
                 var objContainers = DoskerStatus.ParseDockerContainersOutput(result);
                 PopulateContainersListView(objContainers);
-                //SetListViewColumnSizes(lstContainers, 180);
-
             }
             catch (Exception e)
             {
@@ -119,14 +116,6 @@ namespace DockerDesk
 
             lstContainers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-
-        private void SetListViewColumnSizes(ListView lvw, int width)
-        {
-            foreach (ColumnHeader col in lvw.Columns)
-                col.Width = width;
-        }
-
-
 
 
         private void listViewImages_MouseClick(object sender, MouseEventArgs e)
@@ -195,7 +184,9 @@ namespace DockerDesk
             }
         }
 
+        private void lstContainers_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

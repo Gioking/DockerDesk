@@ -30,6 +30,19 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
+            this.chkHasVolume = new System.Windows.Forms.CheckBox();
+            this.txtVolumeName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtContainerName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtContainerPort = new System.Windows.Forms.TextBox();
+            this.txtHostPort = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCreateImage = new System.Windows.Forms.Button();
+            this.txtImageName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.listViewImages = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,11 +53,18 @@
             this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tabCOntainers = new System.Windows.Forms.TabPage();
+            this.lstContainers = new System.Windows.Forms.ListView();
+            this.ContainerId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Imaged = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Createdd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Names = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.tabNetwork = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtImageName = new System.Windows.Forms.TextBox();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.txtLog = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,37 +72,17 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.imageStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnCreateImage = new System.Windows.Forms.Button();
+            this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtContainerPort = new System.Windows.Forms.TextBox();
-            this.txtHostPort = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtContainerName = new System.Windows.Forms.TextBox();
-            this.txtVolumeName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.chkHasVolume = new System.Windows.Forms.CheckBox();
-            this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabLog = new System.Windows.Forms.TabPage();
-            this.txtLog = new System.Windows.Forms.TextBox();
-            this.lstContainers = new System.Windows.Forms.ListView();
-            this.ContainerId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Imaged = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Createdd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label7 = new System.Windows.Forms.Label();
-            this.Names = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
-            this.tabCOntainers.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabCOntainers.SuspendLayout();
+            this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
-            this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -122,6 +122,136 @@
             this.tabImages.TabIndex = 0;
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
+            // 
+            // chkHasVolume
+            // 
+            this.chkHasVolume.AutoSize = true;
+            this.chkHasVolume.Location = new System.Drawing.Point(65, 303);
+            this.chkHasVolume.Name = "chkHasVolume";
+            this.chkHasVolume.Size = new System.Drawing.Size(148, 17);
+            this.chkHasVolume.TabIndex = 15;
+            this.chkHasVolume.Text = "Container has volume";
+            this.chkHasVolume.UseVisualStyleBackColor = true;
+            // 
+            // txtVolumeName
+            // 
+            this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtVolumeName.Location = new System.Drawing.Point(64, 382);
+            this.txtVolumeName.Multiline = true;
+            this.txtVolumeName.Name = "txtVolumeName";
+            this.txtVolumeName.Size = new System.Drawing.Size(220, 22);
+            this.txtVolumeName.TabIndex = 14;
+            this.txtVolumeName.Text = "my-volume:/path/to/container";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 387);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "C.Vol.";
+            // 
+            // txtContainerName
+            // 
+            this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtContainerName.Location = new System.Drawing.Point(64, 354);
+            this.txtContainerName.Multiline = true;
+            this.txtContainerName.Name = "txtContainerName";
+            this.txtContainerName.Size = new System.Drawing.Size(220, 22);
+            this.txtContainerName.TabIndex = 12;
+            this.txtContainerName.Text = "container-name";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 358);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "C.Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(162, 331);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "C.Port";
+            // 
+            // txtContainerPort
+            // 
+            this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtContainerPort.Location = new System.Drawing.Point(210, 326);
+            this.txtContainerPort.Multiline = true;
+            this.txtContainerPort.Name = "txtContainerPort";
+            this.txtContainerPort.Size = new System.Drawing.Size(74, 22);
+            this.txtContainerPort.TabIndex = 9;
+            this.txtContainerPort.Text = "80";
+            this.txtContainerPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtHostPort
+            // 
+            this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtHostPort.Location = new System.Drawing.Point(65, 326);
+            this.txtHostPort.Multiline = true;
+            this.txtHostPort.Name = "txtHostPort";
+            this.txtHostPort.Size = new System.Drawing.Size(81, 22);
+            this.txtHostPort.TabIndex = 8;
+            this.txtHostPort.Text = "8080";
+            this.txtHostPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 331);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "H.Port";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnCreateImage);
+            this.groupBox1.Controls.Add(this.txtImageName);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox1.Location = new System.Drawing.Point(693, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(385, 240);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Image data";
+            // 
+            // btnCreateImage
+            // 
+            this.btnCreateImage.Location = new System.Drawing.Point(10, 177);
+            this.btnCreateImage.Name = "btnCreateImage";
+            this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
+            this.btnCreateImage.TabIndex = 2;
+            this.btnCreateImage.Text = "Create Image";
+            this.btnCreateImage.UseVisualStyleBackColor = true;
+            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
+            // 
+            // txtImageName
+            // 
+            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtImageName.Location = new System.Drawing.Point(88, 31);
+            this.txtImageName.Multiline = true;
+            this.txtImageName.Name = "txtImageName";
+            this.txtImageName.Size = new System.Drawing.Size(281, 22);
+            this.txtImageName.TabIndex = 1;
+            this.txtImageName.Text = "test-image-gio";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Image name";
             // 
             // btnRunContainer
             // 
@@ -206,257 +336,6 @@
             this.tabCOntainers.Text = "Containers";
             this.tabCOntainers.UseVisualStyleBackColor = true;
             // 
-            // tabVolume
-            // 
-            this.tabVolume.Location = new System.Drawing.Point(4, 29);
-            this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1086, 461);
-            this.tabVolume.TabIndex = 2;
-            this.tabVolume.Text = "Volume";
-            this.tabVolume.UseVisualStyleBackColor = true;
-            // 
-            // tabNetwork
-            // 
-            this.tabNetwork.Location = new System.Drawing.Point(4, 29);
-            this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1086, 461);
-            this.tabNetwork.TabIndex = 3;
-            this.tabNetwork.Text = "Network";
-            this.tabNetwork.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnCreateImage);
-            this.groupBox1.Controls.Add(this.txtImageName);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(693, 41);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(385, 240);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Image data";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Image name";
-            // 
-            // txtImageName
-            // 
-            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtImageName.Location = new System.Drawing.Point(88, 31);
-            this.txtImageName.Multiline = true;
-            this.txtImageName.Name = "txtImageName";
-            this.txtImageName.Size = new System.Drawing.Size(281, 22);
-            this.txtImageName.TabIndex = 1;
-            this.txtImageName.Text = "test-image-gio";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1094, 28);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectProjectPathToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // selectProjectPathToolStripMenuItem
-            // 
-            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SelectWorkDir});
-            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.selectProjectPathToolStripMenuItem.Text = "Projects";
-            // 
-            // SelectWorkDir
-            // 
-            this.SelectWorkDir.Name = "SelectWorkDir";
-            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
-            this.SelectWorkDir.Text = "Select Work Directory";
-            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
-            // 
-            // folderBrowserDialog
-            // 
-            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.folderBrowserDialog.SelectedPath = "C:\\";
-            // 
-            // statusBar
-            // 
-            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imageStatusLabel,
-            this.toolStripSelectedImage});
-            this.statusBar.Location = new System.Drawing.Point(0, 568);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1094, 25);
-            this.statusBar.TabIndex = 3;
-            this.statusBar.Text = "Status";
-            // 
-            // imageStatusLabel
-            // 
-            this.imageStatusLabel.Name = "imageStatusLabel";
-            this.imageStatusLabel.Size = new System.Drawing.Size(57, 20);
-            this.imageStatusLabel.Text = "Images";
-            // 
-            // btnCreateImage
-            // 
-            this.btnCreateImage.Location = new System.Drawing.Point(10, 177);
-            this.btnCreateImage.Name = "btnCreateImage";
-            this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
-            this.btnCreateImage.TabIndex = 2;
-            this.btnCreateImage.Text = "Create Image";
-            this.btnCreateImage.UseVisualStyleBackColor = true;
-            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
-            // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFolder.Location = new System.Drawing.Point(1062, 31);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(28, 34);
-            this.btnOpenFolder.TabIndex = 4;
-            this.btnOpenFolder.Text = "...";
-            this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
-            // 
-            // txtWorkDirPath
-            // 
-            this.txtWorkDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWorkDirPath.Location = new System.Drawing.Point(4, 34);
-            this.txtWorkDirPath.Multiline = true;
-            this.txtWorkDirPath.Name = "txtWorkDirPath";
-            this.txtWorkDirPath.Size = new System.Drawing.Size(1052, 31);
-            this.txtWorkDirPath.TabIndex = 5;
-            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(162, 331);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "C.Port";
-            // 
-            // txtContainerPort
-            // 
-            this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPort.Location = new System.Drawing.Point(210, 326);
-            this.txtContainerPort.Multiline = true;
-            this.txtContainerPort.Name = "txtContainerPort";
-            this.txtContainerPort.Size = new System.Drawing.Size(74, 22);
-            this.txtContainerPort.TabIndex = 9;
-            this.txtContainerPort.Text = "80";
-            this.txtContainerPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtHostPort
-            // 
-            this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPort.Location = new System.Drawing.Point(65, 326);
-            this.txtHostPort.Multiline = true;
-            this.txtHostPort.Name = "txtHostPort";
-            this.txtHostPort.Size = new System.Drawing.Size(81, 22);
-            this.txtHostPort.TabIndex = 8;
-            this.txtHostPort.Text = "8080";
-            this.txtHostPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 331);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "H.Port";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 358);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "C.Name";
-            // 
-            // txtContainerName
-            // 
-            this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerName.Location = new System.Drawing.Point(64, 354);
-            this.txtContainerName.Multiline = true;
-            this.txtContainerName.Name = "txtContainerName";
-            this.txtContainerName.Size = new System.Drawing.Size(220, 22);
-            this.txtContainerName.TabIndex = 12;
-            this.txtContainerName.Text = "container-name";
-            // 
-            // txtVolumeName
-            // 
-            this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVolumeName.Location = new System.Drawing.Point(64, 382);
-            this.txtVolumeName.Multiline = true;
-            this.txtVolumeName.Name = "txtVolumeName";
-            this.txtVolumeName.Size = new System.Drawing.Size(220, 22);
-            this.txtVolumeName.TabIndex = 14;
-            this.txtVolumeName.Text = "my-volume:/path/to/container";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 387);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "C.Vol.";
-            // 
-            // chkHasVolume
-            // 
-            this.chkHasVolume.AutoSize = true;
-            this.chkHasVolume.Location = new System.Drawing.Point(65, 303);
-            this.chkHasVolume.Name = "chkHasVolume";
-            this.chkHasVolume.Size = new System.Drawing.Size(148, 17);
-            this.chkHasVolume.TabIndex = 15;
-            this.chkHasVolume.Text = "Container has volume";
-            this.chkHasVolume.UseVisualStyleBackColor = true;
-            // 
-            // toolStripSelectedImage
-            // 
-            this.toolStripSelectedImage.Name = "toolStripSelectedImage";
-            this.toolStripSelectedImage.Size = new System.Drawing.Size(115, 20);
-            this.toolStripSelectedImage.Text = "Selected Image:";
-            // 
-            // tabLog
-            // 
-            this.tabLog.Controls.Add(this.txtLog);
-            this.tabLog.Location = new System.Drawing.Point(4, 29);
-            this.tabLog.Name = "tabLog";
-            this.tabLog.Size = new System.Drawing.Size(1086, 461);
-            this.tabLog.TabIndex = 4;
-            this.tabLog.Text = "Logs";
-            this.tabLog.UseVisualStyleBackColor = true;
-            // 
-            // txtLog
-            // 
-            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLog.Location = new System.Drawing.Point(0, 0);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(1086, 461);
-            this.txtLog.TabIndex = 0;
-            // 
             // lstContainers
             // 
             this.lstContainers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -491,10 +370,6 @@
             // 
             this.Imaged.Text = "Image";
             // 
-            // Command
-            // 
-            this.Command.Text = "Command";
-            // 
             // Createdd
             // 
             this.Createdd.Text = "Created";
@@ -507,6 +382,10 @@
             // 
             this.Ports.Text = "Ports";
             // 
+            // Names
+            // 
+            this.Names.Text = "Names";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -517,9 +396,130 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Current Docker Images";
             // 
-            // Names
+            // tabVolume
             // 
-            this.Names.Text = "Names";
+            this.tabVolume.Location = new System.Drawing.Point(4, 29);
+            this.tabVolume.Name = "tabVolume";
+            this.tabVolume.Size = new System.Drawing.Size(1086, 461);
+            this.tabVolume.TabIndex = 2;
+            this.tabVolume.Text = "Volume";
+            this.tabVolume.UseVisualStyleBackColor = true;
+            // 
+            // tabNetwork
+            // 
+            this.tabNetwork.Location = new System.Drawing.Point(4, 29);
+            this.tabNetwork.Name = "tabNetwork";
+            this.tabNetwork.Size = new System.Drawing.Size(1086, 461);
+            this.tabNetwork.TabIndex = 3;
+            this.tabNetwork.Text = "Network";
+            this.tabNetwork.UseVisualStyleBackColor = true;
+            // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.txtLog);
+            this.tabLog.Location = new System.Drawing.Point(4, 29);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Size = new System.Drawing.Size(1086, 461);
+            this.tabLog.TabIndex = 4;
+            this.tabLog.Text = "Logs";
+            this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(0, 0);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.Size = new System.Drawing.Size(1086, 461);
+            this.txtLog.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1094, 28);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectProjectPathToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // selectProjectPathToolStripMenuItem
+            // 
+            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectWorkDir});
+            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.selectProjectPathToolStripMenuItem.Text = "Projects";
+            // 
+            // SelectWorkDir
+            // 
+            this.SelectWorkDir.Name = "SelectWorkDir";
+            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
+            this.SelectWorkDir.Text = "Select Work Directory";
+            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
+            // 
+            // folderBrowserDialog
+            // 
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.folderBrowserDialog.SelectedPath = "C:\\";
+            // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageStatusLabel,
+            this.toolStripSelectedImage});
+            this.statusBar.Location = new System.Drawing.Point(0, 568);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1094, 25);
+            this.statusBar.TabIndex = 3;
+            this.statusBar.Text = "Status";
+            // 
+            // imageStatusLabel
+            // 
+            this.imageStatusLabel.Name = "imageStatusLabel";
+            this.imageStatusLabel.Size = new System.Drawing.Size(57, 20);
+            this.imageStatusLabel.Text = "Images";
+            // 
+            // toolStripSelectedImage
+            // 
+            this.toolStripSelectedImage.Name = "toolStripSelectedImage";
+            this.toolStripSelectedImage.Size = new System.Drawing.Size(115, 20);
+            this.toolStripSelectedImage.Text = "Selected Image:";
+            // 
+            // btnOpenFolder
+            // 
+            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolder.Location = new System.Drawing.Point(1062, 31);
+            this.btnOpenFolder.Name = "btnOpenFolder";
+            this.btnOpenFolder.Size = new System.Drawing.Size(28, 34);
+            this.btnOpenFolder.TabIndex = 4;
+            this.btnOpenFolder.Text = "...";
+            this.btnOpenFolder.UseVisualStyleBackColor = true;
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            // 
+            // txtWorkDirPath
+            // 
+            this.txtWorkDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWorkDirPath.Location = new System.Drawing.Point(4, 34);
+            this.txtWorkDirPath.Multiline = true;
+            this.txtWorkDirPath.Name = "txtWorkDirPath";
+            this.txtWorkDirPath.Size = new System.Drawing.Size(1052, 31);
+            this.txtWorkDirPath.TabIndex = 5;
+            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
+            // 
+            // Command
+            // 
+            this.Command.Text = "Command";
             // 
             // frmMain
             // 
@@ -539,16 +539,16 @@
             this.tabControl1.ResumeLayout(false);
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
-            this.tabCOntainers.ResumeLayout(false);
-            this.tabCOntainers.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabCOntainers.ResumeLayout(false);
+            this.tabCOntainers.PerformLayout();
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.tabLog.ResumeLayout(false);
-            this.tabLog.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,12 +598,12 @@
         private System.Windows.Forms.ListView lstContainers;
         private System.Windows.Forms.ColumnHeader ContainerId;
         private System.Windows.Forms.ColumnHeader Imaged;
-        private System.Windows.Forms.ColumnHeader Command;
         private System.Windows.Forms.ColumnHeader Createdd;
         private System.Windows.Forms.ColumnHeader Status;
         private System.Windows.Forms.ColumnHeader Ports;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ColumnHeader Names;
+        private System.Windows.Forms.ColumnHeader Command;
     }
 }
 
