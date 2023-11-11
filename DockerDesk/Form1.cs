@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DockerDesk
 {
@@ -57,8 +59,8 @@ namespace DockerDesk
                     using (StreamReader reader = process.StandardOutput)
                     {
                         string result = reader.ReadToEnd();
-                        var images = DoskerStatus.ParseDockerImagesOutput(result);
-                        PopulateListView(images);
+                        var objImages = DoskerStatus.ParseDockerImagesOutput(result);
+                        PopulateListView(objImages);
                     }
 
                     process.WaitForExit();
@@ -77,7 +79,8 @@ namespace DockerDesk
 
             foreach (var image in images)
             {
-                var item = new ListViewItem(image.Image);
+                var item = new ListViewItem(image.Id.ToString());
+                item.SubItems.Add(image.Image);
                 item.SubItems.Add(image.Tag);
                 item.SubItems.Add(image.ImageId);
                 item.SubItems.Add(image.Created);
@@ -93,9 +96,17 @@ namespace DockerDesk
 
         private void listViewImages_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = listViewImages.SelectedItems[0];
-            selectedImage = imagesList.FirstOrDefault(i => i.Image == selectedItem.Text);
+            if (listViewImages.SelectedItems.Count > 0)
+            {
+                var selectedItem = listViewImages.SelectedItems[0];
+                selectedImage = imagesList.FirstOrDefault(i => i.Image == selectedItem.Text);
+            }
+            else
+            {
+                selectedImage = null;
+            }
         }
+
 
 
         private void btnRunContainer_Click(object sender, EventArgs e)
@@ -103,5 +114,17 @@ namespace DockerDesk
 
         }
 
+        private void listViewImages_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listViewImages.SelectedItems.Count > 0)
+            {
+                var id = listViewImages.SelectedItems[0].Text;
+                selectedImage = imagesList.FirstOrDefault(i => i.Id == int.Parse(id));
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
     }
 }

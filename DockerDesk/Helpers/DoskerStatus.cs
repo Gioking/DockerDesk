@@ -50,6 +50,7 @@ namespace DockerDesk.Helpers
             // Espressione regolare per corrispondere alle colonne
             var columnRegex = new Regex(@"(\S+)\s+(\S+)\s+(\S+)\s+(.+ ago)\s+(\S+)");
 
+            int ids = 0;
             foreach (Match line in matches)
             {
                 if (line.Success && !line.Value.StartsWith("REPOSITORY"))
@@ -57,8 +58,10 @@ namespace DockerDesk.Helpers
                     var match = columnRegex.Match(line.Value);
                     if (match.Success)
                     {
+                        ids++;
                         var image = new DockerImage
                         {
+                            Id = ids,
                             Image = match.Groups[1].Value,
                             Tag = match.Groups[2].Value,
                             ImageId = match.Groups[3].Value,

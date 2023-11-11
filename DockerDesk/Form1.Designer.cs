@@ -30,20 +30,21 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
-            this.tabCOntainers = new System.Windows.Forms.TabPage();
-            this.tabVolume = new System.Windows.Forms.TabPage();
-            this.tabNetwork = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.imageStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.listViewImages = new System.Windows.Forms.ListView();
             this.btnRunContainer = new System.Windows.Forms.Button();
+            this.listViewImages = new System.Windows.Forms.ListView();
             this.Image = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Created = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.imageStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabCOntainers = new System.Windows.Forms.TabPage();
+            this.tabVolume = new System.Windows.Forms.TabPage();
+            this.tabNetwork = new System.Windows.Forms.TabPage();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -79,71 +80,20 @@
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
             // 
-            // tabCOntainers
+            // btnRunContainer
             // 
-            this.tabCOntainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
-            this.tabCOntainers.Name = "tabCOntainers";
-            this.tabCOntainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCOntainers.Size = new System.Drawing.Size(1086, 508);
-            this.tabCOntainers.TabIndex = 1;
-            this.tabCOntainers.Text = "Containers";
-            this.tabCOntainers.UseVisualStyleBackColor = true;
-            // 
-            // tabVolume
-            // 
-            this.tabVolume.Location = new System.Drawing.Point(4, 29);
-            this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1062, 484);
-            this.tabVolume.TabIndex = 2;
-            this.tabVolume.Text = "Volume";
-            this.tabVolume.UseVisualStyleBackColor = true;
-            // 
-            // tabNetwork
-            // 
-            this.tabNetwork.Location = new System.Drawing.Point(4, 29);
-            this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1062, 484);
-            this.tabNetwork.TabIndex = 3;
-            this.tabNetwork.Text = "Netword";
-            this.tabNetwork.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Current Docker Images";
-            // 
-            // statusBar
-            // 
-            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imageStatusLabel});
-            this.statusBar.Location = new System.Drawing.Point(3, 480);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1080, 25);
-            this.statusBar.TabIndex = 2;
-            this.statusBar.Text = "Status";
-            // 
-            // imageStatusLabel
-            // 
-            this.imageStatusLabel.Name = "imageStatusLabel";
-            this.imageStatusLabel.Size = new System.Drawing.Size(57, 20);
-            this.imageStatusLabel.Text = "Images";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(3, 458);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1080, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
+            this.btnRunContainer.Location = new System.Drawing.Point(11, 369);
+            this.btnRunContainer.Name = "btnRunContainer";
+            this.btnRunContainer.Size = new System.Drawing.Size(147, 35);
+            this.btnRunContainer.TabIndex = 5;
+            this.btnRunContainer.Text = "Run Countainer";
+            this.btnRunContainer.UseVisualStyleBackColor = true;
+            this.btnRunContainer.Click += new System.EventHandler(this.btnRunContainer_Click);
             // 
             // listViewImages
             // 
             this.listViewImages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
             this.Image,
             this.Tag,
             this.ImageId,
@@ -160,17 +110,7 @@
             this.listViewImages.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewImages.TabIndex = 4;
             this.listViewImages.UseCompatibleStateImageBehavior = false;
-            this.listViewImages.SelectedIndexChanged += new System.EventHandler(this.listViewImages_SelectedIndexChanged);
-            // 
-            // btnRunContainer
-            // 
-            this.btnRunContainer.Location = new System.Drawing.Point(11, 369);
-            this.btnRunContainer.Name = "btnRunContainer";
-            this.btnRunContainer.Size = new System.Drawing.Size(147, 35);
-            this.btnRunContainer.TabIndex = 5;
-            this.btnRunContainer.Text = "Run Countainer";
-            this.btnRunContainer.UseVisualStyleBackColor = true;
-            this.btnRunContainer.Click += new System.EventHandler(this.btnRunContainer_Click);
+            this.listViewImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewImages_MouseClick);
             // 
             // Image
             // 
@@ -191,6 +131,72 @@
             // Size
             // 
             this.Size.Text = "Size";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(3, 458);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1080, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageStatusLabel});
+            this.statusBar.Location = new System.Drawing.Point(3, 480);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1080, 25);
+            this.statusBar.TabIndex = 2;
+            this.statusBar.Text = "Status";
+            // 
+            // imageStatusLabel
+            // 
+            this.imageStatusLabel.Name = "imageStatusLabel";
+            this.imageStatusLabel.Size = new System.Drawing.Size(57, 20);
+            this.imageStatusLabel.Text = "Images";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Current Docker Images";
+            // 
+            // tabCOntainers
+            // 
+            this.tabCOntainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
+            this.tabCOntainers.Name = "tabCOntainers";
+            this.tabCOntainers.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCOntainers.Size = new System.Drawing.Size(1086, 508);
+            this.tabCOntainers.TabIndex = 1;
+            this.tabCOntainers.Text = "Containers";
+            this.tabCOntainers.UseVisualStyleBackColor = true;
+            // 
+            // tabVolume
+            // 
+            this.tabVolume.Location = new System.Drawing.Point(4, 29);
+            this.tabVolume.Name = "tabVolume";
+            this.tabVolume.Size = new System.Drawing.Size(1086, 508);
+            this.tabVolume.TabIndex = 2;
+            this.tabVolume.Text = "Volume";
+            this.tabVolume.UseVisualStyleBackColor = true;
+            // 
+            // tabNetwork
+            // 
+            this.tabNetwork.Location = new System.Drawing.Point(4, 29);
+            this.tabNetwork.Name = "tabNetwork";
+            this.tabNetwork.Size = new System.Drawing.Size(1086, 508);
+            this.tabNetwork.TabIndex = 3;
+            this.tabNetwork.Text = "Netword";
+            this.tabNetwork.UseVisualStyleBackColor = true;
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
             // 
             // frmMain
             // 
@@ -229,6 +235,7 @@
         private System.Windows.Forms.ColumnHeader ImageId;
         private System.Windows.Forms.ColumnHeader Created;
         private System.Windows.Forms.ColumnHeader Size;
+        private System.Windows.Forms.ColumnHeader Id;
     }
 }
 
