@@ -67,8 +67,18 @@
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.lstContainers = new System.Windows.Forms.ListView();
+            this.ContainerId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Imaged = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Createdd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label7 = new System.Windows.Forms.Label();
+            this.Names = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
+            this.tabCOntainers.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -137,7 +147,7 @@
             this.Created,
             this.Size});
             this.listViewImages.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.listViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.listViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.listViewImages.FullRowSelect = true;
             this.listViewImages.HideSelection = false;
             this.listViewImages.Location = new System.Drawing.Point(11, 41);
@@ -176,14 +186,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.Size = new System.Drawing.Size(154, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Current Docker Images";
             // 
             // tabCOntainers
             // 
+            this.tabCOntainers.Controls.Add(this.lstContainers);
+            this.tabCOntainers.Controls.Add(this.label7);
             this.tabCOntainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
             this.tabCOntainers.Name = "tabCOntainers";
@@ -444,6 +457,70 @@
             this.txtLog.Size = new System.Drawing.Size(1086, 461);
             this.txtLog.TabIndex = 0;
             // 
+            // lstContainers
+            // 
+            this.lstContainers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstContainers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstContainers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ContainerId,
+            this.Imaged,
+            this.Command,
+            this.Createdd,
+            this.Status,
+            this.Ports,
+            this.Names});
+            this.lstContainers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lstContainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lstContainers.FullRowSelect = true;
+            this.lstContainers.HideSelection = false;
+            this.lstContainers.Location = new System.Drawing.Point(11, 41);
+            this.lstContainers.MultiSelect = false;
+            this.lstContainers.Name = "lstContainers";
+            this.lstContainers.Size = new System.Drawing.Size(1067, 240);
+            this.lstContainers.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lstContainers.TabIndex = 6;
+            this.lstContainers.UseCompatibleStateImageBehavior = false;
+            // 
+            // ContainerId
+            // 
+            this.ContainerId.Text = "ContainerId";
+            // 
+            // Imaged
+            // 
+            this.Imaged.Text = "Image";
+            // 
+            // Command
+            // 
+            this.Command.Text = "Command";
+            // 
+            // Createdd
+            // 
+            this.Createdd.Text = "Created";
+            // 
+            // Status
+            // 
+            this.Status.Text = "Status";
+            // 
+            // Ports
+            // 
+            this.Ports.Text = "Ports";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(8, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(154, 15);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Current Docker Images";
+            // 
+            // Names
+            // 
+            this.Names.Text = "Names";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,6 +539,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
+            this.tabCOntainers.ResumeLayout(false);
+            this.tabCOntainers.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -516,6 +595,15 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.ListView lstContainers;
+        private System.Windows.Forms.ColumnHeader ContainerId;
+        private System.Windows.Forms.ColumnHeader Imaged;
+        private System.Windows.Forms.ColumnHeader Command;
+        private System.Windows.Forms.ColumnHeader Createdd;
+        private System.Windows.Forms.ColumnHeader Status;
+        private System.Windows.Forms.ColumnHeader Ports;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ColumnHeader Names;
     }
 }
 

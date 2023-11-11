@@ -15,6 +15,7 @@ namespace DockerDesk
         private DockerImage selectedImage;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
+        private List<DockerContainer> containersList = new List<DockerContainer>();
         private StringBuilder sb = new StringBuilder();
 
         public frmMain()
@@ -25,6 +26,7 @@ namespace DockerDesk
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadImages();
+            LoadContainers();
         }
 
 
@@ -43,30 +45,13 @@ namespace DockerDesk
                     imageStatusLabel.Text = "Servizio Docker Attivo.";
                 }
 
-                // Crea un nuovo processo
-                ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    FileName = "docker",
-                    Arguments = "images",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true
-                };
+                listViewImages.View = View.Details;
+                var result = DoskerStatus.DockerExecute("images", txtWorkDirPath.Text);
+                sb.AppendLine(result);
+                var objImages = DoskerStatus.ParseDockerImagesOutput(result);
+                PopulateImagesListView(objImages);
+                //SetListViewColumnSizes(listViewImages, 50);
 
-                // Avvia il processo
-                using (Process process = Process.Start(startInfo))
-                {
-                    listViewImages.View = View.Details;
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string result = reader.ReadToEnd();
-                        sb.AppendLine(result);
-                        var objImages = DoskerStatus.ParseDockerImagesOutput(result);
-                        PopulateListView(objImages);
-                    }
-
-                    process.WaitForExit();
-                }
             }
             catch (Exception e)
             {
@@ -74,7 +59,25 @@ namespace DockerDesk
             }
         }
 
-        private void PopulateListView(List<DockerImage> images)
+        private void LoadContainers()
+        {
+            try
+            {
+                lstContainers.View = View.Details;
+                var result = DoskerStatus.DockerExecute("ps -a", txtWorkDirPath.Text);
+                sb.AppendLine(result);
+                var objContainers = DoskerStatus.ParseDockerContainersOutput(result);
+                PopulateContainersListView(objContainers);
+                //SetListViewColumnSizes(lstContainers, 180);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
+        }
+
+        private void PopulateImagesListView(List<DockerImage> images)
         {
             listViewImages.Items.Clear();
             imagesList.Clear();
@@ -94,6 +97,37 @@ namespace DockerDesk
 
             listViewImages.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
+        private void PopulateContainersListView(List<DockerContainer> containers)
+        {
+            lstContainers.Items.Clear();
+            containersList.Clear();
+
+            foreach (var container in containers)
+            {
+                var item = new ListViewItem(container.ContainerId);
+                item.SubItems.Add(container.Image);
+                item.SubItems.Add(container.Command);
+                item.SubItems.Add(container.Created);
+                item.SubItems.Add(container.Status);
+                item.SubItems.Add(container.Ports);
+                item.SubItems.Add(container.Names);
+
+                lstContainers.Items.Add(item);
+                containersList.Add(container);
+            }
+
+            lstContainers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+
+        private void SetListViewColumnSizes(ListView lvw, int width)
+        {
+            foreach (ColumnHeader col in lvw.Columns)
+                col.Width = width;
+        }
+
+
+
 
         private void listViewImages_MouseClick(object sender, MouseEventArgs e)
         {
@@ -132,12 +166,12 @@ namespace DockerDesk
 
             if (!chkHasVolume.Checked)
             {
-                result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                result = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
 
             }
             else
             {
-                result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                result = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
 
             sb.AppendLine(result);
@@ -150,7 +184,7 @@ namespace DockerDesk
 
         private void btnCreateImage_Click(object sender, EventArgs e)
         {
-            var result = DoskerStatus.DockerExecute1($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+            var result = DoskerStatus.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)
@@ -160,5 +194,8 @@ namespace DockerDesk
                 WorkingFolderPath = folderBrowserDialog.SelectedPath;
             }
         }
+
+
+
     }
 }

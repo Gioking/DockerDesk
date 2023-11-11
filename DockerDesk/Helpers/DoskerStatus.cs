@@ -75,7 +75,44 @@ namespace DockerDesk.Helpers
             return imagesList;
         }
 
-        public static string DockerExecute1(string arguments, string workdir)
+        public static List<DockerContainer> ParseDockerContainersOutput(string output)
+        {
+            var containersList = new List<DockerContainer>();
+
+            // Regex per dividere l'output in righe
+            var lineRegex = new Regex(@"(.+?\r?\n|\r)");
+            var matches = lineRegex.Matches(output);
+
+            // Aggiornare l'espressione regolare per corrispondere alle colonne desiderate
+            var columnRegex = new Regex(@"(\S+)\s+(\S+)\s+(\"".+?\"")\s+(.+ ago)\s+(\S+)\s+(\S+)\s+(.+)");
+
+            foreach (Match line in matches)
+            {
+                if (line.Success && !line.Value.StartsWith("CONTAINER ID"))
+                {
+                    var match = columnRegex.Match(line.Value);
+                    if (match.Success)
+                    {
+                        var container = new DockerContainer
+                        {
+                            ContainerId = match.Groups[1].Value,
+                            Image = match.Groups[2].Value,
+                            Command = match.Groups[3].Value,
+                            Created = match.Groups[4].Value,
+                            Status = match.Groups[5].Value,
+                            Ports = match.Groups[6].Value,
+                            Names = match.Groups[7].Value
+                        };
+                        containersList.Add(container);
+                    }
+                }
+            }
+
+            return containersList;
+        }
+
+
+        public static string DockerExecute(string arguments, string workdir)
         {
             try
             {
@@ -116,11 +153,20 @@ namespace DockerDesk.Helpers
                 }
 
                 string OperationResult = output.ToString();
-                string errorResult = error.ToString();
+                string ErrorResult = error.ToString();
 
-                // Gestisci qui l'output dell'errore, se necessario
-
-                return errorResult;
+                if (!string.IsNullOrEmpty(OperationResult))
+                {
+                    return OperationResult;
+                }
+                else if (!string.IsNullOrEmpty(ErrorResult))
+                {
+                    return ErrorResult;
+                }
+                else
+                {
+                    return "Nessun output o errore rilevato.";
+                }
             }
             catch (Exception e)
             {
