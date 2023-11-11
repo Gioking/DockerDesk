@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace DockerDesk.Helpers
 {
@@ -75,5 +74,85 @@ namespace DockerDesk.Helpers
 
             return imagesList;
         }
+
+        public static string DockerExecute1(string arguments, string workdir)
+        {
+            try
+            {
+                StringBuilder output = new StringBuilder();
+                StringBuilder error = new StringBuilder();
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = workdir,
+                    FileName = "docker",
+                    Arguments = arguments,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+
+                using (Process process = new Process())
+                {
+                    process.StartInfo = startInfo;
+                    process.Start();
+
+                    using (StreamReader outputReader = process.StandardOutput)
+                    using (StreamReader errorReader = process.StandardError)
+                    {
+                        // Legge l'output man mano che è disponibile
+                        while (!process.HasExited)
+                        {
+                            output.Append(outputReader.ReadToEnd());
+                            error.Append(errorReader.ReadToEnd());
+                        }
+
+                        // Leggi eventuali resti dopo l'uscita del processo
+                        output.Append(outputReader.ReadToEnd());
+                        error.Append(errorReader.ReadToEnd());
+
+                        process.WaitForExit();
+                    }
+                }
+
+                string OperationResult = output.ToString();
+                string errorResult = error.ToString();
+
+                // Gestisci qui l'output dell'errore, se necessario
+
+                return errorResult;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+                return "Error:";
+            }
+        }
+
+
+
+        public static void DockerExecute2(string arguments, string workdir)
+        {
+            try
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = workdir,
+                    FileName = "cmd.exe", // Utilizziamo cmd.exe per eseguire il comando
+                    Arguments = $"/K docker {arguments}", // Modifica qui per utilizzare /K
+                    UseShellExecute = true // Impostato su true per utilizzare una shell esterna
+                };
+
+                Process process = new Process();
+                process.StartInfo = startInfo;
+                process.Start();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
+        }
+
     }
 }

@@ -6,14 +6,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DockerDesk
 {
     public partial class frmMain : Form
     {
         DockerImage selectedImage;
+        private string WorkingFolderPath = string.Empty;
         List<DockerImage> imagesList = new List<DockerImage>();
 
         public frmMain()
@@ -93,27 +92,6 @@ namespace DockerDesk
             listViewImages.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-
-        private void listViewImages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listViewImages.SelectedItems.Count > 0)
-            {
-                var selectedItem = listViewImages.SelectedItems[0];
-                selectedImage = imagesList.FirstOrDefault(i => i.Image == selectedItem.Text);
-            }
-            else
-            {
-                selectedImage = null;
-            }
-        }
-
-
-
-        private void btnRunContainer_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listViewImages_MouseClick(object sender, MouseEventArgs e)
         {
             if (listViewImages.SelectedItems.Count > 0)
@@ -124,6 +102,41 @@ namespace DockerDesk
             else
             {
                 selectedImage = null;
+            }
+        }
+
+        private void SelectWorkDir_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = folderBrowserDialog.SelectedPath;
+            }
+
+        }
+
+        // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
+        private void btnRunContainer_Click(object sender, EventArgs e)
+        {
+            if (!chkHasVolume.Checked)
+            {
+                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtWorkDirPath.Text);
+            }
+            else
+            {
+                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+            }
+        }
+
+        private void btnCreateImage_Click(object sender, EventArgs e)
+        {
+            var result = DoskerStatus.DockerExecute1($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = folderBrowserDialog.SelectedPath;
             }
         }
     }
