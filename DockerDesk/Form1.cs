@@ -103,6 +103,8 @@ namespace DockerDesk
             {
                 selectedImage = null;
             }
+
+            toolStripSelectedImage.Text = selectedImage.Image;
         }
 
         private void SelectWorkDir_Click(object sender, EventArgs e)
@@ -119,7 +121,7 @@ namespace DockerDesk
         {
             if (!chkHasVolume.Checked)
             {
-                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtWorkDirPath.Text);
+                var result = DoskerStatus.DockerExecute1($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
             else
             {

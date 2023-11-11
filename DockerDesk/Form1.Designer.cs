@@ -64,6 +64,7 @@
             this.txtVolumeName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.chkHasVolume = new System.Windows.Forms.CheckBox();
+            this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -279,7 +280,8 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imageStatusLabel});
+            this.imageStatusLabel,
+            this.toolStripSelectedImage});
             this.statusBar.Location = new System.Drawing.Point(0, 568);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -413,6 +415,12 @@
             this.chkHasVolume.Text = "Container has volume";
             this.chkHasVolume.UseVisualStyleBackColor = true;
             // 
+            // toolStripSelectedImage
+            // 
+            this.toolStripSelectedImage.Name = "toolStripSelectedImage";
+            this.toolStripSelectedImage.Size = new System.Drawing.Size(115, 20);
+            this.toolStripSelectedImage.Text = "Selected Image:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,6 +488,7 @@
         private System.Windows.Forms.TextBox txtVolumeName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkHasVolume;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
     }
 }
 

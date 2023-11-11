@@ -131,7 +131,7 @@ namespace DockerDesk.Helpers
 
 
 
-        public static void DockerExecute2(string arguments, string workdir)
+        public static void DockerExecute2(string arguments, string workdir = null)
         {
             try
             {
