@@ -2,10 +2,7 @@
 using DockerDesk.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -124,7 +121,8 @@ namespace DockerDesk
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                WorkingFolderPath = folderBrowserDialog.SelectedPath;
+                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
+                txtWorkDirPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
             }
         }
 

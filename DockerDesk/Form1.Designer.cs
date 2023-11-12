@@ -216,7 +216,7 @@
             // 
             // btnCreateImage
             // 
-            this.btnCreateImage.Location = new System.Drawing.Point(10, 177);
+            this.btnCreateImage.Location = new System.Drawing.Point(9, 189);
             this.btnCreateImage.Name = "btnCreateImage";
             this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
             this.btnCreateImage.TabIndex = 2;
@@ -226,7 +226,7 @@
             // 
             // txtImageName
             // 
-            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtImageName.Location = new System.Drawing.Point(87, 27);
             this.txtImageName.Multiline = true;
             this.txtImageName.Name = "txtImageName";
