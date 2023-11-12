@@ -3,6 +3,7 @@ using DockerDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,11 +47,12 @@ namespace DockerDesk
                     imageStatusLabel.Text = "Servizio Docker Attivo.";
                 }
 
-                listViewImages.View = View.Details;
                 var result = DoskerStatus.DockerExecute("images", txtWorkDirPath.Text);
                 sb.AppendLine(result);
                 var objImages = DoskerStatus.ParseDockerImagesOutput(result);
-                PopulateImagesListView(objImages);
+                GridImages.DataSource = objImages;
+                Font font = new Font("Arial", 12, FontStyle.Regular);
+                GridImages.Font = font;
             }
             catch (Exception e)
             {
@@ -62,75 +64,17 @@ namespace DockerDesk
         {
             try
             {
-                lstContainers.View = View.Details;
                 var result = DoskerStatus.DockerExecute("ps -a", txtWorkDirPath.Text);
                 sb.AppendLine(result);
                 var objContainers = DoskerStatus.ParseDockerContainersOutput(result);
-                PopulateContainersListView(objContainers);
+                gridContainers.DataSource = objContainers;
+                Font font = new Font("Arial", 12, FontStyle.Regular);
+                gridContainers.Font = font;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
             }
-        }
-
-        private void PopulateImagesListView(List<DockerImage> images)
-        {
-            listViewImages.Items.Clear();
-            imagesList.Clear();
-
-            foreach (var image in images)
-            {
-                var item = new ListViewItem(image.Id.ToString());
-                item.SubItems.Add(image.Image);
-                item.SubItems.Add(image.Tag);
-                item.SubItems.Add(image.ImageId);
-                item.SubItems.Add(image.Created);
-                item.SubItems.Add(image.Size);
-
-                listViewImages.Items.Add(item);
-                imagesList.Add(image);
-            }
-
-            listViewImages.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
-
-        private void PopulateContainersListView(List<DockerContainer> containers)
-        {
-            lstContainers.Items.Clear();
-            containersList.Clear();
-
-            foreach (var container in containers)
-            {
-                var item = new ListViewItem(container.ContainerId);
-                item.SubItems.Add(container.Image);
-                item.SubItems.Add(container.Command);
-                item.SubItems.Add(container.Created);
-                item.SubItems.Add(container.Status);
-                item.SubItems.Add(container.Ports);
-                item.SubItems.Add(container.Names);
-
-                lstContainers.Items.Add(item);
-                containersList.Add(container);
-            }
-
-            lstContainers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
-
-
-        private void listViewImages_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (listViewImages.SelectedItems.Count > 0)
-            {
-                var id = listViewImages.SelectedItems[0].Text;
-                selectedImage = imagesList.FirstOrDefault(i => i.Id == int.Parse(id));
-            }
-            else
-            {
-                selectedImage = null;
-            }
-
-            toolStripSelectedImage.Text = selectedImage.Image;
         }
 
         private void SelectWorkDir_Click(object sender, EventArgs e)
@@ -187,6 +131,47 @@ namespace DockerDesk
         private void lstContainers_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void GridImages_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (GridImages.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridImages.SelectedRows[0];
+
+                selectedImage = new DockerImage();
+                selectedImage.Id = Convert.ToInt32(row.Cells[0].Value);
+                selectedImage.Image = Convert.ToString(row.Cells[1].Value);
+                selectedImage.Tag = Convert.ToString(row.Cells[2].Value);
+                selectedImage.ImageId = Convert.ToString(row.Cells[3].Value);
+                selectedImage.Created = Convert.ToString(row.Cells[4].Value);
+                selectedImage.Size = Convert.ToString(row.Cells[5].Value);
+
+                toolStripSelectedImage.Text = selectedImage.Image;
+            }
+        }
+
+        private void gridContainers_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (gridContainers.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = gridContainers.SelectedRows[0];
+
+                DockerContainer dockerContainer = new DockerContainer();
+
+                // Assicurati che gli indici delle celle siano corretti in base all'ordine delle colonne nella DataGridView
+                dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
+                dockerContainer.Image = Convert.ToString(row.Cells[1].Value);
+                dockerContainer.Command = Convert.ToString(row.Cells[2].Value);
+                dockerContainer.Created = Convert.ToString(row.Cells[3].Value);
+                dockerContainer.Status = Convert.ToString(row.Cells[4].Value);
+                dockerContainer.Ports = Convert.ToString(row.Cells[5].Value);
+                dockerContainer.Names = Convert.ToString(row.Cells[6].Value);
+
+                selectedContainer = dockerContainer;
+
+                toolStripSelectedContainer.Text = selectedContainer.Names;
+            }
         }
     }
 }

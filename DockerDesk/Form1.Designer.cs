@@ -44,22 +44,8 @@
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRunContainer = new System.Windows.Forms.Button();
-            this.listViewImages = new System.Windows.Forms.ListView();
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Image = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Tag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ImageId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Created = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tabCOntainers = new System.Windows.Forms.TabPage();
-            this.lstContainers = new System.Windows.Forms.ListView();
-            this.ContainerId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Imaged = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Createdd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Names = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.tabNetwork = new System.Windows.Forms.TabPage();
@@ -75,7 +61,9 @@
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.Command = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gridContainers = new System.Windows.Forms.DataGridView();
+            this.GridImages = new System.Windows.Forms.DataGridView();
+            this.toolStripSelectedContainer = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,6 +71,8 @@
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,6 +91,7 @@
             // 
             // tabImages
             // 
+            this.tabImages.Controls.Add(this.GridImages);
             this.tabImages.Controls.Add(this.chkHasVolume);
             this.tabImages.Controls.Add(this.txtVolumeName);
             this.tabImages.Controls.Add(this.label6);
@@ -112,7 +103,6 @@
             this.tabImages.Controls.Add(this.label3);
             this.tabImages.Controls.Add(this.groupBox1);
             this.tabImages.Controls.Add(this.btnRunContainer);
-            this.tabImages.Controls.Add(this.listViewImages);
             this.tabImages.Controls.Add(this.label1);
             this.tabImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tabImages.Location = new System.Drawing.Point(4, 29);
@@ -217,9 +207,9 @@
             this.groupBox1.Controls.Add(this.txtImageName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(693, 41);
+            this.groupBox1.Location = new System.Drawing.Point(769, 43);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(385, 240);
+            this.groupBox1.Size = new System.Drawing.Size(309, 240);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
@@ -237,17 +227,17 @@
             // txtImageName
             // 
             this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtImageName.Location = new System.Drawing.Point(88, 31);
+            this.txtImageName.Location = new System.Drawing.Point(87, 27);
             this.txtImageName.Multiline = true;
             this.txtImageName.Name = "txtImageName";
-            this.txtImageName.Size = new System.Drawing.Size(281, 22);
+            this.txtImageName.Size = new System.Drawing.Size(210, 22);
             this.txtImageName.TabIndex = 1;
             this.txtImageName.Text = "test-image-gio";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 36);
+            this.label2.Location = new System.Drawing.Point(6, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 0;
@@ -263,56 +253,6 @@
             this.btnRunContainer.UseVisualStyleBackColor = true;
             this.btnRunContainer.Click += new System.EventHandler(this.btnRunContainer_Click);
             // 
-            // listViewImages
-            // 
-            this.listViewImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewImages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listViewImages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Id,
-            this.Image,
-            this.Tag,
-            this.ImageId,
-            this.Created,
-            this.Size});
-            this.listViewImages.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.listViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.listViewImages.FullRowSelect = true;
-            this.listViewImages.HideSelection = false;
-            this.listViewImages.Location = new System.Drawing.Point(11, 41);
-            this.listViewImages.MultiSelect = false;
-            this.listViewImages.Name = "listViewImages";
-            this.listViewImages.Size = new System.Drawing.Size(676, 240);
-            this.listViewImages.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listViewImages.TabIndex = 4;
-            this.listViewImages.UseCompatibleStateImageBehavior = false;
-            this.listViewImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewImages_MouseClick);
-            // 
-            // Id
-            // 
-            this.Id.Text = "Id";
-            // 
-            // Image
-            // 
-            this.Image.Text = "Image";
-            // 
-            // Tag
-            // 
-            this.Tag.Text = "Tag";
-            // 
-            // ImageId
-            // 
-            this.ImageId.Text = "Image id";
-            // 
-            // Created
-            // 
-            this.Created.Text = "Created on";
-            // 
-            // Size
-            // 
-            this.Size.Text = "Size";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -325,7 +265,7 @@
             // 
             // tabCOntainers
             // 
-            this.tabCOntainers.Controls.Add(this.lstContainers);
+            this.tabCOntainers.Controls.Add(this.gridContainers);
             this.tabCOntainers.Controls.Add(this.label7);
             this.tabCOntainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
@@ -335,56 +275,6 @@
             this.tabCOntainers.TabIndex = 1;
             this.tabCOntainers.Text = "Containers";
             this.tabCOntainers.UseVisualStyleBackColor = true;
-            // 
-            // lstContainers
-            // 
-            this.lstContainers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstContainers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lstContainers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ContainerId,
-            this.Imaged,
-            this.Command,
-            this.Createdd,
-            this.Status,
-            this.Ports,
-            this.Names});
-            this.lstContainers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lstContainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lstContainers.FullRowSelect = true;
-            this.lstContainers.HideSelection = false;
-            this.lstContainers.Location = new System.Drawing.Point(11, 41);
-            this.lstContainers.MultiSelect = false;
-            this.lstContainers.Name = "lstContainers";
-            this.lstContainers.Size = new System.Drawing.Size(1067, 240);
-            this.lstContainers.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lstContainers.TabIndex = 6;
-            this.lstContainers.UseCompatibleStateImageBehavior = false;
-            // 
-            // ContainerId
-            // 
-            this.ContainerId.Text = "ContainerId";
-            // 
-            // Imaged
-            // 
-            this.Imaged.Text = "Image";
-            // 
-            // Createdd
-            // 
-            this.Createdd.Text = "Created";
-            // 
-            // Status
-            // 
-            this.Status.Text = "Status";
-            // 
-            // Ports
-            // 
-            this.Ports.Text = "Ports";
-            // 
-            // Names
-            // 
-            this.Names.Text = "Names";
             // 
             // label7
             // 
@@ -475,7 +365,8 @@
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.imageStatusLabel,
-            this.toolStripSelectedImage});
+            this.toolStripSelectedImage,
+            this.toolStripSelectedContainer});
             this.statusBar.Location = new System.Drawing.Point(0, 568);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -517,9 +408,41 @@
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
-            // Command
+            // gridContainers
             // 
-            this.Command.Text = "Command";
+            this.gridContainers.AllowUserToAddRows = false;
+            this.gridContainers.AllowUserToDeleteRows = false;
+            this.gridContainers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridContainers.Location = new System.Drawing.Point(11, 43);
+            this.gridContainers.MultiSelect = false;
+            this.gridContainers.Name = "gridContainers";
+            this.gridContainers.ReadOnly = true;
+            this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridContainers.Size = new System.Drawing.Size(1067, 313);
+            this.gridContainers.TabIndex = 7;
+            this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
+            // 
+            // GridImages
+            // 
+            this.GridImages.AllowUserToAddRows = false;
+            this.GridImages.AllowUserToDeleteRows = false;
+            this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.GridImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridImages.Location = new System.Drawing.Point(15, 43);
+            this.GridImages.MultiSelect = false;
+            this.GridImages.Name = "GridImages";
+            this.GridImages.ReadOnly = true;
+            this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridImages.Size = new System.Drawing.Size(748, 238);
+            this.GridImages.TabIndex = 16;
+            this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
+            // 
+            // toolStripSelectedContainer
+            // 
+            this.toolStripSelectedContainer.Name = "toolStripSelectedContainer";
+            this.toolStripSelectedContainer.Size = new System.Drawing.Size(151, 20);
+            this.toolStripSelectedContainer.Text = "toolStripStatusLabel1";
             // 
             // frmMain
             // 
@@ -549,6 +472,8 @@
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -562,14 +487,7 @@
         private System.Windows.Forms.TabPage tabVolume;
         private System.Windows.Forms.TabPage tabNetwork;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listViewImages;
         private System.Windows.Forms.Button btnRunContainer;
-        private System.Windows.Forms.ColumnHeader Image;
-        private System.Windows.Forms.ColumnHeader Tag;
-        private System.Windows.Forms.ColumnHeader ImageId;
-        private System.Windows.Forms.ColumnHeader Created;
-        private System.Windows.Forms.ColumnHeader Size;
-        private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtImageName;
         private System.Windows.Forms.Label label2;
@@ -595,15 +513,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.ListView lstContainers;
-        private System.Windows.Forms.ColumnHeader ContainerId;
-        private System.Windows.Forms.ColumnHeader Imaged;
-        private System.Windows.Forms.ColumnHeader Createdd;
-        private System.Windows.Forms.ColumnHeader Status;
-        private System.Windows.Forms.ColumnHeader Ports;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ColumnHeader Names;
-        private System.Windows.Forms.ColumnHeader Command;
+        private System.Windows.Forms.DataGridView gridContainers;
+        private System.Windows.Forms.DataGridView GridImages;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedContainer;
     }
 }
 
