@@ -50,7 +50,8 @@ namespace DockerDesk
                 }
 
                 var command = DoskerStatus.DockerExecute("images", txtWorkDirPath.Text);
-                var objImages = DoskerStatus.ParseDockerImagesOutput(command);
+                txtLog.Text = command.Error;
+                var objImages = DoskerStatus.ParseDockerImagesOutput(command.Operation);
                 GridImages.Rows.Clear();
                 GridImages.DataSource = objImages;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -67,7 +68,8 @@ namespace DockerDesk
             try
             {
                 var command = DoskerStatus.DockerExecute("ps -a", txtWorkDirPath.Text);
-                var objContainers = DoskerStatus.ParseDockerContainersOutput(command);
+                txtLog.Text = command.Error;
+                var objContainers = DoskerStatus.ParseDockerContainersOutput(command.Operation);
                 gridContainers.Rows.Clear();
                 gridContainers.DataSource = objContainers;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -84,7 +86,7 @@ namespace DockerDesk
             try
             {
                 var command = DoskerStatus.DockerExecute("volume ls", txtWorkDirPath.Text);
-                var objVolumes = DoskerStatus.ParseDockerVolumesOutput(command);
+                var objVolumes = DoskerStatus.ParseDockerVolumesOutput(command.Operation);
                 GridVolumes.Rows.Clear();
                 GridVolumes.DataSource = objVolumes;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -101,7 +103,7 @@ namespace DockerDesk
             try
             {
                 var command = DoskerStatus.DockerExecute("network ls", txtWorkDirPath.Text);
-                var objNetworks = DoskerStatus.ParseDockerNetworksOutput(command);
+                var objNetworks = DoskerStatus.ParseDockerNetworksOutput(command.Operation);
                 GridNetwork.Rows.Clear();
                 GridNetwork.DataSource = objNetworks;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -137,11 +139,11 @@ namespace DockerDesk
 
             if (!chkHasVolume.Checked)
             {
-                txtLog.Text = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                var command = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
             else
             {
-                txtLog.Text = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                var command = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
 
             LoadContainers();
@@ -151,7 +153,7 @@ namespace DockerDesk
         //docker build -t myapp:1.0 .
         private void btnCreateImage_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
+            var command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)
@@ -207,7 +209,7 @@ namespace DockerDesk
         //docker rm -f container_id_o_nome
         private void btnRemoveContainer_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+            var command = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
             LoadContainers();
         }
 
@@ -220,7 +222,7 @@ namespace DockerDesk
 
         private void btnCreateVolume_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
+            var command = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
         }
 
         private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
@@ -259,13 +261,15 @@ namespace DockerDesk
         //docker network create -d bridge my-bridge-network
         private void btnCreateNetwork_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+            var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+            txtLog.Text = command.Error;
             LoadNetworks();
         }
 
         private void btnRemoveNetwork_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            var command = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            txtLog.Text = command.Error;
             LoadNetworks();
         }
     }
