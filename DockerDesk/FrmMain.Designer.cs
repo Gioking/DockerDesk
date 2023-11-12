@@ -87,6 +87,17 @@
             this.label10 = new System.Windows.Forms.Label();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnCreateNetwork = new System.Windows.Forms.Button();
+            this.txtNetworkName = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboDrive = new System.Windows.Forms.ComboBox();
+            this.txtSubnet = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtGateway = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnRemoveNetwork = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
@@ -101,6 +112,7 @@
             this.statusBar.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridNetwork)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -436,6 +448,8 @@
             // 
             // tabNetwork
             // 
+            this.tabNetwork.Controls.Add(this.btnRemoveNetwork);
+            this.tabNetwork.Controls.Add(this.groupBox3);
             this.tabNetwork.Controls.Add(this.GridNetwork);
             this.tabNetwork.Controls.Add(this.label10);
             this.tabNetwork.ImageIndex = 0;
@@ -688,7 +702,7 @@
             this.GridNetwork.Name = "GridNetwork";
             this.GridNetwork.ReadOnly = true;
             this.GridNetwork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridNetwork.Size = new System.Drawing.Size(748, 238);
+            this.GridNetwork.Size = new System.Drawing.Size(712, 238);
             this.GridNetwork.TabIndex = 18;
             this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
@@ -716,6 +730,125 @@
             this.toolStripSplitButton5.Name = "toolStripSplitButton5";
             this.toolStripSplitButton5.Size = new System.Drawing.Size(32, 23);
             this.toolStripSplitButton5.Text = "toolStripSplitButton5";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtGateway);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.txtSubnet);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.comboDrive);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.btnCreateNetwork);
+            this.groupBox3.Controls.Add(this.txtNetworkName);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox3.Location = new System.Drawing.Point(729, 40);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(345, 240);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Image data";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 20);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Drive";
+            // 
+            // btnCreateNetwork
+            // 
+            this.btnCreateNetwork.Location = new System.Drawing.Point(9, 189);
+            this.btnCreateNetwork.Name = "btnCreateNetwork";
+            this.btnCreateNetwork.Size = new System.Drawing.Size(142, 35);
+            this.btnCreateNetwork.TabIndex = 2;
+            this.btnCreateNetwork.Text = "Create Network";
+            this.btnCreateNetwork.UseVisualStyleBackColor = true;
+            this.btnCreateNetwork.Click += new System.EventHandler(this.btnCreateNetwork_Click);
+            // 
+            // txtNetworkName
+            // 
+            this.txtNetworkName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtNetworkName.Location = new System.Drawing.Point(123, 31);
+            this.txtNetworkName.Multiline = true;
+            this.txtNetworkName.Name = "txtNetworkName";
+            this.txtNetworkName.Size = new System.Drawing.Size(210, 22);
+            this.txtNetworkName.TabIndex = 1;
+            this.txtNetworkName.Text = "my-network";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(111, 20);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Network name";
+            // 
+            // comboDrive
+            // 
+            this.comboDrive.FormattingEnabled = true;
+            this.comboDrive.Items.AddRange(new object[] {
+            "bridge",
+            "Host",
+            "Overlay",
+            "Macvlan"});
+            this.comboDrive.Location = new System.Drawing.Point(123, 60);
+            this.comboDrive.Name = "comboDrive";
+            this.comboDrive.Size = new System.Drawing.Size(210, 28);
+            this.comboDrive.TabIndex = 5;
+            // 
+            // txtSubnet
+            // 
+            this.txtSubnet.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtSubnet.Location = new System.Drawing.Point(123, 94);
+            this.txtSubnet.Multiline = true;
+            this.txtSubnet.Name = "txtSubnet";
+            this.txtSubnet.Size = new System.Drawing.Size(210, 22);
+            this.txtSubnet.TabIndex = 7;
+            this.txtSubnet.Text = "192.168.1.0/24";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 95);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(61, 20);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Subnet";
+            // 
+            // txtGateway
+            // 
+            this.txtGateway.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtGateway.Location = new System.Drawing.Point(123, 122);
+            this.txtGateway.Multiline = true;
+            this.txtGateway.Name = "txtGateway";
+            this.txtGateway.Size = new System.Drawing.Size(210, 22);
+            this.txtGateway.TabIndex = 9;
+            this.txtGateway.Text = "192.168.1.1";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 123);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(72, 20);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Gateway";
+            // 
+            // btnRemoveNetwork
+            // 
+            this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnRemoveNetwork.Location = new System.Drawing.Point(11, 286);
+            this.btnRemoveNetwork.Name = "btnRemoveNetwork";
+            this.btnRemoveNetwork.Size = new System.Drawing.Size(220, 31);
+            this.btnRemoveNetwork.TabIndex = 20;
+            this.btnRemoveNetwork.Text = "Remove Network";
+            this.btnRemoveNetwork.UseVisualStyleBackColor = true;
+            this.btnRemoveNetwork.Click += new System.EventHandler(this.btnRemoveNetwork_Click);
             // 
             // frmMain
             // 
@@ -755,6 +888,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridNetwork)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -819,6 +954,17 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedNetwork;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton5;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboDrive;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnCreateNetwork;
+        private System.Windows.Forms.TextBox txtNetworkName;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtGateway;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtSubnet;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnRemoveNetwork;
     }
 }
 

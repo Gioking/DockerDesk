@@ -258,6 +258,17 @@ namespace DockerDesk
             }
         }
 
+        //docker network create -d bridge my-bridge-network
+        private void btnCreateNetwork_Click(object sender, EventArgs e)
+        {
+            var result = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+            LoadNetworks();
+        }
 
+        private void btnRemoveNetwork_Click(object sender, EventArgs e)
+        {
+            var result = DoskerStatus.DockerExecute($"rm network {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            LoadNetworks();
+        }
     }
 }
