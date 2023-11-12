@@ -14,6 +14,7 @@ namespace DockerDesk
         private DockerImage selectedImage;
         private DockerContainer selectedContainer;
         private DockerVolume selectedVolume;
+        private DockerNetwork selectedNetwork;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
         private List<DockerContainer> containersList = new List<DockerContainer>();
@@ -239,5 +240,24 @@ namespace DockerDesk
                 toolStripSelectedVolume.Text = selectedVolume.VolumeName;
             }
         }
+
+        private void GridNetwork_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (GridNetwork.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridNetwork.SelectedRows[0];
+
+                selectedNetwork = new DockerNetwork();
+                selectedNetwork.Id = Convert.ToInt32(row.Cells[0].Value);
+                selectedNetwork.NetworkId = Convert.ToString(row.Cells[1].Value);
+                selectedNetwork.Name = Convert.ToString(row.Cells[2].Value);
+                selectedNetwork.Drive = Convert.ToString(row.Cells[3].Value);
+                selectedNetwork.Scope = Convert.ToString(row.Cells[4].Value);
+
+                toolStripSelectedNetwork.Text = selectedNetwork.Name;
+            }
+        }
+
+
     }
 }

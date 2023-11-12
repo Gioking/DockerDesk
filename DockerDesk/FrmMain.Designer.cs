@@ -85,6 +85,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.GridNetwork = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
+            this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
@@ -522,7 +524,9 @@
             this.toolStripSplitButton2,
             this.toolStripSelectedContainer,
             this.toolStripSplitButton4,
-            this.toolStripSelectedVolume});
+            this.toolStripSelectedVolume,
+            this.toolStripSplitButton5,
+            this.toolStripSelectedNetwork});
             this.statusBar.Location = new System.Drawing.Point(0, 594);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -686,6 +690,7 @@
             this.GridNetwork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridNetwork.Size = new System.Drawing.Size(748, 238);
             this.GridNetwork.TabIndex = 18;
+            this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
             // label10
             // 
@@ -696,6 +701,21 @@
             this.label10.Size = new System.Drawing.Size(154, 15);
             this.label10.TabIndex = 17;
             this.label10.Text = "Current Docker Images";
+            // 
+            // toolStripSelectedNetwork
+            // 
+            this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
+            this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
+            this.toolStripSelectedNetwork.Text = "Selected Network";
+            // 
+            // toolStripSplitButton5
+            // 
+            this.toolStripSplitButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton5.Image")));
+            this.toolStripSplitButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton5.Name = "toolStripSplitButton5";
+            this.toolStripSplitButton5.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton5.Text = "toolStripSplitButton5";
             // 
             // frmMain
             // 
@@ -797,6 +817,8 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.DataGridView GridNetwork;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedNetwork;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton5;
     }
 }
 
