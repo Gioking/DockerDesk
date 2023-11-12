@@ -42,12 +42,15 @@
             this.txtHostPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTag = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnCreateImage = new System.Windows.Forms.Button();
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabCOntainers = new System.Windows.Forms.TabPage();
+            this.btnRemoveContainer = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
@@ -60,17 +63,15 @@
             this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
             this.imageStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSelectedContainer = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.toolStripSelectedContainer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
-            this.btnRemoveContainer = new System.Windows.Forms.Button();
-            this.txtTag = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
@@ -239,6 +240,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
             // 
+            // txtTag
+            // 
+            this.txtTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtTag.Location = new System.Drawing.Point(87, 55);
+            this.txtTag.Multiline = true;
+            this.txtTag.Name = "txtTag";
+            this.txtTag.Size = new System.Drawing.Size(210, 22);
+            this.txtTag.TabIndex = 4;
+            this.txtTag.Text = "v1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 60);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Image tag";
+            // 
             // btnCreateImage
             // 
             this.btnCreateImage.Location = new System.Drawing.Point(9, 189);
@@ -298,10 +318,21 @@
             this.tabCOntainers.Location = new System.Drawing.Point(4, 29);
             this.tabCOntainers.Name = "tabCOntainers";
             this.tabCOntainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCOntainers.Size = new System.Drawing.Size(1086, 461);
+            this.tabCOntainers.Size = new System.Drawing.Size(1086, 487);
             this.tabCOntainers.TabIndex = 1;
             this.tabCOntainers.Text = "Containers";
             this.tabCOntainers.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveContainer
+            // 
+            this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnRemoveContainer.Location = new System.Drawing.Point(11, 362);
+            this.btnRemoveContainer.Name = "btnRemoveContainer";
+            this.btnRemoveContainer.Size = new System.Drawing.Size(220, 31);
+            this.btnRemoveContainer.TabIndex = 8;
+            this.btnRemoveContainer.Text = "Remove Container";
+            this.btnRemoveContainer.UseVisualStyleBackColor = true;
+            this.btnRemoveContainer.Click += new System.EventHandler(this.btnRemoveContainer_Click);
             // 
             // gridContainers
             // 
@@ -332,7 +363,7 @@
             // 
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1086, 461);
+            this.tabVolume.Size = new System.Drawing.Size(1086, 487);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
@@ -341,7 +372,7 @@
             // 
             this.tabNetwork.Location = new System.Drawing.Point(4, 29);
             this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1086, 461);
+            this.tabNetwork.Size = new System.Drawing.Size(1086, 487);
             this.tabNetwork.TabIndex = 3;
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
@@ -351,7 +382,7 @@
             this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Size = new System.Drawing.Size(1086, 461);
+            this.tabLog.Size = new System.Drawing.Size(1086, 487);
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
@@ -362,7 +393,7 @@
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(1086, 461);
+            this.txtLog.Size = new System.Drawing.Size(1086, 487);
             this.txtLog.TabIndex = 0;
             // 
             // menuStrip1
@@ -378,7 +409,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectProjectPathToolStripMenuItem});
+            this.selectProjectPathToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -418,17 +450,50 @@
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "Status";
             // 
+            // toolStripSplitButton3
+            // 
+            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
+            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            // 
             // imageStatusLabel
             // 
             this.imageStatusLabel.Name = "imageStatusLabel";
             this.imageStatusLabel.Size = new System.Drawing.Size(57, 20);
             this.imageStatusLabel.Text = "Images";
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
             // toolStripSelectedImage
             // 
             this.toolStripSelectedImage.Name = "toolStripSelectedImage";
             this.toolStripSelectedImage.Size = new System.Drawing.Size(115, 20);
             this.toolStripSelectedImage.Text = "Selected Image:";
+            // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripSelectedContainer
+            // 
+            this.toolStripSelectedContainer.Name = "toolStripSelectedContainer";
+            this.toolStripSelectedContainer.Size = new System.Drawing.Size(134, 20);
+            this.toolStripSelectedContainer.Text = "Selected Container";
             // 
             // btnOpenFolder
             // 
@@ -453,68 +518,12 @@
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
-            // toolStripSelectedContainer
+            // aboutToolStripMenuItem
             // 
-            this.toolStripSelectedContainer.Name = "toolStripSelectedContainer";
-            this.toolStripSelectedContainer.Size = new System.Drawing.Size(134, 20);
-            this.toolStripSelectedContainer.Text = "Selected Container";
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 23);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // toolStripSplitButton2
-            // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 23);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
-            // 
-            // toolStripSplitButton3
-            // 
-            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(32, 23);
-            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
-            // 
-            // btnRemoveContainer
-            // 
-            this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnRemoveContainer.Location = new System.Drawing.Point(11, 362);
-            this.btnRemoveContainer.Name = "btnRemoveContainer";
-            this.btnRemoveContainer.Size = new System.Drawing.Size(220, 31);
-            this.btnRemoveContainer.TabIndex = 8;
-            this.btnRemoveContainer.Text = "Remove Container";
-            this.btnRemoveContainer.UseVisualStyleBackColor = true;
-            this.btnRemoveContainer.Click += new System.EventHandler(this.btnRemoveContainer_Click);
-            // 
-            // txtTag
-            // 
-            this.txtTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtTag.Location = new System.Drawing.Point(87, 55);
-            this.txtTag.Multiline = true;
-            this.txtTag.Name = "txtTag";
-            this.txtTag.Size = new System.Drawing.Size(210, 22);
-            this.txtTag.TabIndex = 4;
-            this.txtTag.Text = "v1";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 60);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Image tag";
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -529,7 +538,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DockerDesk";
+            this.Text = "DockerDesk v.1.0 for visual studio containers By F.G.";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabImages.ResumeLayout(false);
@@ -595,6 +604,7 @@
         private System.Windows.Forms.Button btnRemoveContainer;
         private System.Windows.Forms.TextBox txtTag;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

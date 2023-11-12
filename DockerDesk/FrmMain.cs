@@ -80,6 +80,7 @@ namespace DockerDesk
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 WorkingFolderPath = folderBrowserDialog.SelectedPath;
+                txtWorkDirPath.Text = WorkingFolderPath;
             }
 
         }
@@ -105,10 +106,9 @@ namespace DockerDesk
                 result = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
             }
 
+            LoadContainers();
             sb.AppendLine(result);
-
             txtLog.Text = sb.ToString();
-
             tabControl1.SelectedTab = tabLog;
         }
 
@@ -172,6 +172,14 @@ namespace DockerDesk
         private void btnRemoveContainer_Click(object sender, EventArgs e)
         {
             var result = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+            LoadContainers();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+
         }
     }
 }

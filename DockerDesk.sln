@@ -5,16 +5,42 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerDesk", "DockerDesk\DockerDesk.csproj", "{9FCF8D41-2102-4880-A903-3301A1512B4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerDeskVs", "DockerDeskVs\DockerDeskVs.csproj", "{F35FA08F-24BB-49C8-99BA-C385E240AAE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|arm64 = Debug|arm64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|arm64 = Release|arm64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|arm64.Build.0 = Debug|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Debug|x86.Build.0 = Debug|Any CPU
 		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|arm64.ActiveCfg = Release|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|arm64.Build.0 = Release|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{9FCF8D41-2102-4880-A903-3301A1512B4D}.Release|x86.Build.0 = Release|Any CPU
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|arm64.ActiveCfg = Debug|arm64
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|arm64.Build.0 = Debug|arm64
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|x86.ActiveCfg = Debug|x86
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Debug|x86.Build.0 = Debug|x86
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|arm64.ActiveCfg = Release|arm64
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|arm64.Build.0 = Release|arm64
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|x86.ActiveCfg = Release|x86
+		{F35FA08F-24BB-49C8-99BA-C385E240AAE2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
