@@ -2,7 +2,7 @@
 {
     public class ResultModel
     {
-        public string Operation { get; set; }
+        public string OperationResult { get; set; }
         public string Error { get; set; }
     }
 }

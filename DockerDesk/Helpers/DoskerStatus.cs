@@ -223,16 +223,16 @@ namespace DockerDesk.Helpers
 
                 ResultModel resultModel = new ResultModel();
 
-                resultModel.Operation = OperationResult;
+                resultModel.OperationResult = OperationResult;
                 resultModel.Error = ErrorResult;
 
                 if (!string.IsNullOrEmpty(OperationResult))
                 {
-                    LogHelper.LogInfo($"Info: {OperationResult}");
+                    resultModel.OperationResult = OperationResult;
                 }
                 else if (!string.IsNullOrEmpty(ErrorResult))
                 {
-                    LogHelper.LogError($"Err: {ErrorResult}");
+                    resultModel.OperationResult = ErrorResult;
                 }
 
                 return resultModel;
