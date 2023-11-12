@@ -59,6 +59,7 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DoskerStatus.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerNetwork.cs" />
     <Compile Include="Models\DockerVolume.cs" />

@@ -474,6 +474,7 @@
             // txtLog
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
@@ -928,7 +929,6 @@
         private System.Windows.Forms.CheckBox chkHasVolume;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
         private System.Windows.Forms.TabPage tabLog;
-        private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView gridContainers;
         private System.Windows.Forms.DataGridView GridImages;
@@ -965,6 +965,7 @@
         private System.Windows.Forms.TextBox txtSubnet;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnRemoveNetwork;
+        public System.Windows.Forms.TextBox txtLog;
     }
 }
 

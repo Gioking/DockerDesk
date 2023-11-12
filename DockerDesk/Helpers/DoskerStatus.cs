@@ -176,13 +176,12 @@ namespace DockerDesk.Helpers
         }
 
 
-
-
-
         public static string DockerExecute(string arguments, string workdir)
         {
             try
             {
+                LogHelper.LogInfo($"docker {arguments}");
+
                 StringBuilder output = new StringBuilder();
                 StringBuilder error = new StringBuilder();
 
@@ -224,27 +223,27 @@ namespace DockerDesk.Helpers
 
                 if (!string.IsNullOrEmpty(OperationResult))
                 {
-                    return OperationResult;
+                    LogHelper.LogInfo($"Info: {OperationResult}");
                 }
                 else if (!string.IsNullOrEmpty(ErrorResult))
                 {
-                    return ErrorResult;
+                    LogHelper.LogError($"Err: {ErrorResult}");
                 }
-                else
-                {
-                    return "Nessun output o errore rilevato.";
-                }
+
+                return LogHelper.GetLogs();
+
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
-                return "Error:";
+                LogHelper.LogError($"Err: {e.Message}");
+                return LogHelper.GetLogs();
             }
         }
 
 
 
-        public static void DockerExecute2(string arguments, string workdir = null)
+        public static void DockerExecuteCmd(string arguments, string workdir = null)
         {
             try
             {
