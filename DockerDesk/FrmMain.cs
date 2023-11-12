@@ -29,6 +29,7 @@ namespace DockerDesk
             LoadImages();
             LoadContainers();
             LoadVolumes();
+            LoadNetworks();
         }
 
 
@@ -87,6 +88,23 @@ namespace DockerDesk
                 GridVolumes.DataSource = objVolumes;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridVolumes.Font = font;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
+        }
+
+        private void LoadNetworks()
+        {
+            try
+            {
+                var result = DoskerStatus.DockerExecute("network ls", txtWorkDirPath.Text);
+                sb.AppendLine(result);
+                var objNetworks = DoskerStatus.ParseDockerNetworksOutput(result);
+                GridNetwork.DataSource = objNetworks;
+                Font font = new Font("Arial", 12, FontStyle.Regular);
+                GridNetwork.Font = font;
             }
             catch (Exception e)
             {
@@ -217,6 +235,7 @@ namespace DockerDesk
                 selectedVolume.Drive = Convert.ToString(row.Cells[1].Value);
                 selectedVolume.VolumeName = Convert.ToString(row.Cells[2].Value);
 
+                txtContainerName.Text = selectedVolume.VolumeName;
                 toolStripSelectedVolume.Text = selectedVolume.VolumeName;
             }
         }

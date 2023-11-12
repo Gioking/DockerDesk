@@ -1,10 +1,12 @@
 ﻿namespace DockerDesk.Models
 {
-    public class DockerVolume
+    public class DockerNetwork
     {
         public int Id { get; set; }
+        public string NetworkId { get; set; }
+        public string Name { get; set; }
         public string Drive { get; set; }
-        public string VolumeName { get; set; }
+        public string Scope { get; set; }
     }
 
 }

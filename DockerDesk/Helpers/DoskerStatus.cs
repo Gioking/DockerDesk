@@ -141,6 +141,40 @@ namespace DockerDesk.Helpers
             return volumesList;
         }
 
+        public static List<DockerNetwork> ParseDockerNetworksOutput(string output)
+        {
+            int ids = 0;
+            var networkList = new List<DockerNetwork>();
+
+            var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (lines.Length <= 1)
+            {
+                Console.WriteLine("Nessun network da elaborare.");
+                return networkList;
+            }
+
+            foreach (var line in lines.Skip(1))
+            {
+                var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (columns.Length >= 4)
+                {
+                    ids++;
+                    var network = new DockerNetwork
+                    {
+                        Id = ids,
+                        NetworkId = columns[0],
+                        Name = columns[1],
+                        Drive = columns[2],
+                        Scope = columns[3]
+                    };
+                    networkList.Add(network);
+                }
+            }
+
+            return networkList;
+        }
+
 
 
 
