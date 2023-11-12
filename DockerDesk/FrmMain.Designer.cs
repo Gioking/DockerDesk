@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
+            this.GridImages = new System.Windows.Forms.DataGridView();
             this.chkHasVolume = new System.Windows.Forms.CheckBox();
             this.txtVolumeName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,6 +48,7 @@
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabCOntainers = new System.Windows.Forms.TabPage();
+            this.gridContainers = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.tabNetwork = new System.Windows.Forms.TabPage();
@@ -61,18 +64,19 @@
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.gridContainers = new System.Windows.Forms.DataGridView();
-            this.GridImages = new System.Windows.Forms.DataGridView();
             this.toolStripSelectedContainer = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabCOntainers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -112,6 +116,21 @@
             this.tabImages.TabIndex = 0;
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
+            // 
+            // GridImages
+            // 
+            this.GridImages.AllowUserToAddRows = false;
+            this.GridImages.AllowUserToDeleteRows = false;
+            this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.GridImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridImages.Location = new System.Drawing.Point(15, 43);
+            this.GridImages.MultiSelect = false;
+            this.GridImages.Name = "GridImages";
+            this.GridImages.ReadOnly = true;
+            this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridImages.Size = new System.Drawing.Size(748, 238);
+            this.GridImages.TabIndex = 16;
+            this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
             // chkHasVolume
             // 
@@ -276,6 +295,21 @@
             this.tabCOntainers.Text = "Containers";
             this.tabCOntainers.UseVisualStyleBackColor = true;
             // 
+            // gridContainers
+            // 
+            this.gridContainers.AllowUserToAddRows = false;
+            this.gridContainers.AllowUserToDeleteRows = false;
+            this.gridContainers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridContainers.Location = new System.Drawing.Point(11, 43);
+            this.gridContainers.MultiSelect = false;
+            this.gridContainers.Name = "gridContainers";
+            this.gridContainers.ReadOnly = true;
+            this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridContainers.Size = new System.Drawing.Size(1067, 313);
+            this.gridContainers.TabIndex = 7;
+            this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -364,8 +398,11 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSplitButton3,
             this.imageStatusLabel,
+            this.toolStripSplitButton1,
             this.toolStripSelectedImage,
+            this.toolStripSplitButton2,
             this.toolStripSelectedContainer});
             this.statusBar.Location = new System.Drawing.Point(0, 568);
             this.statusBar.Name = "statusBar";
@@ -408,41 +445,38 @@
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
-            // gridContainers
-            // 
-            this.gridContainers.AllowUserToAddRows = false;
-            this.gridContainers.AllowUserToDeleteRows = false;
-            this.gridContainers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridContainers.Location = new System.Drawing.Point(11, 43);
-            this.gridContainers.MultiSelect = false;
-            this.gridContainers.Name = "gridContainers";
-            this.gridContainers.ReadOnly = true;
-            this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridContainers.Size = new System.Drawing.Size(1067, 313);
-            this.gridContainers.TabIndex = 7;
-            this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
-            // 
-            // GridImages
-            // 
-            this.GridImages.AllowUserToAddRows = false;
-            this.GridImages.AllowUserToDeleteRows = false;
-            this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.GridImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridImages.Location = new System.Drawing.Point(15, 43);
-            this.GridImages.MultiSelect = false;
-            this.GridImages.Name = "GridImages";
-            this.GridImages.ReadOnly = true;
-            this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridImages.Size = new System.Drawing.Size(748, 238);
-            this.GridImages.TabIndex = 16;
-            this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
-            // 
             // toolStripSelectedContainer
             // 
             this.toolStripSelectedContainer.Name = "toolStripSelectedContainer";
-            this.toolStripSelectedContainer.Size = new System.Drawing.Size(151, 20);
-            this.toolStripSelectedContainer.Text = "toolStripStatusLabel1";
+            this.toolStripSelectedContainer.Size = new System.Drawing.Size(134, 20);
+            this.toolStripSelectedContainer.Text = "Selected Container";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripSplitButton3
+            // 
+            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
+            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
             // 
             // frmMain
             // 
@@ -462,18 +496,18 @@
             this.tabControl1.ResumeLayout(false);
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabCOntainers.ResumeLayout(false);
             this.tabCOntainers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,6 +551,9 @@
         private System.Windows.Forms.DataGridView gridContainers;
         private System.Windows.Forms.DataGridView GridImages;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedContainer;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton3;
     }
 }
 
