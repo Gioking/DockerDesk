@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace DockerDesk.Helpers
 {
@@ -8,6 +9,11 @@ namespace DockerDesk.Helpers
 
         public static void LogInfo(string message)
         {
+            if (message.StartsWith("Command:"))
+            {
+                sb.AppendLine(new String('-', 100));
+            }
+
             sb.AppendLine(message);
         }
 

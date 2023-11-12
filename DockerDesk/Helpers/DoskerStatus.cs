@@ -180,7 +180,7 @@ namespace DockerDesk.Helpers
         {
             try
             {
-                LogHelper.LogInfo($"docker {arguments}");
+                LogHelper.LogInfo($"Command: docker {arguments}");
 
                 StringBuilder output = new StringBuilder();
                 StringBuilder error = new StringBuilder();
@@ -231,7 +231,6 @@ namespace DockerDesk.Helpers
                 }
 
                 return LogHelper.GetLogs();
-
             }
             catch (Exception e)
             {

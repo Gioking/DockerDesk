@@ -265,7 +265,7 @@ namespace DockerDesk
 
         private void btnRemoveNetwork_Click(object sender, EventArgs e)
         {
-            txtLog.Text = DoskerStatus.DockerExecute($"rm network {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            txtLog.Text = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
             LoadNetworks();
         }
     }
