@@ -3,6 +3,7 @@ using DockerDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
@@ -108,13 +109,13 @@ namespace DockerDesk
 
             txtLog.Text = sb.ToString();
 
-            tabControl1.SelectedTab = tabLog; // Supponendo che tabPage2 sia il riferimento alla scheda che vuoi selezionare
-
+            tabControl1.SelectedTab = tabLog;
         }
 
+        //docker build -t myapp:1.0 .
         private void btnCreateImage_Click(object sender, EventArgs e)
         {
-            var result = DoskerStatus.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+            var result = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)
@@ -124,11 +125,6 @@ namespace DockerDesk
                 WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
                 txtWorkDirPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
             }
-        }
-
-        private void lstContainers_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void GridImages_MouseClick(object sender, MouseEventArgs e)
@@ -170,6 +166,12 @@ namespace DockerDesk
 
                 toolStripSelectedContainer.Text = selectedContainer.Names;
             }
+        }
+
+        //docker rm -f container_id_o_nome
+        private void btnRemoveContainer_Click(object sender, EventArgs e)
+        {
+            var result = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
         }
     }
 }

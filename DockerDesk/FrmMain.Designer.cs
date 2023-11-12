@@ -68,6 +68,9 @@
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
+            this.btnRemoveContainer = new System.Windows.Forms.Button();
+            this.txtTag = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
@@ -90,7 +93,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 71);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1094, 494);
+            this.tabControl1.Size = new System.Drawing.Size(1094, 520);
             this.tabControl1.TabIndex = 0;
             // 
             // tabImages
@@ -112,7 +115,7 @@
             this.tabImages.Location = new System.Drawing.Point(4, 29);
             this.tabImages.Name = "tabImages";
             this.tabImages.Padding = new System.Windows.Forms.Padding(3);
-            this.tabImages.Size = new System.Drawing.Size(1086, 461);
+            this.tabImages.Size = new System.Drawing.Size(1086, 487);
             this.tabImages.TabIndex = 0;
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
@@ -135,16 +138,17 @@
             // chkHasVolume
             // 
             this.chkHasVolume.AutoSize = true;
+            this.chkHasVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkHasVolume.Location = new System.Drawing.Point(65, 303);
             this.chkHasVolume.Name = "chkHasVolume";
-            this.chkHasVolume.Size = new System.Drawing.Size(148, 17);
+            this.chkHasVolume.Size = new System.Drawing.Size(165, 19);
             this.chkHasVolume.TabIndex = 15;
             this.chkHasVolume.Text = "Container has volume";
             this.chkHasVolume.UseVisualStyleBackColor = true;
             // 
             // txtVolumeName
             // 
-            this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtVolumeName.Location = new System.Drawing.Point(64, 382);
             this.txtVolumeName.Multiline = true;
             this.txtVolumeName.Name = "txtVolumeName";
@@ -163,7 +167,7 @@
             // 
             // txtContainerName
             // 
-            this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtContainerName.Location = new System.Drawing.Point(64, 354);
             this.txtContainerName.Multiline = true;
             this.txtContainerName.Name = "txtContainerName";
@@ -191,7 +195,7 @@
             // 
             // txtContainerPort
             // 
-            this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtContainerPort.Location = new System.Drawing.Point(210, 326);
             this.txtContainerPort.Multiline = true;
             this.txtContainerPort.Name = "txtContainerPort";
@@ -202,7 +206,7 @@
             // 
             // txtHostPort
             // 
-            this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtHostPort.Location = new System.Drawing.Point(65, 326);
             this.txtHostPort.Multiline = true;
             this.txtHostPort.Name = "txtHostPort";
@@ -222,6 +226,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTag);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnCreateImage);
             this.groupBox1.Controls.Add(this.txtImageName);
             this.groupBox1.Controls.Add(this.label2);
@@ -245,7 +251,7 @@
             // 
             // txtImageName
             // 
-            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtImageName.Location = new System.Drawing.Point(87, 27);
             this.txtImageName.Multiline = true;
             this.txtImageName.Name = "txtImageName";
@@ -264,9 +270,10 @@
             // 
             // btnRunContainer
             // 
+            this.btnRunContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRunContainer.Location = new System.Drawing.Point(64, 410);
             this.btnRunContainer.Name = "btnRunContainer";
-            this.btnRunContainer.Size = new System.Drawing.Size(220, 22);
+            this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
             this.btnRunContainer.Text = "Run Countainer";
             this.btnRunContainer.UseVisualStyleBackColor = true;
@@ -284,6 +291,7 @@
             // 
             // tabCOntainers
             // 
+            this.tabCOntainers.Controls.Add(this.btnRemoveContainer);
             this.tabCOntainers.Controls.Add(this.gridContainers);
             this.tabCOntainers.Controls.Add(this.label7);
             this.tabCOntainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
@@ -404,7 +412,7 @@
             this.toolStripSelectedImage,
             this.toolStripSplitButton2,
             this.toolStripSelectedContainer});
-            this.statusBar.Location = new System.Drawing.Point(0, 568);
+            this.statusBar.Location = new System.Drawing.Point(0, 594);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
             this.statusBar.TabIndex = 3;
@@ -478,11 +486,41 @@
             this.toolStripSplitButton3.Size = new System.Drawing.Size(32, 23);
             this.toolStripSplitButton3.Text = "toolStripSplitButton3";
             // 
+            // btnRemoveContainer
+            // 
+            this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnRemoveContainer.Location = new System.Drawing.Point(11, 362);
+            this.btnRemoveContainer.Name = "btnRemoveContainer";
+            this.btnRemoveContainer.Size = new System.Drawing.Size(220, 31);
+            this.btnRemoveContainer.TabIndex = 8;
+            this.btnRemoveContainer.Text = "Remove Container";
+            this.btnRemoveContainer.UseVisualStyleBackColor = true;
+            this.btnRemoveContainer.Click += new System.EventHandler(this.btnRemoveContainer_Click);
+            // 
+            // txtTag
+            // 
+            this.txtTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtTag.Location = new System.Drawing.Point(87, 55);
+            this.txtTag.Multiline = true;
+            this.txtTag.Name = "txtTag";
+            this.txtTag.Size = new System.Drawing.Size(210, 22);
+            this.txtTag.TabIndex = 4;
+            this.txtTag.Text = "v1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 60);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Image tag";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 593);
+            this.ClientSize = new System.Drawing.Size(1094, 619);
             this.Controls.Add(this.txtWorkDirPath);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.statusBar);
@@ -554,6 +592,9 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton3;
+        private System.Windows.Forms.Button btnRemoveContainer;
+        private System.Windows.Forms.TextBox txtTag;
+        private System.Windows.Forms.Label label8;
     }
 }
 
