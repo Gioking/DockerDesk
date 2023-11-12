@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Helpers\DoskerStatus.cs" />
     <Compile Include="Models\DockerContainer.cs" />
+    <Compile Include="Models\DockerVolume.cs" />
     <Compile Include="Models\DockerImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

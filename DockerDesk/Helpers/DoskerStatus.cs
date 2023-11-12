@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -106,6 +107,40 @@ namespace DockerDesk.Helpers
 
             return containersList;
         }
+
+        public static List<DockerVolume> ParseDockerVolumesOutput(string output)
+        {
+            int ids = 0;
+            var volumesList = new List<DockerVolume>();
+
+            // Dividi l'output per linee usando entrambi i tipi di newline
+            var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (lines.Length <= 1)
+            {
+                Console.WriteLine("Nessun volume da elaborare.");
+                return volumesList;
+            }
+
+            foreach (var line in lines.Skip(1))
+            {
+                ids++;
+                var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (columns.Length >= 2)
+                {
+                    var volume = new DockerVolume
+                    {
+                        Id = ids,
+                        Drive = columns[0],
+                        VolumeName = columns[1]
+                    };
+                    volumesList.Add(volume);
+                }
+            }
+
+            return volumesList;
+        }
+
 
 
 

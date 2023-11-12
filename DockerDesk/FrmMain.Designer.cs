@@ -54,6 +54,9 @@
             this.gridContainers = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
+            this.btnRemoveVolume = new System.Windows.Forms.Button();
+            this.GridVolumes = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabNetwork = new System.Windows.Forms.TabPage();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -61,6 +64,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
@@ -71,16 +75,24 @@
             this.toolStripSelectedContainer = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnCreateVolume = new System.Windows.Forms.Button();
+            this.txtNewVolumeName = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabCOntainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
+            this.tabVolume.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridVolumes)).BeginInit();
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -361,12 +373,51 @@
             // 
             // tabVolume
             // 
+            this.tabVolume.Controls.Add(this.groupBox2);
+            this.tabVolume.Controls.Add(this.btnRemoveVolume);
+            this.tabVolume.Controls.Add(this.GridVolumes);
+            this.tabVolume.Controls.Add(this.label9);
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
             this.tabVolume.Size = new System.Drawing.Size(1086, 487);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveVolume
+            // 
+            this.btnRemoveVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnRemoveVolume.Location = new System.Drawing.Point(11, 286);
+            this.btnRemoveVolume.Name = "btnRemoveVolume";
+            this.btnRemoveVolume.Size = new System.Drawing.Size(220, 31);
+            this.btnRemoveVolume.TabIndex = 11;
+            this.btnRemoveVolume.Text = "Remove Volume";
+            this.btnRemoveVolume.UseVisualStyleBackColor = true;
+            // 
+            // GridVolumes
+            // 
+            this.GridVolumes.AllowUserToAddRows = false;
+            this.GridVolumes.AllowUserToDeleteRows = false;
+            this.GridVolumes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.GridVolumes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridVolumes.Location = new System.Drawing.Point(11, 42);
+            this.GridVolumes.MultiSelect = false;
+            this.GridVolumes.Name = "GridVolumes";
+            this.GridVolumes.ReadOnly = true;
+            this.GridVolumes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridVolumes.Size = new System.Drawing.Size(728, 238);
+            this.GridVolumes.TabIndex = 10;
+            this.GridVolumes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridVolumes_MouseClick);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(154, 15);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Current Docker Images";
             // 
             // tabNetwork
             // 
@@ -430,6 +481,13 @@
             this.SelectWorkDir.Text = "Select Work Directory";
             this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
@@ -443,7 +501,9 @@
             this.toolStripSplitButton1,
             this.toolStripSelectedImage,
             this.toolStripSplitButton2,
-            this.toolStripSelectedContainer});
+            this.toolStripSelectedContainer,
+            this.toolStripSplitButton4,
+            this.toolStripSelectedVolume});
             this.statusBar.Location = new System.Drawing.Point(0, 594);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -518,12 +578,62 @@
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
-            // aboutToolStripMenuItem
+            // groupBox2
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.groupBox2.Controls.Add(this.btnCreateVolume);
+            this.groupBox2.Controls.Add(this.txtNewVolumeName);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox2.Location = new System.Drawing.Point(745, 42);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(333, 240);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Volume data";
+            // 
+            // btnCreateVolume
+            // 
+            this.btnCreateVolume.Location = new System.Drawing.Point(9, 189);
+            this.btnCreateVolume.Name = "btnCreateVolume";
+            this.btnCreateVolume.Size = new System.Drawing.Size(142, 35);
+            this.btnCreateVolume.TabIndex = 2;
+            this.btnCreateVolume.Text = "Create Volume";
+            this.btnCreateVolume.UseVisualStyleBackColor = true;
+            this.btnCreateVolume.Click += new System.EventHandler(this.btnCreateVolume_Click);
+            // 
+            // txtNewVolumeName
+            // 
+            this.txtNewVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtNewVolumeName.Location = new System.Drawing.Point(119, 31);
+            this.txtNewVolumeName.Multiline = true;
+            this.txtNewVolumeName.Name = "txtNewVolumeName";
+            this.txtNewVolumeName.Size = new System.Drawing.Size(201, 22);
+            this.txtNewVolumeName.TabIndex = 1;
+            this.txtNewVolumeName.Text = "new-volume";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(107, 20);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Volume name";
+            // 
+            // toolStripSelectedVolume
+            // 
+            this.toolStripSelectedVolume.Name = "toolStripSelectedVolume";
+            this.toolStripSelectedVolume.Size = new System.Drawing.Size(120, 20);
+            this.toolStripSelectedVolume.Text = "Selected Volume";
+            // 
+            // toolStripSplitButton4
+            // 
+            this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
+            this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton4.Name = "toolStripSplitButton4";
+            this.toolStripSplitButton4.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton4.Text = "toolStripSplitButton4";
             // 
             // frmMain
             // 
@@ -549,12 +659,17 @@
             this.tabCOntainers.ResumeLayout(false);
             this.tabCOntainers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
+            this.tabVolume.ResumeLayout(false);
+            this.tabVolume.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridVolumes)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,6 +720,15 @@
         private System.Windows.Forms.TextBox txtTag;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btnRemoveVolume;
+        private System.Windows.Forms.DataGridView GridVolumes;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnCreateVolume;
+        private System.Windows.Forms.TextBox txtNewVolumeName;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedVolume;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton4;
     }
 }
 

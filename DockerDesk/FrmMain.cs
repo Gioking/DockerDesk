@@ -13,6 +13,7 @@ namespace DockerDesk
     {
         private DockerImage selectedImage;
         private DockerContainer selectedContainer;
+        private DockerVolume selectedVolume;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
         private List<DockerContainer> containersList = new List<DockerContainer>();
@@ -27,6 +28,7 @@ namespace DockerDesk
         {
             LoadImages();
             LoadContainers();
+            LoadVolumes();
         }
 
 
@@ -68,6 +70,23 @@ namespace DockerDesk
                 gridContainers.DataSource = objContainers;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 gridContainers.Font = font;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
+        }
+
+        private void LoadVolumes()
+        {
+            try
+            {
+                var result = DoskerStatus.DockerExecute("volume ls", txtWorkDirPath.Text);
+                sb.AppendLine(result);
+                var objVolumes = DoskerStatus.ParseDockerVolumesOutput(result);
+                GridVolumes.DataSource = objVolumes;
+                Font font = new Font("Arial", 12, FontStyle.Regular);
+                GridVolumes.Font = font;
             }
             catch (Exception e)
             {
@@ -180,6 +199,26 @@ namespace DockerDesk
             About about = new About();
             about.ShowDialog();
 
+        }
+
+        private void btnCreateVolume_Click(object sender, EventArgs e)
+        {
+            var result = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
+        }
+
+        private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (GridVolumes.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridVolumes.SelectedRows[0];
+
+                selectedVolume = new DockerVolume();
+                selectedVolume.Id = Convert.ToInt32(row.Cells[0].Value);
+                selectedVolume.Drive = Convert.ToString(row.Cells[1].Value);
+                selectedVolume.VolumeName = Convert.ToString(row.Cells[2].Value);
+
+                toolStripSelectedVolume.Text = selectedVolume.VolumeName;
+            }
         }
     }
 }
