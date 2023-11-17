@@ -64,15 +64,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabContainers = new System.Windows.Forms.TabPage();
+            this.btnConnectNetwork = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cmbNetwords = new System.Windows.Forms.ComboBox();
+            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtContainerInspect = new System.Windows.Forms.TextBox();
             this.btnRemoveContainer = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
             this.containerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.portsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
@@ -121,7 +126,6 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtContainerInspect = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -130,6 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabContainers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             this.tabVolume.SuspendLayout();
@@ -518,6 +523,9 @@
             // 
             // tabContainers
             // 
+            this.tabContainers.Controls.Add(this.btnConnectNetwork);
+            this.tabContainers.Controls.Add(this.label18);
+            this.tabContainers.Controls.Add(this.cmbNetwords);
             this.tabContainers.Controls.Add(this.txtContainerInspect);
             this.tabContainers.Controls.Add(this.btnRemoveContainer);
             this.tabContainers.Controls.Add(this.gridContainers);
@@ -531,6 +539,55 @@
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
+            // 
+            // btnConnectNetwork
+            // 
+            this.btnConnectNetwork.Location = new System.Drawing.Point(237, 426);
+            this.btnConnectNetwork.Name = "btnConnectNetwork";
+            this.btnConnectNetwork.Size = new System.Drawing.Size(75, 23);
+            this.btnConnectNetwork.TabIndex = 19;
+            this.btnConnectNetwork.Text = "Connect";
+            this.btnConnectNetwork.UseVisualStyleBackColor = true;
+            this.btnConnectNetwork.Click += new System.EventHandler(this.btnConnectNetwork_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 410);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(200, 13);
+            this.label18.TabIndex = 18;
+            this.label18.Text = "Connect container to this network:";
+            // 
+            // cmbNetwords
+            // 
+            this.cmbNetwords.DataSource = this.dockerNetworkBindingSource;
+            this.cmbNetwords.DisplayMember = "Name";
+            this.cmbNetwords.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNetwords.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbNetwords.FormattingEnabled = true;
+            this.cmbNetwords.Location = new System.Drawing.Point(15, 426);
+            this.cmbNetwords.Name = "cmbNetwords";
+            this.cmbNetwords.Size = new System.Drawing.Size(216, 24);
+            this.cmbNetwords.TabIndex = 17;
+            this.cmbNetwords.ValueMember = "NetworkId";
+            // 
+            // dockerNetworkBindingSource
+            // 
+            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
+            // 
+            // txtContainerInspect
+            // 
+            this.txtContainerInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContainerInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContainerInspect.Location = new System.Drawing.Point(318, 362);
+            this.txtContainerInspect.Multiline = true;
+            this.txtContainerInspect.Name = "txtContainerInspect";
+            this.txtContainerInspect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtContainerInspect.Size = new System.Drawing.Size(760, 178);
+            this.txtContainerInspect.TabIndex = 9;
             // 
             // btnRemoveContainer
             // 
@@ -555,12 +612,12 @@
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContainers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.containerIdDataGridViewTextBoxColumn,
+            this.namesDataGridViewTextBoxColumn,
             this.imageDataGridViewTextBoxColumn1,
             this.commandDataGridViewTextBoxColumn,
             this.createdDataGridViewTextBoxColumn1,
             this.statusDataGridViewTextBoxColumn,
-            this.portsDataGridViewTextBoxColumn,
-            this.namesDataGridViewTextBoxColumn});
+            this.portsDataGridViewTextBoxColumn});
             this.gridContainers.DataSource = this.dockerContainerBindingSource;
             this.gridContainers.Location = new System.Drawing.Point(11, 43);
             this.gridContainers.MultiSelect = false;
@@ -579,6 +636,15 @@
             this.containerIdDataGridViewTextBoxColumn.Name = "containerIdDataGridViewTextBoxColumn";
             this.containerIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.containerIdDataGridViewTextBoxColumn.Width = 97;
+            // 
+            // namesDataGridViewTextBoxColumn
+            // 
+            this.namesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.namesDataGridViewTextBoxColumn.DataPropertyName = "Names";
+            this.namesDataGridViewTextBoxColumn.HeaderText = "C.Name";
+            this.namesDataGridViewTextBoxColumn.Name = "namesDataGridViewTextBoxColumn";
+            this.namesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.namesDataGridViewTextBoxColumn.Width = 75;
             // 
             // imageDataGridViewTextBoxColumn1
             // 
@@ -624,15 +690,6 @@
             this.portsDataGridViewTextBoxColumn.Name = "portsDataGridViewTextBoxColumn";
             this.portsDataGridViewTextBoxColumn.ReadOnly = true;
             this.portsDataGridViewTextBoxColumn.Width = 61;
-            // 
-            // namesDataGridViewTextBoxColumn
-            // 
-            this.namesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.namesDataGridViewTextBoxColumn.DataPropertyName = "Names";
-            this.namesDataGridViewTextBoxColumn.HeaderText = "Names";
-            this.namesDataGridViewTextBoxColumn.Name = "namesDataGridViewTextBoxColumn";
-            this.namesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.namesDataGridViewTextBoxColumn.Width = 69;
             // 
             // dockerContainerBindingSource
             // 
@@ -871,7 +928,7 @@
             this.txtNetworkName.Name = "txtNetworkName";
             this.txtNetworkName.Size = new System.Drawing.Size(210, 23);
             this.txtNetworkName.TabIndex = 1;
-            this.txtNetworkName.Text = "my-network";
+            this.txtNetworkName.Text = "container-network";
             // 
             // label13
             // 
@@ -1133,19 +1190,6 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
             // 
-            // txtContainerInspect
-            // 
-            this.txtContainerInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContainerInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContainerInspect.Location = new System.Drawing.Point(237, 362);
-            this.txtContainerInspect.Multiline = true;
-            this.txtContainerInspect.Name = "txtContainerInspect";
-            this.txtContainerInspect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtContainerInspect.Size = new System.Drawing.Size(841, 178);
-            this.txtContainerInspect.TabIndex = 9;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1174,6 +1218,7 @@
             this.groupBox1.PerformLayout();
             this.tabContainers.ResumeLayout(false);
             this.tabContainers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             this.tabVolume.ResumeLayout(false);
@@ -1282,15 +1327,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn imageIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource dockerContainerBindingSource;
+        public System.Windows.Forms.TextBox txtContainerInspect;
         private System.Windows.Forms.DataGridViewTextBoxColumn containerIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn imageDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn commandDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn portsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource dockerContainerBindingSource;
-        public System.Windows.Forms.TextBox txtContainerInspect;
+        private System.Windows.Forms.ComboBox cmbNetwords;
+        private System.Windows.Forms.BindingSource dockerNetworkBindingSource;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnConnectNetwork;
     }
 }
 

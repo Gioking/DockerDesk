@@ -126,6 +126,7 @@ namespace DockerDesk
                 }
                 networkList = DoskerStatus.ParseDockerNetworksOutput(command.OperationResult);
                 GridNetwork.DataSource = networkList;
+                cmbNetwords.DataSource = networkList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridNetwork.Font = font;
             }
@@ -200,6 +201,18 @@ namespace DockerDesk
             var command = DoskerStatus.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
             txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadVolumes();
+        }
+
+        //docker network connect mia-rete mio-container
+        private void btnConnectNetwork_Click(object sender, EventArgs e)
+        {
+            if (selectedNetwork == null || selectedContainer == null)
+            {
+                MessageBox.Show("Warning.. Select a container and the network to bind to.");
+                return;
+            }
+            var command = DoskerStatus.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
         }
 
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
@@ -284,6 +297,7 @@ namespace DockerDesk
                 selectedContainer = dockerContainer;
                 toolStripSelectedContainer.Text = selectedContainer.Names;
 
+                //Inspect if container has a volume
                 //docker inspect --format '{{ .Mounts }}' nome_container
                 var command = DoskerStatus.DockerExecute($"inspect --format '{{{{.Mounts}}}}' {dockerContainer.ContainerId}", txtWorkDirPath.Text);
                 txtContainerInspect.Text = command.OperationResult;
@@ -351,6 +365,7 @@ namespace DockerDesk
         }
 
         #endregion
+
 
     }
 }
