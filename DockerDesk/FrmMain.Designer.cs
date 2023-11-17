@@ -252,8 +252,7 @@
             // 
             // cmbVolumes
             // 
-            this.cmbVolumes.DataSource = this.dockerVolumeBindingSource;
-            this.cmbVolumes.DisplayMember = "VolumeName";
+            this.cmbVolumes.DataSource = this.dockerNetworkBindingSource;
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVolumes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVolumes.FormattingEnabled = true;

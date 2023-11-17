@@ -132,8 +132,10 @@ namespace DockerDesk
                 networkList = DoskerStatus.ParseDockerNetworksOutput(command.OperationResult);
                 GridNetwork.DataSource = networkList;
 
-                customNetworkList = networkList;
-                customNetworkList.Add(new DockerNetwork { NetworkId = "", Name = null });
+                customNetworkList = new List<DockerNetwork>(networkList)
+                {
+                    new DockerNetwork { NetworkId = "", Name = null }
+                };
 
                 cmbNetworksConnect.DataSource = customNetworkList;
                 cmbNetworks.DataSource = customNetworkList;
