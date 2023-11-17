@@ -287,5 +287,13 @@ namespace DockerDesk
             txtLog.Text = command.OperationResult;
             LoadVolumes();
         }
+
+        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadImages();
+            LoadContainers();
+            LoadVolumes();
+            LoadNetworks();
+        }
     }
 }

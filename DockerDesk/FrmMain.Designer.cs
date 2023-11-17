@@ -84,6 +84,7 @@
             this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
@@ -98,6 +99,7 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
@@ -113,10 +115,14 @@
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabImages);
             this.tabControl1.Controls.Add(this.tabContainers);
             this.tabControl1.Controls.Add(this.tabVolume);
@@ -132,18 +138,9 @@
             // 
             // tabImages
             // 
+            this.tabImages.Controls.Add(this.groupBox4);
             this.tabImages.Controls.Add(this.GridImages);
-            this.tabImages.Controls.Add(this.chkHasVolume);
-            this.tabImages.Controls.Add(this.txtVolumeName);
-            this.tabImages.Controls.Add(this.label6);
-            this.tabImages.Controls.Add(this.txtContainerName);
-            this.tabImages.Controls.Add(this.label5);
-            this.tabImages.Controls.Add(this.label4);
-            this.tabImages.Controls.Add(this.txtContainerPort);
-            this.tabImages.Controls.Add(this.txtHostPort);
-            this.tabImages.Controls.Add(this.label3);
             this.tabImages.Controls.Add(this.groupBox1);
-            this.tabImages.Controls.Add(this.btnRunContainer);
             this.tabImages.Controls.Add(this.label1);
             this.tabImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tabImages.ImageIndex = 5;
@@ -159,6 +156,9 @@
             // 
             this.GridImages.AllowUserToAddRows = false;
             this.GridImages.AllowUserToDeleteRows = false;
+            this.GridImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridImages.Location = new System.Drawing.Point(15, 43);
@@ -174,7 +174,7 @@
             // 
             this.chkHasVolume.AutoSize = true;
             this.chkHasVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkHasVolume.Location = new System.Drawing.Point(65, 303);
+            this.chkHasVolume.Location = new System.Drawing.Point(70, 28);
             this.chkHasVolume.Name = "chkHasVolume";
             this.chkHasVolume.Size = new System.Drawing.Size(165, 19);
             this.chkHasVolume.TabIndex = 15;
@@ -184,7 +184,7 @@
             // txtVolumeName
             // 
             this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVolumeName.Location = new System.Drawing.Point(64, 382);
+            this.txtVolumeName.Location = new System.Drawing.Point(69, 107);
             this.txtVolumeName.Multiline = true;
             this.txtVolumeName.Name = "txtVolumeName";
             this.txtVolumeName.Size = new System.Drawing.Size(220, 22);
@@ -194,7 +194,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 387);
+            this.label6.Location = new System.Drawing.Point(17, 112);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 13;
@@ -203,7 +203,7 @@
             // txtContainerName
             // 
             this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerName.Location = new System.Drawing.Point(64, 354);
+            this.txtContainerName.Location = new System.Drawing.Point(69, 79);
             this.txtContainerName.Multiline = true;
             this.txtContainerName.Name = "txtContainerName";
             this.txtContainerName.Size = new System.Drawing.Size(220, 22);
@@ -213,7 +213,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 358);
+            this.label5.Location = new System.Drawing.Point(17, 83);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 11;
@@ -222,7 +222,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(162, 331);
+            this.label4.Location = new System.Drawing.Point(167, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 10;
@@ -231,7 +231,7 @@
             // txtContainerPort
             // 
             this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPort.Location = new System.Drawing.Point(210, 326);
+            this.txtContainerPort.Location = new System.Drawing.Point(215, 51);
             this.txtContainerPort.Multiline = true;
             this.txtContainerPort.Name = "txtContainerPort";
             this.txtContainerPort.Size = new System.Drawing.Size(74, 22);
@@ -242,7 +242,7 @@
             // txtHostPort
             // 
             this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPort.Location = new System.Drawing.Point(65, 326);
+            this.txtHostPort.Location = new System.Drawing.Point(70, 51);
             this.txtHostPort.Multiline = true;
             this.txtHostPort.Name = "txtHostPort";
             this.txtHostPort.Size = new System.Drawing.Size(81, 22);
@@ -253,7 +253,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 331);
+            this.label3.Location = new System.Drawing.Point(17, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 7;
@@ -261,6 +261,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnCreateImage);
@@ -295,6 +297,7 @@
             // 
             // btnCreateImage
             // 
+            this.btnCreateImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCreateImage.Location = new System.Drawing.Point(9, 189);
             this.btnCreateImage.Name = "btnCreateImage";
             this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
@@ -328,7 +331,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(64, 410);
+            this.btnRunContainer.Location = new System.Drawing.Point(69, 135);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -378,6 +381,7 @@
             // 
             // btnRemoveContainer
             // 
+            this.btnRemoveContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveContainer.Location = new System.Drawing.Point(11, 362);
             this.btnRemoveContainer.Name = "btnRemoveContainer";
@@ -391,6 +395,9 @@
             // 
             this.gridContainers.AllowUserToAddRows = false;
             this.gridContainers.AllowUserToDeleteRows = false;
+            this.gridContainers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridContainers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContainers.Location = new System.Drawing.Point(11, 43);
@@ -428,6 +435,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.btnCreateVolume);
             this.groupBox2.Controls.Add(this.txtNewVolumeName);
             this.groupBox2.Controls.Add(this.label11);
@@ -441,6 +450,7 @@
             // 
             // btnCreateVolume
             // 
+            this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCreateVolume.Location = new System.Drawing.Point(9, 189);
             this.btnCreateVolume.Name = "btnCreateVolume";
             this.btnCreateVolume.Size = new System.Drawing.Size(142, 35);
@@ -470,6 +480,7 @@
             // 
             // btnRemoveVolume
             // 
+            this.btnRemoveVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveVolume.Location = new System.Drawing.Point(11, 286);
             this.btnRemoveVolume.Name = "btnRemoveVolume";
@@ -483,6 +494,9 @@
             // 
             this.GridVolumes.AllowUserToAddRows = false;
             this.GridVolumes.AllowUserToDeleteRows = false;
+            this.GridVolumes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GridVolumes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridVolumes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridVolumes.Location = new System.Drawing.Point(11, 42);
@@ -520,6 +534,7 @@
             // 
             // btnRemoveNetwork
             // 
+            this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveNetwork.Location = new System.Drawing.Point(11, 286);
             this.btnRemoveNetwork.Name = "btnRemoveNetwork";
@@ -531,6 +546,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.txtGateway);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.txtSubnet);
@@ -609,6 +626,7 @@
             // 
             // btnCreateNetwork
             // 
+            this.btnCreateNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCreateNetwork.Location = new System.Drawing.Point(9, 189);
             this.btnCreateNetwork.Name = "btnCreateNetwork";
             this.btnCreateNetwork.Size = new System.Drawing.Size(142, 35);
@@ -639,6 +657,9 @@
             // 
             this.GridNetwork.AllowUserToAddRows = false;
             this.GridNetwork.AllowUserToDeleteRows = false;
+            this.GridNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GridNetwork.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridNetwork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridNetwork.Location = new System.Drawing.Point(11, 42);
@@ -673,7 +694,9 @@
             // 
             // txtLog
             // 
-            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
@@ -695,7 +718,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectProjectPathToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.reloadAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -705,7 +729,7 @@
             this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectWorkDir});
             this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
             // SelectWorkDir
@@ -720,9 +744,16 @@
             // 
             this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // reloadAllToolStripMenuItem
+            // 
+            this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.reloadAllToolStripMenuItem.Text = "Reload All";
+            this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // folderBrowserDialog
             // 
@@ -850,6 +881,26 @@
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Controls.Add(this.btnRunContainer);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.chkHasVolume);
+            this.groupBox4.Controls.Add(this.txtHostPort);
+            this.groupBox4.Controls.Add(this.txtVolumeName);
+            this.groupBox4.Controls.Add(this.txtContainerPort);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.txtContainerName);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Location = new System.Drawing.Point(15, 287);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(313, 194);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Container data";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -890,6 +941,8 @@
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -965,6 +1018,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnRemoveNetwork;
         public System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.ToolStripMenuItem reloadAllToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 
