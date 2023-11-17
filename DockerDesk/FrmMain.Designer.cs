@@ -121,6 +121,7 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.txtContainerInspect = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -517,6 +518,7 @@
             // 
             // tabContainers
             // 
+            this.tabContainers.Controls.Add(this.txtContainerInspect);
             this.tabContainers.Controls.Add(this.btnRemoveContainer);
             this.tabContainers.Controls.Add(this.gridContainers);
             this.tabContainers.Controls.Add(this.label7);
@@ -1131,6 +1133,19 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
             // 
+            // txtContainerInspect
+            // 
+            this.txtContainerInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContainerInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContainerInspect.Location = new System.Drawing.Point(237, 362);
+            this.txtContainerInspect.Multiline = true;
+            this.txtContainerInspect.Name = "txtContainerInspect";
+            this.txtContainerInspect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtContainerInspect.Size = new System.Drawing.Size(841, 178);
+            this.txtContainerInspect.TabIndex = 9;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1275,6 +1290,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn portsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn namesDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource dockerContainerBindingSource;
+        public System.Windows.Forms.TextBox txtContainerInspect;
     }
 }
 

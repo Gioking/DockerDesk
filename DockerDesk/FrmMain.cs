@@ -263,7 +263,6 @@ namespace DockerDesk
                 selectedImage.ImageId = Convert.ToString(row.Cells[3].Value);
                 selectedImage.Created = Convert.ToString(row.Cells[4].Value);
                 selectedImage.Size = Convert.ToString(row.Cells[5].Value);
-
                 toolStripSelectedImage.Text = selectedImage.Image;
             }
         }
@@ -275,8 +274,6 @@ namespace DockerDesk
                 DataGridViewRow row = gridContainers.SelectedRows[0];
 
                 DockerContainer dockerContainer = new DockerContainer();
-
-                // Assicurati che gli indici delle celle siano corretti in base all'ordine delle colonne nella DataGridView
                 dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
                 dockerContainer.Image = Convert.ToString(row.Cells[1].Value);
                 dockerContainer.Command = Convert.ToString(row.Cells[2].Value);
@@ -284,10 +281,13 @@ namespace DockerDesk
                 dockerContainer.Status = Convert.ToString(row.Cells[4].Value);
                 dockerContainer.Ports = Convert.ToString(row.Cells[5].Value);
                 dockerContainer.Names = Convert.ToString(row.Cells[6].Value);
-
                 selectedContainer = dockerContainer;
-
                 toolStripSelectedContainer.Text = selectedContainer.Names;
+
+                //docker inspect --format '{{ .Mounts }}' nome_container
+                var command = DoskerStatus.DockerExecute($"inspect --format '{{{{.Mounts}}}}' {dockerContainer.ContainerId}", txtWorkDirPath.Text);
+                txtContainerInspect.Text = command.OperationResult;
+                //LoadContainers();
             }
         }
 
