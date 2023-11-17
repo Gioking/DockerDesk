@@ -79,34 +79,45 @@ namespace DockerDesk.Helpers
         public static List<DockerContainer> ParseDockerContainersOutput(string output)
         {
             var containersList = new List<DockerContainer>();
-            var lineRegex = new Regex(@"(.+?\r?\n|\r)");
-            var matches = lineRegex.Matches(output);
-            var columnRegex = new Regex(@"(\S+)\s+([\w-]+)\s+\""(.*?)\""\s+([\w\s]+)\s+([\w\s()]+)\s+(\S*)\s+(.+)");
+            var lines = output.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (Match line in matches)
+            // Array di espressioni regolari per gestire diversi formati
+            var columnRegexPatterns = new[]
             {
-                if (line.Success && !line.Value.StartsWith("CONTAINER ID"))
+        new Regex(@"(\S+)\s+([\w.-]+(?:\:\w+)?\s+)\s+\""(.*?)\""\s+([\d\w\s]+ ago)\s+([\w\s]+)\s+(.*?)\s+(.+)"),
+        // Aggiungi qui altri pattern se necessario
+    };
+
+            foreach (var line in lines)
+            {
+                if (!line.StartsWith("CONTAINER ID"))
                 {
-                    var match = columnRegex.Match(line.Value);
-                    if (match.Success)
+                    foreach (var regex in columnRegexPatterns)
                     {
-                        var container = new DockerContainer
+                        var match = regex.Match(line);
+                        if (match.Success)
                         {
-                            ContainerId = match.Groups[1].Value,
-                            Image = match.Groups[2].Value,
-                            Command = match.Groups[3].Value,
-                            Created = match.Groups[4].Value,
-                            Status = match.Groups[5].Value,
-                            Ports = match.Groups[6].Value,
-                            Names = match.Groups[7].Value
-                        };
-                        containersList.Add(container);
+                            var container = new DockerContainer
+                            {
+                                ContainerId = match.Groups[1].Value,
+                                Image = match.Groups[2].Value.Trim(),
+                                Command = match.Groups[3].Value,
+                                Created = match.Groups[4].Value,
+                                Status = match.Groups[5].Value,
+                                Ports = match.Groups[6].Value,
+                                Names = match.Groups[7].Value
+                            };
+                            containersList.Add(container);
+                            break; // Esce dal ciclo di regex una volta trovato un match
+                        }
                     }
                 }
             }
 
             return containersList;
         }
+
+
 
         public static List<DockerVolume> ParseDockerVolumesOutput(string output)
         {

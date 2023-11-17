@@ -48,6 +48,13 @@
             this.txtContainerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.GridImages = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dockerImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDeleteImage = new System.Windows.Forms.Button();
             this.txtTag = new System.Windows.Forms.TextBox();
@@ -59,6 +66,14 @@
             this.tabContainers = new System.Windows.Forms.TabPage();
             this.btnRemoveContainer = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
+            this.containerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -111,9 +126,11 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabContainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             this.tabVolume.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVolumes)).BeginInit();
@@ -330,19 +347,84 @@
             // 
             this.GridImages.AllowUserToAddRows = false;
             this.GridImages.AllowUserToDeleteRows = false;
+            this.GridImages.AllowUserToOrderColumns = true;
             this.GridImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.GridImages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridImages.AutoGenerateColumns = false;
+            this.GridImages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.imageDataGridViewTextBoxColumn,
+            this.tagDataGridViewTextBoxColumn,
+            this.imageIdDataGridViewTextBoxColumn,
+            this.createdDataGridViewTextBoxColumn,
+            this.sizeDataGridViewTextBoxColumn});
+            this.GridImages.DataSource = this.dockerImageBindingSource;
             this.GridImages.Location = new System.Drawing.Point(15, 43);
             this.GridImages.MultiSelect = false;
             this.GridImages.Name = "GridImages";
-            this.GridImages.ReadOnly = true;
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridImages.Size = new System.Drawing.Size(748, 253);
             this.GridImages.TabIndex = 16;
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.FillWeight = 152.2843F;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // imageDataGridViewTextBoxColumn
+            // 
+            this.imageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.imageDataGridViewTextBoxColumn.DataPropertyName = "Image";
+            this.imageDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.imageDataGridViewTextBoxColumn.HeaderText = "Image";
+            this.imageDataGridViewTextBoxColumn.Name = "imageDataGridViewTextBoxColumn";
+            this.imageDataGridViewTextBoxColumn.Width = 66;
+            // 
+            // tagDataGridViewTextBoxColumn
+            // 
+            this.tagDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.tagDataGridViewTextBoxColumn.DataPropertyName = "Tag";
+            this.tagDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.tagDataGridViewTextBoxColumn.HeaderText = "Tag";
+            this.tagDataGridViewTextBoxColumn.Name = "tagDataGridViewTextBoxColumn";
+            this.tagDataGridViewTextBoxColumn.Width = 52;
+            // 
+            // imageIdDataGridViewTextBoxColumn
+            // 
+            this.imageIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.imageIdDataGridViewTextBoxColumn.DataPropertyName = "ImageId";
+            this.imageIdDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.imageIdDataGridViewTextBoxColumn.HeaderText = "ImageId";
+            this.imageIdDataGridViewTextBoxColumn.Name = "imageIdDataGridViewTextBoxColumn";
+            this.imageIdDataGridViewTextBoxColumn.Width = 77;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.Width = 76;
+            // 
+            // sizeDataGridViewTextBoxColumn
+            // 
+            this.sizeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.sizeDataGridViewTextBoxColumn.DataPropertyName = "Size";
+            this.sizeDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.sizeDataGridViewTextBoxColumn.HeaderText = "Size";
+            this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
+            this.sizeDataGridViewTextBoxColumn.Width = 56;
+            // 
+            // dockerImageBindingSource
+            // 
+            this.dockerImageBindingSource.DataSource = typeof(DockerDesk.Models.DockerImage);
             // 
             // groupBox1
             // 
@@ -412,7 +494,7 @@
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(210, 22);
             this.txtImageName.TabIndex = 1;
-            this.txtImageName.Text = "test-image-gio";
+            this.txtImageName.Text = "docker-image";
             // 
             // label2
             // 
@@ -467,8 +549,17 @@
             this.gridContainers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridContainers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridContainers.AutoGenerateColumns = false;
             this.gridContainers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridContainers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.containerIdDataGridViewTextBoxColumn,
+            this.imageDataGridViewTextBoxColumn1,
+            this.commandDataGridViewTextBoxColumn,
+            this.createdDataGridViewTextBoxColumn1,
+            this.statusDataGridViewTextBoxColumn,
+            this.portsDataGridViewTextBoxColumn,
+            this.namesDataGridViewTextBoxColumn});
+            this.gridContainers.DataSource = this.dockerContainerBindingSource;
             this.gridContainers.Location = new System.Drawing.Point(11, 43);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
@@ -477,6 +568,73 @@
             this.gridContainers.Size = new System.Drawing.Size(1067, 313);
             this.gridContainers.TabIndex = 7;
             this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
+            // 
+            // containerIdDataGridViewTextBoxColumn
+            // 
+            this.containerIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.containerIdDataGridViewTextBoxColumn.DataPropertyName = "ContainerId";
+            this.containerIdDataGridViewTextBoxColumn.HeaderText = "ContainerId";
+            this.containerIdDataGridViewTextBoxColumn.Name = "containerIdDataGridViewTextBoxColumn";
+            this.containerIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.containerIdDataGridViewTextBoxColumn.Width = 97;
+            // 
+            // imageDataGridViewTextBoxColumn1
+            // 
+            this.imageDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.imageDataGridViewTextBoxColumn1.DataPropertyName = "Image";
+            this.imageDataGridViewTextBoxColumn1.HeaderText = "Image";
+            this.imageDataGridViewTextBoxColumn1.Name = "imageDataGridViewTextBoxColumn1";
+            this.imageDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.imageDataGridViewTextBoxColumn1.Width = 66;
+            // 
+            // commandDataGridViewTextBoxColumn
+            // 
+            this.commandDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.commandDataGridViewTextBoxColumn.DataPropertyName = "Command";
+            this.commandDataGridViewTextBoxColumn.HeaderText = "Command";
+            this.commandDataGridViewTextBoxColumn.Name = "commandDataGridViewTextBoxColumn";
+            this.commandDataGridViewTextBoxColumn.ReadOnly = true;
+            this.commandDataGridViewTextBoxColumn.Width = 86;
+            // 
+            // createdDataGridViewTextBoxColumn1
+            // 
+            this.createdDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.createdDataGridViewTextBoxColumn1.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn1.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn1.Name = "createdDataGridViewTextBoxColumn1";
+            this.createdDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.createdDataGridViewTextBoxColumn1.Width = 76;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.statusDataGridViewTextBoxColumn.Width = 68;
+            // 
+            // portsDataGridViewTextBoxColumn
+            // 
+            this.portsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.portsDataGridViewTextBoxColumn.DataPropertyName = "Ports";
+            this.portsDataGridViewTextBoxColumn.HeaderText = "Ports";
+            this.portsDataGridViewTextBoxColumn.Name = "portsDataGridViewTextBoxColumn";
+            this.portsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.portsDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // namesDataGridViewTextBoxColumn
+            // 
+            this.namesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.namesDataGridViewTextBoxColumn.DataPropertyName = "Names";
+            this.namesDataGridViewTextBoxColumn.HeaderText = "Names";
+            this.namesDataGridViewTextBoxColumn.Name = "namesDataGridViewTextBoxColumn";
+            this.namesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.namesDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // dockerContainerBindingSource
+            // 
+            this.dockerContainerBindingSource.DataSource = typeof(DockerDesk.Models.DockerContainer);
             // 
             // label7
             // 
@@ -534,9 +692,9 @@
             this.txtNewVolumeName.Location = new System.Drawing.Point(119, 31);
             this.txtNewVolumeName.Multiline = true;
             this.txtNewVolumeName.Name = "txtNewVolumeName";
-            this.txtNewVolumeName.Size = new System.Drawing.Size(201, 22);
+            this.txtNewVolumeName.Size = new System.Drawing.Size(201, 24);
             this.txtNewVolumeName.TabIndex = 1;
-            this.txtNewVolumeName.Text = "new-volume";
+            this.txtNewVolumeName.Text = "container-volume";
             // 
             // label11
             // 
@@ -996,11 +1154,13 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabContainers.ResumeLayout(false);
             this.tabContainers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             this.tabVolume.ResumeLayout(false);
             this.tabVolume.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1100,6 +1260,21 @@
         private System.Windows.Forms.Button btnDeleteImage;
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.BindingSource dockerImageBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tagDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn containerIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn commandDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn portsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource dockerContainerBindingSource;
     }
 }
 
