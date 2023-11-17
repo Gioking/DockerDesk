@@ -33,6 +33,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbNetworks = new System.Windows.Forms.ComboBox();
+            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
             this.dockerVolumeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,8 +69,7 @@
             this.tabContainers = new System.Windows.Forms.TabPage();
             this.btnConnectNetwork = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.cmbNetwords = new System.Windows.Forms.ComboBox();
-            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbNetworksConnect = new System.Windows.Forms.ComboBox();
             this.txtContainerInspect = new System.Windows.Forms.TextBox();
             this.btnRemoveContainer = new System.Windows.Forms.Button();
             this.gridContainers = new System.Windows.Forms.DataGridView();
@@ -129,12 +131,12 @@
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabContainers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             this.tabVolume.SuspendLayout();
@@ -184,7 +186,10 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.cmbNetworks);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.cmbVolumes);
             this.groupBox4.Controls.Add(this.btnRunContainer);
@@ -197,12 +202,39 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtContainerName);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Location = new System.Drawing.Point(15, 302);
+            this.groupBox4.Location = new System.Drawing.Point(769, 43);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(317, 224);
+            this.groupBox4.Size = new System.Drawing.Size(314, 293);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(17, 169);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "C.Net";
+            // 
+            // cmbNetworks
+            // 
+            this.cmbNetworks.DataSource = this.dockerNetworkBindingSource;
+            this.cmbNetworks.DisplayMember = "Name";
+            this.cmbNetworks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNetworks.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbNetworks.FormattingEnabled = true;
+            this.cmbNetworks.Location = new System.Drawing.Point(70, 164);
+            this.cmbNetworks.Name = "cmbNetworks";
+            this.cmbNetworks.Size = new System.Drawing.Size(220, 24);
+            this.cmbNetworks.TabIndex = 18;
+            this.cmbNetworks.ValueMember = "NetworkId";
+            this.cmbNetworks.SelectedIndexChanged += new System.EventHandler(this.cmbNetworks_SelectedIndexChanged);
+            // 
+            // dockerNetworkBindingSource
+            // 
+            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
             // 
             // label16
             // 
@@ -237,7 +269,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(69, 164);
+            this.btnRunContainer.Location = new System.Drawing.Point(70, 223);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -370,7 +402,7 @@
             this.GridImages.MultiSelect = false;
             this.GridImages.Name = "GridImages";
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridImages.Size = new System.Drawing.Size(748, 253);
+            this.GridImages.Size = new System.Drawing.Size(748, 293);
             this.GridImages.TabIndex = 16;
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
@@ -434,8 +466,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnDeleteImage);
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.label8);
@@ -443,9 +474,9 @@
             this.groupBox1.Controls.Add(this.txtImageName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(769, 43);
+            this.groupBox1.Location = new System.Drawing.Point(15, 342);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 255);
+            this.groupBox1.Size = new System.Drawing.Size(309, 198);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
@@ -454,7 +485,7 @@
             // 
             this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDeleteImage.Location = new System.Drawing.Point(161, 204);
+            this.btnDeleteImage.Location = new System.Drawing.Point(161, 147);
             this.btnDeleteImage.Name = "btnDeleteImage";
             this.btnDeleteImage.Size = new System.Drawing.Size(142, 35);
             this.btnDeleteImage.TabIndex = 5;
@@ -484,7 +515,7 @@
             // btnCreateImage
             // 
             this.btnCreateImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateImage.Location = new System.Drawing.Point(9, 204);
+            this.btnCreateImage.Location = new System.Drawing.Point(9, 147);
             this.btnCreateImage.Name = "btnCreateImage";
             this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
             this.btnCreateImage.TabIndex = 2;
@@ -525,7 +556,7 @@
             // 
             this.tabContainers.Controls.Add(this.btnConnectNetwork);
             this.tabContainers.Controls.Add(this.label18);
-            this.tabContainers.Controls.Add(this.cmbNetwords);
+            this.tabContainers.Controls.Add(this.cmbNetworksConnect);
             this.tabContainers.Controls.Add(this.txtContainerInspect);
             this.tabContainers.Controls.Add(this.btnRemoveContainer);
             this.tabContainers.Controls.Add(this.gridContainers);
@@ -559,22 +590,19 @@
             this.label18.TabIndex = 18;
             this.label18.Text = "Connect container to this network:";
             // 
-            // cmbNetwords
+            // cmbNetworksConnect
             // 
-            this.cmbNetwords.DataSource = this.dockerNetworkBindingSource;
-            this.cmbNetwords.DisplayMember = "Name";
-            this.cmbNetwords.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNetwords.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.cmbNetwords.FormattingEnabled = true;
-            this.cmbNetwords.Location = new System.Drawing.Point(15, 426);
-            this.cmbNetwords.Name = "cmbNetwords";
-            this.cmbNetwords.Size = new System.Drawing.Size(216, 24);
-            this.cmbNetwords.TabIndex = 17;
-            this.cmbNetwords.ValueMember = "NetworkId";
-            // 
-            // dockerNetworkBindingSource
-            // 
-            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
+            this.cmbNetworksConnect.DataSource = this.dockerNetworkBindingSource;
+            this.cmbNetworksConnect.DisplayMember = "Name";
+            this.cmbNetworksConnect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNetworksConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbNetworksConnect.FormattingEnabled = true;
+            this.cmbNetworksConnect.Location = new System.Drawing.Point(15, 426);
+            this.cmbNetworksConnect.Name = "cmbNetworksConnect";
+            this.cmbNetworksConnect.Size = new System.Drawing.Size(216, 24);
+            this.cmbNetworksConnect.TabIndex = 17;
+            this.cmbNetworksConnect.ValueMember = "NetworkId";
+            this.cmbNetworksConnect.SelectedIndexChanged += new System.EventHandler(this.cmbNetworksConnect_SelectedIndexChanged);
             // 
             // txtContainerInspect
             // 
@@ -1049,6 +1077,7 @@
             // 
             // reloadAllToolStripMenuItem
             // 
+            this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
             this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
@@ -1211,6 +1240,7 @@
             this.tabImages.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).EndInit();
@@ -1218,7 +1248,6 @@
             this.groupBox1.PerformLayout();
             this.tabContainers.ResumeLayout(false);
             this.tabContainers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             this.tabVolume.ResumeLayout(false);
@@ -1336,10 +1365,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn portsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ComboBox cmbNetwords;
+        private System.Windows.Forms.ComboBox cmbNetworksConnect;
         private System.Windows.Forms.BindingSource dockerNetworkBindingSource;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnConnectNetwork;
+        private System.Windows.Forms.ComboBox cmbNetworks;
+        private System.Windows.Forms.Label label19;
     }
 }
 

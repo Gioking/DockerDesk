@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -17,6 +18,7 @@ namespace DockerDesk
         private DockerContainer selectedContainer;
         private DockerVolume selectedVolume;
         private DockerNetwork selectedNetwork;
+        private DockerNetwork selectedNetworkToConnect;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
         private List<DockerContainer> containersList = new List<DockerContainer>();
@@ -125,8 +127,10 @@ namespace DockerDesk
                     txtLog.Text = LogHelper.LogError(command.Error);
                 }
                 networkList = DoskerStatus.ParseDockerNetworksOutput(command.OperationResult);
+                networkList.Add(new DockerNetwork { NetworkId = "", Name = null });
                 GridNetwork.DataSource = networkList;
-                cmbNetwords.DataSource = networkList;
+                cmbNetworksConnect.DataSource = networkList;
+                cmbNetworks.DataSource = networkList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridNetwork.Font = font;
             }
@@ -167,6 +171,11 @@ namespace DockerDesk
         //docker rm -f container_id_o_nome
         private void btnRemoveContainer_Click(object sender, EventArgs e)
         {
+            if (selectedContainer == null)
+            {
+                MessageBox.Show("Please select the container to remove.");
+                return;
+            }
             var command = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
             txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadContainers();
@@ -236,6 +245,19 @@ namespace DockerDesk
                 var command = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtVolumeName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             }
+
+            //docker network connect 282f46669c30 container-name-2
+
+            //if (selectedContainer == null)
+            //{
+            //    MessageBox.Show("");
+            //}
+            //if (selectedNetworkToConnect.Name != null)
+            //{
+            //    //docker run --name mio-container --network nuova-rete mia-immagine
+            //    var command = DoskerStatus.DockerExecute($"network connect {selectedNetworkToConnect.NetworkId} {selectedContainer.ContainerId} {selectedImage.ImageId}:{selectedImage.Tag}", txtWorkDirPath.Text);
+            //    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            //}
 
             LoadContainers();
             tabControl1.SelectedTab = tabLog;
@@ -364,8 +386,16 @@ namespace DockerDesk
             txtLog.Text = "";
         }
 
+        private void cmbNetworks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedNetworkToConnect = (DockerNetwork)cmbNetworks.SelectedItem;
+        }
+
         #endregion
 
-
+        private void cmbNetworksConnect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
+        }
     }
 }
