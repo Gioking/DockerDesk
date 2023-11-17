@@ -203,7 +203,8 @@ namespace DockerDesk.Helpers
                     Arguments = arguments,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    RedirectStandardError = true
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
                 };
 
                 using (Process process = new Process())
