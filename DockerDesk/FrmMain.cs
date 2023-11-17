@@ -20,6 +20,7 @@ namespace DockerDesk
         private DockerVolume selectedVolume;
         private DockerNetwork selectedNetwork;
         private DockerNetwork selectedNetworkToConnect;
+        private string selectedDrive = string.Empty;
         private string WorkingFolderPath = string.Empty;
         private List<DockerImage> imagesList = new List<DockerImage>();
         private List<DockerContainer> containersList = new List<DockerContainer>();
@@ -199,10 +200,25 @@ namespace DockerDesk
         }
 
         //docker network create -d bridge my-bridge-network
+        //docker network create --subnet=192.168.1.0/24 --gateway=192.168.1.1 --ip-range=192.168.1.4/32 my-custom-network
         private void btnCreateNetwork_Click(object sender, EventArgs e)
         {
-            var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            if (string.IsNullOrEmpty(selectedDrive))
+            {
+                var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtSubnet.Text))
+                {
+                    MessageBox.Show("Warning... the subnet is required.");
+                    return;
+                }
+                var command = DoskerStatus.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            }
+
             LoadNetworks();
         }
 
@@ -411,17 +427,52 @@ namespace DockerDesk
             selectedNetworkToConnect = (DockerNetwork)cmbNetworks.SelectedItem;
         }
 
-        #endregion
+        private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedDrive = comboDrive.SelectedItem.ToString();
+        }
 
         private void cmbNetworksConnect_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
         }
 
+        private void btnNetInspect_Click(object sender, EventArgs e)
+        {
+            if (GridNetwork.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = GridNetwork.SelectedRows[0];
+                selectedNetwork = new DockerNetwork();
+                selectedNetwork.Id = Convert.ToInt32(row.Cells[0].Value);
+                selectedNetwork.NetworkId = Convert.ToString(row.Cells[1].Value);
+                selectedNetwork.Name = Convert.ToString(row.Cells[2].Value);
+                selectedNetwork.Drive = Convert.ToString(row.Cells[3].Value);
+                selectedNetwork.Scope = Convert.ToString(row.Cells[4].Value);
+                toolStripSelectedNetwork.Text = selectedNetwork.Name;
+            }
+
+            //docker network inspect my-custom-network
+            //docker network inspect my-custom-network --format '{{json .}}' | jq
+            var command = DoskerStatus.DockerExecute($"network inspect {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+
+            frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.SetData(command.OperationResult);
+                existingForm.BringToFront();
+            }
+            else
+            {
+                frmWebView nuovoForm = new frmWebView(command.OperationResult);
+                nuovoForm.Show();
+            }
+
+        }
+
         private void gridContainers_MouseClick(object sender, MouseEventArgs e)
         {
             DataGridViewRow row = gridContainers.SelectedRows[0];
-
             DockerContainer dockerContainer = new DockerContainer();
             dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
             dockerContainer.Names = Convert.ToString(row.Cells[1].Value);
@@ -433,5 +484,10 @@ namespace DockerDesk
             selectedContainer = dockerContainer;
             toolStripSelectedContainer.Text = selectedContainer.Names;
         }
+
+
+        #endregion
+
+
     }
 }

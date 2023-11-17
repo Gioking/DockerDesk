@@ -38,7 +38,6 @@
             this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
-            this.dockerVolumeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
@@ -112,6 +111,7 @@
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.dockerVolumeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,11 +133,11 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnNetInspect = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -151,6 +151,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridNetwork)).BeginInit();
             this.tabLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -253,6 +254,7 @@
             // cmbVolumes
             // 
             this.cmbVolumes.DataSource = this.dockerNetworkBindingSource;
+            this.cmbVolumes.DisplayMember = "VolumeName";
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVolumes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVolumes.FormattingEnabled = true;
@@ -262,10 +264,6 @@
             this.cmbVolumes.TabIndex = 16;
             this.cmbVolumes.ValueMember = "VolumeName";
             this.cmbVolumes.SelectedIndexChanged += new System.EventHandler(this.cmbVolumes_SelectedIndexChanged);
-            // 
-            // dockerVolumeBindingSource
-            // 
-            this.dockerVolumeBindingSource.DataSource = typeof(DockerDesk.Models.DockerVolume);
             // 
             // btnRunContainer
             // 
@@ -837,6 +835,7 @@
             // 
             // tabNetwork
             // 
+            this.tabNetwork.Controls.Add(this.btnNetInspect);
             this.tabNetwork.Controls.Add(this.btnRemoveNetwork);
             this.tabNetwork.Controls.Add(this.groupBox3);
             this.tabNetwork.Controls.Add(this.GridNetwork);
@@ -853,7 +852,7 @@
             // 
             this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnRemoveNetwork.Location = new System.Drawing.Point(11, 286);
+            this.btnRemoveNetwork.Location = new System.Drawing.Point(503, 286);
             this.btnRemoveNetwork.Name = "btnRemoveNetwork";
             this.btnRemoveNetwork.Size = new System.Drawing.Size(220, 31);
             this.btnRemoveNetwork.TabIndex = 20;
@@ -923,6 +922,7 @@
             this.comboDrive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDrive.FormattingEnabled = true;
             this.comboDrive.Items.AddRange(new object[] {
+            "",
             "bridge",
             "Host",
             "Overlay",
@@ -931,6 +931,7 @@
             this.comboDrive.Name = "comboDrive";
             this.comboDrive.Size = new System.Drawing.Size(210, 28);
             this.comboDrive.TabIndex = 5;
+            this.comboDrive.SelectedIndexChanged += new System.EventHandler(this.comboDrive_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -1076,6 +1077,10 @@
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(1086, 501);
             this.txtLog.TabIndex = 0;
+            // 
+            // dockerVolumeBindingSource
+            // 
+            this.dockerVolumeBindingSource.DataSource = typeof(DockerDesk.Models.DockerVolume);
             // 
             // menuStrip1
             // 
@@ -1265,6 +1270,18 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
             // 
+            // btnNetInspect
+            // 
+            this.btnNetInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnNetInspect.Location = new System.Drawing.Point(10, 286);
+            this.btnNetInspect.Name = "btnNetInspect";
+            this.btnNetInspect.Size = new System.Drawing.Size(128, 31);
+            this.btnNetInspect.TabIndex = 21;
+            this.btnNetInspect.Text = "Inspect";
+            this.btnNetInspect.UseVisualStyleBackColor = true;
+            this.btnNetInspect.Click += new System.EventHandler(this.btnNetInspect_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1287,7 +1304,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1308,6 +1324,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridNetwork)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerVolumeBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
@@ -1422,6 +1439,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnNetInspect;
     }
 }
 
