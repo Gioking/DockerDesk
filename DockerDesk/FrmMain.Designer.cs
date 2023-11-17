@@ -67,6 +67,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabContainers = new System.Windows.Forms.TabPage();
+            this.btnInspect = new System.Windows.Forms.Button();
             this.btnConnectNetwork = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.cmbNetworksConnect = new System.Windows.Forms.ComboBox();
@@ -127,7 +128,11 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.btnInspect = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.networkIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.driveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -571,6 +576,18 @@
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
             // 
+            // btnInspect
+            // 
+            this.btnInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnInspect.Location = new System.Drawing.Point(11, 362);
+            this.btnInspect.Name = "btnInspect";
+            this.btnInspect.Size = new System.Drawing.Size(128, 31);
+            this.btnInspect.TabIndex = 20;
+            this.btnInspect.Text = "Inspect";
+            this.btnInspect.UseVisualStyleBackColor = true;
+            this.btnInspect.Click += new System.EventHandler(this.btnInspect_Click);
+            // 
             // btnConnectNetwork
             // 
             this.btnConnectNetwork.Location = new System.Drawing.Point(585, 367);
@@ -960,8 +977,16 @@
             this.GridNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridNetwork.AutoGenerateColumns = false;
             this.GridNetwork.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridNetwork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridNetwork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn1,
+            this.networkIdDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.driveDataGridViewTextBoxColumn,
+            this.scopeDataGridViewTextBoxColumn});
+            this.GridNetwork.DataSource = this.dockerNetworkBindingSource;
             this.GridNetwork.Location = new System.Drawing.Point(11, 42);
             this.GridNetwork.MultiSelect = false;
             this.GridNetwork.Name = "GridNetwork";
@@ -1205,17 +1230,40 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
             // 
-            // btnInspect
+            // idDataGridViewTextBoxColumn1
             // 
-            this.btnInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnInspect.Location = new System.Drawing.Point(11, 362);
-            this.btnInspect.Name = "btnInspect";
-            this.btnInspect.Size = new System.Drawing.Size(128, 31);
-            this.btnInspect.TabIndex = 20;
-            this.btnInspect.Text = "Inspect";
-            this.btnInspect.UseVisualStyleBackColor = true;
-            this.btnInspect.Click += new System.EventHandler(this.btnInspect_Click);
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // networkIdDataGridViewTextBoxColumn
+            // 
+            this.networkIdDataGridViewTextBoxColumn.DataPropertyName = "NetworkId";
+            this.networkIdDataGridViewTextBoxColumn.HeaderText = "NetworkId";
+            this.networkIdDataGridViewTextBoxColumn.Name = "networkIdDataGridViewTextBoxColumn";
+            this.networkIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // driveDataGridViewTextBoxColumn
+            // 
+            this.driveDataGridViewTextBoxColumn.DataPropertyName = "Drive";
+            this.driveDataGridViewTextBoxColumn.HeaderText = "Drive";
+            this.driveDataGridViewTextBoxColumn.Name = "driveDataGridViewTextBoxColumn";
+            this.driveDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // scopeDataGridViewTextBoxColumn
+            // 
+            this.scopeDataGridViewTextBoxColumn.DataPropertyName = "Scope";
+            this.scopeDataGridViewTextBoxColumn.HeaderText = "Scope";
+            this.scopeDataGridViewTextBoxColumn.Name = "scopeDataGridViewTextBoxColumn";
+            this.scopeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmMain
             // 
@@ -1369,6 +1417,11 @@
         private System.Windows.Forms.ComboBox cmbNetworks;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnInspect;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn networkIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
     }
 }
 

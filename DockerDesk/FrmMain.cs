@@ -25,6 +25,7 @@ namespace DockerDesk
         private List<DockerContainer> containersList = new List<DockerContainer>();
         private List<DockerVolume> volumeList = new List<DockerVolume>();
         private List<DockerNetwork> networkList = new List<DockerNetwork>();
+        List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
         private StringBuilder sb = new StringBuilder();
 
         public frmMain()
@@ -127,11 +128,16 @@ namespace DockerDesk
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
                 }
+
                 networkList = DoskerStatus.ParseDockerNetworksOutput(command.OperationResult);
-                networkList.Add(new DockerNetwork { NetworkId = "", Name = null });
                 GridNetwork.DataSource = networkList;
-                cmbNetworksConnect.DataSource = networkList;
-                cmbNetworks.DataSource = networkList;
+
+                customNetworkList = networkList;
+                customNetworkList.Add(new DockerNetwork { NetworkId = "", Name = null });
+
+                cmbNetworksConnect.DataSource = customNetworkList;
+                cmbNetworks.DataSource = customNetworkList;
+
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridNetwork.Font = font;
             }
