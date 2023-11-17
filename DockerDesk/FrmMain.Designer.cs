@@ -103,6 +103,11 @@
             this.txtNetworkName = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.GridNetwork = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.networkIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.driveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
@@ -128,11 +133,6 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.networkIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.driveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -658,6 +658,7 @@
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridContainers.Size = new System.Drawing.Size(1067, 313);
             this.gridContainers.TabIndex = 7;
+            this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
             // 
             // containerIdDataGridViewTextBoxColumn
             // 
@@ -996,6 +997,41 @@
             this.GridNetwork.TabIndex = 18;
             this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // networkIdDataGridViewTextBoxColumn
+            // 
+            this.networkIdDataGridViewTextBoxColumn.DataPropertyName = "NetworkId";
+            this.networkIdDataGridViewTextBoxColumn.HeaderText = "NetworkId";
+            this.networkIdDataGridViewTextBoxColumn.Name = "networkIdDataGridViewTextBoxColumn";
+            this.networkIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // driveDataGridViewTextBoxColumn
+            // 
+            this.driveDataGridViewTextBoxColumn.DataPropertyName = "Drive";
+            this.driveDataGridViewTextBoxColumn.HeaderText = "Drive";
+            this.driveDataGridViewTextBoxColumn.Name = "driveDataGridViewTextBoxColumn";
+            this.driveDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // scopeDataGridViewTextBoxColumn
+            // 
+            this.scopeDataGridViewTextBoxColumn.DataPropertyName = "Scope";
+            this.scopeDataGridViewTextBoxColumn.HeaderText = "Scope";
+            this.scopeDataGridViewTextBoxColumn.Name = "scopeDataGridViewTextBoxColumn";
+            this.scopeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -1229,41 +1265,6 @@
             this.label17.Size = new System.Drawing.Size(197, 17);
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // networkIdDataGridViewTextBoxColumn
-            // 
-            this.networkIdDataGridViewTextBoxColumn.DataPropertyName = "NetworkId";
-            this.networkIdDataGridViewTextBoxColumn.HeaderText = "NetworkId";
-            this.networkIdDataGridViewTextBoxColumn.Name = "networkIdDataGridViewTextBoxColumn";
-            this.networkIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // driveDataGridViewTextBoxColumn
-            // 
-            this.driveDataGridViewTextBoxColumn.DataPropertyName = "Drive";
-            this.driveDataGridViewTextBoxColumn.HeaderText = "Drive";
-            this.driveDataGridViewTextBoxColumn.Name = "driveDataGridViewTextBoxColumn";
-            this.driveDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // scopeDataGridViewTextBoxColumn
-            // 
-            this.scopeDataGridViewTextBoxColumn.DataPropertyName = "Scope";
-            this.scopeDataGridViewTextBoxColumn.HeaderText = "Scope";
-            this.scopeDataGridViewTextBoxColumn.Name = "scopeDataGridViewTextBoxColumn";
-            this.scopeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmMain
             // 
