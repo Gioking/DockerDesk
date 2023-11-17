@@ -33,6 +33,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
             this.dockerVolumeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRunContainer = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.GridImages = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteImage = new System.Windows.Forms.Button();
             this.txtTag = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnCreateImage = new System.Windows.Forms.Button();
@@ -81,6 +83,7 @@
             this.GridNetwork = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,7 +105,7 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -173,20 +176,30 @@
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Location = new System.Drawing.Point(15, 302);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(635, 224);
+            this.groupBox4.Size = new System.Drawing.Size(317, 224);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(17, 110);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(37, 13);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "C.Vol";
             // 
             // cmbVolumes
             // 
             this.cmbVolumes.DataSource = this.dockerVolumeBindingSource;
             this.cmbVolumes.DisplayMember = "VolumeName";
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVolumes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVolumes.FormattingEnabled = true;
             this.cmbVolumes.Location = new System.Drawing.Point(69, 107);
             this.cmbVolumes.Name = "cmbVolumes";
-            this.cmbVolumes.Size = new System.Drawing.Size(220, 21);
+            this.cmbVolumes.Size = new System.Drawing.Size(220, 24);
             this.cmbVolumes.TabIndex = 16;
             this.cmbVolumes.ValueMember = "VolumeName";
             this.cmbVolumes.SelectedIndexChanged += new System.EventHandler(this.cmbVolumes_SelectedIndexChanged);
@@ -201,7 +214,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(69, 162);
+            this.btnRunContainer.Location = new System.Drawing.Point(69, 164);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -258,7 +271,7 @@
             // txtVolumeName
             // 
             this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVolumeName.Location = new System.Drawing.Point(69, 134);
+            this.txtVolumeName.Location = new System.Drawing.Point(69, 136);
             this.txtVolumeName.Multiline = true;
             this.txtVolumeName.Name = "txtVolumeName";
             this.txtVolumeName.Size = new System.Drawing.Size(220, 22);
@@ -279,7 +292,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 139);
+            this.label6.Location = new System.Drawing.Point(17, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
@@ -335,6 +348,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnDeleteImage);
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnCreateImage);
@@ -347,6 +361,18 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
+            // 
+            // btnDeleteImage
+            // 
+            this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDeleteImage.Location = new System.Drawing.Point(161, 204);
+            this.btnDeleteImage.Name = "btnDeleteImage";
+            this.btnDeleteImage.Size = new System.Drawing.Size(142, 35);
+            this.btnDeleteImage.TabIndex = 5;
+            this.btnDeleteImage.Text = "Delete Image";
+            this.btnDeleteImage.UseVisualStyleBackColor = true;
+            this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
             // 
             // txtTag
             // 
@@ -417,7 +443,7 @@
             this.tabContainers.Location = new System.Drawing.Point(4, 29);
             this.tabContainers.Name = "tabContainers";
             this.tabContainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContainers.Size = new System.Drawing.Size(1086, 487);
+            this.tabContainers.Size = new System.Drawing.Size(1086, 546);
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
@@ -471,7 +497,7 @@
             this.tabVolume.ImageIndex = 7;
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1086, 487);
+            this.tabVolume.Size = new System.Drawing.Size(1086, 546);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
@@ -570,7 +596,7 @@
             this.tabNetwork.ImageIndex = 0;
             this.tabNetwork.Location = new System.Drawing.Point(4, 29);
             this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1086, 487);
+            this.tabNetwork.Size = new System.Drawing.Size(1086, 546);
             this.tabNetwork.TabIndex = 3;
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
@@ -726,14 +752,26 @@
             // 
             // tabLog
             // 
+            this.tabLog.Controls.Add(this.btnClearLog);
             this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.ImageIndex = 1;
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Size = new System.Drawing.Size(1086, 487);
+            this.tabLog.Size = new System.Drawing.Size(1086, 546);
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClearLog.Location = new System.Drawing.Point(8, 507);
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.Size = new System.Drawing.Size(142, 35);
+            this.btnClearLog.TabIndex = 3;
+            this.btnClearLog.Text = "Clear Logs";
+            this.btnClearLog.UseVisualStyleBackColor = true;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
             // 
             // txtLog
             // 
@@ -744,7 +782,8 @@
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(1086, 487);
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLog.Size = new System.Drawing.Size(1086, 501);
             this.txtLog.TabIndex = 0;
             // 
             // menuStrip1
@@ -917,27 +956,29 @@
             this.txtWorkDirPath.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWorkDirPath.ForeColor = System.Drawing.SystemColors.Info;
-            this.txtWorkDirPath.Location = new System.Drawing.Point(4, 34);
+            this.txtWorkDirPath.Location = new System.Drawing.Point(209, 34);
             this.txtWorkDirPath.Multiline = true;
             this.txtWorkDirPath.Name = "txtWorkDirPath";
-            this.txtWorkDirPath.Size = new System.Drawing.Size(1052, 28);
+            this.txtWorkDirPath.Size = new System.Drawing.Size(847, 28);
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
-            // label16
+            // label17
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 110);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 13);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "C.Vol";
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(16, 38);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(197, 17);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Dockerfile path (Project path):";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 678);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.txtWorkDirPath);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.statusBar);
@@ -1056,6 +1097,9 @@
         private System.Windows.Forms.ComboBox cmbVolumes;
         private System.Windows.Forms.BindingSource dockerVolumeBindingSource;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnDeleteImage;
+        private System.Windows.Forms.Button btnClearLog;
+        private System.Windows.Forms.Label label17;
     }
 }
 

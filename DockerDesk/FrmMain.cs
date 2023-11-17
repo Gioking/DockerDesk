@@ -1,5 +1,6 @@
 ﻿using DockerDesk.Helpers;
 using DockerDesk.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -136,13 +137,69 @@ namespace DockerDesk
 
         #endregion
 
-        private void SelectWorkDir_Click(object sender, EventArgs e)
+        #region Commands
+
+        //docker build -t myapp:1.0 .
+        private void btnCreateImage_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            ResultModel command;
+            if (string.IsNullOrEmpty(txtTag.Text))
             {
-                WorkingFolderPath = folderBrowserDialog.SelectedPath;
-                txtWorkDirPath.Text = WorkingFolderPath;
+                command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
             }
+            else
+            {
+                command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
+            }
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadImages();
+        }
+
+        //docker image rm -f image
+        private void btnDeleteImage_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadImages();
+        }
+
+        //docker rm -f container_id_o_nome
+        private void btnRemoveContainer_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadContainers();
+        }
+
+        //docker volume create hello
+        private void btnCreateVolume_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadVolumes();
+        }
+
+        //docker network create -d bridge my-bridge-network
+        private void btnCreateNetwork_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadNetworks();
+        }
+
+        private void btnRemoveNetwork_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadNetworks();
+        }
+
+        //docker volume rm hello
+        private void btnRemoveVolume_Click(object sender, EventArgs e)
+        {
+            var command = DoskerStatus.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadVolumes();
         }
 
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
@@ -169,12 +226,17 @@ namespace DockerDesk
             tabControl1.SelectedTab = tabLog;
         }
 
-        //docker build -t myapp:1.0 .
-        private void btnCreateImage_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Various
+
+        private void SelectWorkDir_Click(object sender, EventArgs e)
         {
-            var command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadImages();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = folderBrowserDialog.SelectedPath;
+                txtWorkDirPath.Text = WorkingFolderPath;
+            }
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)
@@ -227,27 +289,11 @@ namespace DockerDesk
             }
         }
 
-        //docker rm -f container_id_o_nome
-        private void btnRemoveContainer_Click(object sender, EventArgs e)
-        {
-            var command = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadContainers();
-        }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About about = new About();
             about.ShowDialog();
 
-        }
-
-        //docker volume create hello
-        private void btnCreateVolume_Click(object sender, EventArgs e)
-        {
-            var command = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadVolumes();
         }
 
         private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
@@ -283,29 +329,6 @@ namespace DockerDesk
             }
         }
 
-        //docker network create -d bridge my-bridge-network
-        private void btnCreateNetwork_Click(object sender, EventArgs e)
-        {
-            var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadNetworks();
-        }
-
-        private void btnRemoveNetwork_Click(object sender, EventArgs e)
-        {
-            var command = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadNetworks();
-        }
-
-        //docker volume rm hello
-        private void btnRemoveVolume_Click(object sender, EventArgs e)
-        {
-            var command = DoskerStatus.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadVolumes();
-        }
-
         private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadImages();
@@ -319,5 +342,13 @@ namespace DockerDesk
         {
             selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
         }
+
+        private void btnClearLog_Click(object sender, EventArgs e)
+        {
+            txtLog.Text = "";
+        }
+
+        #endregion
+
     }
 }
