@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DockerDesk
 {
@@ -20,6 +21,7 @@ namespace DockerDesk
         private List<DockerContainer> containersList = new List<DockerContainer>();
         private List<DockerVolume> volumeList = new List<DockerVolume>();
         private List<DockerNetwork> networkList = new List<DockerNetwork>();
+        private StringBuilder sb = new StringBuilder();
 
         public frmMain()
         {
@@ -53,7 +55,10 @@ namespace DockerDesk
 
                 imagesList.Clear();
                 var command = DoskerStatus.DockerExecute("images", txtWorkDirPath.Text);
-                txtLog.Text = command.Error;
+                if (!string.IsNullOrEmpty(command.Error))
+                {
+                    txtLog.Text = LogHelper.LogError(command.Error);
+                }
                 imagesList = DoskerStatus.ParseDockerImagesOutput(command.OperationResult);
                 GridImages.DataSource = imagesList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -71,7 +76,10 @@ namespace DockerDesk
             {
                 containersList.Clear();
                 var command = DoskerStatus.DockerExecute("ps -a", txtWorkDirPath.Text);
-                txtLog.Text = command.Error;
+                if (!string.IsNullOrEmpty(command.Error))
+                {
+                    txtLog.Text = LogHelper.LogError(command.Error);
+                }
                 containersList = DoskerStatus.ParseDockerContainersOutput(command.OperationResult);
                 gridContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -89,8 +97,13 @@ namespace DockerDesk
             {
                 volumeList.Clear();
                 var command = DoskerStatus.DockerExecute("volume ls", txtWorkDirPath.Text);
+                if (!string.IsNullOrEmpty(command.Error))
+                {
+                    txtLog.Text = LogHelper.LogError(command.Error);
+                }
                 volumeList = DoskerStatus.ParseDockerVolumesOutput(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
+                cmbVolumes.DataSource = volumeList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridVolumes.Font = font;
             }
@@ -106,6 +119,10 @@ namespace DockerDesk
             {
                 networkList.Clear();
                 var command = DoskerStatus.DockerExecute("network ls", txtWorkDirPath.Text);
+                if (!string.IsNullOrEmpty(command.Error))
+                {
+                    txtLog.Text = LogHelper.LogError(command.Error);
+                }
                 networkList = DoskerStatus.ParseDockerNetworksOutput(command.OperationResult);
                 GridNetwork.DataSource = networkList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -145,7 +162,7 @@ namespace DockerDesk
             }
             else
             {
-                var command = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {txtVolumeName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                var command = DoskerStatus.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtVolumeName.Text}"} {selectedImage.Image}", txtWorkDirPath.Text);
             }
 
             LoadContainers();
@@ -156,7 +173,8 @@ namespace DockerDesk
         private void btnCreateImage_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            LoadImages();
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)
@@ -213,7 +231,7 @@ namespace DockerDesk
         private void btnRemoveContainer_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadContainers();
         }
 
@@ -228,7 +246,7 @@ namespace DockerDesk
         private void btnCreateVolume_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadVolumes();
         }
 
@@ -269,14 +287,14 @@ namespace DockerDesk
         private void btnCreateNetwork_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadNetworks();
         }
 
         private void btnRemoveNetwork_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadNetworks();
         }
 
@@ -284,7 +302,7 @@ namespace DockerDesk
         private void btnRemoveVolume_Click(object sender, EventArgs e)
         {
             var command = DoskerStatus.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
-            txtLog.Text = command.OperationResult;
+            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
             LoadVolumes();
         }
 
@@ -294,6 +312,12 @@ namespace DockerDesk
             LoadContainers();
             LoadVolumes();
             LoadNetworks();
+        }
+
+        //Combobox Volumes
+        private void cmbVolumes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
         }
     }
 }

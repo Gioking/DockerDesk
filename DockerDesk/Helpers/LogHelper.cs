@@ -7,7 +7,7 @@ namespace DockerDesk.Helpers
     {
         static StringBuilder sb = new StringBuilder();
 
-        public static void LogInfo(string message)
+        public static string LogInfo(string message)
         {
             if (message.StartsWith("Command:"))
             {
@@ -15,11 +15,18 @@ namespace DockerDesk.Helpers
             }
 
             sb.AppendLine(message);
+
+            return sb.ToString();
         }
 
-        public static void LogError(string message)
+        public static string LogError(string message)
         {
-            sb.AppendLine(message);
+            if (!string.IsNullOrEmpty(message))
+            {
+                sb.AppendLine(message);
+                return sb.ToString();
+            }
+            return null;
         }
 
         public static string GetLogs()
