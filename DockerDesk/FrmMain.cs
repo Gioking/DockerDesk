@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -263,6 +264,42 @@ namespace DockerDesk
             tabControl1.SelectedTab = tabLog;
         }
 
+        private void btnInspect_Click(object sender, EventArgs e)
+        {
+            if (gridContainers.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = gridContainers.SelectedRows[0];
+
+                DockerContainer dockerContainer = new DockerContainer();
+                dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
+                dockerContainer.Image = Convert.ToString(row.Cells[1].Value);
+                dockerContainer.Command = Convert.ToString(row.Cells[2].Value);
+                dockerContainer.Created = Convert.ToString(row.Cells[3].Value);
+                dockerContainer.Status = Convert.ToString(row.Cells[4].Value);
+                dockerContainer.Ports = Convert.ToString(row.Cells[5].Value);
+                dockerContainer.Names = Convert.ToString(row.Cells[6].Value);
+                selectedContainer = dockerContainer;
+                toolStripSelectedContainer.Text = selectedContainer.Names;
+
+                //Inspect if container has a volume
+                //docker inspect --format '{{ .Mounts }}' nome_container
+                var command = DoskerStatus.DockerExecute($"inspect {dockerContainer.ContainerId}", txtWorkDirPath.Text);
+
+                frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
+
+                if (existingForm != null)
+                {
+                    existingForm.SetData(command.OperationResult);
+                    existingForm.BringToFront();
+                }
+                else
+                {
+                    frmWebView nuovoForm = new frmWebView(command.OperationResult);
+                    nuovoForm.Show();
+                }
+            }
+        }
+
         #endregion
 
         #region Various
@@ -299,31 +336,6 @@ namespace DockerDesk
                 selectedImage.Created = Convert.ToString(row.Cells[4].Value);
                 selectedImage.Size = Convert.ToString(row.Cells[5].Value);
                 toolStripSelectedImage.Text = selectedImage.Image;
-            }
-        }
-
-        private void gridContainers_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (gridContainers.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = gridContainers.SelectedRows[0];
-
-                DockerContainer dockerContainer = new DockerContainer();
-                dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
-                dockerContainer.Image = Convert.ToString(row.Cells[1].Value);
-                dockerContainer.Command = Convert.ToString(row.Cells[2].Value);
-                dockerContainer.Created = Convert.ToString(row.Cells[3].Value);
-                dockerContainer.Status = Convert.ToString(row.Cells[4].Value);
-                dockerContainer.Ports = Convert.ToString(row.Cells[5].Value);
-                dockerContainer.Names = Convert.ToString(row.Cells[6].Value);
-                selectedContainer = dockerContainer;
-                toolStripSelectedContainer.Text = selectedContainer.Names;
-
-                //Inspect if container has a volume
-                //docker inspect --format '{{ .Mounts }}' nome_container
-                var command = DoskerStatus.DockerExecute($"inspect --format '{{{{.Mounts}}}}' {dockerContainer.ContainerId}", txtWorkDirPath.Text);
-                txtContainerInspect.Text = command.OperationResult;
-                //LoadContainers();
             }
         }
 
@@ -397,5 +409,7 @@ namespace DockerDesk
         {
             selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
         }
+
+
     }
 }
