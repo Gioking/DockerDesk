@@ -134,6 +134,8 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.toolStripButtonRed = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripButtonGreen = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1167,7 +1169,9 @@
             this.toolStripSplitButton4,
             this.toolStripSelectedVolume,
             this.toolStripSplitButton5,
-            this.toolStripSelectedNetwork});
+            this.toolStripSelectedNetwork,
+            this.toolStripButtonRed,
+            this.toolStripButtonGreen});
             this.statusBar.Location = new System.Drawing.Point(0, 653);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -1285,6 +1289,24 @@
             this.label17.Size = new System.Drawing.Size(197, 17);
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
+            // 
+            // toolStripButtonRed
+            // 
+            this.toolStripButtonRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRed.Image")));
+            this.toolStripButtonRed.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRed.Name = "toolStripButtonRed";
+            this.toolStripButtonRed.Size = new System.Drawing.Size(32, 23);
+            this.toolStripButtonRed.Text = "toolStripSplitButton6";
+            // 
+            // toolStripButtonGreen
+            // 
+            this.toolStripButtonGreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonGreen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGreen.Image")));
+            this.toolStripButtonGreen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonGreen.Name = "toolStripButtonGreen";
+            this.toolStripButtonGreen.Size = new System.Drawing.Size(32, 23);
+            this.toolStripButtonGreen.Text = "toolStripSplitButton6";
             // 
             // frmMain
             // 
@@ -1444,6 +1466,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnNetInspect;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButtonRed;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButtonGreen;
     }
 }
 
