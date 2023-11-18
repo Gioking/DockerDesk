@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -62,16 +63,29 @@ namespace DockerDesk
                     imageStatusLabel.Text = "Servizio Docker Attivo.";
                 }
 
-                imagesList.Clear();
-                var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.Error))
+                try
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    imagesList.Clear();
+                    var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
+                    if (!string.IsNullOrEmpty(command.Error))
+                    {
+                        txtLog.Text = LogHelper.LogError(command.Error);
+                    }
+                    imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
+                    GridImages.DataSource = imagesList;
+                    Font font = new Font("Arial", 12, FontStyle.Regular);
+                    GridImages.Font = font;
                 }
-                imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
-                GridImages.DataSource = imagesList;
-                Font font = new Font("Arial", 12, FontStyle.Regular);
-                GridImages.Font = font;
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+                finally
+                {
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                }
+
             }
             catch (Exception e)
             {
@@ -161,18 +175,29 @@ namespace DockerDesk
         //docker build -t test-image-gio:v1 -f Dockerfile .
         private async void btnCreateImage_Click(object sender, EventArgs e)
         {
-            ResultModel command;
-            if (string.IsNullOrEmpty(txtTag.Text))
+            try
             {
-                command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                await Task.Delay(3000);
+
+                ResultModel command;
+                if (string.IsNullOrEmpty(txtTag.Text))
+                {
+                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                }
+                else
+                {
+                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                }
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                tabControl1.SelectedTab = tabLog;
+                LoadImages();
+                SpinnerHelper.ToggleSpinner(pBar, false);
             }
-            else
+            catch (Exception ex)
             {
-                command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                MessageBox.Show(ex.Message);
             }
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            tabControl1.SelectedTab = tabLog;
-            LoadImages();
         }
 
         //docker image rm -f image

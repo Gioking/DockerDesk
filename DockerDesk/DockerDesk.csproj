@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerNetwork.cs" />
     <Compile Include="Models\DockerVolume.cs" />
