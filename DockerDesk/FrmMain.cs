@@ -65,7 +65,7 @@ namespace DockerDesk
 
                 try
                 {
-                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    //SpinnerHelper.ToggleSpinner(pBar, true);
                     imagesList.Clear();
                     var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
                     if (!string.IsNullOrEmpty(command.Error))
@@ -81,11 +81,6 @@ namespace DockerDesk
                 {
                     MessageBox.Show($"Error: {ex.Message}");
                 }
-                finally
-                {
-                    SpinnerHelper.ToggleSpinner(pBar, false);
-                }
-
             }
             catch (Exception e)
             {
@@ -190,7 +185,6 @@ namespace DockerDesk
                     command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
                 }
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                tabControl1.SelectedTab = tabLog;
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -203,9 +197,18 @@ namespace DockerDesk
         //docker image rm -f image
         private async void btnDeleteImage_Click(object sender, EventArgs e)
         {
-            var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
-            txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-            LoadImages();
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadImages();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //docker rm -f container_id_o_nome
@@ -315,7 +318,6 @@ namespace DockerDesk
             //}
 
             LoadContainers();
-            tabControl1.SelectedTab = tabLog;
         }
 
         private async void btnInspect_Click(object sender, EventArgs e)
@@ -516,8 +518,12 @@ namespace DockerDesk
         }
 
 
+
         #endregion
 
-
+        private void txtLog_TextChanged(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabLog;
+        }
     }
 }

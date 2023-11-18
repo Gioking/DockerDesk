@@ -1103,13 +1103,14 @@
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(1086, 501);
             this.txtLog.TabIndex = 0;
+            this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // pBar
             // 
             this.pBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar.Location = new System.Drawing.Point(804, 656);
+            this.pBar.Location = new System.Drawing.Point(988, 656);
             this.pBar.Name = "pBar";
-            this.pBar.Size = new System.Drawing.Size(258, 16);
+            this.pBar.Size = new System.Drawing.Size(74, 16);
             this.pBar.TabIndex = 18;
             // 
             // dockerVolumeBindingSource
