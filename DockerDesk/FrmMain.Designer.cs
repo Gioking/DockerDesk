@@ -59,6 +59,9 @@
             this.dockerImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDeleteImage = new System.Windows.Forms.Button();
+            this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.txtWorkDirPath = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.txtTag = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnCreateImage = new System.Windows.Forms.Button();
@@ -136,9 +139,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
-            this.txtWorkDirPath = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -163,20 +163,18 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabImages);
             this.tabControl1.Controls.Add(this.tabContainers);
             this.tabControl1.Controls.Add(this.tabVolume);
             this.tabControl1.Controls.Add(this.tabNetwork);
             this.tabControl1.Controls.Add(this.tabLog);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
-            this.tabControl1.Location = new System.Drawing.Point(0, 71);
+            this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1234, 579);
+            this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
             // 
             // tabImages
@@ -190,7 +188,7 @@
             this.tabImages.Location = new System.Drawing.Point(4, 29);
             this.tabImages.Name = "tabImages";
             this.tabImages.Padding = new System.Windows.Forms.Padding(3);
-            this.tabImages.Size = new System.Drawing.Size(1226, 546);
+            this.tabImages.Size = new System.Drawing.Size(1226, 593);
             this.tabImages.TabIndex = 0;
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
@@ -213,9 +211,9 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtContainerName);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Location = new System.Drawing.Point(909, 43);
+            this.groupBox4.Location = new System.Drawing.Point(919, 25);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(314, 293);
+            this.groupBox4.Size = new System.Drawing.Size(314, 314);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
@@ -276,7 +274,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(70, 223);
+            this.btnRunContainer.Location = new System.Drawing.Point(70, 203);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -408,12 +406,12 @@
             this.createdDataGridViewTextBoxColumn,
             this.sizeDataGridViewTextBoxColumn});
             this.GridImages.DataSource = this.dockerImageBindingSource;
-            this.GridImages.Location = new System.Drawing.Point(15, 43);
+            this.GridImages.Location = new System.Drawing.Point(13, 25);
             this.GridImages.MultiSelect = false;
             this.GridImages.Name = "GridImages";
             this.GridImages.ReadOnly = true;
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridImages.Size = new System.Drawing.Size(888, 293);
+            this.GridImages.Size = new System.Drawing.Size(900, 314);
             this.GridImages.TabIndex = 16;
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
@@ -481,15 +479,18 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnDeleteImage);
+            this.groupBox1.Controls.Add(this.btnOpenFolder);
+            this.groupBox1.Controls.Add(this.txtWorkDirPath);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnCreateImage);
             this.groupBox1.Controls.Add(this.txtImageName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(15, 342);
+            this.groupBox1.Location = new System.Drawing.Point(13, 345);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 198);
+            this.groupBox1.Size = new System.Drawing.Size(900, 242);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
@@ -498,7 +499,7 @@
             // 
             this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDeleteImage.Location = new System.Drawing.Point(161, 147);
+            this.btnDeleteImage.Location = new System.Drawing.Point(161, 191);
             this.btnDeleteImage.Name = "btnDeleteImage";
             this.btnDeleteImage.Size = new System.Drawing.Size(142, 35);
             this.btnDeleteImage.TabIndex = 5;
@@ -506,10 +507,48 @@
             this.btnDeleteImage.UseVisualStyleBackColor = true;
             this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
             // 
+            // btnOpenFolder
+            // 
+            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolder.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOpenFolder.Location = new System.Drawing.Point(831, 53);
+            this.btnOpenFolder.Name = "btnOpenFolder";
+            this.btnOpenFolder.Size = new System.Drawing.Size(40, 22);
+            this.btnOpenFolder.TabIndex = 4;
+            this.btnOpenFolder.Text = "---";
+            this.btnOpenFolder.UseVisualStyleBackColor = false;
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            // 
+            // txtWorkDirPath
+            // 
+            this.txtWorkDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtWorkDirPath.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtWorkDirPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtWorkDirPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtWorkDirPath.Location = new System.Drawing.Point(15, 53);
+            this.txtWorkDirPath.Name = "txtWorkDirPath";
+            this.txtWorkDirPath.Size = new System.Drawing.Size(810, 22);
+            this.txtWorkDirPath.TabIndex = 5;
+            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(12, 29);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(198, 16);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Dockerfile (In Solution path)";
+            // 
             // txtTag
             // 
             this.txtTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtTag.Location = new System.Drawing.Point(87, 55);
+            this.txtTag.Location = new System.Drawing.Point(121, 114);
             this.txtTag.Multiline = true;
             this.txtTag.Name = "txtTag";
             this.txtTag.Size = new System.Drawing.Size(210, 22);
@@ -519,16 +558,17 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 60);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 118);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.Size = new System.Drawing.Size(76, 16);
             this.label8.TabIndex = 3;
             this.label8.Text = "Image tag";
             // 
             // btnCreateImage
             // 
             this.btnCreateImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateImage.Location = new System.Drawing.Point(9, 147);
+            this.btnCreateImage.Location = new System.Drawing.Point(9, 191);
             this.btnCreateImage.Name = "btnCreateImage";
             this.btnCreateImage.Size = new System.Drawing.Size(142, 35);
             this.btnCreateImage.TabIndex = 2;
@@ -539,7 +579,7 @@
             // txtImageName
             // 
             this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtImageName.Location = new System.Drawing.Point(87, 27);
+            this.txtImageName.Location = new System.Drawing.Point(121, 86);
             this.txtImageName.Multiline = true;
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(210, 22);
@@ -549,9 +589,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 32);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(92, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Image name";
             // 
@@ -559,7 +600,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 25);
+            this.label1.Location = new System.Drawing.Point(11, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 15);
             this.label1.TabIndex = 1;
@@ -579,7 +620,7 @@
             this.tabContainers.Location = new System.Drawing.Point(4, 29);
             this.tabContainers.Name = "tabContainers";
             this.tabContainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContainers.Size = new System.Drawing.Size(1226, 546);
+            this.tabContainers.Size = new System.Drawing.Size(1226, 593);
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
@@ -588,7 +629,7 @@
             // 
             this.btnInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnInspect.Location = new System.Drawing.Point(11, 362);
+            this.btnInspect.Location = new System.Drawing.Point(14, 390);
             this.btnInspect.Name = "btnInspect";
             this.btnInspect.Size = new System.Drawing.Size(128, 31);
             this.btnInspect.TabIndex = 20;
@@ -599,7 +640,7 @@
             // btnConnectNetwork
             // 
             this.btnConnectNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnConnectNetwork.Location = new System.Drawing.Point(585, 367);
+            this.btnConnectNetwork.Location = new System.Drawing.Point(588, 395);
             this.btnConnectNetwork.Name = "btnConnectNetwork";
             this.btnConnectNetwork.Size = new System.Drawing.Size(75, 26);
             this.btnConnectNetwork.TabIndex = 19;
@@ -611,7 +652,7 @@
             // 
             this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(157, 372);
+            this.label18.Location = new System.Drawing.Point(160, 400);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(200, 13);
             this.label18.TabIndex = 18;
@@ -625,7 +666,7 @@
             this.cmbNetworksConnect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNetworksConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbNetworksConnect.FormattingEnabled = true;
-            this.cmbNetworksConnect.Location = new System.Drawing.Point(363, 367);
+            this.cmbNetworksConnect.Location = new System.Drawing.Point(366, 395);
             this.cmbNetworksConnect.Name = "cmbNetworksConnect";
             this.cmbNetworksConnect.Size = new System.Drawing.Size(216, 24);
             this.cmbNetworksConnect.TabIndex = 17;
@@ -636,7 +677,7 @@
             // 
             this.btnRemoveContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnRemoveContainer.Location = new System.Drawing.Point(858, 362);
+            this.btnRemoveContainer.Location = new System.Drawing.Point(1001, 392);
             this.btnRemoveContainer.Name = "btnRemoveContainer";
             this.btnRemoveContainer.Size = new System.Drawing.Size(220, 31);
             this.btnRemoveContainer.TabIndex = 8;
@@ -663,12 +704,12 @@
             this.statusDataGridViewTextBoxColumn,
             this.portsDataGridViewTextBoxColumn});
             this.gridContainers.DataSource = this.dockerContainerBindingSource;
-            this.gridContainers.Location = new System.Drawing.Point(11, 43);
+            this.gridContainers.Location = new System.Drawing.Point(13, 25);
             this.gridContainers.MultiSelect = false;
             this.gridContainers.Name = "gridContainers";
             this.gridContainers.ReadOnly = true;
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridContainers.Size = new System.Drawing.Size(1067, 313);
+            this.gridContainers.Size = new System.Drawing.Size(1207, 359);
             this.gridContainers.TabIndex = 7;
             this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
             // 
@@ -736,7 +777,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(8, 25);
+            this.label7.Location = new System.Drawing.Point(11, 7);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(154, 15);
             this.label7.TabIndex = 5;
@@ -751,7 +792,7 @@
             this.tabVolume.ImageIndex = 7;
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1226, 546);
+            this.tabVolume.Size = new System.Drawing.Size(1226, 593);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
@@ -764,9 +805,9 @@
             this.groupBox2.Controls.Add(this.txtNewVolumeName);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox2.Location = new System.Drawing.Point(745, 42);
+            this.groupBox2.Location = new System.Drawing.Point(873, 42);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(333, 240);
+            this.groupBox2.Size = new System.Drawing.Size(333, 485);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Volume data";
@@ -774,7 +815,7 @@
             // btnCreateVolume
             // 
             this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateVolume.Location = new System.Drawing.Point(9, 189);
+            this.btnCreateVolume.Location = new System.Drawing.Point(9, 434);
             this.btnCreateVolume.Name = "btnCreateVolume";
             this.btnCreateVolume.Size = new System.Drawing.Size(142, 35);
             this.btnCreateVolume.TabIndex = 2;
@@ -805,7 +846,7 @@
             // 
             this.btnRemoveVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemoveVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnRemoveVolume.Location = new System.Drawing.Point(11, 286);
+            this.btnRemoveVolume.Location = new System.Drawing.Point(14, 533);
             this.btnRemoveVolume.Name = "btnRemoveVolume";
             this.btnRemoveVolume.Size = new System.Drawing.Size(220, 31);
             this.btnRemoveVolume.TabIndex = 11;
@@ -828,12 +869,12 @@
             this.driveDataGridViewTextBoxColumn1,
             this.volumeNameDataGridViewTextBoxColumn});
             this.GridVolumes.DataSource = this.dockerVolumeBindingSource;
-            this.GridVolumes.Location = new System.Drawing.Point(11, 42);
+            this.GridVolumes.Location = new System.Drawing.Point(13, 25);
             this.GridVolumes.MultiSelect = false;
             this.GridVolumes.Name = "GridVolumes";
             this.GridVolumes.ReadOnly = true;
             this.GridVolumes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridVolumes.Size = new System.Drawing.Size(728, 238);
+            this.GridVolumes.Size = new System.Drawing.Size(856, 502);
             this.GridVolumes.TabIndex = 10;
             this.GridVolumes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridVolumes_MouseClick);
             // 
@@ -866,7 +907,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(8, 24);
+            this.label9.Location = new System.Drawing.Point(11, 7);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(154, 15);
             this.label9.TabIndex = 9;
@@ -882,7 +923,7 @@
             this.tabNetwork.ImageIndex = 0;
             this.tabNetwork.Location = new System.Drawing.Point(4, 29);
             this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1226, 546);
+            this.tabNetwork.Size = new System.Drawing.Size(1226, 593);
             this.tabNetwork.TabIndex = 3;
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
@@ -891,7 +932,7 @@
             // 
             this.btnNetInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnNetInspect.Location = new System.Drawing.Point(10, 286);
+            this.btnNetInspect.Location = new System.Drawing.Point(14, 547);
             this.btnNetInspect.Name = "btnNetInspect";
             this.btnNetInspect.Size = new System.Drawing.Size(128, 31);
             this.btnNetInspect.TabIndex = 21;
@@ -903,7 +944,7 @@
             // 
             this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnRemoveNetwork.Location = new System.Drawing.Point(503, 286);
+            this.btnRemoveNetwork.Location = new System.Drawing.Point(649, 547);
             this.btnRemoveNetwork.Name = "btnRemoveNetwork";
             this.btnRemoveNetwork.Size = new System.Drawing.Size(220, 31);
             this.btnRemoveNetwork.TabIndex = 20;
@@ -925,9 +966,9 @@
             this.groupBox3.Controls.Add(this.txtNetworkName);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox3.Location = new System.Drawing.Point(729, 40);
+            this.groupBox3.Location = new System.Drawing.Point(873, 42);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(345, 240);
+            this.groupBox3.Size = new System.Drawing.Size(345, 499);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Image data";
@@ -996,7 +1037,7 @@
             // btnCreateNetwork
             // 
             this.btnCreateNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateNetwork.Location = new System.Drawing.Point(9, 189);
+            this.btnCreateNetwork.Location = new System.Drawing.Point(9, 448);
             this.btnCreateNetwork.Name = "btnCreateNetwork";
             this.btnCreateNetwork.Size = new System.Drawing.Size(142, 35);
             this.btnCreateNetwork.TabIndex = 2;
@@ -1039,12 +1080,12 @@
             this.driveDataGridViewTextBoxColumn,
             this.scopeDataGridViewTextBoxColumn});
             this.GridNetwork.DataSource = this.dockerNetworkBindingSource;
-            this.GridNetwork.Location = new System.Drawing.Point(11, 42);
+            this.GridNetwork.Location = new System.Drawing.Point(13, 25);
             this.GridNetwork.MultiSelect = false;
             this.GridNetwork.Name = "GridNetwork";
             this.GridNetwork.ReadOnly = true;
             this.GridNetwork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridNetwork.Size = new System.Drawing.Size(712, 238);
+            this.GridNetwork.Size = new System.Drawing.Size(856, 516);
             this.GridNetwork.TabIndex = 18;
             this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
@@ -1087,7 +1128,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(7, 24);
+            this.label10.Location = new System.Drawing.Point(11, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 15);
             this.label10.TabIndex = 17;
@@ -1100,7 +1141,7 @@
             this.tabLog.ImageIndex = 1;
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Size = new System.Drawing.Size(1226, 546);
+            this.tabLog.Size = new System.Drawing.Size(1226, 547);
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
@@ -1126,14 +1167,14 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(1086, 501);
+            this.txtLog.Size = new System.Drawing.Size(1218, 501);
             this.txtLog.TabIndex = 0;
             this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // pBar
             // 
             this.pBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar.Location = new System.Drawing.Point(1086, 656);
+            this.pBar.Location = new System.Drawing.Point(1086, 657);
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(119, 16);
             this.pBar.TabIndex = 18;
@@ -1164,7 +1205,7 @@
             this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectWorkDir});
             this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
             // SelectWorkDir
@@ -1179,7 +1220,7 @@
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
@@ -1187,14 +1228,14 @@
             // 
             this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -1216,7 +1257,7 @@
             this.toolStripSelectedVolume,
             this.toolStripSplitButton5,
             this.toolStripSelectedNetwork});
-            this.statusBar.Location = new System.Drawing.Point(0, 653);
+            this.statusBar.Location = new System.Drawing.Point(0, 654);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1234, 25);
             this.statusBar.TabIndex = 3;
@@ -1297,55 +1338,14 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFolder.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOpenFolder.Location = new System.Drawing.Point(1202, 38);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(28, 19);
-            this.btnOpenFolder.TabIndex = 4;
-            this.btnOpenFolder.Text = "---";
-            this.btnOpenFolder.UseVisualStyleBackColor = false;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
-            // 
-            // txtWorkDirPath
-            // 
-            this.txtWorkDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWorkDirPath.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.txtWorkDirPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWorkDirPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtWorkDirPath.Location = new System.Drawing.Point(219, 38);
-            this.txtWorkDirPath.Name = "txtWorkDirPath";
-            this.txtWorkDirPath.Size = new System.Drawing.Size(977, 19);
-            this.txtWorkDirPath.TabIndex = 5;
-            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(16, 38);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(183, 17);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "Dockerfile (In Solution path)";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1234, 678);
-            this.Controls.Add(this.pBar);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.txtWorkDirPath);
-            this.Controls.Add(this.btnOpenFolder);
-            this.Controls.Add(this.statusBar);
+            this.ClientSize = new System.Drawing.Size(1234, 679);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.pBar);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
@@ -1408,8 +1408,6 @@
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel imageStatusLabel;
         private System.Windows.Forms.Button btnCreateImage;
-        private System.Windows.Forms.Button btnOpenFolder;
-        private System.Windows.Forms.TextBox txtWorkDirPath;
         private System.Windows.Forms.TextBox txtContainerName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1465,7 +1463,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnDeleteImage;
         private System.Windows.Forms.Button btnClearLog;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.BindingSource dockerImageBindingSource;
         private System.Windows.Forms.BindingSource dockerContainerBindingSource;
         private System.Windows.Forms.ComboBox cmbNetworksConnect;
@@ -1499,6 +1496,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn volumeNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtWorkDirPath;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnOpenFolder;
     }
 }
 
