@@ -155,6 +155,7 @@ namespace DockerDesk
         #region Commands
 
         //docker build -t myapp:1.0 .
+        //docker build -t test-image-gio:v1 -f Dockerfile .
         private void btnCreateImage_Click(object sender, EventArgs e)
         {
             ResultModel command;
@@ -167,6 +168,7 @@ namespace DockerDesk
                 command = DoskerStatus.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
             }
             txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            tabControl1.SelectedTab = tabLog;
             LoadImages();
         }
 

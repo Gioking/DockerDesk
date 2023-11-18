@@ -90,6 +90,7 @@
             this.GridVolumes = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.tabNetwork = new System.Windows.Forms.TabPage();
+            this.btnNetInspect = new System.Windows.Forms.Button();
             this.btnRemoveNetwork = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtGateway = new System.Windows.Forms.TextBox();
@@ -133,7 +134,6 @@
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.btnNetInspect = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -392,6 +392,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridImages.AutoGenerateColumns = false;
+            this.GridImages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GridImages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.imageDataGridViewTextBoxColumn,
@@ -587,6 +588,7 @@
             // 
             // btnConnectNetwork
             // 
+            this.btnConnectNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnConnectNetwork.Location = new System.Drawing.Point(585, 367);
             this.btnConnectNetwork.Name = "btnConnectNetwork";
             this.btnConnectNetwork.Size = new System.Drawing.Size(75, 26);
@@ -597,6 +599,7 @@
             // 
             // label18
             // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(157, 372);
             this.label18.Name = "label18";
@@ -606,6 +609,7 @@
             // 
             // cmbNetworksConnect
             // 
+            this.cmbNetworksConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmbNetworksConnect.DataSource = this.dockerNetworkBindingSource;
             this.cmbNetworksConnect.DisplayMember = "Name";
             this.cmbNetworksConnect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -620,7 +624,7 @@
             // 
             // btnRemoveContainer
             // 
-            this.btnRemoveContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemoveContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveContainer.Location = new System.Drawing.Point(858, 362);
             this.btnRemoveContainer.Name = "btnRemoveContainer";
@@ -848,9 +852,21 @@
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
             // 
+            // btnNetInspect
+            // 
+            this.btnNetInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnNetInspect.Location = new System.Drawing.Point(10, 286);
+            this.btnNetInspect.Name = "btnNetInspect";
+            this.btnNetInspect.Size = new System.Drawing.Size(128, 31);
+            this.btnNetInspect.TabIndex = 21;
+            this.btnNetInspect.Text = "Inspect";
+            this.btnNetInspect.UseVisualStyleBackColor = true;
+            this.btnNetInspect.Click += new System.EventHandler(this.btnNetInspect_Click);
+            // 
             // btnRemoveNetwork
             // 
-            this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveNetwork.Location = new System.Drawing.Point(503, 286);
             this.btnRemoveNetwork.Name = "btnRemoveNetwork";
@@ -1269,18 +1285,6 @@
             this.label17.Size = new System.Drawing.Size(197, 17);
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
-            // 
-            // btnNetInspect
-            // 
-            this.btnNetInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnNetInspect.Location = new System.Drawing.Point(10, 286);
-            this.btnNetInspect.Name = "btnNetInspect";
-            this.btnNetInspect.Size = new System.Drawing.Size(128, 31);
-            this.btnNetInspect.TabIndex = 21;
-            this.btnNetInspect.Text = "Inspect";
-            this.btnNetInspect.UseVisualStyleBackColor = true;
-            this.btnNetInspect.Click += new System.EventHandler(this.btnNetInspect_Click);
             // 
             // frmMain
             // 
