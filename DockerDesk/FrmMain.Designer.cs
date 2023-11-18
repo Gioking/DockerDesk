@@ -122,7 +122,7 @@
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripStatus = new System.Windows.Forms.ToolStripSplitButton();
             this.imageStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedImage = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1176,7 +1176,7 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSplitButton3,
+            this.toolStripStatus,
             this.imageStatusLabel,
             this.toolStripSplitButton1,
             this.toolStripSelectedImage,
@@ -1192,14 +1192,14 @@
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "Status";
             // 
-            // toolStripSplitButton3
+            // toolStripStatus
             // 
-            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(32, 23);
-            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            this.toolStripStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripStatus.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatus.Image")));
+            this.toolStripStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripStatus.Name = "toolStripStatus";
+            this.toolStripStatus.Size = new System.Drawing.Size(32, 23);
+            this.toolStripStatus.Text = "toolStripSplitButton3";
             // 
             // imageStatusLabel
             // 
@@ -1396,7 +1396,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedContainer;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton3;
+        private System.Windows.Forms.ToolStripSplitButton toolStripStatus;
         private System.Windows.Forms.Button btnRemoveContainer;
         private System.Windows.Forms.TextBox txtTag;
         private System.Windows.Forms.Label label8;

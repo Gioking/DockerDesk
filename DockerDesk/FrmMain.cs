@@ -41,8 +41,6 @@ namespace DockerDesk
             LoadContainers();
             LoadVolumes();
             LoadNetworks();
-
-            //toolStripButtonGreen.Image = imageList1.Images["folder-8-32.png"];
         }
 
         #region Region Loadding
@@ -56,11 +54,13 @@ namespace DockerDesk
                 if (!isRunning)
                 {
                     imageStatusLabel.Text = "Il servizio Docker non è attivo. Per favore, avvialo prima di procedere.";
+                    toolStripStatus.Image = imageList1.Images["red-button.png"];
                     return;
                 }
                 else
                 {
                     imageStatusLabel.Text = "Servizio Docker Attivo.";
+                    toolStripStatus.Image = imageList1.Images["green-button.png"];
                 }
 
                 try
@@ -178,7 +178,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                await Task.Delay(3000);
+                //await Task.Delay(3000);
 
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))
