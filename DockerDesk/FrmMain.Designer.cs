@@ -131,11 +131,10 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatus = new System.Windows.Forms.ToolStripSplitButton();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtWorkDirPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.toolStripButtonRed = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripButtonGreen = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -295,6 +294,8 @@
             this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
             this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
             this.imageList1.Images.SetKeyName(9, "info-5-32.png");
+            this.imageList1.Images.SetKeyName(10, "green-button.png");
+            this.imageList1.Images.SetKeyName(11, "red-button.png");
             // 
             // label3
             // 
@@ -1170,8 +1171,7 @@
             this.toolStripSelectedVolume,
             this.toolStripSplitButton5,
             this.toolStripSelectedNetwork,
-            this.toolStripButtonRed,
-            this.toolStripButtonGreen});
+            this.toolStripStatus});
             this.statusBar.Location = new System.Drawing.Point(0, 653);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1094, 25);
@@ -1253,6 +1253,15 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // toolStripStatus
+            // 
+            this.toolStripStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripStatus.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatus.Image")));
+            this.toolStripStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripStatus.Name = "toolStripStatus";
+            this.toolStripStatus.Size = new System.Drawing.Size(32, 23);
+            this.toolStripStatus.Text = "toolStripSplitButton6";
+            // 
             // btnOpenFolder
             // 
             this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1289,24 +1298,6 @@
             this.label17.Size = new System.Drawing.Size(197, 17);
             this.label17.TabIndex = 6;
             this.label17.Text = "Dockerfile path (Project path):";
-            // 
-            // toolStripButtonRed
-            // 
-            this.toolStripButtonRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRed.Image")));
-            this.toolStripButtonRed.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRed.Name = "toolStripButtonRed";
-            this.toolStripButtonRed.Size = new System.Drawing.Size(32, 23);
-            this.toolStripButtonRed.Text = "toolStripSplitButton6";
-            // 
-            // toolStripButtonGreen
-            // 
-            this.toolStripButtonGreen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonGreen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGreen.Image")));
-            this.toolStripButtonGreen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonGreen.Name = "toolStripButtonGreen";
-            this.toolStripButtonGreen.Size = new System.Drawing.Size(32, 23);
-            this.toolStripButtonGreen.Text = "toolStripSplitButton6";
             // 
             // frmMain
             // 
@@ -1466,8 +1457,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnNetInspect;
-        private System.Windows.Forms.ToolStripSplitButton toolStripButtonRed;
-        private System.Windows.Forms.ToolStripSplitButton toolStripButtonGreen;
+        private System.Windows.Forms.ToolStripSplitButton toolStripStatus;
     }
 }
 

@@ -67,7 +67,7 @@
     <Compile Include="frmWebView.Designer.cs">
       <DependentUpon>frmWebView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DoskerStatus.cs" />
+    <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerNetwork.cs" />

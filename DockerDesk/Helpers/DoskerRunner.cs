@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace DockerDesk.Helpers
 {
-    public static class DoskerStatus
+    public static class DoskerRunner
     {
         public static bool IsDockerRunning()
         {
@@ -259,28 +259,28 @@ namespace DockerDesk.Helpers
 
 
 
-        public static void DockerExecuteCmd(string arguments, string workdir = null)
-        {
-            try
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    WorkingDirectory = workdir,
-                    FileName = "cmd.exe", // Utilizziamo cmd.exe per eseguire il comando
-                    Arguments = $"/K docker {arguments}", // Modifica qui per utilizzare /K
-                    UseShellExecute = true // Impostato su true per utilizzare una shell esterna
-                };
+        //public static void DockerExecuteCmd(string arguments, string workdir = null)
+        //{
+        //    try
+        //    {
+        //        ProcessStartInfo startInfo = new ProcessStartInfo
+        //        {
+        //            WorkingDirectory = workdir,
+        //            FileName = "cmd.exe", // Utilizziamo cmd.exe per eseguire il comando
+        //            Arguments = $"/K docker {arguments}", // Modifica qui per utilizzare /K
+        //            UseShellExecute = true // Impostato su true per utilizzare una shell esterna
+        //        };
 
-                Process process = new Process();
-                process.StartInfo = startInfo;
-                process.Start();
+        //        Process process = new Process();
+        //        process.StartInfo = startInfo;
+        //        process.Start();
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Si è verificato un errore: {e.Message}");
-            }
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine($"Si è verificato un errore: {e.Message}");
+        //    }
+        //}
 
     }
 }
