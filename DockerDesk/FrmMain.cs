@@ -146,7 +146,6 @@ namespace DockerDesk
                 };
 
                 cmbNetworksConnect.DataSource = customNetworkList;
-                cmbNetworks.DataSource = customNetworkList;
 
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridNetwork.Font = font;
@@ -324,15 +323,39 @@ namespace DockerDesk
                     MessageBox.Show("Warning.. Select a container and the network to bind to.");
                     return;
                 }
+
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+        //docker network disconnect mynetwork mycontainer  /Per disconnettere dalla network
+        private async void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (selectedNetwork == null || selectedContainer == null)
+                {
+                    MessageBox.Show("Warning.. Select a container and the network to bind to.");
+                    return;
+                }
+
+                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
@@ -502,11 +525,6 @@ namespace DockerDesk
             txtLog.Text = "";
         }
 
-        private void cmbNetworks_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedNetworkToConnect = (DockerNetwork)cmbNetworks.SelectedItem;
-        }
-
         private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedDrive = comboDrive.SelectedItem.ToString();
@@ -579,5 +597,7 @@ namespace DockerDesk
             Form form = new frmHelp();
             form.ShowDialog();
         }
+
+
     }
 }

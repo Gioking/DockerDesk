@@ -34,10 +34,9 @@
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.cmbNetworks = new System.Windows.Forms.ComboBox();
-            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
+            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
@@ -139,6 +138,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -198,7 +198,6 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.cmbNetworks);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.cmbVolumes);
             this.groupBox4.Controls.Add(this.btnRunContainer);
@@ -227,24 +226,6 @@
             this.label19.TabIndex = 19;
             this.label19.Text = "C.Net";
             // 
-            // cmbNetworks
-            // 
-            this.cmbNetworks.DataSource = this.dockerNetworkBindingSource;
-            this.cmbNetworks.DisplayMember = "Name";
-            this.cmbNetworks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNetworks.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.cmbNetworks.FormattingEnabled = true;
-            this.cmbNetworks.Location = new System.Drawing.Point(70, 164);
-            this.cmbNetworks.Name = "cmbNetworks";
-            this.cmbNetworks.Size = new System.Drawing.Size(220, 24);
-            this.cmbNetworks.TabIndex = 18;
-            this.cmbNetworks.ValueMember = "NetworkId";
-            this.cmbNetworks.SelectedIndexChanged += new System.EventHandler(this.cmbNetworks_SelectedIndexChanged);
-            // 
-            // dockerNetworkBindingSource
-            // 
-            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -267,6 +248,10 @@
             this.cmbVolumes.TabIndex = 16;
             this.cmbVolumes.ValueMember = "VolumeName";
             this.cmbVolumes.SelectedIndexChanged += new System.EventHandler(this.cmbVolumes_SelectedIndexChanged);
+            // 
+            // dockerNetworkBindingSource
+            // 
+            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
             // 
             // btnRunContainer
             // 
@@ -611,6 +596,7 @@
             // 
             // tabContainers
             // 
+            this.tabContainers.Controls.Add(this.btnDisconnect);
             this.tabContainers.Controls.Add(this.btnInspect);
             this.tabContainers.Controls.Add(this.btnConnectNetwork);
             this.tabContainers.Controls.Add(this.label18);
@@ -1363,6 +1349,18 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDisconnect.Location = new System.Drawing.Point(779, 395);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(88, 26);
+            this.btnDisconnect.TabIndex = 21;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1494,7 +1492,6 @@
         private System.Windows.Forms.BindingSource dockerNetworkBindingSource;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnConnectNetwork;
-        private System.Windows.Forms.ComboBox cmbNetworks;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnInspect;
         private System.Windows.Forms.Button btnNetInspect;
@@ -1524,6 +1521,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnDisconnect;
     }
 }
 
