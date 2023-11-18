@@ -573,5 +573,11 @@ namespace DockerDesk
         {
             tabControl1.SelectedTab = tabLog;
         }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new frmHelp();
+            form.ShowDialog();
+        }
     }
 }
