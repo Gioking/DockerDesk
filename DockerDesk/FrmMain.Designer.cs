@@ -118,8 +118,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus = new System.Windows.Forms.ToolStripSplitButton();
@@ -172,7 +172,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 71);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1094, 579);
+            this.tabControl1.Size = new System.Drawing.Size(1234, 579);
             this.tabControl1.TabIndex = 0;
             // 
             // tabImages
@@ -186,7 +186,7 @@
             this.tabImages.Location = new System.Drawing.Point(4, 29);
             this.tabImages.Name = "tabImages";
             this.tabImages.Padding = new System.Windows.Forms.Padding(3);
-            this.tabImages.Size = new System.Drawing.Size(1086, 546);
+            this.tabImages.Size = new System.Drawing.Size(1226, 546);
             this.tabImages.TabIndex = 0;
             this.tabImages.Text = "Images";
             this.tabImages.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtContainerName);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Location = new System.Drawing.Point(769, 43);
+            this.groupBox4.Location = new System.Drawing.Point(909, 43);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(314, 293);
             this.groupBox4.TabIndex = 17;
@@ -409,7 +409,7 @@
             this.GridImages.Name = "GridImages";
             this.GridImages.ReadOnly = true;
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridImages.Size = new System.Drawing.Size(748, 293);
+            this.GridImages.Size = new System.Drawing.Size(888, 293);
             this.GridImages.TabIndex = 16;
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
@@ -579,7 +579,7 @@
             this.tabContainers.Location = new System.Drawing.Point(4, 29);
             this.tabContainers.Name = "tabContainers";
             this.tabContainers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContainers.Size = new System.Drawing.Size(1086, 546);
+            this.tabContainers.Size = new System.Drawing.Size(1226, 546);
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
@@ -757,7 +757,7 @@
             this.tabVolume.ImageIndex = 7;
             this.tabVolume.Location = new System.Drawing.Point(4, 29);
             this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(1086, 546);
+            this.tabVolume.Size = new System.Drawing.Size(1226, 546);
             this.tabVolume.TabIndex = 2;
             this.tabVolume.Text = "Volume";
             this.tabVolume.UseVisualStyleBackColor = true;
@@ -857,7 +857,7 @@
             this.tabNetwork.ImageIndex = 0;
             this.tabNetwork.Location = new System.Drawing.Point(4, 29);
             this.tabNetwork.Name = "tabNetwork";
-            this.tabNetwork.Size = new System.Drawing.Size(1086, 546);
+            this.tabNetwork.Size = new System.Drawing.Size(1226, 546);
             this.tabNetwork.TabIndex = 3;
             this.tabNetwork.Text = "Network";
             this.tabNetwork.UseVisualStyleBackColor = true;
@@ -1075,7 +1075,7 @@
             this.tabLog.ImageIndex = 1;
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Size = new System.Drawing.Size(1086, 546);
+            this.tabLog.Size = new System.Drawing.Size(1226, 546);
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
@@ -1108,9 +1108,9 @@
             // pBar
             // 
             this.pBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar.Location = new System.Drawing.Point(988, 656);
+            this.pBar.Location = new System.Drawing.Point(1086, 656);
             this.pBar.Name = "pBar";
-            this.pBar.Size = new System.Drawing.Size(74, 16);
+            this.pBar.Size = new System.Drawing.Size(119, 16);
             this.pBar.TabIndex = 18;
             // 
             // dockerVolumeBindingSource
@@ -1123,7 +1123,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1094, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1234, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1131,8 +1131,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectProjectPathToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.reloadAllToolStripMenuItem});
+            this.reloadAllToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -1153,14 +1153,6 @@
             this.SelectWorkDir.Text = "Select Work Directory";
             this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
@@ -1168,6 +1160,14 @@
             this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // folderBrowserDialog
             // 
@@ -1189,7 +1189,7 @@
             this.toolStripSelectedNetwork});
             this.statusBar.Location = new System.Drawing.Point(0, 653);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1094, 25);
+            this.statusBar.Size = new System.Drawing.Size(1234, 25);
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "Status";
             // 
@@ -1273,7 +1273,7 @@
             this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFolder.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnOpenFolder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOpenFolder.Location = new System.Drawing.Point(1062, 31);
+            this.btnOpenFolder.Location = new System.Drawing.Point(1202, 31);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(28, 31);
             this.btnOpenFolder.TabIndex = 4;
@@ -1291,7 +1291,7 @@
             this.txtWorkDirPath.Location = new System.Drawing.Point(209, 34);
             this.txtWorkDirPath.Multiline = true;
             this.txtWorkDirPath.Name = "txtWorkDirPath";
-            this.txtWorkDirPath.Size = new System.Drawing.Size(847, 28);
+            this.txtWorkDirPath.Size = new System.Drawing.Size(987, 28);
             this.txtWorkDirPath.TabIndex = 5;
             this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
             // 
@@ -1309,7 +1309,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 678);
+            this.ClientSize = new System.Drawing.Size(1234, 678);
             this.Controls.Add(this.pBar);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.txtWorkDirPath);
