@@ -407,6 +407,7 @@
             this.GridImages.Location = new System.Drawing.Point(15, 43);
             this.GridImages.MultiSelect = false;
             this.GridImages.Name = "GridImages";
+            this.GridImages.ReadOnly = true;
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridImages.Size = new System.Drawing.Size(748, 293);
             this.GridImages.TabIndex = 16;
@@ -419,6 +420,7 @@
             this.idDataGridViewTextBoxColumn.FillWeight = 152.2843F;
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 50;
             // 
             // imageDataGridViewTextBoxColumn
@@ -428,6 +430,7 @@
             this.imageDataGridViewTextBoxColumn.FillWeight = 89.54315F;
             this.imageDataGridViewTextBoxColumn.HeaderText = "Image";
             this.imageDataGridViewTextBoxColumn.Name = "imageDataGridViewTextBoxColumn";
+            this.imageDataGridViewTextBoxColumn.ReadOnly = true;
             this.imageDataGridViewTextBoxColumn.Width = 66;
             // 
             // tagDataGridViewTextBoxColumn
@@ -437,6 +440,7 @@
             this.tagDataGridViewTextBoxColumn.FillWeight = 89.54315F;
             this.tagDataGridViewTextBoxColumn.HeaderText = "Tag";
             this.tagDataGridViewTextBoxColumn.Name = "tagDataGridViewTextBoxColumn";
+            this.tagDataGridViewTextBoxColumn.ReadOnly = true;
             this.tagDataGridViewTextBoxColumn.Width = 52;
             // 
             // imageIdDataGridViewTextBoxColumn
@@ -446,6 +450,7 @@
             this.imageIdDataGridViewTextBoxColumn.FillWeight = 89.54315F;
             this.imageIdDataGridViewTextBoxColumn.HeaderText = "ImageId";
             this.imageIdDataGridViewTextBoxColumn.Name = "imageIdDataGridViewTextBoxColumn";
+            this.imageIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.imageIdDataGridViewTextBoxColumn.Width = 77;
             // 
             // createdDataGridViewTextBoxColumn
@@ -455,6 +460,7 @@
             this.createdDataGridViewTextBoxColumn.FillWeight = 89.54315F;
             this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
             this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
             this.createdDataGridViewTextBoxColumn.Width = 76;
             // 
             // sizeDataGridViewTextBoxColumn
@@ -464,6 +470,7 @@
             this.sizeDataGridViewTextBoxColumn.FillWeight = 89.54315F;
             this.sizeDataGridViewTextBoxColumn.HeaderText = "Size";
             this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
+            this.sizeDataGridViewTextBoxColumn.ReadOnly = true;
             this.sizeDataGridViewTextBoxColumn.Width = 56;
             // 
             // dockerImageBindingSource

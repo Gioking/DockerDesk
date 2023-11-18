@@ -6,12 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace DockerDesk.Helpers
 {
     public static class DoskerRunner
     {
-        public static bool IsDockerRunning()
+        public static async Task<bool> IsDockerRunningAsync()
         {
             try
             {
@@ -27,8 +28,8 @@ namespace DockerDesk.Helpers
                         CreateNoWindow = true
                     };
 
-                    process.Start();
-                    process.WaitForExit();
+                    await Task.Run(() => process.Start());
+                    await Task.Run(() => process.WaitForExit());
 
                     return process.ExitCode == 0;
                 }
@@ -39,155 +40,172 @@ namespace DockerDesk.Helpers
                 return false;
             }
         }
-        public static List<DockerImage> ParseDockerImagesOutput(string output)
+
+
+        public static async Task<List<DockerImage>> ParseDockerImagesOutputAsync(string output)
         {
-            var imagesList = new List<DockerImage>();
-
-            // Regex per dividere l'output in righe
-            var lineRegex = new Regex(@"(.+?\r?\n|\r)");
-            var matches = lineRegex.Matches(output);
-
-            // Espressione regolare per corrispondere alle colonne
-            var columnRegex = new Regex(@"(\S+)\s+(\S+)\s+(\S+)\s+(.+ ago)\s+(\S+)");
-
-            int ids = 0;
-            foreach (Match line in matches)
+            return await Task.Run(() =>
             {
-                if (line.Success && !line.Value.StartsWith("REPOSITORY"))
+                var imagesList = new List<DockerImage>();
+
+                // Regex per dividere l'output in righe
+                var lineRegex = new Regex(@"(.+?\r?\n|\r)");
+                var matches = lineRegex.Matches(output);
+
+                // Espressione regolare per corrispondere alle colonne
+                var columnRegex = new Regex(@"(\S+)\s+(\S+)\s+(\S+)\s+(.+ ago)\s+(\S+)");
+
+                int ids = 0;
+                foreach (Match line in matches)
                 {
-                    var match = columnRegex.Match(line.Value);
-                    if (match.Success)
+                    if (line.Success && !line.Value.StartsWith("REPOSITORY"))
                     {
-                        ids++;
-                        var image = new DockerImage
-                        {
-                            Id = ids,
-                            Image = match.Groups[1].Value,
-                            Tag = match.Groups[2].Value,
-                            ImageId = match.Groups[3].Value,
-                            Created = match.Groups[4].Value,
-                            Size = match.Groups[5].Value
-                        };
-                        imagesList.Add(image);
-                    }
-                }
-            }
-
-            return imagesList;
-        }
-
-        public static List<DockerContainer> ParseDockerContainersOutput(string output)
-        {
-            var containersList = new List<DockerContainer>();
-            var lines = output.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Array di espressioni regolari per gestire diversi formati
-            var columnRegexPatterns = new[]
-            {
-        new Regex(@"(\S+)\s+([\w.-]+(?:\:\w+)?\s+)\s+\""(.*?)\""\s+([\d\w\s]+ ago)\s+([\w\s]+)\s+(.*?)\s+(.+)"),
-        // Aggiungi qui altri pattern se necessario
-    };
-
-            foreach (var line in lines)
-            {
-                if (!line.StartsWith("CONTAINER ID"))
-                {
-                    foreach (var regex in columnRegexPatterns)
-                    {
-                        var match = regex.Match(line);
+                        var match = columnRegex.Match(line.Value);
                         if (match.Success)
                         {
-                            var container = new DockerContainer
+                            ids++;
+                            var image = new DockerImage
                             {
-                                ContainerId = match.Groups[1].Value,
-                                Image = match.Groups[2].Value.Trim(),
-                                Command = match.Groups[3].Value,
+                                Id = ids,
+                                Image = match.Groups[1].Value,
+                                Tag = match.Groups[2].Value,
+                                ImageId = match.Groups[3].Value,
                                 Created = match.Groups[4].Value,
-                                Status = match.Groups[5].Value,
-                                Ports = match.Groups[6].Value,
-                                Names = match.Groups[7].Value
+                                Size = match.Groups[5].Value
                             };
-                            containersList.Add(container);
-                            break; // Esce dal ciclo di regex una volta trovato un match
+                            imagesList.Add(image);
                         }
                     }
                 }
-            }
 
-            return containersList;
+                return imagesList;
+            });
         }
 
 
-
-        public static List<DockerVolume> ParseDockerVolumesOutput(string output)
+        public static async Task<List<DockerContainer>> ParseDockerContainersOutputAsync(string output)
         {
-            int ids = 0;
-            var volumesList = new List<DockerVolume>();
-
-            // Dividi l'output per linee usando entrambi i tipi di newline
-            var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (lines.Length <= 1)
+            return await Task.Run(() =>
             {
-                Console.WriteLine("Nessun volume da elaborare.");
-                return volumesList;
-            }
+                var containersList = new List<DockerContainer>();
+                var lines = output.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (var line in lines.Skip(1))
-            {
-                ids++;
-                var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                if (columns.Length >= 2)
+                // Array di espressioni regolari per gestire diversi formati
+                var columnRegexPatterns = new[]
                 {
-                    var volume = new DockerVolume
-                    {
-                        Id = ids,
-                        Drive = columns[0],
-                        VolumeName = columns[1]
-                    };
-                    volumesList.Add(volume);
-                }
-            }
+            new Regex(@"(\S+)\s+([\w.-]+(?:\:\w+)?\s+)\s+\""(.*?)\""\s+([\d\w\s]+ ago)\s+([\w\s]+)\s+(.*?)\s+(.+)")
+        };
 
-            return volumesList;
+                foreach (var line in lines)
+                {
+                    if (!line.StartsWith("CONTAINER ID"))
+                    {
+                        foreach (var regex in columnRegexPatterns)
+                        {
+                            var match = regex.Match(line);
+                            if (match.Success)
+                            {
+                                var container = new DockerContainer
+                                {
+                                    ContainerId = match.Groups[1].Value,
+                                    Image = match.Groups[2].Value.Trim(),
+                                    Command = match.Groups[3].Value,
+                                    Created = match.Groups[4].Value,
+                                    Status = match.Groups[5].Value,
+                                    Ports = match.Groups[6].Value,
+                                    Names = match.Groups[7].Value
+                                };
+                                containersList.Add(container);
+                                break; // Esce dal ciclo di regex una volta trovato un match
+                            }
+                        }
+                    }
+                }
+
+                return containersList;
+            });
         }
 
-        public static List<DockerNetwork> ParseDockerNetworksOutput(string output)
+
+
+
+        public static async Task<List<DockerVolume>> ParseDockerVolumesOutputAsync(string output)
         {
-            int ids = 0;
-            var networkList = new List<DockerNetwork>();
-
-            var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (lines.Length <= 1)
+            return await Task.Run(() =>
             {
-                Console.WriteLine("Nessun network da elaborare.");
-                return networkList;
-            }
+                int ids = 0;
+                var volumesList = new List<DockerVolume>();
 
-            foreach (var line in lines.Skip(1))
-            {
-                var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                if (columns.Length >= 4)
+                // Dividi l'output per linee usando entrambi i tipi di newline
+                var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (lines.Length <= 1)
+                {
+                    Console.WriteLine("Nessun volume da elaborare.");
+                    return volumesList;
+                }
+
+                foreach (var line in lines.Skip(1))
                 {
                     ids++;
-                    var network = new DockerNetwork
+                    var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (columns.Length >= 2)
                     {
-                        Id = ids,
-                        NetworkId = columns[0],
-                        Name = columns[1],
-                        Drive = columns[2],
-                        Scope = columns[3]
-                    };
-                    networkList.Add(network);
+                        var volume = new DockerVolume
+                        {
+                            Id = ids,
+                            Drive = columns[0],
+                            VolumeName = columns[1]
+                        };
+                        volumesList.Add(volume);
+                    }
                 }
-            }
 
-            return networkList;
+                return volumesList;
+            });
         }
 
 
-        public static ResultModel DockerExecute(string arguments, string workdir)
+        public static async Task<List<DockerNetwork>> ParseDockerNetworksOutputAsync(string output)
+        {
+            return await Task.Run(() =>
+            {
+                int ids = 0;
+                var networkList = new List<DockerNetwork>();
+
+                var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (lines.Length <= 1)
+                {
+                    Console.WriteLine("Nessun network da elaborare.");
+                    return networkList;
+                }
+
+                foreach (var line in lines.Skip(1))
+                {
+                    var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (columns.Length >= 4)
+                    {
+                        ids++;
+                        var network = new DockerNetwork
+                        {
+                            Id = ids,
+                            NetworkId = columns[0],
+                            Name = columns[1],
+                            Drive = columns[2],
+                            Scope = columns[3]
+                        };
+                        networkList.Add(network);
+                    }
+                }
+
+                return networkList;
+            });
+        }
+
+
+
+        public static async Task<ResultModel> DockerExecute(string arguments, string workdir)
         {
             try
             {
@@ -226,7 +244,7 @@ namespace DockerDesk.Helpers
                         output.Append(outputReader.ReadToEnd());
                         error.Append(errorReader.ReadToEnd());
 
-                        process.WaitForExit();
+                        await Task.Run(() => process.WaitForExit());
                     }
                 }
 
