@@ -33,7 +33,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
             this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,7 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkHasVolume = new System.Windows.Forms.CheckBox();
             this.txtHostPort = new System.Windows.Forms.TextBox();
-            this.txtVolumeName = new System.Windows.Forms.TextBox();
+            this.txtContainerPathName = new System.Windows.Forms.TextBox();
             this.txtContainerPort = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,6 +67,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabContainers = new System.Windows.Forms.TabPage();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.btnInspect = new System.Windows.Forms.Button();
             this.btnConnectNetwork = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
@@ -138,7 +138,9 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnDisconnect = new System.Windows.Forms.Button();
+            this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
+            this.txtHostPathName = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -197,14 +199,16 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.txtHostPathName);
             this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.chkShareVolumeToHost);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.cmbVolumes);
             this.groupBox4.Controls.Add(this.btnRunContainer);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.chkHasVolume);
             this.groupBox4.Controls.Add(this.txtHostPort);
-            this.groupBox4.Controls.Add(this.txtVolumeName);
+            this.groupBox4.Controls.Add(this.txtContainerPathName);
             this.groupBox4.Controls.Add(this.txtContainerPort);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label4);
@@ -212,19 +216,10 @@
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Location = new System.Drawing.Point(919, 25);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(314, 314);
+            this.groupBox4.Size = new System.Drawing.Size(314, 562);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 169);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(38, 13);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "C.Net";
             // 
             // label16
             // 
@@ -259,7 +254,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(70, 203);
+            this.btnRunContainer.Location = new System.Drawing.Point(69, 246);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -315,15 +310,15 @@
             this.txtHostPort.Text = "8080";
             this.txtHostPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtVolumeName
+            // txtContainerPathName
             // 
-            this.txtVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVolumeName.Location = new System.Drawing.Point(69, 136);
-            this.txtVolumeName.Multiline = true;
-            this.txtVolumeName.Name = "txtVolumeName";
-            this.txtVolumeName.Size = new System.Drawing.Size(220, 22);
-            this.txtVolumeName.TabIndex = 14;
-            this.txtVolumeName.Text = "/path/to/container";
+            this.txtContainerPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtContainerPathName.Location = new System.Drawing.Point(69, 136);
+            this.txtContainerPathName.Multiline = true;
+            this.txtContainerPathName.Name = "txtContainerPathName";
+            this.txtContainerPathName.Size = new System.Drawing.Size(220, 22);
+            this.txtContainerPathName.TabIndex = 14;
+            this.txtContainerPathName.Text = "/path/to/container";
             // 
             // txtContainerPort
             // 
@@ -613,6 +608,18 @@
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDisconnect.Location = new System.Drawing.Point(779, 395);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(88, 26);
+            this.btnDisconnect.TabIndex = 21;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
             // btnInspect
             // 
@@ -1349,17 +1356,35 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // btnDisconnect
+            // chkShareVolumeToHost
             // 
-            this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDisconnect.Location = new System.Drawing.Point(779, 395);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(88, 26);
-            this.btnDisconnect.TabIndex = 21;
-            this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.UseVisualStyleBackColor = true;
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            this.chkShareVolumeToHost.AutoSize = true;
+            this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(70, 177);
+            this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
+            this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
+            this.chkShareVolumeToHost.TabIndex = 18;
+            this.chkShareVolumeToHost.Text = "Share volume with host";
+            this.chkShareVolumeToHost.UseVisualStyleBackColor = true;
+            // 
+            // txtHostPathName
+            // 
+            this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtHostPathName.Location = new System.Drawing.Point(69, 203);
+            this.txtHostPathName.Multiline = true;
+            this.txtHostPathName.Name = "txtHostPathName";
+            this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
+            this.txtHostPathName.TabIndex = 20;
+            this.txtHostPathName.Text = "c:\\path\\to\\host";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(17, 208);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(45, 13);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "H.Path";
             // 
             // frmMain
             // 
@@ -1437,7 +1462,7 @@
         private System.Windows.Forms.TextBox txtContainerPort;
         private System.Windows.Forms.TextBox txtHostPort;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtVolumeName;
+        private System.Windows.Forms.TextBox txtContainerPathName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkHasVolume;
         private System.Windows.Forms.ToolStripStatusLabel toolStripSelectedImage;
@@ -1492,7 +1517,6 @@
         private System.Windows.Forms.BindingSource dockerNetworkBindingSource;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnConnectNetwork;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnInspect;
         private System.Windows.Forms.Button btnNetInspect;
         private System.Windows.Forms.ProgressBar pBar;
@@ -1522,6 +1546,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.CheckBox chkShareVolumeToHost;
+        private System.Windows.Forms.TextBox txtHostPathName;
+        private System.Windows.Forms.Label label19;
     }
 }
 

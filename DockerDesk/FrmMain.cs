@@ -378,9 +378,17 @@ namespace DockerDesk
                 }
                 else
                 {
-                    var command = await DoskerRunner.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtVolumeName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+                    var command = await DoskerRunner.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
+
+                if (chkShareVolumeToHost.Checked)
+                {
+                    //docker run -d --mount type=bind,source=/percorso/nell-host,target=/percorso/nel-container nome_immagine
+                    var command = await DoskerRunner.DockerExecute($"run -d --mount type=bind, source={txtHostPathName.Text}, target={txtContainerPathName.Text} {selectedImage.Image}", txtWorkDirPath.Text);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                }
+
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
