@@ -33,6 +33,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtHostPathName = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
             this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -138,9 +141,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
-            this.txtHostPathName = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -220,6 +220,36 @@
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // txtHostPathName
+            // 
+            this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtHostPathName.Location = new System.Drawing.Point(69, 203);
+            this.txtHostPathName.Multiline = true;
+            this.txtHostPathName.Name = "txtHostPathName";
+            this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
+            this.txtHostPathName.TabIndex = 20;
+            this.txtHostPathName.Text = "C:\\Shared";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(17, 208);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(45, 13);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "H.Path";
+            // 
+            // chkShareVolumeToHost
+            // 
+            this.chkShareVolumeToHost.AutoSize = true;
+            this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(70, 177);
+            this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
+            this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
+            this.chkShareVolumeToHost.TabIndex = 18;
+            this.chkShareVolumeToHost.Text = "Share volume with host";
+            this.chkShareVolumeToHost.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
@@ -318,7 +348,7 @@
             this.txtContainerPathName.Name = "txtContainerPathName";
             this.txtContainerPathName.Size = new System.Drawing.Size(220, 22);
             this.txtContainerPathName.TabIndex = 14;
-            this.txtContainerPathName.Text = "/path/to/container";
+            this.txtContainerPathName.Text = "/app/logs";
             // 
             // txtContainerPort
             // 
@@ -1355,36 +1385,6 @@
             this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
-            // 
-            // chkShareVolumeToHost
-            // 
-            this.chkShareVolumeToHost.AutoSize = true;
-            this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkShareVolumeToHost.Location = new System.Drawing.Point(70, 177);
-            this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
-            this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
-            this.chkShareVolumeToHost.TabIndex = 18;
-            this.chkShareVolumeToHost.Text = "Share volume with host";
-            this.chkShareVolumeToHost.UseVisualStyleBackColor = true;
-            // 
-            // txtHostPathName
-            // 
-            this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPathName.Location = new System.Drawing.Point(69, 203);
-            this.txtHostPathName.Multiline = true;
-            this.txtHostPathName.Name = "txtHostPathName";
-            this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
-            this.txtHostPathName.TabIndex = 20;
-            this.txtHostPathName.Text = "c:\\path\\to\\host";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 208);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(45, 13);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "H.Path";
             // 
             // frmMain
             // 
