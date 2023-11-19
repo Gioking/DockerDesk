@@ -83,6 +83,8 @@
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Models\DockerContainer.cs" />
+    <Compile Include="Models\DockerJsonContainer.cs" />
+    <Compile Include="Models\DockerJsonVariable.cs" />
     <Compile Include="Models\DockerNetwork.cs" />
     <Compile Include="Models\DockerVariable.cs" />
     <Compile Include="Models\DockerVolume.cs" />
@@ -130,7 +132,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="jvariables.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

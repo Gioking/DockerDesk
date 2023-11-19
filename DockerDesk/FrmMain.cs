@@ -1,11 +1,14 @@
 ﻿using DockerDesk.Helpers;
 using DockerDesk.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DockerDesk
 {
@@ -22,7 +25,8 @@ namespace DockerDesk
         private List<DockerContainer> containersList = new List<DockerContainer>();
         private List<DockerVolume> volumeList = new List<DockerVolume>();
         private List<DockerNetwork> networkList = new List<DockerNetwork>();
-        List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
+        private List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
+        private List<DockerVariable> EnvVariable;
         private StringBuilder sb = new StringBuilder();
 
         public frmMain()
@@ -32,10 +36,16 @@ namespace DockerDesk
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            ReloadAll();
+        }
+
+        private void ReloadAll()
+        {
             LoadImages();
             LoadContainers();
             LoadVolumes();
             LoadNetworks();
+            LoadVariables();
         }
 
         #region Region Loadding
@@ -150,6 +160,22 @@ namespace DockerDesk
 
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 GridNetwork.Font = font;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
+        }
+
+        private void LoadVariables()
+        {
+            try
+            {
+                string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
+                var jsonContent = File.ReadAllText(pathToFile);
+                var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
+                var containerNames = containers.Keys.ToList();
+                cmbVariables.DataSource = containerNames;
             }
             catch (Exception e)
             {
@@ -519,10 +545,7 @@ namespace DockerDesk
 
         private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadImages();
-            LoadContainers();
-            LoadVolumes();
-            LoadNetworks();
+            ReloadAll();
         }
 
         //Combobox Volumes
@@ -617,30 +640,15 @@ namespace DockerDesk
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private async void btnCreateVariable_Click(object sender, EventArgs e)
+        private void btnEditVariable_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    SpinnerHelper.ToggleSpinner(pBar, true);
-            //    if (string.IsNullOrEmpty(txtVarName.Text) || string.IsNullOrEmpty(txtVarValue.Text))
-            //    {
-            //        MessageBox.Show("Warning.. missing variable name and variable value.");
-            //        return;
-            //    }
-
-            //    var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-            //    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
-            //    SpinnerHelper.ToggleSpinner(pBar, false);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
             Form form = new frmVariables();
             form.Show();
+        }
+
+
+        private void cmbVariables_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
@@ -656,7 +664,6 @@ namespace DockerDesk
             Form form = new frmHelp();
             form.ShowDialog();
         }
-
 
     }
 }
