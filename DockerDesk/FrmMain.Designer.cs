@@ -121,11 +121,11 @@
             this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.tabVariables = new System.Windows.Forms.TabPage();
-            this.label20 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.cmbContainers = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.btnEditVariables = new System.Windows.Forms.Button();
+            this.cmbContainers = new System.Windows.Forms.ComboBox();
             this.txtVarValue = new System.Windows.Forms.TextBox();
             this.txtVarName = new System.Windows.Forms.TextBox();
             this.GridVariables = new System.Windows.Forms.DataGridView();
@@ -255,8 +255,7 @@
             // 
             // cmbVariables
             // 
-            this.cmbVariables.DataSource = this.dockerNetworkBindingSource;
-            this.cmbVariables.DisplayMember = "VolumeName";
+            this.cmbVariables.DataSource = this.dockerContainerBindingSource;
             this.cmbVariables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVariables.FormattingEnabled = true;
@@ -1245,15 +1244,6 @@
             this.tabVariables.Text = "Variables";
             this.tabVariables.UseVisualStyleBackColor = true;
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 26);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(78, 20);
-            this.label20.TabIndex = 23;
-            this.label20.Text = "Container";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -1263,20 +1253,6 @@
             this.label24.Size = new System.Drawing.Size(133, 15);
             this.label24.TabIndex = 22;
             this.label24.Text = "Container Variables";
-            // 
-            // cmbContainers
-            // 
-            this.cmbContainers.DataSource = this.dockerContainerBindingSource;
-            this.cmbContainers.DisplayMember = "Names";
-            this.cmbContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbContainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.cmbContainers.FormattingEnabled = true;
-            this.cmbContainers.Location = new System.Drawing.Point(6, 49);
-            this.cmbContainers.Name = "cmbContainers";
-            this.cmbContainers.Size = new System.Drawing.Size(307, 24);
-            this.cmbContainers.TabIndex = 22;
-            this.cmbContainers.ValueMember = "ContainerId";
-            this.cmbContainers.SelectedIndexChanged += new System.EventHandler(this.cmbContainers_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -1293,6 +1269,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Variables data";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 26);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 20);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "Container";
+            // 
             // btnEditVariables
             // 
             this.btnEditVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1307,6 +1292,20 @@
             this.btnEditVariables.Text = "Edit container variables";
             this.btnEditVariables.UseVisualStyleBackColor = true;
             this.btnEditVariables.Click += new System.EventHandler(this.btnEditVariable_Click);
+            // 
+            // cmbContainers
+            // 
+            this.cmbContainers.DataSource = this.dockerContainerBindingSource;
+            this.cmbContainers.DisplayMember = "Names";
+            this.cmbContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbContainers.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbContainers.FormattingEnabled = true;
+            this.cmbContainers.Location = new System.Drawing.Point(6, 49);
+            this.cmbContainers.Name = "cmbContainers";
+            this.cmbContainers.Size = new System.Drawing.Size(307, 24);
+            this.cmbContainers.TabIndex = 22;
+            this.cmbContainers.ValueMember = "ContainerId";
+            this.cmbContainers.SelectedIndexChanged += new System.EventHandler(this.cmbContainers_SelectedIndexChanged);
             // 
             // txtVarValue
             // 
