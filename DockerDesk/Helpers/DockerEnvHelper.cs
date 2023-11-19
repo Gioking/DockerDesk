@@ -32,7 +32,7 @@ namespace DockerDesk.Helpers
 
         private static async Task<List<string>> GetDockerContainerNamesAsync()
         {
-            var result = await DoskerRunner.DockerExecute("ps -q", ""); // Ottiene tutti i container
+            var result = await DoskerRunner.DockerExecute("ps -qa", ""); // Ottiene tutti i container
 
             if (!string.IsNullOrEmpty(result.Error))
             {

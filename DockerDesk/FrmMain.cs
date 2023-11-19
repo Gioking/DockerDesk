@@ -105,7 +105,7 @@ namespace DockerDesk
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
-                cmbContainers.DataSource = containersList;
+                //cmbContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 gridContainers.Font = font;
             }
@@ -169,20 +169,21 @@ namespace DockerDesk
 
         private async void LoadVariables()
         {
-            await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
+            try
+            {
+                await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
 
-            //try
-            //{
-            //    string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
-            //    var jsonContent = File.ReadAllText(pathToFile);
-            //    var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
-            //    var containerNames = containers.Keys.ToList();
-            //    cmbVariables.DataSource = containerNames;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine($"Si è verificato un errore: {e.Message}");
-            //}
+                string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
+                var jsonContent = File.ReadAllText(pathToFile);
+                var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
+                var containerNames = containers.Keys.ToList();
+                cmbVariables.DataSource = containerNames;
+                cmbContainers.DataSource = containerNames;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            }
         }
 
         #endregion
@@ -626,9 +627,9 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
-                selectedContainer = (DockerContainer)cmbContainers.SelectedItem;
+                var containerId = cmbContainers.SelectedItem.ToString();
 
-                var command = await DoskerRunner.DockerExecute($"exec {selectedContainer.ContainerId} env", txtWorkDirPath.Text);
+                var command = await DoskerRunner.DockerExecute($"exec {containerId} env", txtWorkDirPath.Text);
 
                 var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
                 GridVariables.DataSource = result;
