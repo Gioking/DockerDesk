@@ -129,6 +129,9 @@
             this.btnCreateVariable = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.GridVariables = new System.Windows.Forms.DataGridView();
+            this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -152,9 +155,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -175,10 +175,10 @@
             this.tabVariables.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -243,7 +243,7 @@
             // txtHostPathName
             // 
             this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPathName.Location = new System.Drawing.Point(69, 203);
+            this.txtHostPathName.Location = new System.Drawing.Point(68, 190);
             this.txtHostPathName.Multiline = true;
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
@@ -253,7 +253,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 208);
+            this.label19.Location = new System.Drawing.Point(17, 196);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 19;
@@ -263,7 +263,7 @@
             // 
             this.chkShareVolumeToHost.AutoSize = true;
             this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkShareVolumeToHost.Location = new System.Drawing.Point(70, 177);
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 164);
             this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
             this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
             this.chkShareVolumeToHost.TabIndex = 18;
@@ -303,7 +303,7 @@
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
             this.btnRunContainer.ImageList = this.imageList1;
-            this.btnRunContainer.Location = new System.Drawing.Point(69, 246);
+            this.btnRunContainer.Location = new System.Drawing.Point(69, 511);
             this.btnRunContainer.Name = "btnRunContainer";
             this.btnRunContainer.Size = new System.Drawing.Size(220, 45);
             this.btnRunContainer.TabIndex = 5;
@@ -1301,7 +1301,7 @@
             this.btnCreateVariable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariable.ImageKey = "arrow-213-32.png";
             this.btnCreateVariable.ImageList = this.imageList1;
-            this.btnCreateVariable.Location = new System.Drawing.Point(306, 228);
+            this.btnCreateVariable.Location = new System.Drawing.Point(90, 238);
             this.btnCreateVariable.Name = "btnCreateVariable";
             this.btnCreateVariable.Size = new System.Drawing.Size(210, 35);
             this.btnCreateVariable.TabIndex = 2;
@@ -1339,6 +1339,24 @@
             this.GridVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVariables.Size = new System.Drawing.Size(659, 360);
             this.GridVariables.TabIndex = 20;
+            // 
+            // keyDataGridViewTextBoxColumn
+            // 
+            this.keyDataGridViewTextBoxColumn.DataPropertyName = "Key";
+            this.keyDataGridViewTextBoxColumn.HeaderText = "Key";
+            this.keyDataGridViewTextBoxColumn.Name = "keyDataGridViewTextBoxColumn";
+            this.keyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dockerVariableBindingSource
+            // 
+            this.dockerVariableBindingSource.DataSource = typeof(DockerDesk.Models.DockerVariable);
             // 
             // tabLog
             // 
@@ -1544,24 +1562,6 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // dockerVariableBindingSource
-            // 
-            this.dockerVariableBindingSource.DataSource = typeof(DockerDesk.Models.DockerVariable);
-            // 
-            // keyDataGridViewTextBoxColumn
-            // 
-            this.keyDataGridViewTextBoxColumn.DataPropertyName = "Key";
-            this.keyDataGridViewTextBoxColumn.HeaderText = "Key";
-            this.keyDataGridViewTextBoxColumn.Name = "keyDataGridViewTextBoxColumn";
-            this.keyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1606,13 +1606,13 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

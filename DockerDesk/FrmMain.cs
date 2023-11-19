@@ -620,24 +620,27 @@ namespace DockerDesk
 
         private async void btnCreateVariable_Click(object sender, EventArgs e)
         {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                if (string.IsNullOrEmpty(txtVarName.Text) || string.IsNullOrEmpty(txtVarValue.Text))
-                {
-                    MessageBox.Show("Warning.. missing variable name and variable value.");
-                    return;
-                }
+            //try
+            //{
+            //    SpinnerHelper.ToggleSpinner(pBar, true);
+            //    if (string.IsNullOrEmpty(txtVarName.Text) || string.IsNullOrEmpty(txtVarValue.Text))
+            //    {
+            //        MessageBox.Show("Warning.. missing variable name and variable value.");
+            //        return;
+            //    }
 
-                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+            //    var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+            //    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
 
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    SpinnerHelper.ToggleSpinner(pBar, false);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+            Form form = new frmVariables();
+            form.Show();
 
         }
 
