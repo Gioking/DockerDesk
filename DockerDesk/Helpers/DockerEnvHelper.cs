@@ -44,7 +44,9 @@ namespace DockerDesk.Helpers
 
         private static async Task<List<DockerJsonVariable>> GetDockerEnvVariablesAsync(string containerId)
         {
-            var result = await DoskerRunner.DockerExecute($"inspect --format='{{json .Config.Env}}' {containerId}", "");
+            // Nota l'uso di doppie parentesi graffe per rappresentare una singola parentesi graffa nel comando
+            var command = $"inspect --format=\"{{{{json .Config.Env}}}}\" {containerId}";
+            var result = await DoskerRunner.DockerExecute(command, "");
 
             if (!string.IsNullOrEmpty(result.Error))
             {
@@ -58,5 +60,6 @@ namespace DockerDesk.Helpers
                 return new DockerJsonVariable { Name = parts[0], Value = parts.Length > 1 ? parts[1] : "" };
             }).ToList();
         }
+
     }
 }
