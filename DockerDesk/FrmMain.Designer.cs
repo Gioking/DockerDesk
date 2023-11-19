@@ -155,6 +155,8 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cmbVariables = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -218,6 +220,8 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.cmbVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.chkShareVolumeToHost);
@@ -1562,6 +1566,28 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // cmbVariables
+            // 
+            this.cmbVariables.DataSource = this.dockerNetworkBindingSource;
+            this.cmbVariables.DisplayMember = "VolumeName";
+            this.cmbVariables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbVariables.FormattingEnabled = true;
+            this.cmbVariables.Location = new System.Drawing.Point(68, 218);
+            this.cmbVariables.Name = "cmbVariables";
+            this.cmbVariables.Size = new System.Drawing.Size(220, 24);
+            this.cmbVariables.TabIndex = 21;
+            this.cmbVariables.ValueMember = "VolumeName";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(14, 223);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 13);
+            this.label21.TabIndex = 22;
+            this.label21.Text = "C.Vars";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1745,6 +1771,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cmbVariables;
     }
 }
 

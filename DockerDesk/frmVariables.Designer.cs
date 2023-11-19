@@ -28,24 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.webBrowseVariables = new System.Windows.Forms.WebBrowser();
+            this.richVariables = new System.Windows.Forms.RichTextBox();
+            this.btnSaveVariables = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // webBrowseVariables
+            // richVariables
             // 
-            this.webBrowseVariables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowseVariables.Location = new System.Drawing.Point(0, 0);
-            this.webBrowseVariables.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowseVariables.Name = "webBrowseVariables";
-            this.webBrowseVariables.Size = new System.Drawing.Size(1103, 648);
-            this.webBrowseVariables.TabIndex = 0;
+            this.richVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.richVariables.Location = new System.Drawing.Point(12, 12);
+            this.richVariables.Name = "richVariables";
+            this.richVariables.Size = new System.Drawing.Size(1079, 572);
+            this.richVariables.TabIndex = 0;
+            this.richVariables.Text = "";
+            // 
+            // btnSaveVariables
+            // 
+            this.btnSaveVariables.Location = new System.Drawing.Point(12, 601);
+            this.btnSaveVariables.Name = "btnSaveVariables";
+            this.btnSaveVariables.Size = new System.Drawing.Size(122, 35);
+            this.btnSaveVariables.TabIndex = 1;
+            this.btnSaveVariables.Text = "Save";
+            this.btnSaveVariables.UseVisualStyleBackColor = true;
+            this.btnSaveVariables.Click += new System.EventHandler(this.btnSaveVariables_Click);
             // 
             // frmVariables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 648);
-            this.Controls.Add(this.webBrowseVariables);
+            this.Controls.Add(this.btnSaveVariables);
+            this.Controls.Add(this.richVariables);
             this.Name = "frmVariables";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVariables";
@@ -56,6 +71,7 @@
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser webBrowseVariables;
+        private System.Windows.Forms.RichTextBox richVariables;
+        private System.Windows.Forms.Button btnSaveVariables;
     }
 }
