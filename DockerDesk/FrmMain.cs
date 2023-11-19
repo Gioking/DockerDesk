@@ -167,20 +167,22 @@ namespace DockerDesk
             }
         }
 
-        private void LoadVariables()
+        private async void LoadVariables()
         {
-            try
-            {
-                string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
-                var jsonContent = File.ReadAllText(pathToFile);
-                var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
-                var containerNames = containers.Keys.ToList();
-                cmbVariables.DataSource = containerNames;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Si è verificato un errore: {e.Message}");
-            }
+            await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
+
+            //try
+            //{
+            //    string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
+            //    var jsonContent = File.ReadAllText(pathToFile);
+            //    var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
+            //    var containerNames = containers.Keys.ToList();
+            //    cmbVariables.DataSource = containerNames;
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine($"Si è verificato un errore: {e.Message}");
+            //}
         }
 
         #endregion
