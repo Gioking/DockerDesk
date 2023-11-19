@@ -203,6 +203,30 @@ namespace DockerDesk.Helpers
             });
         }
 
+        public static async Task<List<DockerVariable>> ParseDockerEnvOutputAsync(string output)
+        {
+            return await Task.Run(() =>
+            {
+                var variableList = new List<DockerVariable>();
+                var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var line in lines)
+                {
+                    var keyValue = line.Split(new[] { '=' }, 2);
+                    if (keyValue.Length == 2)
+                    {
+                        var variable = new DockerVariable
+                        {
+                            Key = keyValue[0],
+                            Value = keyValue[1]
+                        };
+                        variableList.Add(variable);
+                    }
+                }
+
+                return variableList;
+            });
+        }
 
 
         public static async Task<ResultModel> DockerExecute(string arguments, string workdir)

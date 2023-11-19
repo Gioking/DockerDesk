@@ -78,6 +78,7 @@
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerNetwork.cs" />
+    <Compile Include="Models\DockerVariable.cs" />
     <Compile Include="Models\DockerVolume.cs" />
     <Compile Include="Models\DockerImage.cs" />
     <Compile Include="Models\ResultModel.cs" />
@@ -108,6 +109,7 @@
     <None Include="Properties\DataSources\DockerDesk.Models.DockerContainer.datasource" />
     <None Include="Properties\DataSources\DockerDesk.Models.DockerImage.datasource" />
     <None Include="Properties\DataSources\DockerDesk.Models.DockerNetwork.datasource" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerVariable.datasource" />
     <None Include="Properties\DataSources\DockerDesk.Models.DockerVolume.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

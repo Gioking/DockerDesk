@@ -95,6 +95,7 @@ namespace DockerDesk
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
+                cmbContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 gridContainers.Font = font;
             }
@@ -593,13 +594,58 @@ namespace DockerDesk
             toolStripSelectedContainer.Text = selectedContainer.Names;
         }
 
+        //docker exec [nome_o_id_del_container] env
+        private async void cmbContainers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
 
+                selectedContainer = (DockerContainer)cmbContainers.SelectedItem;
+
+                var command = await DoskerRunner.DockerExecute($"exec {selectedContainer.ContainerId} env", txtWorkDirPath.Text);
+
+                var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
+                GridVariables.DataSource = result;
+
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void btnCreateVariable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (string.IsNullOrEmpty(txtVarName.Text) || string.IsNullOrEmpty(txtVarValue.Text))
+                {
+                    MessageBox.Show("Warning.. missing variable name and variable value.");
+                    return;
+                }
+
+                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
 
         #endregion
 
         private void txtLog_TextChanged(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabLog;
+            //tabControl1.SelectedTab = tabLog;
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
