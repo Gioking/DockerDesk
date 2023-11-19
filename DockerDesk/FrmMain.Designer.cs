@@ -35,12 +35,13 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cmbVariables = new System.Windows.Forms.ComboBox();
-            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtHostPathName = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
+            this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRunContainer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
@@ -86,7 +87,6 @@
             this.createdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.portsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -160,13 +160,13 @@
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabContainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             this.tabVolume.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVolumes)).BeginInit();
@@ -256,6 +256,7 @@
             // cmbVariables
             // 
             this.cmbVariables.DataSource = this.dockerContainerBindingSource;
+            this.cmbVariables.DisplayMember = "VolumeName";
             this.cmbVariables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVariables.FormattingEnabled = true;
@@ -266,9 +267,9 @@
             this.cmbVariables.ValueMember = "VolumeName";
             this.cmbVariables.SelectedIndexChanged += new System.EventHandler(this.cmbVariables_SelectedIndexChanged);
             // 
-            // dockerNetworkBindingSource
+            // dockerContainerBindingSource
             // 
-            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
+            this.dockerContainerBindingSource.DataSource = typeof(DockerDesk.Models.DockerContainer);
             // 
             // txtHostPathName
             // 
@@ -323,6 +324,10 @@
             this.cmbVolumes.ValueMember = "VolumeName";
             this.cmbVolumes.SelectedIndexChanged += new System.EventHandler(this.cmbVolumes_SelectedIndexChanged);
             // 
+            // dockerNetworkBindingSource
+            // 
+            this.dockerNetworkBindingSource.DataSource = typeof(DockerDesk.Models.DockerNetwork);
+            // 
             // btnRunContainer
             // 
             this.btnRunContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
@@ -350,9 +355,9 @@
             this.imageList1.Images.SetKeyName(6, "settings-5-32.png");
             this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
             this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
-            this.imageList1.Images.SetKeyName(9, "info-5-32.png");
-            this.imageList1.Images.SetKeyName(10, "green-button.png");
-            this.imageList1.Images.SetKeyName(11, "red-button.png");
+            this.imageList1.Images.SetKeyName(9, "green-button.png");
+            this.imageList1.Images.SetKeyName(10, "red-button.png");
+            this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
             // 
             // label3
             // 
@@ -843,10 +848,6 @@
             this.portsDataGridViewTextBoxColumn.HeaderText = "Ports";
             this.portsDataGridViewTextBoxColumn.Name = "portsDataGridViewTextBoxColumn";
             this.portsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dockerContainerBindingSource
-            // 
-            this.dockerContainerBindingSource.DataSource = typeof(DockerDesk.Models.DockerContainer);
             // 
             // label7
             // 
@@ -1388,7 +1389,7 @@
             // 
             this.tabLog.Controls.Add(this.btnClearLog);
             this.tabLog.Controls.Add(this.txtLog);
-            this.tabLog.ImageKey = "info-5-32.png";
+            this.tabLog.ImageKey = "high-importance-32.png";
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
             this.tabLog.Size = new System.Drawing.Size(1226, 593);
@@ -1607,6 +1608,7 @@
             this.tabImages.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).EndInit();
@@ -1615,7 +1617,6 @@
             this.tabContainers.ResumeLayout(false);
             this.tabContainers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             this.tabVolume.ResumeLayout(false);
             this.tabVolume.PerformLayout();
             this.groupBox2.ResumeLayout(false);

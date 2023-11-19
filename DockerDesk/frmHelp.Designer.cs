@@ -49,7 +49,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmHelp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmHelp";
+            this.Text = "Help";
             this.Load += new System.EventHandler(this.frmHelp_Load);
             this.ResumeLayout(false);
 

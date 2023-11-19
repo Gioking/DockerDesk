@@ -63,7 +63,7 @@
             this.Controls.Add(this.richVariables);
             this.Name = "frmVariables";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmVariables";
+            this.Text = "Containers Variables";
             this.Load += new System.EventHandler(this.frmVariables_Load);
             this.ResumeLayout(false);
 
