@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using DockerDesk.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -70,6 +72,22 @@ namespace DockerDesk.Helpers
                 return dockerPbj;
             }).ToList();
         }
+
+        public static string GetEnvVariablesFromJson(string jsonFilePath)
+        {
+            string json = File.ReadAllText(jsonFilePath);
+            ImageConfig imageConfig = JsonConvert.DeserializeObject<ImageConfig>(json);
+
+            StringBuilder envVariables = new StringBuilder();
+            foreach (var envVar in imageConfig.EnvVariables)
+            {
+                envVariables.Append($"-e \"{envVar.Name}={envVar.Value}\" ");
+            }
+
+            return envVariables.ToString();
+        }
+
+
     }
 
 }

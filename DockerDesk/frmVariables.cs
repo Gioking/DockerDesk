@@ -41,17 +41,18 @@ namespace DockerDesk
                 //string sourcePath = Path.Combine(Application.StartupPath, $"templatevar.json");
 
                 string json = $@"
-                {{
-                  ""{_imageName}"": {{
-                    ""container_id"": ""{_imageId}"",
-                    ""EnvVariable"": [
-                      {{
-                        ""name"": ""EXAMPLE_NAME"",
-                        ""value"": ""example_value""
-                      }}
-                    ]
-                  }}
-                }}";
+                        {{
+                          ""image_name"": ""{_imageName}"",
+                          ""image_id"": ""{_imageId}"",
+                          ""EnvVariable"": [
+                            {{
+                              ""name"": ""EXAMPLE_NAME"",
+                              ""value"": ""example_value""
+                            }}
+                            // Aggiungi altre variabili d'ambiente qui se necessario
+                          ]
+                        }}";
+
 
                 File.WriteAllText(pathToFile, json);
 

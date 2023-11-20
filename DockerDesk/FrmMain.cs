@@ -401,22 +401,27 @@ namespace DockerDesk
                     return;
                 }
 
+                // Ottieni le variabili d'ambiente dal JSON
+                string pathToFile = Path.Combine(Application.StartupPath, $"{selectedImage.ImageId}.json");
+                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile); // Sostituisci con il percorso effettivo
+
+                string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
+
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    //docker run -d --name mio_container --mount type=bind,source=c:\path\to\host,target=/path/to/container -p 8080:80 app1-image
-                    var command = await DoskerRunner.DockerExecute($"run -d --name {txtContainerName.Text} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtWorkDirPath.Text);
+                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtWorkDirPath.Text);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
                     if (!chkHasVolume.Checked)
                     {
-                        var command = await DoskerRunner.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
-                        var command = await DoskerRunner.DockerExecute($"run -d --name {txtContainerName.Text} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
@@ -428,8 +433,8 @@ namespace DockerDesk
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
+
 
         private async void btnInspect_Click(object sender, EventArgs e)
         {

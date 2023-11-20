@@ -93,7 +93,7 @@
     <Compile Include="Models\DockerImage.cs" />
     <Compile Include="Models\EnvVariable.cs" />
     <Compile Include="Models\ResultModel.cs" />
-    <Compile Include="Models\RootObject.cs" />
+    <Compile Include="Models\ImageConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="About.resx">
