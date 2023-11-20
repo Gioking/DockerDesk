@@ -15,15 +15,15 @@ namespace DockerDesk
 {
     public partial class frmVariables : Form
     {
-        private string _containerId = string.Empty;
-        private string _containerName = string.Empty;
+        private string _imageName = string.Empty;
+        private string _imageId = string.Empty;
         private string _fullJsonPath = string.Empty;
 
-        public frmVariables(string containerName, string conyainerId)
+        public frmVariables(string imageName, string imageId)
         {
             InitializeComponent();
-            _containerId = conyainerId;
-            _containerName = containerName;
+            _imageId = imageId;
+            _imageName = imageName;
         }
 
         private void frmVariables_Load(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace DockerDesk
 
         private void LoadJsonFile()
         {
-            string pathToFile = Path.Combine(Application.StartupPath, $"{_containerId}.json");
+            string pathToFile = Path.Combine(Application.StartupPath, $"{_imageId}.json");
 
             // Verifica se il file esiste, se no copia jvariables.json
             if (!File.Exists(pathToFile))
@@ -42,8 +42,8 @@ namespace DockerDesk
 
                 string json = $@"
                 {{
-                  ""{_containerName}"": {{
-                    ""container_id"": ""{_containerId}"",
+                  ""{_imageName}"": {{
+                    ""container_id"": ""{_imageId}"",
                     ""EnvVariable"": [
                       {{
                         ""name"": ""EXAMPLE_NAME"",

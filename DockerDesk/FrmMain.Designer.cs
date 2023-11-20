@@ -33,6 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnCreateVariables = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label21 = new System.Windows.Forms.Label();
             this.cmbVariables = new System.Windows.Forms.ComboBox();
             this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,7 +45,6 @@
             this.cmbVolumes = new System.Windows.Forms.ComboBox();
             this.dockerNetworkBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnRunContainer = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.chkHasVolume = new System.Windows.Forms.CheckBox();
             this.txtHostPort = new System.Windows.Forms.TextBox();
@@ -121,11 +122,12 @@
             this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.tabVariables = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnEditVariables = new System.Windows.Forms.Button();
             this.cmbContainers = new System.Windows.Forms.ComboBox();
+            this.btnEditVariables = new System.Windows.Forms.Button();
             this.txtVarValue = new System.Windows.Forms.TextBox();
             this.txtVarName = new System.Windows.Forms.TextBox();
             this.GridVariables = new System.Windows.Forms.DataGridView();
@@ -157,7 +159,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -221,6 +222,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.btnCreateVariables);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.cmbVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
@@ -244,6 +246,38 @@
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // btnCreateVariables
+            // 
+            this.btnCreateVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateVariables.ImageKey = "arrow-213-32.png";
+            this.btnCreateVariables.ImageList = this.imageList1;
+            this.btnCreateVariables.Location = new System.Drawing.Point(68, 266);
+            this.btnCreateVariables.Name = "btnCreateVariables";
+            this.btnCreateVariables.Size = new System.Drawing.Size(220, 35);
+            this.btnCreateVariables.TabIndex = 23;
+            this.btnCreateVariables.Text = "Edit container variables";
+            this.btnCreateVariables.UseVisualStyleBackColor = true;
+            this.btnCreateVariables.Click += new System.EventHandler(this.btnCreateVariables_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "arrow-96-32.png");
+            this.imageList1.Images.SetKeyName(1, "arrow-213-32.png");
+            this.imageList1.Images.SetKeyName(2, "check-mark-32.png");
+            this.imageList1.Images.SetKeyName(3, "gear-2-32.png");
+            this.imageList1.Images.SetKeyName(4, "globe-4-32.png");
+            this.imageList1.Images.SetKeyName(5, "hexagon-32.png");
+            this.imageList1.Images.SetKeyName(6, "settings-5-32.png");
+            this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
+            this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
+            this.imageList1.Images.SetKeyName(9, "green-button.png");
+            this.imageList1.Images.SetKeyName(10, "red-button.png");
+            this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
             // 
             // label21
             // 
@@ -342,23 +376,6 @@
             this.btnRunContainer.Text = "Run Countainer";
             this.btnRunContainer.UseVisualStyleBackColor = true;
             this.btnRunContainer.Click += new System.EventHandler(this.btnRunContainer_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "arrow-96-32.png");
-            this.imageList1.Images.SetKeyName(1, "arrow-213-32.png");
-            this.imageList1.Images.SetKeyName(2, "check-mark-32.png");
-            this.imageList1.Images.SetKeyName(3, "gear-2-32.png");
-            this.imageList1.Images.SetKeyName(4, "globe-4-32.png");
-            this.imageList1.Images.SetKeyName(5, "hexagon-32.png");
-            this.imageList1.Images.SetKeyName(6, "settings-5-32.png");
-            this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
-            this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
-            this.imageList1.Images.SetKeyName(9, "green-button.png");
-            this.imageList1.Images.SetKeyName(10, "red-button.png");
-            this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
             // 
             // label3
             // 
@@ -1247,6 +1264,15 @@
             this.tabVariables.Text = "Variables";
             this.tabVariables.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(822, 399);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -1262,8 +1288,8 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.label20);
-            this.groupBox5.Controls.Add(this.btnEditVariables);
             this.groupBox5.Controls.Add(this.cmbContainers);
+            this.groupBox5.Controls.Add(this.btnEditVariables);
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox5.Location = new System.Drawing.Point(899, 25);
             this.groupBox5.Name = "groupBox5";
@@ -1281,21 +1307,6 @@
             this.label20.TabIndex = 23;
             this.label20.Text = "Container";
             // 
-            // btnEditVariables
-            // 
-            this.btnEditVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnEditVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditVariables.ImageKey = "arrow-213-32.png";
-            this.btnEditVariables.ImageList = this.imageList1;
-            this.btnEditVariables.Location = new System.Drawing.Point(6, 91);
-            this.btnEditVariables.Name = "btnEditVariables";
-            this.btnEditVariables.Size = new System.Drawing.Size(210, 35);
-            this.btnEditVariables.TabIndex = 2;
-            this.btnEditVariables.Text = "Edit container variables";
-            this.btnEditVariables.UseVisualStyleBackColor = true;
-            this.btnEditVariables.Click += new System.EventHandler(this.btnEditVariable_Click);
-            // 
             // cmbContainers
             // 
             this.cmbContainers.DataSource = this.dockerContainerBindingSource;
@@ -1309,6 +1320,21 @@
             this.cmbContainers.TabIndex = 22;
             this.cmbContainers.ValueMember = "ContainerId";
             this.cmbContainers.SelectedIndexChanged += new System.EventHandler(this.cmbContainers_SelectedIndexChanged);
+            // 
+            // btnEditVariables
+            // 
+            this.btnEditVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnEditVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditVariables.ImageKey = "arrow-213-32.png";
+            this.btnEditVariables.ImageList = this.imageList1;
+            this.btnEditVariables.Location = new System.Drawing.Point(200, 174);
+            this.btnEditVariables.Name = "btnEditVariables";
+            this.btnEditVariables.Size = new System.Drawing.Size(52, 35);
+            this.btnEditVariables.TabIndex = 2;
+            this.btnEditVariables.Text = "Edit container variables";
+            this.btnEditVariables.UseVisualStyleBackColor = true;
+            this.btnEditVariables.Click += new System.EventHandler(this.btnEditVariable_Click);
             // 
             // txtVarValue
             // 
@@ -1590,15 +1616,6 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(822, 399);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1774,7 +1791,6 @@
         private System.Windows.Forms.TextBox txtVarValue;
         private System.Windows.Forms.TextBox txtVarName;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button btnEditVariables;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DataGridView GridVariables;
         private System.Windows.Forms.Label label20;
@@ -1785,6 +1801,8 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cmbVariables;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEditVariables;
+        private System.Windows.Forms.Button btnCreateVariables;
     }
 }
 

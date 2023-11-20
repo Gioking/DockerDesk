@@ -83,6 +83,7 @@
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
+    <Compile Include="Models\ContainerConfig.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerJsonContainer.cs" />
     <Compile Include="Models\DockerJsonVariable.cs" />
@@ -90,7 +91,9 @@
     <Compile Include="Models\DockerVariable.cs" />
     <Compile Include="Models\DockerVolume.cs" />
     <Compile Include="Models\DockerImage.cs" />
+    <Compile Include="Models\EnvVariable.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\RootObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="About.resx">
