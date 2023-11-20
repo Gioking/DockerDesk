@@ -35,8 +35,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label21 = new System.Windows.Forms.Label();
-            this.cmbVariables = new System.Windows.Forms.ComboBox();
             this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtHostPathName = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -127,7 +125,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
             this.cmbContainers = new System.Windows.Forms.ComboBox();
-            this.btnEditVariables = new System.Windows.Forms.Button();
             this.txtVarValue = new System.Windows.Forms.TextBox();
             this.txtVarName = new System.Windows.Forms.TextBox();
             this.GridVariables = new System.Windows.Forms.DataGridView();
@@ -223,8 +220,6 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.btnCreateVariables);
-            this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.cmbVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.chkShareVolumeToHost);
@@ -254,7 +249,7 @@
             this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariables.ImageKey = "arrow-213-32.png";
             this.btnCreateVariables.ImageList = this.imageList1;
-            this.btnCreateVariables.Location = new System.Drawing.Point(68, 266);
+            this.btnCreateVariables.Location = new System.Drawing.Point(68, 218);
             this.btnCreateVariables.Name = "btnCreateVariables";
             this.btnCreateVariables.Size = new System.Drawing.Size(220, 35);
             this.btnCreateVariables.TabIndex = 23;
@@ -278,29 +273,6 @@
             this.imageList1.Images.SetKeyName(9, "green-button.png");
             this.imageList1.Images.SetKeyName(10, "red-button.png");
             this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 223);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(44, 13);
-            this.label21.TabIndex = 22;
-            this.label21.Text = "C.Vars";
-            // 
-            // cmbVariables
-            // 
-            this.cmbVariables.DataSource = this.dockerContainerBindingSource;
-            this.cmbVariables.DisplayMember = "VolumeName";
-            this.cmbVariables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.cmbVariables.FormattingEnabled = true;
-            this.cmbVariables.Location = new System.Drawing.Point(68, 218);
-            this.cmbVariables.Name = "cmbVariables";
-            this.cmbVariables.Size = new System.Drawing.Size(220, 24);
-            this.cmbVariables.TabIndex = 21;
-            this.cmbVariables.ValueMember = "VolumeName";
-            this.cmbVariables.SelectedIndexChanged += new System.EventHandler(this.cmbVariables_SelectedIndexChanged);
             // 
             // dockerContainerBindingSource
             // 
@@ -1289,7 +1261,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.cmbContainers);
-            this.groupBox5.Controls.Add(this.btnEditVariables);
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox5.Location = new System.Drawing.Point(899, 25);
             this.groupBox5.Name = "groupBox5";
@@ -1320,21 +1291,6 @@
             this.cmbContainers.TabIndex = 22;
             this.cmbContainers.ValueMember = "ContainerId";
             this.cmbContainers.SelectedIndexChanged += new System.EventHandler(this.cmbContainers_SelectedIndexChanged);
-            // 
-            // btnEditVariables
-            // 
-            this.btnEditVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnEditVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditVariables.ImageKey = "arrow-213-32.png";
-            this.btnEditVariables.ImageList = this.imageList1;
-            this.btnEditVariables.Location = new System.Drawing.Point(200, 174);
-            this.btnEditVariables.Name = "btnEditVariables";
-            this.btnEditVariables.Size = new System.Drawing.Size(52, 35);
-            this.btnEditVariables.TabIndex = 2;
-            this.btnEditVariables.Text = "Edit container variables";
-            this.btnEditVariables.UseVisualStyleBackColor = true;
-            this.btnEditVariables.Click += new System.EventHandler(this.btnEditVariable_Click);
             // 
             // txtVarValue
             // 
@@ -1798,10 +1754,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox cmbVariables;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnEditVariables;
         private System.Windows.Forms.Button btnCreateVariables;
     }
 }

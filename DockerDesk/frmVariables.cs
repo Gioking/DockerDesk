@@ -33,21 +33,22 @@ namespace DockerDesk
 
         private void LoadJsonFile()
         {
-            string pathToFile = Path.Combine(Application.StartupPath, $"{_imageId}.json");
+            string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{_imageId}.json");
 
-            // Verifica se il file esiste, se no copia jvariables.json
             if (!File.Exists(pathToFile))
             {
-                //string sourcePath = Path.Combine(Application.StartupPath, $"templatevar.json");
-
                 string json = $@"
                         {{
                           ""image_name"": ""{_imageName}"",
                           ""image_id"": ""{_imageId}"",
                           ""EnvVariable"": [
                             {{
-                              ""name"": ""EXAMPLE_NAME"",
-                              ""value"": ""example_value""
+                              ""name"": ""SQLSERVER_CONNECTION_STRING"",
+                              ""value"": ""Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;""
+                            }},
+                            {{
+                              ""name"": ""MONGODB_URI"",
+                              ""value"": ""mongodb://username:password@host:port/database""
                             }}
                             // Aggiungi altre variabili d'ambiente qui se necessario
                           ]
@@ -55,16 +56,6 @@ namespace DockerDesk
 
 
                 File.WriteAllText(pathToFile, json);
-
-                //try
-                //{
-                //    File.Copy(sourcePath, pathToFile);
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("Errore durante la copia del file di default: " + ex.Message);
-                //    return;
-                //}
             }
 
             _fullJsonPath = pathToFile;

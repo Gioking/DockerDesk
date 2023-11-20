@@ -173,11 +173,10 @@ namespace DockerDesk
             {
                 await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
 
-                string pathToFile = Path.Combine(Application.StartupPath, "containersvariables.json");
+                string pathToFile = Path.Combine(Application.StartupPath, "containers_svariables.json");
                 var jsonContent = File.ReadAllText(pathToFile);
                 var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
                 var containerNames = containers.Keys.ToList();
-                cmbVariables.DataSource = containerNames;
                 cmbContainers.DataSource = containerNames;
             }
             catch (Exception e)
@@ -652,22 +651,6 @@ namespace DockerDesk
             }
         }
 
-        private void btnEditVariable_Click(object sender, EventArgs e)
-        {
-            //if (selectedContainer == null)
-            //{
-            //    MessageBox.Show("Please select a container first.");
-            //    return;
-            //}
-            //Form form = new frmVariables(selectedContainer.Names, selectedContainer.ContainerId);
-            //form.Show();
-        }
-
-
-        private void cmbVariables_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtLog_TextChanged(object sender, EventArgs e)
         {
