@@ -394,14 +394,23 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 string result = string.Empty;
-                if (selectedImage == null)
+                if (selectedImage == null || string.IsNullOrEmpty(txtContainerName.Text))
                 {
-                    MessageBox.Show("Warning.. select an image first!");
+                    MessageBox.Show("Warning.. select an image and provide the container name!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
+                var isContainer = containersList.FirstOrDefault(c => c.Names == txtContainerName.Text);
+                if (isContainer != null)
+                {
+                    MessageBox.Show($"Warning.. a container with same name: {txtContainerName.Text} already exist!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
                     return;
                 }
 
                 // Ottieni le variabili d'ambiente dal JSON
-                string pathToFile = Path.Combine(Application.StartupPath, $"{selectedImage.ImageId}.json");
+                string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
                 string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile); // Sostituisci con il percorso effettivo
 
                 string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
