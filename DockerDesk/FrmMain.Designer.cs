@@ -35,7 +35,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtHostPathName = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
@@ -86,6 +85,7 @@
             this.createdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.portsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dockerContainerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.tabVolume = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -159,13 +159,13 @@
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabContainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
             this.tabVolume.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVolumes)).BeginInit();
@@ -273,10 +273,6 @@
             this.imageList1.Images.SetKeyName(9, "green-button.png");
             this.imageList1.Images.SetKeyName(10, "red-button.png");
             this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
-            // 
-            // dockerContainerBindingSource
-            // 
-            this.dockerContainerBindingSource.DataSource = typeof(DockerDesk.Models.DockerContainer);
             // 
             // txtHostPathName
             // 
@@ -838,6 +834,10 @@
             this.portsDataGridViewTextBoxColumn.HeaderText = "Ports";
             this.portsDataGridViewTextBoxColumn.Name = "portsDataGridViewTextBoxColumn";
             this.portsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dockerContainerBindingSource
+            // 
+            this.dockerContainerBindingSource.DataSource = typeof(DockerDesk.Models.DockerContainer);
             // 
             // label7
             // 
@@ -1439,7 +1439,7 @@
             this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectWorkDir});
             this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
             // SelectWorkDir
@@ -1454,22 +1454,23 @@
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
+            this.aboutToolStripMenuItem.Image = global::DockerDesk.Properties.Resources.info_2_32;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -1581,6 +1582,7 @@
             this.Controls.Add(this.pBar);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1591,7 +1593,6 @@
             this.tabImages.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).EndInit();
@@ -1600,6 +1601,7 @@
             this.tabContainers.ResumeLayout(false);
             this.tabContainers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContainers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).EndInit();
             this.tabVolume.ResumeLayout(false);
             this.tabVolume.PerformLayout();
             this.groupBox2.ResumeLayout(false);
