@@ -15,9 +15,15 @@ namespace DockerDesk
 {
     public partial class frmVariables : Form
     {
-        public frmVariables()
+        private string _containerId = string.Empty;
+        private string _containerName = string.Empty;
+        private string _fullJsonPath = string.Empty;
+
+        public frmVariables(string containerName, string conyainerId)
         {
             InitializeComponent();
+            _containerId = conyainerId;
+            _containerName = containerName;
         }
 
         private void frmVariables_Load(object sender, EventArgs e)
@@ -27,7 +33,41 @@ namespace DockerDesk
 
         private void LoadJsonFile()
         {
-            string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
+            string pathToFile = Path.Combine(Application.StartupPath, $"{_containerId}.json");
+
+            // Verifica se il file esiste, se no copia jvariables.json
+            if (!File.Exists(pathToFile))
+            {
+                //string sourcePath = Path.Combine(Application.StartupPath, $"templatevar.json");
+
+                string json = $@"
+                {{
+                  ""{_containerName}"": {{
+                    ""container_id"": ""{_containerId}"",
+                    ""EnvVariable"": [
+                      {{
+                        ""name"": ""EXAMPLE_NAME"",
+                        ""value"": ""example_value""
+                      }}
+                    ]
+                  }}
+                }}";
+
+                File.WriteAllText(pathToFile, json);
+
+                //try
+                //{
+                //    File.Copy(sourcePath, pathToFile);
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Errore durante la copia del file di default: " + ex.Message);
+                //    return;
+                //}
+            }
+
+            _fullJsonPath = pathToFile;
+
             try
             {
                 string jsonContent = File.ReadAllText(pathToFile);
@@ -40,6 +80,7 @@ namespace DockerDesk
                 MessageBox.Show("Errore durante il caricamento del file JSON: " + ex.Message);
             }
         }
+
 
         private void ColorizeJson()
         {
@@ -70,15 +111,13 @@ namespace DockerDesk
 
         private void btnSaveVariables_Click(object sender, EventArgs e)
         {
-            string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
-
             try
             {
                 // Legge il testo dal RichTextBox
                 string modifiedJsonContent = richVariables.Text;
 
                 // Scrive il testo modificato nel file
-                File.WriteAllText(pathToFile, modifiedJsonContent);
+                File.WriteAllText(_fullJsonPath, modifiedJsonContent);
                 MessageBox.Show("Modifiche salvate con successo.", "Salvato", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadJsonFile();
             }

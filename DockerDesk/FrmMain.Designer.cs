@@ -157,6 +157,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1230,6 +1231,7 @@
             // 
             // tabVariables
             // 
+            this.tabVariables.Controls.Add(this.button1);
             this.tabVariables.Controls.Add(this.label24);
             this.tabVariables.Controls.Add(this.groupBox5);
             this.tabVariables.Controls.Add(this.txtVarValue);
@@ -1311,19 +1313,18 @@
             // txtVarValue
             // 
             this.txtVarValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVarValue.Location = new System.Drawing.Point(114, 451);
-            this.txtVarValue.Multiline = true;
+            this.txtVarValue.Location = new System.Drawing.Point(346, 399);
             this.txtVarValue.Name = "txtVarValue";
-            this.txtVarValue.Size = new System.Drawing.Size(426, 92);
+            this.txtVarValue.Size = new System.Drawing.Size(470, 23);
             this.txtVarValue.TabIndex = 9;
             this.txtVarValue.Text = "/data/path";
             // 
             // txtVarName
             // 
             this.txtVarName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVarName.Location = new System.Drawing.Point(114, 420);
+            this.txtVarName.Location = new System.Drawing.Point(82, 398);
             this.txtVarName.Name = "txtVarName";
-            this.txtVarName.Size = new System.Drawing.Size(426, 23);
+            this.txtVarName.Size = new System.Drawing.Size(187, 23);
             this.txtVarName.TabIndex = 7;
             this.txtVarName.Text = "PATH";
             // 
@@ -1370,7 +1371,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(30, 451);
+            this.label22.Location = new System.Drawing.Point(275, 399);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(65, 20);
             this.label22.TabIndex = 3;
@@ -1379,7 +1380,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(30, 420);
+            this.label23.Location = new System.Drawing.Point(10, 399);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(66, 20);
             this.label23.TabIndex = 0;
@@ -1589,6 +1590,15 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(822, 399);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1774,6 +1784,7 @@
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cmbVariables;
+        private System.Windows.Forms.Button button1;
     }
 }
 

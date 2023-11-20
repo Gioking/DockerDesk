@@ -105,7 +105,7 @@ namespace DockerDesk
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
-                //cmbContainers.DataSource = containersList;
+                cmbContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 gridContainers.Font = font;
             }
@@ -173,7 +173,7 @@ namespace DockerDesk
             {
                 await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
 
-                string pathToFile = Path.Combine(Application.StartupPath, "jvariables.json");
+                string pathToFile = Path.Combine(Application.StartupPath, "containersvariables.json");
                 var jsonContent = File.ReadAllText(pathToFile);
                 var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
                 var containerNames = containers.Keys.ToList();
@@ -627,16 +627,19 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
-                var containerId = cmbContainers.SelectedItem.ToString();
+                var container = (DockerContainer)cmbContainers.SelectedItem;
 
-                var command = await DoskerRunner.DockerExecute($"exec {containerId} env", txtWorkDirPath.Text);
+                var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", txtWorkDirPath.Text);
 
                 var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
                 GridVariables.DataSource = result;
 
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
 
+                selectedContainer = containersList.FirstOrDefault(c => c.ContainerId == container.ContainerId);
+
                 SpinnerHelper.ToggleSpinner(pBar, false);
+
             }
             catch (Exception ex)
             {
@@ -645,7 +648,12 @@ namespace DockerDesk
         }
         private void btnEditVariable_Click(object sender, EventArgs e)
         {
-            Form form = new frmVariables();
+            if (selectedContainer == null)
+            {
+                MessageBox.Show("Please select a container first.");
+                return;
+            }
+            Form form = new frmVariables(selectedContainer.Names, selectedContainer.ContainerId);
             form.Show();
         }
 

@@ -27,7 +27,7 @@ namespace DockerDesk.Helpers
             }
 
             string jsonContent = JsonConvert.SerializeObject(containersEnvData, Formatting.Indented);
-            File.WriteAllText(Path.Combine(Application.StartupPath, "jvariables.json"), jsonContent);
+            File.WriteAllText(Path.Combine(Application.StartupPath, "containersvariables.json"), jsonContent);
         }
 
         private static async Task<List<(string Id, string Name)>> GetDockerContainerIdsAndNamesAsync()
