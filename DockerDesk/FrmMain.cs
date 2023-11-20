@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DockerDesk
 {
@@ -418,7 +417,6 @@ namespace DockerDesk
                     return;
                 }
 
-                // Ottieni le variabili d'ambiente dal JSON
                 string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
                 string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
 

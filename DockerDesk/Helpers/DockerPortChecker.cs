@@ -29,7 +29,7 @@ namespace DockerDesk.Helpers
                         {
                             if (line.Contains($":{port}->"))
                             {
-                                return true; // La porta è in uso da un container Docker
+                                return true;
                             }
                         }
                     }
