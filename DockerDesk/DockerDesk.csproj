@@ -80,6 +80,7 @@
       <DependentUpon>frmWebView.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DockerEnvHelper.cs" />
+    <Compile Include="Helpers\DockerPortChecker.cs" />
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />

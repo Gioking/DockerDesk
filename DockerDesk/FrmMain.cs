@@ -409,9 +409,18 @@ namespace DockerDesk
                     return;
                 }
 
+                int port = int.Parse(txtHostPort.Text);
+                bool isPortInUse = await DockerPortChecker.IsPortInUseByDockerContainerAsync(port);
+                if (isPortInUse)
+                {
+                    MessageBox.Show($"Warning.. the host port: {txtHostPort.Text} is already in use!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
                 // Ottieni le variabili d'ambiente dal JSON
                 string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
-                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile); // Sostituisci con il percorso effettivo
+                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
 
                 string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
 
@@ -641,6 +650,11 @@ namespace DockerDesk
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
                 var container = (DockerContainer)cmbContainers.SelectedItem;
+
+                if (container == null)
+                {
+                    return;
+                }
 
                 var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", txtWorkDirPath.Text);
 

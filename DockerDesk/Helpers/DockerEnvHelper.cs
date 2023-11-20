@@ -78,6 +78,11 @@ namespace DockerDesk.Helpers
             string json = File.ReadAllText(jsonFilePath);
             ImageConfig imageConfig = JsonConvert.DeserializeObject<ImageConfig>(json);
 
+            if (imageConfig == null)
+            {
+                return null;
+            }
+
             StringBuilder envVariables = new StringBuilder();
             foreach (var envVar in imageConfig.EnvVariables)
             {
