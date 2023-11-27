@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -226,6 +225,8 @@ namespace DockerDesk.Helpers
 
         public static async Task<ResultModel> DockerExecute(string arguments, string workdir)
         {
+            ResultModel resultModel = new ResultModel();
+
             try
             {
                 LogHelper.LogInfo($"Command: docker {arguments}");
@@ -249,40 +250,26 @@ namespace DockerDesk.Helpers
                     process.StartInfo = startInfo;
                     process.Start();
 
-                    using (StreamReader outputReader = process.StandardOutput)
-                    using (StreamReader errorReader = process.StandardError)
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+
+                    process.OutputDataReceived += (sender, args) => output.AppendLine(args.Data);
+                    process.ErrorDataReceived += (sender, args) => error.AppendLine(args.Data);
+
+                    await Task.Run(() => process.WaitForExit());
+
+                    string OperationResult = output.ToString();
+                    string ErrorResult = error.ToString();
+
+                    if (!string.IsNullOrEmpty(OperationResult))
                     {
-                        while (!process.HasExited)
-                        {
-                            output.Append(outputReader.ReadToEnd());
-                            error.Append(errorReader.ReadToEnd());
-                        }
-
-                        output.Append(outputReader.ReadToEnd());
-                        error.Append(errorReader.ReadToEnd());
-
-                        await Task.Run(() => process.WaitForExit());
+                        resultModel.OperationResult = OperationResult;
+                    }
+                    else if (!string.IsNullOrEmpty(ErrorResult))
+                    {
+                        resultModel.OperationResult = ErrorResult;
                     }
                 }
-
-                string OperationResult = output.ToString();
-                string ErrorResult = error.ToString();
-
-                ResultModel resultModel = new ResultModel();
-
-                resultModel.OperationResult = OperationResult;
-                resultModel.Error = ErrorResult;
-
-                if (!string.IsNullOrEmpty(OperationResult))
-                {
-                    resultModel.OperationResult = OperationResult;
-                }
-                else if (!string.IsNullOrEmpty(ErrorResult))
-                {
-                    resultModel.OperationResult = ErrorResult;
-                }
-
-                return resultModel;
             }
             catch (Exception e)
             {
@@ -290,7 +277,10 @@ namespace DockerDesk.Helpers
                 LogHelper.LogError($"Err: {e.Message}");
                 return null;
             }
+
+            return resultModel;
         }
+
 
     }
 }

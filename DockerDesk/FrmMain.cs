@@ -194,6 +194,14 @@ namespace DockerDesk
         {
             try
             {
+
+                string dockerFilePath = Path.Combine(Application.StartupPath, txtWorkDirPath.Text, "dockerfile");
+                if (!File.Exists(dockerFilePath))
+                {
+                    MessageBox.Show($"No dockerfile has been found in this path {dockerFilePath}");
+                    return;
+                }
+
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 //await Task.Delay(3000);
 
