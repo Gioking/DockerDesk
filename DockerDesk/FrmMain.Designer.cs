@@ -156,6 +156,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -219,6 +220,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.chkUseVariables);
             this.groupBox4.Controls.Add(this.btnCreateVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
             this.groupBox4.Controls.Add(this.label19);
@@ -249,7 +251,7 @@
             this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariables.ImageKey = "arrow-213-32.png";
             this.btnCreateVariables.ImageList = this.imageList1;
-            this.btnCreateVariables.Location = new System.Drawing.Point(68, 218);
+            this.btnCreateVariables.Location = new System.Drawing.Point(68, 268);
             this.btnCreateVariables.Name = "btnCreateVariables";
             this.btnCreateVariables.Size = new System.Drawing.Size(220, 35);
             this.btnCreateVariables.TabIndex = 23;
@@ -277,7 +279,7 @@
             // txtHostPathName
             // 
             this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPathName.Location = new System.Drawing.Point(68, 190);
+            this.txtHostPathName.Location = new System.Drawing.Point(68, 201);
             this.txtHostPathName.Multiline = true;
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
@@ -297,7 +299,7 @@
             // 
             this.chkShareVolumeToHost.AutoSize = true;
             this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 164);
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 175);
             this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
             this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
             this.chkShareVolumeToHost.TabIndex = 18;
@@ -1439,7 +1441,7 @@
             this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SelectWorkDir});
             this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
             // SelectWorkDir
@@ -1454,7 +1456,7 @@
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
@@ -1462,7 +1464,7 @@
             // 
             this.aboutToolStripMenuItem.Image = global::DockerDesk.Properties.Resources.info_2_32;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -1470,7 +1472,7 @@
             // 
             this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -1572,6 +1574,17 @@
             this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
+            // 
+            // chkUseVariables
+            // 
+            this.chkUseVariables.AutoSize = true;
+            this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkUseVariables.Location = new System.Drawing.Point(70, 242);
+            this.chkUseVariables.Name = "chkUseVariables";
+            this.chkUseVariables.Size = new System.Drawing.Size(214, 20);
+            this.chkUseVariables.TabIndex = 24;
+            this.chkUseVariables.Text = "Use Environment Variables";
+            this.chkUseVariables.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -1758,6 +1771,7 @@
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCreateVariables;
+        private System.Windows.Forms.CheckBox chkUseVariables;
     }
 }
 

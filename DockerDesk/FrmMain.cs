@@ -418,8 +418,13 @@ namespace DockerDesk
                 }
 
                 string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
-                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
+                if (chkUseVariables.Checked && pathToFile == null)
+                {
+                    MessageBox.Show("Please edit the variables into the json file by clicking on 'Edit container variables' button");
+                    return;
+                }
 
+                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
                 string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
