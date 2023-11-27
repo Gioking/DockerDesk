@@ -33,6 +33,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtHostPathName = new System.Windows.Forms.TextBox();
@@ -120,19 +121,14 @@
             this.scopeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.tabVariables = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
             this.cmbContainers = new System.Windows.Forms.ComboBox();
-            this.txtVarValue = new System.Windows.Forms.TextBox();
-            this.txtVarName = new System.Windows.Forms.TextBox();
             this.GridVariables = new System.Windows.Forms.DataGridView();
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -156,7 +152,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -243,6 +238,17 @@
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // chkUseVariables
+            // 
+            this.chkUseVariables.AutoSize = true;
+            this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkUseVariables.Location = new System.Drawing.Point(70, 242);
+            this.chkUseVariables.Name = "chkUseVariables";
+            this.chkUseVariables.Size = new System.Drawing.Size(214, 20);
+            this.chkUseVariables.TabIndex = 24;
+            this.chkUseVariables.Text = "Use Environment Variables";
+            this.chkUseVariables.UseVisualStyleBackColor = true;
             // 
             // btnCreateVariables
             // 
@@ -1222,14 +1228,9 @@
             // 
             // tabVariables
             // 
-            this.tabVariables.Controls.Add(this.button1);
             this.tabVariables.Controls.Add(this.label24);
             this.tabVariables.Controls.Add(this.groupBox5);
-            this.tabVariables.Controls.Add(this.txtVarValue);
-            this.tabVariables.Controls.Add(this.txtVarName);
             this.tabVariables.Controls.Add(this.GridVariables);
-            this.tabVariables.Controls.Add(this.label22);
-            this.tabVariables.Controls.Add(this.label23);
             this.tabVariables.ImageKey = "arrow-213-32.png";
             this.tabVariables.Location = new System.Drawing.Point(4, 29);
             this.tabVariables.Name = "tabVariables";
@@ -1237,15 +1238,6 @@
             this.tabVariables.TabIndex = 5;
             this.tabVariables.Text = "Variables";
             this.tabVariables.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(822, 399);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label24
             // 
@@ -1294,24 +1286,6 @@
             this.cmbContainers.ValueMember = "ContainerId";
             this.cmbContainers.SelectedIndexChanged += new System.EventHandler(this.cmbContainers_SelectedIndexChanged);
             // 
-            // txtVarValue
-            // 
-            this.txtVarValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVarValue.Location = new System.Drawing.Point(346, 399);
-            this.txtVarValue.Name = "txtVarValue";
-            this.txtVarValue.Size = new System.Drawing.Size(470, 23);
-            this.txtVarValue.TabIndex = 9;
-            this.txtVarValue.Text = "/data/path";
-            // 
-            // txtVarName
-            // 
-            this.txtVarName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtVarName.Location = new System.Drawing.Point(82, 398);
-            this.txtVarName.Name = "txtVarName";
-            this.txtVarName.Size = new System.Drawing.Size(187, 23);
-            this.txtVarName.TabIndex = 7;
-            this.txtVarName.Text = "PATH";
-            // 
             // GridVariables
             // 
             this.GridVariables.AllowUserToAddRows = false;
@@ -1351,24 +1325,6 @@
             // dockerVariableBindingSource
             // 
             this.dockerVariableBindingSource.DataSource = typeof(DockerDesk.Models.DockerVariable);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(275, 399);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(65, 20);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "V.Value";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(10, 399);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(66, 20);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "V.Name";
             // 
             // tabLog
             // 
@@ -1575,17 +1531,6 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // chkUseVariables
-            // 
-            this.chkUseVariables.AutoSize = true;
-            this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkUseVariables.Location = new System.Drawing.Point(70, 242);
-            this.chkUseVariables.Name = "chkUseVariables";
-            this.chkUseVariables.Size = new System.Drawing.Size(214, 20);
-            this.chkUseVariables.TabIndex = 24;
-            this.chkUseVariables.Text = "Use Environment Variables";
-            this.chkUseVariables.UseVisualStyleBackColor = true;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1759,17 +1704,12 @@
         private System.Windows.Forms.TabPage tabVariables;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtVarValue;
-        private System.Windows.Forms.TextBox txtVarName;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.DataGridView GridVariables;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cmbContainers;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCreateVariables;
         private System.Windows.Forms.CheckBox chkUseVariables;
     }
