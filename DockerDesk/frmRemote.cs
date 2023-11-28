@@ -714,35 +714,49 @@ namespace DockerDesk
 
         private void btnConnectToRemote_Click(object sender, EventArgs e)
         {
-            string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
-
-            string sshConnection = txtRemoteUsername.Text; // "root@38.242.198.151";
-            string[] parts = sshConnection.Split('@');
-
-            string username = parts[0];
-            string host = parts[1];
-            int port = int.Parse(txtRemotePort.Text);
-
-            sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
-
             try
             {
+                string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
+
+                string sshConnection = txtRemoteUsername.Text; // "root@38.242.198.151";
+                string[] parts = sshConnection.Split('@');
+
+                string username = parts[0];
+                string host = parts[1];
+                int port = int.Parse(txtRemotePort.Text);
+
+                sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
+
                 sshClientManager.Connect();
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
-                dockerCommandExecutor.SendDockerCommand("ps -a");
+                var result = dockerCommandExecutor.SendDockerCommand("ps -a");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Errore: " + ex.Message);
             }
-            finally
-            {
-                sshClientManager.Disconnect();
-                sshClientManager.Dispose();
-            }
-
-
-
         }
+
+        private void btnDisconnectSsh_Click(object sender, EventArgs e)
+        {
+            DisconnectSshClient();
+        }
+
+        private void DisconnectSshClient()
+        {
+            try
+            {
+                if (sshClientManager.DisconnectAndDispose())
+                {
+                    MessageBox.Show("Connessione SSH chiusa correttamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore durante la chiusura della connessione ssh: " + ex.Message);
+            }
+        }
+
+
     }
 }

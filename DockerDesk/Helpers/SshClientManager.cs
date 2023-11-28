@@ -55,4 +55,22 @@ public class SshClientManager
             this.client.Dispose();
         }
     }
+
+    public bool DisconnectAndDispose()
+    {
+        if (this.client != null)
+        {
+            if (this.client.IsConnected)
+            {
+                this.client.Disconnect();
+            }
+
+            this.client.Dispose();
+            this.client = null;
+            return true;
+        }
+        return false;
+    }
+
+
 }

@@ -165,6 +165,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnDisconnectSsh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1372,6 +1373,7 @@
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.btnDisconnectSsh);
             this.groupBox6.Controls.Add(this.txtRemotePort);
             this.groupBox6.Controls.Add(this.btnConnectToRemote);
             this.groupBox6.Controls.Add(this.txtRemoteUsername);
@@ -1689,6 +1691,21 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // btnDisconnectSsh
+            // 
+            this.btnDisconnectSsh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnectSsh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDisconnectSsh.ImageKey = "server-yellow-32.png";
+            this.btnDisconnectSsh.ImageList = this.imageList1;
+            this.btnDisconnectSsh.Location = new System.Drawing.Point(10, 147);
+            this.btnDisconnectSsh.Name = "btnDisconnectSsh";
+            this.btnDisconnectSsh.Size = new System.Drawing.Size(310, 35);
+            this.btnDisconnectSsh.TabIndex = 4;
+            this.btnDisconnectSsh.Text = "Disconnect";
+            this.btnDisconnectSsh.UseVisualStyleBackColor = true;
+            this.btnDisconnectSsh.Click += new System.EventHandler(this.btnDisconnectSsh_Click);
+            // 
             // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1889,6 +1906,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource remoteMachineBindingSource;
         private System.Windows.Forms.TextBox txtRemotePort;
+        private System.Windows.Forms.Button btnDisconnectSsh;
     }
 }
 
