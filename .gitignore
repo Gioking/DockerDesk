@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DockerDesk/OpenSshKey/20220202_Perfexia_CentOS_7_root.openssh
