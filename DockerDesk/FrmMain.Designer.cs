@@ -132,6 +132,7 @@
             this.tabRemote = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtRemotePort = new System.Windows.Forms.TextBox();
             this.btnConnectToRemote = new System.Windows.Forms.Button();
             this.txtRemoteUsername = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -149,11 +150,12 @@
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus = new System.Windows.Forms.ToolStripSplitButton();
@@ -166,7 +168,8 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtRemotePort = new System.Windows.Forms.TextBox();
+            this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1386,6 +1389,17 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Remote machine";
             // 
+            // txtRemotePort
+            // 
+            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePort.Location = new System.Drawing.Point(263, 55);
+            this.txtRemotePort.Multiline = true;
+            this.txtRemotePort.Name = "txtRemotePort";
+            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
+            this.txtRemotePort.TabIndex = 3;
+            this.txtRemotePort.Text = "8787";
+            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // btnConnectToRemote
             // 
             this.btnConnectToRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1554,39 +1568,24 @@
             this.selectProjectPathToolStripMenuItem,
             this.reloadAllToolStripMenuItem,
             this.aboutToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.useToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
-            // 
-            // selectProjectPathToolStripMenuItem
-            // 
-            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SelectWorkDir});
-            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
-            this.selectProjectPathToolStripMenuItem.Text = "Projects";
-            // 
-            // SelectWorkDir
-            // 
-            this.SelectWorkDir.Image = ((System.Drawing.Image)(resources.GetObject("SelectWorkDir.Image")));
-            this.SelectWorkDir.Name = "SelectWorkDir";
-            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
-            this.SelectWorkDir.Text = "Select Work Directory";
-            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
             // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -1594,9 +1593,30 @@
             // 
             this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
+            // useToolStripMenuItem
+            // 
+            this.useToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.localToolStripMenuItem,
+            this.remoteToolStripMenuItem});
+            this.useToolStripMenuItem.Name = "useToolStripMenuItem";
+            this.useToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.useToolStripMenuItem.Text = "Use";
+            // 
+            // localToolStripMenuItem
+            // 
+            this.localToolStripMenuItem.Name = "localToolStripMenuItem";
+            this.localToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.localToolStripMenuItem.Text = "Local";
+            // 
+            // remoteToolStripMenuItem
+            // 
+            this.remoteToolStripMenuItem.Name = "remoteToolStripMenuItem";
+            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.remoteToolStripMenuItem.Text = "Remote";
             // 
             // folderBrowserDialog
             // 
@@ -1697,16 +1717,21 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // txtRemotePort
+            // SelectWorkDir
             // 
-            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemotePort.Location = new System.Drawing.Point(263, 55);
-            this.txtRemotePort.Multiline = true;
-            this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
-            this.txtRemotePort.TabIndex = 3;
-            this.txtRemotePort.Text = "8787";
-            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SelectWorkDir.Image = ((System.Drawing.Image)(resources.GetObject("SelectWorkDir.Image")));
+            this.SelectWorkDir.Name = "SelectWorkDir";
+            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
+            this.SelectWorkDir.Text = "Select Work Directory";
+            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
+            // 
+            // selectProjectPathToolStripMenuItem
+            // 
+            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectWorkDir});
+            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
             // frmMain
             // 
@@ -1785,8 +1810,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectProjectPathToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SelectWorkDir;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel imageStatusLabel;
@@ -1910,6 +1933,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource remoteMachineBindingSource;
         private System.Windows.Forms.TextBox txtRemotePort;
+        private System.Windows.Forms.ToolStripMenuItem useToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem localToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem remoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectProjectPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SelectWorkDir;
     }
 }
 
