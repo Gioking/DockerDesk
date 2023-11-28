@@ -150,8 +150,6 @@
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1565,43 +1563,26 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectProjectPathToolStripMenuItem,
             this.reloadAllToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.useToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // selectProjectPathToolStripMenuItem
-            // 
-            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SelectWorkDir});
-            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
-            this.selectProjectPathToolStripMenuItem.Text = "Projects";
-            // 
-            // SelectWorkDir
-            // 
-            this.SelectWorkDir.Image = ((System.Drawing.Image)(resources.GetObject("SelectWorkDir.Image")));
-            this.SelectWorkDir.Name = "SelectWorkDir";
-            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
-            this.SelectWorkDir.Text = "Select Work Directory";
-            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.fileToolStripMenuItem.Text = "Tools";
             // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -1609,7 +1590,7 @@
             // 
             this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -1619,7 +1600,7 @@
             this.localToolStripMenuItem,
             this.remoteToolStripMenuItem});
             this.useToolStripMenuItem.Name = "useToolStripMenuItem";
-            this.useToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.useToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.useToolStripMenuItem.Text = "Use";
             // 
             // localToolStripMenuItem
@@ -1936,8 +1917,6 @@
         private System.Windows.Forms.ToolStripMenuItem useToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem localToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem remoteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectProjectPathToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SelectWorkDir;
     }
 }
 
