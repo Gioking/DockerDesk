@@ -27,6 +27,7 @@ namespace DockerDesk
         private List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
         private List<DockerVariable> EnvVariable;
         private StringBuilder sb = new StringBuilder();
+        private SshClientManager sshClientManager;
 
         public frmRemote()
         {
@@ -713,7 +714,6 @@ namespace DockerDesk
 
         private void btnConnectToRemote_Click(object sender, EventArgs e)
         {
-
             string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
 
             string sshConnection = txtRemoteUsername.Text; // "root@38.242.198.151";
@@ -723,10 +723,24 @@ namespace DockerDesk
             string host = parts[1];
             int port = int.Parse(txtRemotePort.Text);
 
-            var sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
-            var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
+            sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
 
-            dockerCommandExecutor.SendDockerCommand("ps -a");
+            try
+            {
+                sshClientManager.Connect();
+                var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
+                dockerCommandExecutor.SendDockerCommand("ps -a");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Errore: " + ex.Message);
+            }
+            finally
+            {
+                sshClientManager.Disconnect();
+                sshClientManager.Dispose();
+            }
+
 
 
         }

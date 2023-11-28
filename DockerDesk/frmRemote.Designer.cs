@@ -1402,9 +1402,9 @@
             this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConnectToRemote.ImageKey = "server-yellow-32.png";
             this.btnConnectToRemote.ImageList = this.imageList1;
-            this.btnConnectToRemote.Location = new System.Drawing.Point(119, 261);
+            this.btnConnectToRemote.Location = new System.Drawing.Point(10, 106);
             this.btnConnectToRemote.Name = "btnConnectToRemote";
-            this.btnConnectToRemote.Size = new System.Drawing.Size(201, 35);
+            this.btnConnectToRemote.Size = new System.Drawing.Size(310, 35);
             this.btnConnectToRemote.TabIndex = 2;
             this.btnConnectToRemote.Text = "Connect";
             this.btnConnectToRemote.UseVisualStyleBackColor = true;
@@ -1571,14 +1571,14 @@
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -1586,7 +1586,7 @@
             // 
             this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
