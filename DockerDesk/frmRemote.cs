@@ -60,14 +60,16 @@ namespace DockerDesk
                 bool isRunning = DoskerRunner.IsSshConnected(sshClientManager);
                 if (!isRunning)
                 {
-                    imageStatusLabel.Text = "Il client ssh non è connetto. Per favore, connettersi prima di procedere.";
+                    imageStatusLabel.Text = "Client ssh non connesso.";
                     toolStripStatus.Image = imageList1.Images["red-button.png"];
+                    txtLog.Text = LogHelper.LogInfo("Client ssh non connesso.");
                     return false;
                 }
                 else
                 {
                     imageStatusLabel.Text = "Client ssh connesso.";
                     toolStripStatus.Image = imageList1.Images["green-button.png"];
+                    txtLog.Text = LogHelper.LogInfo("Client ssh connesso.");
                     return true;
                 }
             }
@@ -237,10 +239,8 @@ namespace DockerDesk
         {
             try
             {
-                if (sshClientManager.DisconnectAndDispose())
-                {
-                    MessageBox.Show("Connessione SSH chiusa correttamente.");
-                }
+                sshClientManager.DisconnectAndDispose();
+                CheckIfConnection();
             }
             catch (Exception ex)
             {
@@ -813,8 +813,7 @@ namespace DockerDesk
 
 
 
+
         #endregion
-
-
     }
 }
