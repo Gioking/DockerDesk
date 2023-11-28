@@ -33,6 +33,8 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,8 +68,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.remoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -113,6 +113,20 @@
             this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.newToolStripMenuItem.Text = "Use";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.ShowNewForm);
+            // 
+            // localToolStripMenuItem
+            // 
+            this.localToolStripMenuItem.Name = "localToolStripMenuItem";
+            this.localToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.localToolStripMenuItem.Text = "Local";
+            this.localToolStripMenuItem.Click += new System.EventHandler(this.localToolStripMenuItem_Click);
+            // 
+            // remoteToolStripMenuItem
+            // 
+            this.remoteToolStripMenuItem.Name = "remoteToolStripMenuItem";
+            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.remoteToolStripMenuItem.Text = "Remote";
+            this.remoteToolStripMenuItem.Click += new System.EventHandler(this.remoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -371,19 +385,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // localToolStripMenuItem
-            // 
-            this.localToolStripMenuItem.Name = "localToolStripMenuItem";
-            this.localToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.localToolStripMenuItem.Text = "Local";
-            this.localToolStripMenuItem.Click += new System.EventHandler(this.localToolStripMenuItem_Click);
-            // 
-            // remoteToolStripMenuItem
-            // 
-            this.remoteToolStripMenuItem.Name = "remoteToolStripMenuItem";
-            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.remoteToolStripMenuItem.Text = "Remote";
-            // 
             // frmMDIParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -396,7 +397,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "frmMDIParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmMDIParent";
+            this.Text = "DockerDesk v.1.0 for visual studio containers By F.G.";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);

@@ -64,6 +64,12 @@
     <Compile Include="frmHelp.Designer.cs">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRemote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemote.Designer.cs">
+      <DependentUpon>frmRemote.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLocal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmHelp.resx">
       <DependentUpon>frmHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRemote.resx">
+      <DependentUpon>frmRemote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLocal.resx">
       <DependentUpon>frmLocal.cs</DependentUpon>

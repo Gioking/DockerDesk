@@ -1,6 +1,6 @@
 ﻿namespace DockerDesk
 {
-    partial class frmLocal
+    partial class frmRemote
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLocal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRemote));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -150,6 +150,8 @@
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,8 +170,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.SelectWorkDir = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectProjectPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1574,18 +1574,34 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // selectProjectPathToolStripMenuItem
+            // 
+            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectWorkDir});
+            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
+            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.selectProjectPathToolStripMenuItem.Text = "Projects";
+            // 
+            // SelectWorkDir
+            // 
+            this.SelectWorkDir.Image = ((System.Drawing.Image)(resources.GetObject("SelectWorkDir.Image")));
+            this.SelectWorkDir.Name = "SelectWorkDir";
+            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
+            this.SelectWorkDir.Text = "Select Work Directory";
+            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
+            // 
             // reloadAllToolStripMenuItem
             // 
             this.reloadAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadAllToolStripMenuItem.Image")));
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
-            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
             this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -1593,7 +1609,7 @@
             // 
             this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -1603,7 +1619,7 @@
             this.localToolStripMenuItem,
             this.remoteToolStripMenuItem});
             this.useToolStripMenuItem.Name = "useToolStripMenuItem";
-            this.useToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.useToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.useToolStripMenuItem.Text = "Use";
             // 
             // localToolStripMenuItem
@@ -1717,23 +1733,7 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // SelectWorkDir
-            // 
-            this.SelectWorkDir.Image = ((System.Drawing.Image)(resources.GetObject("SelectWorkDir.Image")));
-            this.SelectWorkDir.Name = "SelectWorkDir";
-            this.SelectWorkDir.Size = new System.Drawing.Size(221, 24);
-            this.SelectWorkDir.Text = "Select Work Directory";
-            this.SelectWorkDir.Click += new System.EventHandler(this.SelectWorkDir_Click);
-            // 
-            // selectProjectPathToolStripMenuItem
-            // 
-            this.selectProjectPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SelectWorkDir});
-            this.selectProjectPathToolStripMenuItem.Name = "selectProjectPathToolStripMenuItem";
-            this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.selectProjectPathToolStripMenuItem.Text = "Projects";
-            // 
-            // frmLocal
+            // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1744,9 +1744,9 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmMain";
+            this.Name = "frmRemote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DockerDesk v.1.0 for visual studio containers By F.G.";
+            this.Text = "DockerDesk for remote session";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabImages.ResumeLayout(false);

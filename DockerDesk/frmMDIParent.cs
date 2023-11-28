@@ -19,6 +19,13 @@ namespace DockerDesk
             childForm.Show();
         }
 
+        private void remoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRemote childForm = new frmRemote();
+            childForm.MdiParent = this;
+            childForm.Show();
+        }
+
         private void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
