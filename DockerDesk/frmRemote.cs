@@ -266,8 +266,6 @@ namespace DockerDesk
         {
             try
             {
-                //Copy files to remote host
-                await sshClientManager.UploadFilesViaScpAsync(txtLocalPath.Text, txtRemotePath.Text);
 
                 string dockerFilePath = Path.Combine(Application.StartupPath, txtLocalPath.Text, "dockerfile");
                 if (!File.Exists(dockerFilePath))
@@ -277,6 +275,18 @@ namespace DockerDesk
                 }
 
                 SpinnerHelper.ToggleSpinner(pBar, true);
+
+                string tempDirectory = Path.GetTempPath();
+                string localPath = txtLocalPath.Text;
+                string projectName = Path.GetFileName(localPath);
+                string zipFilePath = $@"{tempDirectory}\{projectName}.zip";
+                string remotePath = txtRemotePath.Text;
+
+                //Create zip file from project folder
+                await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
+
+                //Copy zip file to remote host
+                await sshClientManager.UploadFileViaScpAsync(zipFilePath, $"{remotePath}/{projectName}.zip");
 
 
                 ResultModel command;

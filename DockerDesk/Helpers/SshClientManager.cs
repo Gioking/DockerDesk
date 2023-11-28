@@ -65,7 +65,7 @@ public class SshClientManager
         ProgressChanged?.Invoke(percentage);
     }
 
-    public async Task UploadFilesViaScpAsync(string localDirectoryPath, string remoteDirectoryPath)
+    public async Task UploadFileViaScpAsync(string localFilePath, string remoteFilePath)
     {
         if (this.client == null || !this.client.IsConnected)
         {
@@ -77,19 +77,9 @@ public class SshClientManager
             try
             {
                 scpClient.Connect();
-                var files = Directory.GetFiles(localDirectoryPath);
-                int totalFiles = files.Length;
-                int uploadedCount = 0;
 
-                foreach (var file in files)
-                {
-                    var remoteFilePath = Path.Combine(remoteDirectoryPath, Path.GetFileName(file));
-                    await Task.Run(() => scpClient.Upload(new FileInfo(file), remoteFilePath));
-
-                    uploadedCount++;
-                    int percentage = (int)((uploadedCount / (float)totalFiles) * 100);
-                    OnProgressChanged(percentage);
-                }
+                // Caricamento del file ZIP
+                await Task.Run(() => scpClient.Upload(new FileInfo(localFilePath), remoteFilePath));
             }
             catch (Exception ex)
             {
@@ -104,6 +94,7 @@ public class SshClientManager
             }
         }
     }
+
 
 
 }
