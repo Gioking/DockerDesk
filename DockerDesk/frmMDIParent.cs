@@ -14,7 +14,9 @@ namespace DockerDesk
 
         private void localToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Form form = new Form();
+            frmLocal childForm = new frmLocal();
+            childForm.MdiParent = this;
+            childForm.Show();
         }
 
         private void ShowNewForm(object sender, EventArgs e)

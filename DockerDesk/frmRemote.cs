@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DockerDesk
 {
-    public partial class frmMain : Form
+    public partial class frmRemote : Form
     {
         private DockerImage selectedImage;
         private DockerContainer selectedContainer;
@@ -28,7 +28,7 @@ namespace DockerDesk
         private List<DockerVariable> EnvVariable;
         private StringBuilder sb = new StringBuilder();
 
-        public frmMain()
+        public frmRemote()
         {
             InitializeComponent();
         }

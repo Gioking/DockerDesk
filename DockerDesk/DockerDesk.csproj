@@ -64,11 +64,11 @@
     <Compile Include="frmHelp.Designer.cs">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="frmLocal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="frmLocal.Designer.cs">
+      <DependentUpon>frmLocal.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMDIParent.cs">
       <SubType>Form</SubType>
@@ -115,8 +115,8 @@
     <EmbeddedResource Include="frmHelp.resx">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <EmbeddedResource Include="frmLocal.resx">
+      <DependentUpon>frmLocal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMDIParent.resx">
       <DependentUpon>frmMDIParent.cs</DependentUpon>

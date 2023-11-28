@@ -1,6 +1,6 @@
 ﻿namespace DockerDesk
 {
-    partial class frmMain
+    partial class frmLocal
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLocal));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -1733,7 +1733,7 @@
             this.selectProjectPathToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.selectProjectPathToolStripMenuItem.Text = "Projects";
             // 
-            // frmMain
+            // frmLocal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
