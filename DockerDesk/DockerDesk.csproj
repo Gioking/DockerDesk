@@ -36,6 +36,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet, Version=2023.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2023.0.0\lib\net462\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -79,12 +82,15 @@
     <Compile Include="frmWebView.Designer.cs">
       <DependentUpon>frmWebView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DockerCommandExecutor.cs" />
     <Compile Include="Helpers\DockerEnvHelper.cs" />
     <Compile Include="Helpers\DockerPortChecker.cs" />
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
+    <Compile Include="Helpers\SshClientManager.cs" />
     <Compile Include="Models\ContainerConfig.cs" />
+    <Compile Include="Models\RemoteMachine.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerJsonContainer.cs" />
     <Compile Include="Models\DockerJsonVariable.cs" />
@@ -122,6 +128,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="OpenSshKey\20220202_Perfexia_CentOS_7_root.openssh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\DataSources\DockerDesk.Models.RemoteMachine.datasource" />
     <None Include="variables\templatevar.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -708,8 +708,27 @@ namespace DockerDesk
             form.Show();
         }
 
+
         #endregion
 
+        private void btnConnectToRemote_Click(object sender, EventArgs e)
+        {
 
+            string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
+
+            string sshConnection = txtRemoteUsername.Text; // "root@38.242.198.151";
+            string[] parts = sshConnection.Split('@');
+
+            string username = parts[0];
+            string host = parts[1];
+            int port = int.Parse(txtRemotePort.Text);
+
+            var sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
+            var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
+
+            dockerCommandExecutor.SendDockerCommand("ps -a");
+
+
+        }
     }
 }

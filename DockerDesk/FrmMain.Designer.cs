@@ -129,6 +129,20 @@
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabRemote = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnConnectToRemote = new System.Windows.Forms.Button();
+            this.txtRemoteUsername = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dataGridRemoteConnections = new System.Windows.Forms.DataGridView();
+            this.hostNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ipAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -152,6 +166,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtRemotePort = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -173,6 +188,10 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
+            this.tabRemote.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -185,6 +204,7 @@
             this.tabControl1.Controls.Add(this.tabVolume);
             this.tabControl1.Controls.Add(this.tabNetwork);
             this.tabControl1.Controls.Add(this.tabVariables);
+            this.tabControl1.Controls.Add(this.tabRemote);
             this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -281,6 +301,7 @@
             this.imageList1.Images.SetKeyName(9, "green-button.png");
             this.imageList1.Images.SetKeyName(10, "red-button.png");
             this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
+            this.imageList1.Images.SetKeyName(12, "server-yellow-32.png");
             // 
             // txtHostPathName
             // 
@@ -879,9 +900,9 @@
             this.groupBox2.Controls.Add(this.txtNewVolumeName);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox2.Location = new System.Drawing.Point(873, 42);
+            this.groupBox2.Location = new System.Drawing.Point(873, 25);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(333, 485);
+            this.groupBox2.Size = new System.Drawing.Size(333, 502);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Volume data";
@@ -893,7 +914,7 @@
             this.btnCreateVolume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVolume.ImageKey = "accept-database-32.png";
             this.btnCreateVolume.ImageList = this.imageList1;
-            this.btnCreateVolume.Location = new System.Drawing.Point(119, 74);
+            this.btnCreateVolume.Location = new System.Drawing.Point(119, 70);
             this.btnCreateVolume.Name = "btnCreateVolume";
             this.btnCreateVolume.Size = new System.Drawing.Size(201, 35);
             this.btnCreateVolume.TabIndex = 2;
@@ -1326,6 +1347,152 @@
             // 
             this.dockerVariableBindingSource.DataSource = typeof(DockerDesk.Models.DockerVariable);
             // 
+            // tabRemote
+            // 
+            this.tabRemote.Controls.Add(this.label22);
+            this.tabRemote.Controls.Add(this.groupBox6);
+            this.tabRemote.Controls.Add(this.dataGridRemoteConnections);
+            this.tabRemote.ImageKey = "server-yellow-32.png";
+            this.tabRemote.Location = new System.Drawing.Point(4, 29);
+            this.tabRemote.Name = "tabRemote";
+            this.tabRemote.Size = new System.Drawing.Size(1226, 593);
+            this.tabRemote.TabIndex = 6;
+            this.tabRemote.Text = "Remote";
+            this.tabRemote.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(11, 7);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(204, 15);
+            this.label22.TabIndex = 15;
+            this.label22.Text = "Remote machines connections";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.txtRemotePort);
+            this.groupBox6.Controls.Add(this.btnConnectToRemote);
+            this.groupBox6.Controls.Add(this.txtRemoteUsername);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox6.Location = new System.Drawing.Point(875, 25);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(333, 502);
+            this.groupBox6.TabIndex = 14;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Remote machine";
+            // 
+            // btnConnectToRemote
+            // 
+            this.btnConnectToRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConnectToRemote.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConnectToRemote.ImageKey = "server-yellow-32.png";
+            this.btnConnectToRemote.ImageList = this.imageList1;
+            this.btnConnectToRemote.Location = new System.Drawing.Point(119, 261);
+            this.btnConnectToRemote.Name = "btnConnectToRemote";
+            this.btnConnectToRemote.Size = new System.Drawing.Size(201, 35);
+            this.btnConnectToRemote.TabIndex = 2;
+            this.btnConnectToRemote.Text = "Connect";
+            this.btnConnectToRemote.UseVisualStyleBackColor = true;
+            this.btnConnectToRemote.Click += new System.EventHandler(this.btnConnectToRemote_Click);
+            // 
+            // txtRemoteUsername
+            // 
+            this.txtRemoteUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteUsername.Location = new System.Drawing.Point(10, 55);
+            this.txtRemoteUsername.Multiline = true;
+            this.txtRemoteUsername.Name = "txtRemoteUsername";
+            this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
+            this.txtRemoteUsername.TabIndex = 1;
+            this.txtRemoteUsername.Text = "root@38.242.198.151";
+            this.txtRemoteUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 32);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(276, 20);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Username:(user@ipaddress) and port";
+            // 
+            // dataGridRemoteConnections
+            // 
+            this.dataGridRemoteConnections.AllowUserToAddRows = false;
+            this.dataGridRemoteConnections.AllowUserToDeleteRows = false;
+            this.dataGridRemoteConnections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridRemoteConnections.AutoGenerateColumns = false;
+            this.dataGridRemoteConnections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridRemoteConnections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRemoteConnections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.hostNameDataGridViewTextBoxColumn,
+            this.ipAddressDataGridViewTextBoxColumn,
+            this.portDataGridViewTextBoxColumn,
+            this.userNameDataGridViewTextBoxColumn,
+            this.passwordDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn1});
+            this.dataGridRemoteConnections.DataSource = this.remoteMachineBindingSource;
+            this.dataGridRemoteConnections.Location = new System.Drawing.Point(13, 25);
+            this.dataGridRemoteConnections.MultiSelect = false;
+            this.dataGridRemoteConnections.Name = "dataGridRemoteConnections";
+            this.dataGridRemoteConnections.ReadOnly = true;
+            this.dataGridRemoteConnections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridRemoteConnections.Size = new System.Drawing.Size(856, 502);
+            this.dataGridRemoteConnections.TabIndex = 13;
+            // 
+            // hostNameDataGridViewTextBoxColumn
+            // 
+            this.hostNameDataGridViewTextBoxColumn.DataPropertyName = "HostName";
+            this.hostNameDataGridViewTextBoxColumn.HeaderText = "HostName";
+            this.hostNameDataGridViewTextBoxColumn.Name = "hostNameDataGridViewTextBoxColumn";
+            this.hostNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ipAddressDataGridViewTextBoxColumn
+            // 
+            this.ipAddressDataGridViewTextBoxColumn.DataPropertyName = "IpAddress";
+            this.ipAddressDataGridViewTextBoxColumn.HeaderText = "IpAddress";
+            this.ipAddressDataGridViewTextBoxColumn.Name = "ipAddressDataGridViewTextBoxColumn";
+            this.ipAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // portDataGridViewTextBoxColumn
+            // 
+            this.portDataGridViewTextBoxColumn.DataPropertyName = "Port";
+            this.portDataGridViewTextBoxColumn.HeaderText = "Port";
+            this.portDataGridViewTextBoxColumn.Name = "portDataGridViewTextBoxColumn";
+            this.portDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn1
+            // 
+            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
+            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // remoteMachineBindingSource
+            // 
+            this.remoteMachineBindingSource.DataSource = typeof(DockerDesk.Models.RemoteMachine);
+            // 
             // tabLog
             // 
             this.tabLog.Controls.Add(this.btnClearLog);
@@ -1341,7 +1508,7 @@
             // btnClearLog
             // 
             this.btnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClearLog.Location = new System.Drawing.Point(8, 507);
+            this.btnClearLog.Location = new System.Drawing.Point(8, 542);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(142, 35);
             this.btnClearLog.TabIndex = 3;
@@ -1359,7 +1526,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(1218, 501);
+            this.txtLog.Size = new System.Drawing.Size(1218, 526);
             this.txtLog.TabIndex = 0;
             this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
@@ -1418,7 +1585,6 @@
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Image = global::DockerDesk.Properties.Resources.info_2_32;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
@@ -1531,6 +1697,17 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // txtRemotePort
+            // 
+            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePort.Location = new System.Drawing.Point(263, 55);
+            this.txtRemotePort.Multiline = true;
+            this.txtRemotePort.Name = "txtRemotePort";
+            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
+            this.txtRemotePort.TabIndex = 3;
+            this.txtRemotePort.Text = "8787";
+            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1577,6 +1754,12 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
+            this.tabRemote.ResumeLayout(false);
+            this.tabRemote.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1712,6 +1895,21 @@
         private System.Windows.Forms.BindingSource dockerVariableBindingSource;
         private System.Windows.Forms.Button btnCreateVariables;
         private System.Windows.Forms.CheckBox chkUseVariables;
+        private System.Windows.Forms.TabPage tabRemote;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnConnectToRemote;
+        private System.Windows.Forms.TextBox txtRemoteUsername;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DataGridView dataGridRemoteConnections;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hostNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ipAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn portDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.BindingSource remoteMachineBindingSource;
+        private System.Windows.Forms.TextBox txtRemotePort;
     }
 }
 
