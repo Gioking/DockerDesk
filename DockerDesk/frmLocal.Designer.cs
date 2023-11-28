@@ -153,9 +153,6 @@
             this.reloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.localToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.remoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus = new System.Windows.Forms.ToolStripSplitButton();
@@ -1565,8 +1562,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reloadAllToolStripMenuItem,
             this.aboutToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.useToolStripMenuItem});
+            this.helpToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.fileToolStripMenuItem.Text = "Tools";
@@ -1593,27 +1589,6 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
-            // 
-            // useToolStripMenuItem
-            // 
-            this.useToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.localToolStripMenuItem,
-            this.remoteToolStripMenuItem});
-            this.useToolStripMenuItem.Name = "useToolStripMenuItem";
-            this.useToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.useToolStripMenuItem.Text = "Use";
-            // 
-            // localToolStripMenuItem
-            // 
-            this.localToolStripMenuItem.Name = "localToolStripMenuItem";
-            this.localToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
-            this.localToolStripMenuItem.Text = "Local";
-            // 
-            // remoteToolStripMenuItem
-            // 
-            this.remoteToolStripMenuItem.Name = "remoteToolStripMenuItem";
-            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
-            this.remoteToolStripMenuItem.Text = "Remote";
             // 
             // folderBrowserDialog
             // 
@@ -1914,9 +1889,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource remoteMachineBindingSource;
         private System.Windows.Forms.TextBox txtRemotePort;
-        private System.Windows.Forms.ToolStripMenuItem useToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem localToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem remoteToolStripMenuItem;
     }
 }
 

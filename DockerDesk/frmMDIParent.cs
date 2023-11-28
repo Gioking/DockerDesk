@@ -17,6 +17,7 @@ namespace DockerDesk
             frmLocal childForm = new frmLocal();
             childForm.MdiParent = this;
             childForm.Show();
+            LayoutMdi(MdiLayout.TileVertical);
         }
 
         private void remoteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -24,32 +25,29 @@ namespace DockerDesk
             frmRemote childForm = new frmRemote();
             childForm.MdiParent = this;
             childForm.Show();
+            LayoutMdi(MdiLayout.TileVertical);
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
+        private void mnuOpenLocal_Click(object sender, EventArgs e)
         {
-            Form childForm = new Form();
+            frmLocal childForm = new frmLocal();
             childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
             childForm.Show();
+            LayoutMdi(MdiLayout.TileVertical);
         }
 
-        private void OpenFile(object sender, EventArgs e)
+        private void mnuOpenRemote_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = openFileDialog.FileName;
-            }
+            frmRemote childForm = new frmRemote();
+            childForm.MdiParent = this;
+            childForm.Show();
+            LayoutMdi(MdiLayout.TileVertical);
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
 
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
