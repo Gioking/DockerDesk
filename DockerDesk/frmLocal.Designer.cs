@@ -1194,7 +1194,7 @@
             this.btnOpenFolder.TabIndex = 4;
             this.btnOpenFolder.Text = "---";
             this.btnOpenFolder.UseVisualStyleBackColor = false;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+
             // 
             // btnDeleteImage
             // 

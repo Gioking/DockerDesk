@@ -39,6 +39,17 @@ namespace DockerDesk.Helpers
             }
         }
 
+        public static bool IsSshConnected(SshClientManager sshClientManager)
+        {
+            try
+            {
+                return sshClientManager.GetClient().IsConnected;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public static async Task<List<DockerImage>> ParseDockerImagesOutputAsync(string output)
         {
@@ -281,6 +292,32 @@ namespace DockerDesk.Helpers
             return resultModel;
         }
 
+        public static async Task<ResultModel> DockerExecute(string arguments, string workdir, SshClientManager sshClientManager)
+        {
+            ResultModel resultModel = new ResultModel();
+
+            try
+            {
+                LogHelper.LogInfo($"Command: docker {arguments}");
+
+                // Utilizzo di DockerCommandExecutor per eseguire il comando su una macchina remota
+                var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
+                string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);
+
+                if (!string.IsNullOrEmpty(result))
+                {
+                    resultModel.OperationResult = result;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+                LogHelper.LogError($"Err: {e.Message}");
+                return null;
+            }
+
+            return resultModel;
+        }
 
     }
 }

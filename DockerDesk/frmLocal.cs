@@ -194,7 +194,6 @@ namespace DockerDesk
         {
             try
             {
-
                 string dockerFilePath = Path.Combine(Application.StartupPath, txtWorkDirPath.Text, "dockerfile");
                 if (!File.Exists(dockerFilePath))
                 {
@@ -203,7 +202,6 @@ namespace DockerDesk
                 }
 
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                //await Task.Delay(3000);
 
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))
@@ -513,7 +511,7 @@ namespace DockerDesk
             }
         }
 
-        private void btnOpenFolder_Click(object sender, EventArgs e)
+        private void btnOpenFolder2_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {

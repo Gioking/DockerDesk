@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 public class DockerCommandExecutor
 {
@@ -9,12 +10,13 @@ public class DockerCommandExecutor
         this.sshClientManager = sshClientManager;
     }
 
-    public string SendDockerCommand(string dockerCommand)
+    public async Task<string> SendDockerCommandAsync(string dockerCommand)
     {
         var client = sshClientManager.GetClient();
         var cmd = client.CreateCommand("docker " + dockerCommand);
-        var result = cmd.Execute();
+        var result = await Task.Run(() => cmd.Execute());
         Console.WriteLine("Risultato del comando: " + result);
         return result;
     }
 }
+

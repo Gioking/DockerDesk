@@ -31,11 +31,27 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRemote));
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabRemote = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnDisconnectSsh = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.txtRemotePort = new System.Windows.Forms.TextBox();
+            this.btnConnectToRemote = new System.Windows.Forms.Button();
+            this.txtRemoteUsername = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dataGridRemoteConnections = new System.Windows.Forms.DataGridView();
+            this.hostNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ipAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtHostPathName = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chkShareVolumeToHost = new System.Windows.Forms.CheckBox();
@@ -61,9 +77,12 @@
             this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOpenFolder1 = new System.Windows.Forms.Button();
+            this.txtRemotePath = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.btnDeleteImage = new System.Windows.Forms.Button();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
-            this.txtWorkDirPath = new System.Windows.Forms.TextBox();
+            this.btnOpenFolder2 = new System.Windows.Forms.Button();
+            this.txtLocalPath = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtTag = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -129,21 +148,6 @@
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabRemote = new System.Windows.Forms.TabPage();
-            this.label22 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtRemotePort = new System.Windows.Forms.TextBox();
-            this.btnConnectToRemote = new System.Windows.Forms.Button();
-            this.txtRemoteUsername = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.dataGridRemoteConnections = new System.Windows.Forms.DataGridView();
-            this.hostNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ipAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.portDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -165,8 +169,12 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnDisconnectSsh = new System.Windows.Forms.Button();
+            this.UploaderPBar = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
+            this.tabRemote.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
@@ -187,10 +195,6 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
-            this.tabRemote.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.tabLog.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -198,12 +202,12 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabRemote);
             this.tabControl1.Controls.Add(this.tabImages);
             this.tabControl1.Controls.Add(this.tabContainers);
             this.tabControl1.Controls.Add(this.tabVolume);
             this.tabControl1.Controls.Add(this.tabNetwork);
             this.tabControl1.Controls.Add(this.tabVariables);
-            this.tabControl1.Controls.Add(this.tabRemote);
             this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -213,6 +217,197 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabRemote
+            // 
+            this.tabRemote.Controls.Add(this.label22);
+            this.tabRemote.Controls.Add(this.groupBox6);
+            this.tabRemote.Controls.Add(this.dataGridRemoteConnections);
+            this.tabRemote.ImageKey = "server-yellow-32.png";
+            this.tabRemote.Location = new System.Drawing.Point(4, 29);
+            this.tabRemote.Name = "tabRemote";
+            this.tabRemote.Size = new System.Drawing.Size(1226, 593);
+            this.tabRemote.TabIndex = 6;
+            this.tabRemote.Text = "Remote";
+            this.tabRemote.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(11, 7);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(204, 15);
+            this.label22.TabIndex = 15;
+            this.label22.Text = "Remote machines connections";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.btnDisconnectSsh);
+            this.groupBox6.Controls.Add(this.txtRemotePort);
+            this.groupBox6.Controls.Add(this.btnConnectToRemote);
+            this.groupBox6.Controls.Add(this.txtRemoteUsername);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox6.Location = new System.Drawing.Point(875, 25);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(333, 502);
+            this.groupBox6.TabIndex = 14;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Remote machine";
+            // 
+            // btnDisconnectSsh
+            // 
+            this.btnDisconnectSsh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnectSsh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDisconnectSsh.ImageKey = "server-yellow-32.png";
+            this.btnDisconnectSsh.ImageList = this.imageList1;
+            this.btnDisconnectSsh.Location = new System.Drawing.Point(10, 147);
+            this.btnDisconnectSsh.Name = "btnDisconnectSsh";
+            this.btnDisconnectSsh.Size = new System.Drawing.Size(310, 35);
+            this.btnDisconnectSsh.TabIndex = 4;
+            this.btnDisconnectSsh.Text = "Disconnect";
+            this.btnDisconnectSsh.UseVisualStyleBackColor = true;
+            this.btnDisconnectSsh.Click += new System.EventHandler(this.btnDisconnectSsh_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "arrow-96-32.png");
+            this.imageList1.Images.SetKeyName(1, "arrow-213-32.png");
+            this.imageList1.Images.SetKeyName(2, "check-mark-32.png");
+            this.imageList1.Images.SetKeyName(3, "gear-2-32.png");
+            this.imageList1.Images.SetKeyName(4, "globe-4-32.png");
+            this.imageList1.Images.SetKeyName(5, "hexagon-32.png");
+            this.imageList1.Images.SetKeyName(6, "settings-5-32.png");
+            this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
+            this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
+            this.imageList1.Images.SetKeyName(9, "green-button.png");
+            this.imageList1.Images.SetKeyName(10, "red-button.png");
+            this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
+            this.imageList1.Images.SetKeyName(12, "server-yellow-32.png");
+            // 
+            // txtRemotePort
+            // 
+            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePort.Location = new System.Drawing.Point(263, 55);
+            this.txtRemotePort.Multiline = true;
+            this.txtRemotePort.Name = "txtRemotePort";
+            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
+            this.txtRemotePort.TabIndex = 3;
+            this.txtRemotePort.Text = "8787";
+            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnConnectToRemote
+            // 
+            this.btnConnectToRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConnectToRemote.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConnectToRemote.ImageKey = "server-yellow-32.png";
+            this.btnConnectToRemote.ImageList = this.imageList1;
+            this.btnConnectToRemote.Location = new System.Drawing.Point(10, 106);
+            this.btnConnectToRemote.Name = "btnConnectToRemote";
+            this.btnConnectToRemote.Size = new System.Drawing.Size(310, 35);
+            this.btnConnectToRemote.TabIndex = 2;
+            this.btnConnectToRemote.Text = "Connect";
+            this.btnConnectToRemote.UseVisualStyleBackColor = true;
+            this.btnConnectToRemote.Click += new System.EventHandler(this.btnConnectToRemote_Click);
+            // 
+            // txtRemoteUsername
+            // 
+            this.txtRemoteUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteUsername.Location = new System.Drawing.Point(10, 55);
+            this.txtRemoteUsername.Multiline = true;
+            this.txtRemoteUsername.Name = "txtRemoteUsername";
+            this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
+            this.txtRemoteUsername.TabIndex = 1;
+            this.txtRemoteUsername.Text = "root@38.242.198.151";
+            this.txtRemoteUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 32);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(276, 20);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Username:(user@ipaddress) and port";
+            // 
+            // dataGridRemoteConnections
+            // 
+            this.dataGridRemoteConnections.AllowUserToAddRows = false;
+            this.dataGridRemoteConnections.AllowUserToDeleteRows = false;
+            this.dataGridRemoteConnections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridRemoteConnections.AutoGenerateColumns = false;
+            this.dataGridRemoteConnections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridRemoteConnections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRemoteConnections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.hostNameDataGridViewTextBoxColumn,
+            this.ipAddressDataGridViewTextBoxColumn,
+            this.portDataGridViewTextBoxColumn,
+            this.userNameDataGridViewTextBoxColumn,
+            this.passwordDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn1});
+            this.dataGridRemoteConnections.DataSource = this.remoteMachineBindingSource;
+            this.dataGridRemoteConnections.Location = new System.Drawing.Point(13, 25);
+            this.dataGridRemoteConnections.MultiSelect = false;
+            this.dataGridRemoteConnections.Name = "dataGridRemoteConnections";
+            this.dataGridRemoteConnections.ReadOnly = true;
+            this.dataGridRemoteConnections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridRemoteConnections.Size = new System.Drawing.Size(856, 502);
+            this.dataGridRemoteConnections.TabIndex = 13;
+            // 
+            // hostNameDataGridViewTextBoxColumn
+            // 
+            this.hostNameDataGridViewTextBoxColumn.DataPropertyName = "HostName";
+            this.hostNameDataGridViewTextBoxColumn.HeaderText = "HostName";
+            this.hostNameDataGridViewTextBoxColumn.Name = "hostNameDataGridViewTextBoxColumn";
+            this.hostNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ipAddressDataGridViewTextBoxColumn
+            // 
+            this.ipAddressDataGridViewTextBoxColumn.DataPropertyName = "IpAddress";
+            this.ipAddressDataGridViewTextBoxColumn.HeaderText = "IpAddress";
+            this.ipAddressDataGridViewTextBoxColumn.Name = "ipAddressDataGridViewTextBoxColumn";
+            this.ipAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // portDataGridViewTextBoxColumn
+            // 
+            this.portDataGridViewTextBoxColumn.DataPropertyName = "Port";
+            this.portDataGridViewTextBoxColumn.HeaderText = "Port";
+            this.portDataGridViewTextBoxColumn.Name = "portDataGridViewTextBoxColumn";
+            this.portDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn1
+            // 
+            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
+            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // remoteMachineBindingSource
+            // 
+            this.remoteMachineBindingSource.DataSource = typeof(DockerDesk.Models.RemoteMachine);
             // 
             // tabImages
             // 
@@ -283,24 +478,6 @@
             this.btnCreateVariables.Text = "Edit container variables";
             this.btnCreateVariables.UseVisualStyleBackColor = true;
             this.btnCreateVariables.Click += new System.EventHandler(this.btnCreateVariables_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "arrow-96-32.png");
-            this.imageList1.Images.SetKeyName(1, "arrow-213-32.png");
-            this.imageList1.Images.SetKeyName(2, "check-mark-32.png");
-            this.imageList1.Images.SetKeyName(3, "gear-2-32.png");
-            this.imageList1.Images.SetKeyName(4, "globe-4-32.png");
-            this.imageList1.Images.SetKeyName(5, "hexagon-32.png");
-            this.imageList1.Images.SetKeyName(6, "settings-5-32.png");
-            this.imageList1.Images.SetKeyName(7, "accept-database-32.png");
-            this.imageList1.Images.SetKeyName(8, "folder-8-32.png");
-            this.imageList1.Images.SetKeyName(9, "green-button.png");
-            this.imageList1.Images.SetKeyName(10, "red-button.png");
-            this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
-            this.imageList1.Images.SetKeyName(12, "server-yellow-32.png");
             // 
             // txtHostPathName
             // 
@@ -552,9 +729,13 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.UploaderPBar);
+            this.groupBox1.Controls.Add(this.btnOpenFolder1);
+            this.groupBox1.Controls.Add(this.txtRemotePath);
+            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.btnDeleteImage);
-            this.groupBox1.Controls.Add(this.btnOpenFolder);
-            this.groupBox1.Controls.Add(this.txtWorkDirPath);
+            this.groupBox1.Controls.Add(this.btnOpenFolder2);
+            this.groupBox1.Controls.Add(this.txtLocalPath);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtTag);
             this.groupBox1.Controls.Add(this.label8);
@@ -569,6 +750,44 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image data";
             // 
+            // btnOpenFolder1
+            // 
+            this.btnOpenFolder1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolder1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOpenFolder1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFolder1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOpenFolder1.Location = new System.Drawing.Point(839, 31);
+            this.btnOpenFolder1.Name = "btnOpenFolder1";
+            this.btnOpenFolder1.Size = new System.Drawing.Size(40, 22);
+            this.btnOpenFolder1.TabIndex = 7;
+            this.btnOpenFolder1.Text = "---";
+            this.btnOpenFolder1.UseVisualStyleBackColor = false;
+            this.btnOpenFolder1.Click += new System.EventHandler(this.btnOpenFolder1_Click);
+            // 
+            // txtRemotePath
+            // 
+            this.txtRemotePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRemotePath.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtRemotePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemotePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtRemotePath.Location = new System.Drawing.Point(149, 60);
+            this.txtRemotePath.Name = "txtRemotePath";
+            this.txtRemotePath.Size = new System.Drawing.Size(676, 22);
+            this.txtRemotePath.TabIndex = 8;
+            this.txtRemotePath.Text = "/dotnetapp";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(31, 34);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(96, 16);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "1) Local path";
+            // 
             // btnDeleteImage
             // 
             this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -581,48 +800,48 @@
             this.btnDeleteImage.UseVisualStyleBackColor = true;
             this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
             // 
-            // btnOpenFolder
+            // btnOpenFolder2
             // 
-            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFolder.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOpenFolder.Location = new System.Drawing.Point(839, 25);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(40, 22);
-            this.btnOpenFolder.TabIndex = 4;
-            this.btnOpenFolder.Text = "---";
-            this.btnOpenFolder.UseVisualStyleBackColor = false;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            this.btnOpenFolder2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolder2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOpenFolder2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFolder2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOpenFolder2.Location = new System.Drawing.Point(839, 59);
+            this.btnOpenFolder2.Name = "btnOpenFolder2";
+            this.btnOpenFolder2.Size = new System.Drawing.Size(40, 22);
+            this.btnOpenFolder2.TabIndex = 4;
+            this.btnOpenFolder2.Text = "---";
+            this.btnOpenFolder2.UseVisualStyleBackColor = false;
+            this.btnOpenFolder2.Click += new System.EventHandler(this.btnOpenFolder2_Click);
             // 
-            // txtWorkDirPath
+            // txtLocalPath
             // 
-            this.txtWorkDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtLocalPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtWorkDirPath.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.txtWorkDirPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtWorkDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtWorkDirPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtWorkDirPath.Location = new System.Drawing.Point(125, 25);
-            this.txtWorkDirPath.Name = "txtWorkDirPath";
-            this.txtWorkDirPath.Size = new System.Drawing.Size(708, 22);
-            this.txtWorkDirPath.TabIndex = 5;
-            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
+            this.txtLocalPath.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtLocalPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLocalPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtLocalPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtLocalPath.Location = new System.Drawing.Point(149, 32);
+            this.txtLocalPath.Name = "txtLocalPath";
+            this.txtLocalPath.Size = new System.Drawing.Size(676, 22);
+            this.txtLocalPath.TabIndex = 5;
+            this.txtLocalPath.Text = "D:\\Dev\\AppDemos\\ConsoleApp1";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(16, 31);
+            this.label17.Location = new System.Drawing.Point(31, 65);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(95, 16);
+            this.label17.Size = new System.Drawing.Size(112, 16);
             this.label17.TabIndex = 6;
-            this.label17.Text = "1) Dockerfile";
+            this.label17.Text = "2) Remote path";
             // 
             // txtTag
             // 
             this.txtTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtTag.Location = new System.Drawing.Point(125, 81);
+            this.txtTag.Location = new System.Drawing.Point(149, 115);
             this.txtTag.Multiline = true;
             this.txtTag.Name = "txtTag";
             this.txtTag.Size = new System.Drawing.Size(210, 22);
@@ -633,11 +852,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(16, 85);
+            this.label8.Location = new System.Drawing.Point(31, 119);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 16);
             this.label8.TabIndex = 3;
-            this.label8.Text = "3) Image tag";
+            this.label8.Text = "4) Image tag";
             // 
             // btnCreateImage
             // 
@@ -656,7 +875,7 @@
             // txtImageName
             // 
             this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtImageName.Location = new System.Drawing.Point(125, 53);
+            this.txtImageName.Location = new System.Drawing.Point(149, 87);
             this.txtImageName.Multiline = true;
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(210, 22);
@@ -667,11 +886,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 57);
+            this.label2.Location = new System.Drawing.Point(31, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 16);
             this.label2.TabIndex = 0;
-            this.label2.Text = "2) Image name";
+            this.label2.Text = "3) Image name";
             // 
             // label1
             // 
@@ -1346,164 +1565,6 @@
             // 
             this.dockerVariableBindingSource.DataSource = typeof(DockerDesk.Models.DockerVariable);
             // 
-            // tabRemote
-            // 
-            this.tabRemote.Controls.Add(this.label22);
-            this.tabRemote.Controls.Add(this.groupBox6);
-            this.tabRemote.Controls.Add(this.dataGridRemoteConnections);
-            this.tabRemote.ImageKey = "server-yellow-32.png";
-            this.tabRemote.Location = new System.Drawing.Point(4, 29);
-            this.tabRemote.Name = "tabRemote";
-            this.tabRemote.Size = new System.Drawing.Size(1226, 593);
-            this.tabRemote.TabIndex = 6;
-            this.tabRemote.Text = "Remote";
-            this.tabRemote.UseVisualStyleBackColor = true;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(11, 7);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(204, 15);
-            this.label22.TabIndex = 15;
-            this.label22.Text = "Remote machines connections";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.btnDisconnectSsh);
-            this.groupBox6.Controls.Add(this.txtRemotePort);
-            this.groupBox6.Controls.Add(this.btnConnectToRemote);
-            this.groupBox6.Controls.Add(this.txtRemoteUsername);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox6.Location = new System.Drawing.Point(875, 25);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(333, 502);
-            this.groupBox6.TabIndex = 14;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Remote machine";
-            // 
-            // txtRemotePort
-            // 
-            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemotePort.Location = new System.Drawing.Point(263, 55);
-            this.txtRemotePort.Multiline = true;
-            this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
-            this.txtRemotePort.TabIndex = 3;
-            this.txtRemotePort.Text = "8787";
-            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnConnectToRemote
-            // 
-            this.btnConnectToRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnConnectToRemote.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConnectToRemote.ImageKey = "server-yellow-32.png";
-            this.btnConnectToRemote.ImageList = this.imageList1;
-            this.btnConnectToRemote.Location = new System.Drawing.Point(10, 106);
-            this.btnConnectToRemote.Name = "btnConnectToRemote";
-            this.btnConnectToRemote.Size = new System.Drawing.Size(310, 35);
-            this.btnConnectToRemote.TabIndex = 2;
-            this.btnConnectToRemote.Text = "Connect";
-            this.btnConnectToRemote.UseVisualStyleBackColor = true;
-            this.btnConnectToRemote.Click += new System.EventHandler(this.btnConnectToRemote_Click);
-            // 
-            // txtRemoteUsername
-            // 
-            this.txtRemoteUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteUsername.Location = new System.Drawing.Point(10, 55);
-            this.txtRemoteUsername.Multiline = true;
-            this.txtRemoteUsername.Name = "txtRemoteUsername";
-            this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
-            this.txtRemoteUsername.TabIndex = 1;
-            this.txtRemoteUsername.Text = "root@38.242.198.151";
-            this.txtRemoteUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 32);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(276, 20);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Username:(user@ipaddress) and port";
-            // 
-            // dataGridRemoteConnections
-            // 
-            this.dataGridRemoteConnections.AllowUserToAddRows = false;
-            this.dataGridRemoteConnections.AllowUserToDeleteRows = false;
-            this.dataGridRemoteConnections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridRemoteConnections.AutoGenerateColumns = false;
-            this.dataGridRemoteConnections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridRemoteConnections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridRemoteConnections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.hostNameDataGridViewTextBoxColumn,
-            this.ipAddressDataGridViewTextBoxColumn,
-            this.portDataGridViewTextBoxColumn,
-            this.userNameDataGridViewTextBoxColumn,
-            this.passwordDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn1});
-            this.dataGridRemoteConnections.DataSource = this.remoteMachineBindingSource;
-            this.dataGridRemoteConnections.Location = new System.Drawing.Point(13, 25);
-            this.dataGridRemoteConnections.MultiSelect = false;
-            this.dataGridRemoteConnections.Name = "dataGridRemoteConnections";
-            this.dataGridRemoteConnections.ReadOnly = true;
-            this.dataGridRemoteConnections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridRemoteConnections.Size = new System.Drawing.Size(856, 502);
-            this.dataGridRemoteConnections.TabIndex = 13;
-            // 
-            // hostNameDataGridViewTextBoxColumn
-            // 
-            this.hostNameDataGridViewTextBoxColumn.DataPropertyName = "HostName";
-            this.hostNameDataGridViewTextBoxColumn.HeaderText = "HostName";
-            this.hostNameDataGridViewTextBoxColumn.Name = "hostNameDataGridViewTextBoxColumn";
-            this.hostNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ipAddressDataGridViewTextBoxColumn
-            // 
-            this.ipAddressDataGridViewTextBoxColumn.DataPropertyName = "IpAddress";
-            this.ipAddressDataGridViewTextBoxColumn.HeaderText = "IpAddress";
-            this.ipAddressDataGridViewTextBoxColumn.Name = "ipAddressDataGridViewTextBoxColumn";
-            this.ipAddressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // portDataGridViewTextBoxColumn
-            // 
-            this.portDataGridViewTextBoxColumn.DataPropertyName = "Port";
-            this.portDataGridViewTextBoxColumn.HeaderText = "Port";
-            this.portDataGridViewTextBoxColumn.Name = "portDataGridViewTextBoxColumn";
-            this.portDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn1
-            // 
-            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
-            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // remoteMachineBindingSource
-            // 
-            this.remoteMachineBindingSource.DataSource = typeof(DockerDesk.Models.RemoteMachine);
-            // 
             // tabLog
             // 
             this.tabLog.Controls.Add(this.btnClearLog);
@@ -1691,20 +1752,12 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // btnDisconnectSsh
+            // UploaderPBar
             // 
-            this.btnDisconnectSsh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDisconnectSsh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisconnectSsh.ImageKey = "server-yellow-32.png";
-            this.btnDisconnectSsh.ImageList = this.imageList1;
-            this.btnDisconnectSsh.Location = new System.Drawing.Point(10, 147);
-            this.btnDisconnectSsh.Name = "btnDisconnectSsh";
-            this.btnDisconnectSsh.Size = new System.Drawing.Size(310, 35);
-            this.btnDisconnectSsh.TabIndex = 4;
-            this.btnDisconnectSsh.Text = "Disconnect";
-            this.btnDisconnectSsh.UseVisualStyleBackColor = true;
-            this.btnDisconnectSsh.Click += new System.EventHandler(this.btnDisconnectSsh_Click);
+            this.UploaderPBar.Location = new System.Drawing.Point(149, 143);
+            this.UploaderPBar.Name = "UploaderPBar";
+            this.UploaderPBar.Size = new System.Drawing.Size(210, 23);
+            this.UploaderPBar.TabIndex = 10;
             // 
             // frmRemote
             // 
@@ -1720,8 +1773,15 @@
             this.Name = "frmRemote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DockerDesk for remote session";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRemote_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabRemote.ResumeLayout(false);
+            this.tabRemote.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1752,12 +1812,6 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
-            this.tabRemote.ResumeLayout(false);
-            this.tabRemote.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridRemoteConnections)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -1865,9 +1919,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn portsDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtWorkDirPath;
+        private System.Windows.Forms.TextBox txtLocalPath;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnOpenFolder;
+        private System.Windows.Forms.Button btnOpenFolder2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn driveDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn volumeNameDataGridViewTextBoxColumn;
@@ -1907,6 +1961,10 @@
         private System.Windows.Forms.BindingSource remoteMachineBindingSource;
         private System.Windows.Forms.TextBox txtRemotePort;
         private System.Windows.Forms.Button btnDisconnectSsh;
+        private System.Windows.Forms.Button btnOpenFolder1;
+        private System.Windows.Forms.TextBox txtRemotePath;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ProgressBar UploaderPBar;
     }
 }
 

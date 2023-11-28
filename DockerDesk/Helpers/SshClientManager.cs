@@ -1,5 +1,7 @@
 ﻿using Renci.SshNet;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 
 public class SshClientManager
 {
@@ -8,6 +10,8 @@ public class SshClientManager
     private string pathToPrivateKey;
     private int port;
     private SshClient client;
+    public delegate void ProgressChangedHandler(int percentage);
+    public event ProgressChangedHandler ProgressChanged;
 
     public SshClientManager(string host, string username, string pathToPrivateKey, int port = 22)
     {
@@ -40,22 +44,6 @@ public class SshClientManager
         return this.client;
     }
 
-    public void Disconnect()
-    {
-        if (this.client != null && this.client.IsConnected)
-        {
-            this.client.Disconnect();
-        }
-    }
-
-    public void Dispose()
-    {
-        if (this.client != null)
-        {
-            this.client.Dispose();
-        }
-    }
-
     public bool DisconnectAndDispose()
     {
         if (this.client != null)
@@ -70,6 +58,51 @@ public class SshClientManager
             return true;
         }
         return false;
+    }
+
+    protected virtual void OnProgressChanged(int percentage)
+    {
+        ProgressChanged?.Invoke(percentage);
+    }
+
+    public async Task UploadFilesViaScpAsync(string localDirectoryPath, string remoteDirectoryPath)
+    {
+        if (this.client == null || !this.client.IsConnected)
+        {
+            throw new InvalidOperationException("SSH client is not connected.");
+        }
+
+        using (var scpClient = new ScpClient(this.client.ConnectionInfo))
+        {
+            try
+            {
+                scpClient.Connect();
+                var files = Directory.GetFiles(localDirectoryPath);
+                int totalFiles = files.Length;
+                int uploadedCount = 0;
+
+                foreach (var file in files)
+                {
+                    var remoteFilePath = Path.Combine(remoteDirectoryPath, Path.GetFileName(file));
+                    await Task.Run(() => scpClient.Upload(new FileInfo(file), remoteFilePath));
+
+                    uploadedCount++;
+                    int percentage = (int)((uploadedCount / (float)totalFiles) * 100);
+                    OnProgressChanged(percentage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Errore durante il trasferimento file: {ex.Message}");
+            }
+            finally
+            {
+                if (scpClient.IsConnected)
+                {
+                    scpClient.Disconnect();
+                }
+            }
+        }
     }
 
 
