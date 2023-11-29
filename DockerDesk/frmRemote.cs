@@ -490,17 +490,26 @@ namespace DockerDesk
         {
             try
             {
+                if (string.IsNullOrEmpty(txtSubnet.Text) || string.IsNullOrEmpty(comboDrive.Text) || string.IsNullOrEmpty(txtGateway.Text))
+                {
+                    MessageBox.Show("Missing network information: Subnet, Drive, Gateway");
+                    return;
+                }
+
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
                 string subnet = txtSubnet.Text;
-                string suggestedSubnet = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
+                var (suggestedSubnet, suggestedGateway) = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
+
                 if (!string.IsNullOrEmpty(suggestedSubnet))
                 {
-                    MessageBox.Show($"Warning.. the subnet: {subnet} is already in use! Suggested subnet could be: {suggestedSubnet}");
+                    MessageBox.Show($"Warning: The subnet '{subnet}' is already in use! A suggested subnet could be: '{suggestedSubnet}' with gateway '{suggestedGateway}'.");
                     txtSubnet.Text = suggestedSubnet;
+                    txtGateway.Text = suggestedGateway;
                     SpinnerHelper.ToggleSpinner(pBar, false);
                     return;
                 }
+
 
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
