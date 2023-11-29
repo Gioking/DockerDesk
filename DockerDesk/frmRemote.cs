@@ -292,7 +292,6 @@ namespace DockerDesk
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))
                 {
-                    // Assicurati che sshClientManager sia stato inizializzato e connesso
                     command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtLocalPath.Text, sshClientManager);
                 }
                 else

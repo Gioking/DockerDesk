@@ -233,7 +233,7 @@ namespace DockerDesk.Helpers
             });
         }
 
-
+        //Local Docker
         public static async Task<ResultModel> DockerExecute(string arguments, string workdir)
         {
             ResultModel resultModel = new ResultModel();
@@ -292,6 +292,7 @@ namespace DockerDesk.Helpers
             return resultModel;
         }
 
+        //Remote Docker
         public static async Task<ResultModel> DockerExecute(string arguments, string workdir, SshClientManager sshClientManager)
         {
             ResultModel resultModel = new ResultModel();
