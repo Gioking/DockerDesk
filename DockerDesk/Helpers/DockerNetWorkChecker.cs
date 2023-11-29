@@ -9,7 +9,7 @@ namespace DockerDesk.Helpers
 {
     public class DockerNetWorkChecker
     {
-        public static async Task<bool> IsNetworkRangeInUseAsync(string subnet, SshClientManager sshClientManager)
+        public static async Task<string> IsNetworkRangeInUseAsync(string subnet, SshClientManager sshClientManager)
         {
             try
             {
@@ -18,7 +18,7 @@ namespace DockerDesk.Helpers
                 if (client == null)
                 {
                     MessageBox.Show("Please connect ssh client first.");
-                    return false;
+                    return string.Empty;
                 }
 
                 using (var sshClient = new SshClient(client.ConnectionInfo))
@@ -39,7 +39,8 @@ namespace DockerDesk.Helpers
 
                     if (IsSubnetOverlap(subnet, subnetList))
                     {
-                        return true;
+                        string suggestedSubnet = SuggestAvailableSubnet(subnet, subnetList, 24);
+                        return suggestedSubnet;
                     }
                 }
             }
@@ -47,8 +48,7 @@ namespace DockerDesk.Helpers
             {
                 Console.WriteLine($"Si è verificato un errore: {ex.Message}");
             }
-
-            return false;
+            return string.Empty;
         }
 
         public static bool IsSubnetOverlap(string newSubnet, List<string> existingSubnets)
@@ -83,6 +83,30 @@ namespace DockerDesk.Helpers
             var endIpLong = ipLong | ~mask;
 
             return (startIpLong, endIpLong);
+        }
+
+
+        public static string SuggestAvailableSubnet(string desiredSubnet, List<string> existingSubnets, int subnetSize = 24)
+        {
+            var baseIp = desiredSubnet.Split('/')[0];
+            var baseIpParts = baseIp.Split('.');
+
+            // Assumi che baseIpParts abbia 4 elementi per gli indirizzi IPv4.
+            if (baseIpParts.Length != 4) return null;
+
+            int thirdOctetStart = int.Parse(baseIpParts[2]);
+            int thirdOctetEnd = 255;  // Limite per il terzo ottetto in IPv4
+
+            for (int i = thirdOctetStart; i <= thirdOctetEnd; i++)
+            {
+                string newSubnet = $"{baseIpParts[0]}.{baseIpParts[1]}.{i}.0/{subnetSize}";
+                if (!IsSubnetOverlap(newSubnet, existingSubnets))
+                {
+                    return newSubnet;
+                }
+            }
+
+            return null;  // Nessuna subnet disponibile trovata
         }
 
 

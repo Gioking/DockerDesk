@@ -493,10 +493,11 @@ namespace DockerDesk
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
                 string subnet = txtSubnet.Text;
-                bool isSubnetInUse = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
-                if (isSubnetInUse)
+                string suggestedSubnet = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
+                if (!string.IsNullOrEmpty(suggestedSubnet))
                 {
-                    MessageBox.Show($"Warning.. the subnet: {subnet} is already in use!");
+                    MessageBox.Show($"Warning.. the subnet: {subnet} is already in use! Suggested subnet could be: {suggestedSubnet}");
+                    txtSubnet.Text = suggestedSubnet;
                     SpinnerHelper.ToggleSpinner(pBar, false);
                     return;
                 }
