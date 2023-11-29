@@ -54,7 +54,6 @@ namespace DockerDesk
 
         private bool CheckIfConnection()
         {
-            // Verifica se Docker è in esecuzione
             try
             {
                 bool isRunning = DoskerRunner.IsSshConnected(sshClientManager);
@@ -222,6 +221,8 @@ namespace DockerDesk
                 sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
                 sshClientManager.Connect();
 
+                ReloadAll();
+
                 CheckIfConnection();
             }
             catch (Exception ex)
@@ -266,7 +267,7 @@ namespace DockerDesk
         {
             try
             {
-
+                //Check if a initial dockerfile is missing
                 string dockerFilePath = Path.Combine(Application.StartupPath, txtLocalPath.Text, "dockerfile");
                 if (!File.Exists(dockerFilePath))
                 {
@@ -274,13 +275,22 @@ namespace DockerDesk
                     return;
                 }
 
-                SpinnerHelper.ToggleSpinner(pBar, true);
-
                 string tempDirectory = Path.GetTempPath();
                 string localPath = txtLocalPath.Text;
                 string projectName = Path.GetFileName(localPath);
                 string zipFilePath = $@"{tempDirectory}{projectName}.zip";
                 string remotePath = txtRemotePath.Text;
+
+                //Chack if remotepath is correct
+                bool startsWithSlash = remotePath.StartsWith("/");
+                bool endsWithSlash = remotePath.EndsWith("/");
+                if (!startsWithSlash || !endsWithSlash)
+                {
+                    MessageBox.Show($"Warning... the remote path must start with / and must end with / eg. /remorepath/");
+                    return;
+                }
+
+                SpinnerHelper.ToggleSpinner(pBar, true);
 
                 //Create zip file from project folder
                 await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
@@ -291,11 +301,10 @@ namespace DockerDesk
 
                 ResultModel command;
 
-                // Prepara il comando Docker in base alla presenza di un tag
                 string dockerCommand = string.IsNullOrEmpty(txtTag.Text) ?
                     $"cd {remotePath} && docker build -t {txtImageName.Text} ." : $"cd {remotePath} && docker build -t {txtImageName.Text}:{txtTag.Text} .";
 
-                // Esegui il comando Docker sulla macchina remota
+                //Execute Docker command on remote machine
                 command = await DoskerRunner.DockerCreateImage(dockerCommand, sshClientManager);
 
                 if (command.Error == null && command.OperationResult == null)
