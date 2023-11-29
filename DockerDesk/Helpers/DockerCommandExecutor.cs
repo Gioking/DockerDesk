@@ -13,7 +13,7 @@ public class DockerCommandExecutor
     public async Task<string> SendDockerCommandAsync(string dockerCommand)
     {
         var client = sshClientManager.GetClient();
-        var cmd = client.CreateCommand("docker " + dockerCommand);
+        var cmd = client.CreateCommand($"docker {dockerCommand}");
         var result = await Task.Run(() => cmd.Execute());
         Console.WriteLine("Risultato del comando: " + result);
         return result;

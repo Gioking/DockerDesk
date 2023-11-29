@@ -304,7 +304,7 @@ namespace DockerDesk
                 string dockerCommand = string.IsNullOrEmpty(txtTag.Text) ?
                     $"cd {remotePath} && docker build -t {txtImageName.Text} ." : $"cd {remotePath} && docker build -t {txtImageName.Text}:{txtTag.Text} .";
 
-                //Execute Docker command on remote machine
+                //Execute ssh command on remote machine
                 command = await DoskerRunner.DockerCreateImage(dockerCommand, sshClientManager);
 
                 if (command.Error == null && command.OperationResult == null)
@@ -328,11 +328,12 @@ namespace DockerDesk
             }
             catch (Exception ex)
             {
+                SpinnerHelper.ToggleSpinner(pBar, false);
                 MessageBox.Show(ex.Message);
             }
         }
 
-        //docker image rm -f image
+        //docker rmi -f image:v1
         private async void btnDeleteImage_Click(object sender, EventArgs e)
         {
             try
@@ -341,6 +342,75 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
+        private async void btnRunContainer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                string result = string.Empty;
+                if (selectedImage == null || string.IsNullOrEmpty(txtContainerName.Text))
+                {
+                    MessageBox.Show("Warning.. select an image and provide the container name!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
+                var isContainer = containersList.FirstOrDefault(c => c.Names == txtContainerName.Text);
+                if (isContainer != null)
+                {
+                    MessageBox.Show($"Warning.. a container with same name: {txtContainerName.Text} already exist!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
+                int port = int.Parse(txtHostPort.Text);
+                bool isPortInUse = await DockerPortChecker.IsPortInUseByDockerContainerAsync(port);
+                if (isPortInUse)
+                {
+                    MessageBox.Show($"Warning.. the host port: {txtHostPort.Text} is already in use!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
+                string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
+                if (chkUseVariables.Checked && pathToFile == null)
+                {
+                    MessageBox.Show("Please edit the variables into the json file by clicking on 'Edit container variables' button");
+                    return;
+                }
+
+                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
+                string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
+
+                if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
+                {
+                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtLocalPath.Text, sshClientManager);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                }
+                else
+                {
+                    if (!chkHasVolume.Checked)
+                    {
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
+                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    }
+                    else
+                    {
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
+                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    }
+                }
+
+                LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -502,74 +572,7 @@ namespace DockerDesk
             }
         }
 
-        // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
-        private async void btnRunContainer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                string result = string.Empty;
-                if (selectedImage == null || string.IsNullOrEmpty(txtContainerName.Text))
-                {
-                    MessageBox.Show("Warning.. select an image and provide the container name!");
-                    SpinnerHelper.ToggleSpinner(pBar, false);
-                    return;
-                }
 
-                var isContainer = containersList.FirstOrDefault(c => c.Names == txtContainerName.Text);
-                if (isContainer != null)
-                {
-                    MessageBox.Show($"Warning.. a container with same name: {txtContainerName.Text} already exist!");
-                    SpinnerHelper.ToggleSpinner(pBar, false);
-                    return;
-                }
-
-                int port = int.Parse(txtHostPort.Text);
-                bool isPortInUse = await DockerPortChecker.IsPortInUseByDockerContainerAsync(port);
-                if (isPortInUse)
-                {
-                    MessageBox.Show($"Warning.. the host port: {txtHostPort.Text} is already in use!");
-                    SpinnerHelper.ToggleSpinner(pBar, false);
-                    return;
-                }
-
-                string pathToFile = Path.Combine(Application.StartupPath, $@"variables\{selectedImage.ImageId}.json");
-                if (chkUseVariables.Checked && pathToFile == null)
-                {
-                    MessageBox.Show("Please edit the variables into the json file by clicking on 'Edit container variables' button");
-                    return;
-                }
-
-                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
-                string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
-
-                if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
-                {
-                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtLocalPath.Text, sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                }
-                else
-                {
-                    if (!chkHasVolume.Checked)
-                    {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                    }
-                    else
-                    {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                    }
-                }
-
-                LoadContainers();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
 
         private async void btnInspect_Click(object sender, EventArgs e)
