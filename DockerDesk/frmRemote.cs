@@ -373,7 +373,7 @@ namespace DockerDesk
                 }
 
                 int port = int.Parse(txtHostPort.Text);
-                bool isPortInUse = await DockerPortChecker.IsPortInUseByDockerContainerAsync(port);
+                bool isPortInUse = await DockerPortChecker.IsRemotePortInUseByDockerContainerAsync(port, sshClientManager);
                 if (isPortInUse)
                 {
                     MessageBox.Show($"Warning.. the host port: {txtHostPort.Text} is already in use!");
@@ -389,7 +389,16 @@ namespace DockerDesk
                 }
 
                 string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
-                string baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
+                string baseDockerCommand = string.Empty;
+
+                if (envVars != null)
+                {
+                    baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
+                }
+                else
+                {
+                    baseDockerCommand = $"run -d --name {txtContainerName.Text}";
+                }
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {

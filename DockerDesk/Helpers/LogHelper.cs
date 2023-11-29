@@ -9,7 +9,7 @@ namespace DockerDesk.Helpers
 
         public static string LogInfo(string message)
         {
-            if (message.StartsWith("Command:"))
+            if (message.StartsWith("---> Command:"))
             {
                 sb.AppendLine(new String('-', 100));
             }
