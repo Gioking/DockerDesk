@@ -282,9 +282,7 @@ namespace DockerDesk
                 string remotePath = txtRemotePath.Text;
 
                 //Chack if remotepath is correct
-                bool startsWithSlash = remotePath.StartsWith("/");
-                bool endsWithSlash = remotePath.EndsWith("/");
-                if (!startsWithSlash || !endsWithSlash)
+                if (!remotePath.StartsWith("/") || !remotePath.EndsWith("/"))
                 {
                     MessageBox.Show($"Warning... the remote path must start with / and must end with / eg. /remorepath/");
                     return;
@@ -301,6 +299,7 @@ namespace DockerDesk
 
                 ResultModel command;
 
+                //Build docker image command 
                 string dockerCommand = string.IsNullOrEmpty(txtTag.Text) ?
                     $"cd {remotePath} && docker build -t {txtImageName.Text} ." : $"cd {remotePath} && docker build -t {txtImageName.Text}:{txtTag.Text} .";
 
@@ -310,6 +309,17 @@ namespace DockerDesk
                 if (command.Error == null && command.OperationResult == null)
                 {
                     return;
+                }
+
+                //If successful clean the working folder in remote machine
+                if (command.OperationResult.Contains("Successfully built"))
+                {
+                    var chose = MessageBox.Show($"Warning... want you clean the working folder {remotePath} on remote machine ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (chose == DialogResult.Yes)
+                    {
+                        await DockerImageHelpers.CleanSourceFilesAsync(remotePath, sshClientManager);
+                    }
                 }
 
                 if (!string.IsNullOrEmpty(command.OperationResult))
