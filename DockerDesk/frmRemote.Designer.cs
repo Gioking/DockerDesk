@@ -252,9 +252,9 @@
             this.richConnectionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richConnectionInfo.Location = new System.Drawing.Point(357, 42);
+            this.richConnectionInfo.Location = new System.Drawing.Point(295, 42);
             this.richConnectionInfo.Name = "richConnectionInfo";
-            this.richConnectionInfo.Size = new System.Drawing.Size(844, 524);
+            this.richConnectionInfo.Size = new System.Drawing.Size(906, 524);
             this.richConnectionInfo.TabIndex = 11;
             this.richConnectionInfo.Text = "";
             // 
@@ -262,11 +262,11 @@
             // 
             this.btnDisconnectSsh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDisconnectSsh.ImageKey = "server-yellow-32.png";
+            this.btnDisconnectSsh.ImageKey = "red-button.png";
             this.btnDisconnectSsh.ImageList = this.imageList1;
             this.btnDisconnectSsh.Location = new System.Drawing.Point(24, 203);
             this.btnDisconnectSsh.Name = "btnDisconnectSsh";
-            this.btnDisconnectSsh.Size = new System.Drawing.Size(310, 35);
+            this.btnDisconnectSsh.Size = new System.Drawing.Size(247, 35);
             this.btnDisconnectSsh.TabIndex = 10;
             this.btnDisconnectSsh.Text = "Disconnect";
             this.btnDisconnectSsh.UseVisualStyleBackColor = true;
@@ -305,11 +305,11 @@
             // 
             this.btnConnectToRemote.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConnectToRemote.ImageKey = "server-yellow-32.png";
+            this.btnConnectToRemote.ImageKey = "green-button.png";
             this.btnConnectToRemote.ImageList = this.imageList1;
             this.btnConnectToRemote.Location = new System.Drawing.Point(24, 162);
             this.btnConnectToRemote.Name = "btnConnectToRemote";
-            this.btnConnectToRemote.Size = new System.Drawing.Size(310, 35);
+            this.btnConnectToRemote.Size = new System.Drawing.Size(247, 35);
             this.btnConnectToRemote.TabIndex = 8;
             this.btnConnectToRemote.Text = "Connect";
             this.btnConnectToRemote.UseVisualStyleBackColor = true;

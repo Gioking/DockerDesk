@@ -283,11 +283,11 @@ namespace DockerDesk
                 string remotePath = txtRemotePath.Text;
 
                 //Create zip file from project folder
-                //await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
+                await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
 
                 //Copy zip file to remote host
-                //string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
-                //txtLog.Text = LogHelper.LogInfo(result);
+                string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
+                txtLog.Text = LogHelper.LogInfo(result);
 
                 ResultModel command;
 

@@ -11,9 +11,17 @@ namespace DockerDesk
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMDIParent());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMDIParent());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Main() error: {ex.Message}");
+            }
+
         }
     }
 }
