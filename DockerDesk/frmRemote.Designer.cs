@@ -34,7 +34,6 @@
             this.tabRemote = new System.Windows.Forms.TabPage();
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.richConnectionInfo = new System.Windows.Forms.RichTextBox();
             this.btnDisconnectSsh = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtRemotePort = new System.Windows.Forms.TextBox();
@@ -214,7 +213,6 @@
             // 
             this.tabRemote.Controls.Add(this.label25);
             this.tabRemote.Controls.Add(this.label22);
-            this.tabRemote.Controls.Add(this.richConnectionInfo);
             this.tabRemote.Controls.Add(this.btnDisconnectSsh);
             this.tabRemote.Controls.Add(this.txtRemotePort);
             this.tabRemote.Controls.Add(this.btnConnectToRemote);
@@ -246,17 +244,6 @@
             this.label22.Size = new System.Drawing.Size(131, 15);
             this.label22.TabIndex = 12;
             this.label22.Text = "Remote connection";
-            // 
-            // richConnectionInfo
-            // 
-            this.richConnectionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richConnectionInfo.Location = new System.Drawing.Point(295, 42);
-            this.richConnectionInfo.Name = "richConnectionInfo";
-            this.richConnectionInfo.Size = new System.Drawing.Size(906, 524);
-            this.richConnectionInfo.TabIndex = 11;
-            this.richConnectionInfo.Text = "";
             // 
             // btnDisconnectSsh
             // 
@@ -1881,7 +1868,6 @@
         private System.Windows.Forms.TextBox txtRemotePath;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ProgressBar UploaderPBar;
-        private System.Windows.Forms.RichTextBox richConnectionInfo;
         private System.Windows.Forms.Button btnDisconnectSsh;
         private System.Windows.Forms.TextBox txtRemotePort;
         private System.Windows.Forms.Button btnConnectToRemote;
