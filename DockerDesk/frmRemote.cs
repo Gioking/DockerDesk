@@ -491,6 +491,16 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
+
+                string subnet = txtSubnet.Text;
+                bool isSubnetInUse = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
+                if (isSubnetInUse)
+                {
+                    MessageBox.Show($"Warning.. the subnet: {subnet} is already in use!");
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                    return;
+                }
+
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
                     var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", sshClientManager);
@@ -511,6 +521,7 @@ namespace DockerDesk
             }
             catch (Exception ex)
             {
+                SpinnerHelper.ToggleSpinner(pBar, false);
                 MessageBox.Show(ex.Message);
             }
         }

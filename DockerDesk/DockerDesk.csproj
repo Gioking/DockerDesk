@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Helpers\DockerCommandExecutor.cs" />
     <Compile Include="Helpers\DockerEnvHelper.cs" />
+    <Compile Include="Helpers\DockerNetWorkChecker.cs" />
     <Compile Include="Helpers\DockerPortChecker.cs" />
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\FileHelpers.cs" />
