@@ -566,7 +566,10 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.Error))
+                {
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                }
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }

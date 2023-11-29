@@ -860,7 +860,7 @@
             // 
             this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDisconnect.Location = new System.Drawing.Point(779, 395);
+            this.btnDisconnect.Location = new System.Drawing.Point(852, 395);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(88, 26);
             this.btnDisconnect.TabIndex = 21;
@@ -874,16 +874,16 @@
             this.btnInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnInspect.Location = new System.Drawing.Point(14, 390);
             this.btnInspect.Name = "btnInspect";
-            this.btnInspect.Size = new System.Drawing.Size(128, 31);
+            this.btnInspect.Size = new System.Drawing.Size(140, 31);
             this.btnInspect.TabIndex = 20;
-            this.btnInspect.Text = "Inspect";
+            this.btnInspect.Text = "Inspect container";
             this.btnInspect.UseVisualStyleBackColor = true;
             this.btnInspect.Click += new System.EventHandler(this.btnInspect_Click);
             // 
             // btnConnectNetwork
             // 
             this.btnConnectNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnConnectNetwork.Location = new System.Drawing.Point(698, 395);
+            this.btnConnectNetwork.Location = new System.Drawing.Point(771, 395);
             this.btnConnectNetwork.Name = "btnConnectNetwork";
             this.btnConnectNetwork.Size = new System.Drawing.Size(75, 26);
             this.btnConnectNetwork.TabIndex = 19;
@@ -897,9 +897,9 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(160, 400);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(200, 13);
+            this.label18.Size = new System.Drawing.Size(273, 13);
             this.label18.TabIndex = 18;
-            this.label18.Text = "Connect container to this network:";
+            this.label18.Text = "Connect the selected container to this network:";
             // 
             // cmbNetworksConnect
             // 
@@ -909,7 +909,7 @@
             this.cmbNetworksConnect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNetworksConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbNetworksConnect.FormattingEnabled = true;
-            this.cmbNetworksConnect.Location = new System.Drawing.Point(366, 395);
+            this.cmbNetworksConnect.Location = new System.Drawing.Point(439, 395);
             this.cmbNetworksConnect.Name = "cmbNetworksConnect";
             this.cmbNetworksConnect.Size = new System.Drawing.Size(326, 24);
             this.cmbNetworksConnect.TabIndex = 17;
@@ -924,9 +924,9 @@
             this.btnRemoveContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRemoveContainer.ImageKey = "(none)";
             this.btnRemoveContainer.ImageList = this.imageList1;
-            this.btnRemoveContainer.Location = new System.Drawing.Point(1001, 392);
+            this.btnRemoveContainer.Location = new System.Drawing.Point(1047, 392);
             this.btnRemoveContainer.Name = "btnRemoveContainer";
-            this.btnRemoveContainer.Size = new System.Drawing.Size(220, 31);
+            this.btnRemoveContainer.Size = new System.Drawing.Size(174, 31);
             this.btnRemoveContainer.TabIndex = 8;
             this.btnRemoveContainer.Text = "Remove Container";
             this.btnRemoveContainer.UseVisualStyleBackColor = true;
@@ -1230,7 +1230,7 @@
             this.btnNetInspect.Name = "btnNetInspect";
             this.btnNetInspect.Size = new System.Drawing.Size(210, 31);
             this.btnNetInspect.TabIndex = 21;
-            this.btnNetInspect.Text = "Inspect";
+            this.btnNetInspect.Text = "Inspect network";
             this.btnNetInspect.UseVisualStyleBackColor = true;
             this.btnNetInspect.Click += new System.EventHandler(this.btnNetInspect_Click);
             // 
