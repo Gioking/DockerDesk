@@ -212,7 +212,7 @@ namespace DockerDesk
             {
                 string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
 
-                string sshConnection = txtRemoteUsername.Text; // "root@38.242.198.151";
+                string sshConnection = txtRemoteUsername.Text;
                 string[] parts = sshConnection.Split('@');
 
                 string username = parts[0];
@@ -279,15 +279,15 @@ namespace DockerDesk
                 string tempDirectory = Path.GetTempPath();
                 string localPath = txtLocalPath.Text;
                 string projectName = Path.GetFileName(localPath);
-                string zipFilePath = $@"{tempDirectory}\{projectName}.zip";
+                string zipFilePath = $@"{tempDirectory}{projectName}.zip";
                 string remotePath = txtRemotePath.Text;
 
                 //Create zip file from project folder
                 await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
 
                 //Copy zip file to remote host
-                await sshClientManager.UploadFileViaScpAsync(zipFilePath, $"{remotePath}/{projectName}.zip");
-
+                string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
+                txtLog.Text = LogHelper.LogInfo(result);
 
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))

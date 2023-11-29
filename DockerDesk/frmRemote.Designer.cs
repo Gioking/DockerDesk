@@ -710,7 +710,7 @@
             this.txtRemotePath.Name = "txtRemotePath";
             this.txtRemotePath.Size = new System.Drawing.Size(676, 22);
             this.txtRemotePath.TabIndex = 8;
-            this.txtRemotePath.Text = "/dotnetapp";
+            this.txtRemotePath.Text = "/root/dotnetapp/";
             // 
             // label23
             // 

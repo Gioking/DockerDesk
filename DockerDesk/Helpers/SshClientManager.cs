@@ -65,35 +65,63 @@ public class SshClientManager
         ProgressChanged?.Invoke(percentage);
     }
 
-    public async Task UploadFileViaScpAsync(string localFilePath, string remoteFilePath)
+    public async Task<string> UploadAndDecompressFileAsync(string localFilePath, string remoteFilePath, string remoteExtractionPath)
     {
         if (this.client == null || !this.client.IsConnected)
         {
             throw new InvalidOperationException("SSH client is not connected.");
         }
 
-        using (var scpClient = new ScpClient(this.client.ConnectionInfo))
+        string commandResult = "";
+        using (var sftpClient = new SftpClient(this.client.ConnectionInfo))
         {
             try
             {
-                scpClient.Connect();
+                // Elimina il file ZIP esistente
+                using (var sshClient = new SshClient(this.client.ConnectionInfo))
+                {
+                    sshClient.Connect();
+                    var deleteCommand = sshClient.CreateCommand($"rm -f {remoteFilePath}");
+                    deleteCommand.Execute();
+                    sshClient.Disconnect();
+                }
 
-                // Caricamento del file ZIP
-                await Task.Run(() => scpClient.Upload(new FileInfo(localFilePath), remoteFilePath));
+                // Carica il file via SFTP
+                sftpClient.Connect();
+                using (var fileStream = new FileStream(localFilePath, FileMode.Open))
+                {
+                    await Task.Run(() => sftpClient.UploadFile(fileStream, remoteFilePath));
+                }
+                sftpClient.Disconnect();
+
+                // Decomprimi il file via SSH
+                using (var sshClient = new SshClient(this.client.ConnectionInfo))
+                {
+                    sshClient.Connect();
+                    var unzipCommand = sshClient.CreateCommand($"unzip -o {remoteFilePath} -d {remoteExtractionPath}");
+                    await Task.Run(() => unzipCommand.Execute());
+                    commandResult = unzipCommand.Result;
+
+                    // Controlla il codice di uscita per determinare se c'è stato un errore
+                    if (unzipCommand.ExitStatus != 0)
+                    {
+                        commandResult = $"Errore durante la decompressione: {commandResult}";
+                    }
+
+                    sshClient.Disconnect();
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Errore durante il trasferimento file: {ex.Message}");
-            }
-            finally
-            {
-                if (scpClient.IsConnected)
-                {
-                    scpClient.Disconnect();
-                }
+                commandResult = $"Errore durante il trasferimento e la decompressione del file: {ex.Message}";
             }
         }
+
+        return commandResult;
     }
+
+
+
 
 
 

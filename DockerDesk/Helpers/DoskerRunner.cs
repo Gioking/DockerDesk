@@ -300,7 +300,6 @@ namespace DockerDesk.Helpers
             {
                 LogHelper.LogInfo($"Command: docker {arguments}");
 
-                // Utilizzo di DockerCommandExecutor per eseguire il comando su una macchina remota
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
                 string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);
 
