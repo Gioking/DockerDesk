@@ -63,7 +63,7 @@ namespace DockerDesk.Helpers
                 {
                     sshClient.Connect();
                     var cmd = sshClient.CreateCommand("docker ps --format '{{.Ports}}'");
-                    var result = cmd.Execute();
+                    var result = await Task.Run(() => cmd.Execute());
                     sshClient.Disconnect();
 
                     if (result.Contains(port.ToString()))
@@ -71,25 +71,6 @@ namespace DockerDesk.Helpers
                         return true;
                     }
                 }
-
-
-                //using (var process = new Process { StartInfo = startInfo })
-                //{
-                //    process.Start();
-                //    using (var reader = process.StandardOutput)
-                //    {
-                //        string line;
-                //        while ((line = await reader.ReadLineAsync()) != null)
-                //        {
-                //            if (line.Contains($":{port}->"))
-                //            {
-                //                return true;
-                //            }
-                //        }
-                //    }
-
-                //    await Task.Run(() => process.WaitForExit());
-                //}
             }
             catch (Exception ex)
             {

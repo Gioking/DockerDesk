@@ -294,13 +294,13 @@ namespace DockerDesk.Helpers
         }
 
         //Remote Docker
-        public static async Task<ResultModel> DockerExecute(string arguments, string workdir, SshClientManager sshClientManager)
+        public static async Task<ResultModel> DockerExecute(string arguments, SshClientManager sshClientManager)
         {
             ResultModel resultModel = new ResultModel();
 
             try
             {
-                LogHelper.LogInfo($"Command: docker {arguments}");
+                LogHelper.LogInfo($"> Command: docker {arguments}");
 
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
                 string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);

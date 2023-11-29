@@ -1061,7 +1061,7 @@
             // 
             // btnCreateVolume
             // 
-            this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateVolume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVolume.ImageKey = "accept-database-32.png";
@@ -1076,6 +1076,7 @@
             // 
             // txtNewVolumeName
             // 
+            this.txtNewVolumeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNewVolumeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtNewVolumeName.Location = new System.Drawing.Point(119, 31);
             this.txtNewVolumeName.Multiline = true;
@@ -1086,6 +1087,7 @@
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(6, 32);
             this.label11.Name = "label11";

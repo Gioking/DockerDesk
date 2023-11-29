@@ -88,7 +88,7 @@ namespace DockerDesk
                 {
                     //SpinnerHelper.ToggleSpinner(pBar, true);
                     imagesList.Clear();
-                    var command = await DoskerRunner.DockerExecute("images", txtLocalPath.Text, sshClientManager);
+                    var command = await DoskerRunner.DockerExecute("images", sshClientManager);
                     if (!string.IsNullOrEmpty(command.Error))
                     {
                         txtLog.Text = LogHelper.LogError(command.Error);
@@ -114,7 +114,7 @@ namespace DockerDesk
             try
             {
                 containersList.Clear();
-                var command = await DoskerRunner.DockerExecute("ps -a", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute("ps -a", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
@@ -136,7 +136,7 @@ namespace DockerDesk
             try
             {
                 volumeList.Clear();
-                var command = await DoskerRunner.DockerExecute("volume ls", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute("volume ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
@@ -158,7 +158,7 @@ namespace DockerDesk
             try
             {
                 networkList.Clear();
-                var command = await DoskerRunner.DockerExecute("network ls", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute("network ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
@@ -339,7 +339,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -402,19 +402,19 @@ namespace DockerDesk
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", txtLocalPath.Text, sshClientManager);
+                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", sshClientManager);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
                     if (!chkHasVolume.Checked)
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", txtLocalPath.Text, sshClientManager);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
@@ -439,7 +439,7 @@ namespace DockerDesk
                     MessageBox.Show("Please select the container to remove.");
                     return;
                 }
-                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -456,7 +456,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -465,7 +465,23 @@ namespace DockerDesk
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+        //docker volume rm hello
+        private async void btnRemoveVolume_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadVolumes();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //docker network create -d bridge my-bridge-network
@@ -477,7 +493,7 @@ namespace DockerDesk
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
-                    var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtLocalPath.Text, sshClientManager);
+                    var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", sshClientManager);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
@@ -487,7 +503,7 @@ namespace DockerDesk
                         MessageBox.Show("Warning... the subnet is required.");
                         return;
                     }
-                    var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtLocalPath.Text, sshClientManager);
+                    var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", sshClientManager);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 LoadNetworks();
@@ -497,7 +513,6 @@ namespace DockerDesk
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private async void btnRemoveNetwork_Click(object sender, EventArgs e)
@@ -505,27 +520,9 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadNetworks();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        //docker volume rm hello
-        private async void btnRemoveVolume_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtLocalPath.Text, sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -547,7 +544,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -570,7 +567,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -603,7 +600,7 @@ namespace DockerDesk
 
                 //Inspect if container has a volume
                 //docker inspect --format '{{ .Mounts }}' nome_container
-                var command = await DoskerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", sshClientManager);
 
                 frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -750,7 +747,7 @@ namespace DockerDesk
 
             //docker network inspect my-custom-network
             //docker network inspect my-custom-network --format '{{json .}}' | jq
-            var command = await DoskerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", txtLocalPath.Text, sshClientManager);
+            var command = await DoskerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", sshClientManager);
 
             frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -797,7 +794,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", txtLocalPath.Text, sshClientManager);
+                var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", sshClientManager);
 
                 if (command.Error == null && command.OperationResult == null)
                 {
