@@ -40,6 +40,7 @@
             this.btnConnectToRemote = new System.Windows.Forms.Button();
             this.txtRemoteUsername = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
@@ -165,6 +166,7 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
@@ -218,7 +220,8 @@
             this.tabRemote.Controls.Add(this.btnConnectToRemote);
             this.tabRemote.Controls.Add(this.txtRemoteUsername);
             this.tabRemote.Controls.Add(this.label21);
-            this.tabRemote.ImageKey = "server-yellow-32.png";
+            this.tabRemote.Controls.Add(this.pictureBox1);
+            this.tabRemote.ImageIndex = 14;
             this.tabRemote.Location = new System.Drawing.Point(4, 29);
             this.tabRemote.Name = "tabRemote";
             this.tabRemote.Size = new System.Drawing.Size(1226, 593);
@@ -276,6 +279,9 @@
             this.imageList1.Images.SetKeyName(10, "red-button.png");
             this.imageList1.Images.SetKeyName(11, "high-importance-32.png");
             this.imageList1.Images.SetKeyName(12, "server-yellow-32.png");
+            this.imageList1.Images.SetKeyName(13, "Docker-services.jpg");
+            this.imageList1.Images.SetKeyName(14, "computer-32.png");
+            this.imageList1.Images.SetKeyName(15, "info-2-32 (1).png");
             // 
             // txtRemotePort
             // 
@@ -320,6 +326,17 @@
             this.label21.Size = new System.Drawing.Size(207, 20);
             this.label21.TabIndex = 6;
             this.label21.Text = "Username: user@ipaddress";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1226, 593);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // tabImages
             // 
@@ -1492,7 +1509,7 @@
             // 
             this.tabLog.Controls.Add(this.btnClearLog);
             this.tabLog.Controls.Add(this.txtLog);
-            this.tabLog.ImageKey = "high-importance-32.png";
+            this.tabLog.ImageKey = "info-2-32 (1).png";
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
             this.tabLog.Size = new System.Drawing.Size(1226, 593);
@@ -1698,6 +1715,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabRemote.ResumeLayout(false);
             this.tabRemote.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1875,6 +1893,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
