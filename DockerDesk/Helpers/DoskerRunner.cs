@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DockerDesk.Helpers
 {
@@ -303,6 +304,42 @@ namespace DockerDesk.Helpers
 
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
                 string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);
+
+                if (!string.IsNullOrEmpty(result))
+                {
+                    resultModel.OperationResult = result;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+                LogHelper.LogError($"Err: {e.Message}");
+                return null;
+            }
+
+            return resultModel;
+        }
+
+        //Remote Docker
+        public static async Task<ResultModel> DockerCreateImage(string arguments, SshClientManager sshClientManager)
+        {
+            ResultModel resultModel = new ResultModel();
+
+            try
+            {
+                LogHelper.LogInfo($"Command: docker {arguments}");
+
+
+                var client = sshClientManager.GetClient();
+
+                if (client == null)
+                {
+                    MessageBox.Show("Please connect ssh client first.");
+                    return null;
+                }
+
+                var cmd = client.CreateCommand(arguments);
+                var result = await Task.Run(() => cmd.Execute());
 
                 if (!string.IsNullOrEmpty(result))
                 {

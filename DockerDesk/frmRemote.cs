@@ -283,26 +283,35 @@ namespace DockerDesk
                 string remotePath = txtRemotePath.Text;
 
                 //Create zip file from project folder
-                await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
+                //await FileHelpers.CreateZipFileAsync(localPath, zipFilePath);
 
                 //Copy zip file to remote host
-                string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
-                txtLog.Text = LogHelper.LogInfo(result);
+                //string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
+                //txtLog.Text = LogHelper.LogInfo(result);
 
                 ResultModel command;
-                if (string.IsNullOrEmpty(txtTag.Text))
-                {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtLocalPath.Text, sshClientManager);
-                }
-                else
-                {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtLocalPath.Text, sshClientManager);
-                }
+
+                // Prepara il comando Docker in base alla presenza di un tag
+                string dockerCommand = string.IsNullOrEmpty(txtTag.Text) ?
+                    $"cd {remotePath} && docker build -t {txtImageName.Text} ." : $"cd {remotePath} && docker build -t {txtImageName.Text}:{txtTag.Text} .";
+
+                // Esegui il comando Docker sulla macchina remota
+                command = await DoskerRunner.DockerCreateImage(dockerCommand, sshClientManager);
 
                 if (command.Error == null && command.OperationResult == null)
                 {
                     return;
                 }
+
+                if (!string.IsNullOrEmpty(command.OperationResult))
+                {
+                    Console.WriteLine("Risultato del comando Docker: " + command.OperationResult);
+                }
+                else if (command.Error != null)
+                {
+                    Console.WriteLine("Errore durante l'esecuzione del comando Docker: " + command.Error);
+                }
+
 
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
