@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DockerDesk
@@ -114,6 +115,7 @@ namespace DockerDesk
             try
             {
                 containersList.Clear();
+                await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("ps -a", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
@@ -322,16 +324,6 @@ namespace DockerDesk
                     }
                 }
 
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    Console.WriteLine("Risultato del comando Docker: " + command.OperationResult);
-                }
-                else if (command.Error != null)
-                {
-                    Console.WriteLine("Errore durante l'esecuzione del comando Docker: " + command.Error);
-                }
-
-
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -348,11 +340,21 @@ namespace DockerDesk
         {
             try
             {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadImages();
-                SpinnerHelper.ToggleSpinner(pBar, false);
+                if (selectedImage == null)
+                {
+                    return;
+                }
+
+                var chose = MessageBox.Show($"Warning... want delete the image: {selectedImage.Image} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (chose == DialogResult.Yes)
+                {
+                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    LoadImages();
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                }
             }
             catch (Exception ex)
             {
@@ -443,16 +445,26 @@ namespace DockerDesk
         {
             try
             {
-                SpinnerHelper.ToggleSpinner(pBar, true);
                 if (selectedContainer == null)
                 {
-                    MessageBox.Show("Please select the container to remove.");
                     return;
                 }
-                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadContainers();
-                SpinnerHelper.ToggleSpinner(pBar, false);
+
+                var chose = MessageBox.Show($"Warning... want delete the container: {selectedContainer.Names} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (chose == DialogResult.Yes)
+                {
+                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    if (selectedContainer == null)
+                    {
+                        MessageBox.Show("Please select the container to remove.");
+                        return;
+                    }
+                    var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    LoadContainers();
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                }
             }
             catch (Exception ex)
             {
@@ -482,11 +494,16 @@ namespace DockerDesk
         {
             try
             {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadVolumes();
-                SpinnerHelper.ToggleSpinner(pBar, false);
+                var chose = MessageBox.Show($"Warning... want delete the volume: {selectedVolume.VolumeName} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (chose == DialogResult.Yes)
+                {
+                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    LoadVolumes();
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                }
             }
             catch (Exception ex)
             {
@@ -550,11 +567,16 @@ namespace DockerDesk
         {
             try
             {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadNetworks();
-                SpinnerHelper.ToggleSpinner(pBar, false);
+                var chose = MessageBox.Show($"Warning... want delete the network: {selectedNetwork.Name} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (chose == DialogResult.Yes)
+                {
+                    SpinnerHelper.ToggleSpinner(pBar, true);
+                    var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    LoadNetworks();
+                    SpinnerHelper.ToggleSpinner(pBar, false);
+                }
             }
             catch (Exception ex)
             {
@@ -651,120 +673,6 @@ namespace DockerDesk
             }
         }
 
-        #endregion
-
-        #region Various
-
-        private void SelectWorkDir_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                WorkingFolderPath = folderBrowserDialog.SelectedPath;
-                txtLocalPath.Text = WorkingFolderPath;
-            }
-        }
-
-        private void btnOpenFolder1_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
-                txtLocalPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
-            }
-        }
-
-        private void btnOpenFolder2_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
-                txtLocalPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
-            }
-        }
-
-        private void GridImages_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (GridImages.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = GridImages.SelectedRows[0];
-
-                selectedImage = new DockerImage();
-                selectedImage.Id = Convert.ToInt32(row.Cells[0].Value);
-                selectedImage.Image = Convert.ToString(row.Cells[1].Value);
-                selectedImage.Tag = Convert.ToString(row.Cells[2].Value);
-                selectedImage.ImageId = Convert.ToString(row.Cells[3].Value);
-                selectedImage.Created = Convert.ToString(row.Cells[4].Value);
-                selectedImage.Size = Convert.ToString(row.Cells[5].Value);
-                toolStripSelectedImage.Text = selectedImage.Image;
-            }
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            About about = new About();
-            about.ShowDialog();
-
-        }
-
-        private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (GridVolumes.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = GridVolumes.SelectedRows[0];
-
-                selectedVolume = new DockerVolume();
-                selectedVolume.Id = Convert.ToInt32(row.Cells[0].Value);
-                selectedVolume.Drive = Convert.ToString(row.Cells[1].Value);
-                selectedVolume.VolumeName = Convert.ToString(row.Cells[2].Value);
-
-                txtContainerName.Text = selectedVolume.VolumeName;
-                toolStripSelectedVolume.Text = selectedVolume.VolumeName;
-            }
-        }
-
-        private void GridNetwork_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (GridNetwork.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = GridNetwork.SelectedRows[0];
-
-                selectedNetwork = new DockerNetwork();
-                selectedNetwork.Id = Convert.ToInt32(row.Cells[0].Value);
-                selectedNetwork.NetworkId = Convert.ToString(row.Cells[1].Value);
-                selectedNetwork.Name = Convert.ToString(row.Cells[2].Value);
-                selectedNetwork.Drive = Convert.ToString(row.Cells[3].Value);
-                selectedNetwork.Scope = Convert.ToString(row.Cells[4].Value);
-
-                toolStripSelectedNetwork.Text = selectedNetwork.Name;
-            }
-        }
-
-        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ReloadAll();
-        }
-
-        //Combobox Volumes
-        private void cmbVolumes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
-        }
-
-        private void btnClearLog_Click(object sender, EventArgs e)
-        {
-            txtLog.Text = "";
-        }
-
-        private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedDrive = comboDrive.SelectedItem.ToString();
-        }
-
-        private void cmbNetworksConnect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
-        }
-
         private async void btnNetInspect_Click(object sender, EventArgs e)
         {
             if (GridNetwork.SelectedRows.Count > 0)
@@ -798,19 +706,149 @@ namespace DockerDesk
 
         }
 
+        #endregion
+
+        #region Various
+
+        private void btnOpenFolder1_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
+                txtLocalPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
+            }
+        }
+
+        private void btnOpenFolder2_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
+                txtLocalPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
+            }
+        }
+
+        private void GridImages_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (GridImages.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GridImages.SelectedRows[0];
+
+                    selectedImage = new DockerImage();
+                    selectedImage.Id = Convert.ToInt32(row.Cells[0].Value);
+                    selectedImage.Image = Convert.ToString(row.Cells[1].Value);
+                    selectedImage.Tag = Convert.ToString(row.Cells[2].Value);
+                    selectedImage.ImageId = Convert.ToString(row.Cells[3].Value);
+                    selectedImage.Created = Convert.ToString(row.Cells[4].Value);
+                    selectedImage.Size = Convert.ToString(row.Cells[5].Value);
+                    toolStripSelectedImage.Text = selectedImage.Image;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void gridContainers_MouseClick(object sender, MouseEventArgs e)
         {
-            DataGridViewRow row = gridContainers.SelectedRows[0];
-            DockerContainer dockerContainer = new DockerContainer();
-            dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
-            dockerContainer.Names = Convert.ToString(row.Cells[1].Value);
-            dockerContainer.Image = Convert.ToString(row.Cells[2].Value);
-            dockerContainer.Command = Convert.ToString(row.Cells[3].Value);
-            dockerContainer.Created = Convert.ToString(row.Cells[4].Value);
-            dockerContainer.Status = Convert.ToString(row.Cells[5].Value);
-            dockerContainer.Ports = Convert.ToString(row.Cells[6].Value);
-            selectedContainer = dockerContainer;
-            toolStripSelectedContainer.Text = selectedContainer.Names;
+            try
+            {
+                DataGridViewRow row = gridContainers.SelectedRows[0];
+                DockerContainer dockerContainer = new DockerContainer();
+                dockerContainer.ContainerId = Convert.ToString(row.Cells[0].Value);
+                dockerContainer.Names = Convert.ToString(row.Cells[1].Value);
+                dockerContainer.Image = Convert.ToString(row.Cells[2].Value);
+                dockerContainer.Command = Convert.ToString(row.Cells[3].Value);
+                dockerContainer.Created = Convert.ToString(row.Cells[4].Value);
+                dockerContainer.Status = Convert.ToString(row.Cells[5].Value);
+                dockerContainer.Ports = Convert.ToString(row.Cells[6].Value);
+                selectedContainer = dockerContainer;
+                toolStripSelectedContainer.Text = selectedContainer.Names;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (GridVolumes.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GridVolumes.SelectedRows[0];
+
+                    selectedVolume = new DockerVolume();
+                    selectedVolume.Id = Convert.ToInt32(row.Cells[0].Value);
+                    selectedVolume.Drive = Convert.ToString(row.Cells[1].Value);
+                    selectedVolume.VolumeName = Convert.ToString(row.Cells[2].Value);
+
+                    txtContainerName.Text = selectedVolume.VolumeName;
+                    toolStripSelectedVolume.Text = selectedVolume.VolumeName;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
+        private void GridNetwork_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (GridNetwork.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GridNetwork.SelectedRows[0];
+
+                    selectedNetwork = new DockerNetwork();
+                    selectedNetwork.Id = Convert.ToInt32(row.Cells[0].Value);
+                    selectedNetwork.NetworkId = Convert.ToString(row.Cells[1].Value);
+                    selectedNetwork.Name = Convert.ToString(row.Cells[2].Value);
+                    selectedNetwork.Drive = Convert.ToString(row.Cells[3].Value);
+                    selectedNetwork.Scope = Convert.ToString(row.Cells[4].Value);
+
+                    toolStripSelectedNetwork.Text = selectedNetwork.Name;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReloadAll();
+        }
+
+        //Combobox Volumes
+        private void cmbVolumes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
+        }
+
+        private void btnClearLog_Click(object sender, EventArgs e)
+        {
+            txtLog.Text = "";
+        }
+
+        private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedDrive = comboDrive.SelectedItem.ToString();
+        }
+
+        private void cmbNetworksConnect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
         }
 
         //docker exec [nome_o_id_del_container] env
@@ -852,7 +890,6 @@ namespace DockerDesk
             }
         }
 
-
         private void txtLog_TextChanged(object sender, EventArgs e)
         {
             //tabControl1.SelectedTab = tabLog;
@@ -875,14 +912,10 @@ namespace DockerDesk
             form.Show();
         }
 
-
         private void frmRemote_FormClosing(object sender, FormClosingEventArgs e)
         {
             DisconnectSshClient();
         }
-
-
-
 
         #endregion
     }
