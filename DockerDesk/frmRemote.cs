@@ -3,6 +3,7 @@ using DockerDesk.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -87,8 +88,8 @@ namespace DockerDesk
             {
                 try
                 {
-                    //SpinnerHelper.ToggleSpinner(pBar, true);
                     imagesList.Clear();
+                    await Task.Delay(100);
                     var command = await DoskerRunner.DockerExecute("images", sshClientManager);
                     if (!string.IsNullOrEmpty(command.Error))
                     {
@@ -138,6 +139,7 @@ namespace DockerDesk
             try
             {
                 volumeList.Clear();
+                await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("volume ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
@@ -160,6 +162,7 @@ namespace DockerDesk
             try
             {
                 networkList.Clear();
+                await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("network ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.Error))
                 {
@@ -190,7 +193,6 @@ namespace DockerDesk
             try
             {
                 await DockerEnvHelper.UpdateJsonFileWithContainerEnvVariables();
-
                 string pathToFile = Path.Combine(Application.StartupPath, "containers_svariables.json");
                 var jsonContent = File.ReadAllText(pathToFile);
                 var containers = JsonConvert.DeserializeObject<Dictionary<string, DockerJsonContainer>>(jsonContent);
@@ -211,7 +213,8 @@ namespace DockerDesk
         {
             try
             {
-                string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
+                //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
+                string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
 
                 string sshConnection = txtRemoteUsername.Text;
                 string[] parts = sshConnection.Split('@');
