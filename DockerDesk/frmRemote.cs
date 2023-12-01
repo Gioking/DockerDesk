@@ -319,6 +319,8 @@ namespace DockerDesk
                 //If successful clean the working folder in remote machine
                 if (command.OperationResult.Contains("Successfully built"))
                 {
+                    LoadImages();
+
                     var chose = MessageBox.Show($"Warning... want you clean the working folder {remotePath} on remote machine ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (chose == DialogResult.Yes)
@@ -328,7 +330,6 @@ namespace DockerDesk
                 }
 
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
