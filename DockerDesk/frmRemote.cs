@@ -677,6 +677,25 @@ namespace DockerDesk
             }
         }
 
+        //Inspect processes docker top containerid
+        private async void btnShowContainerProcesses_Click(object sender, EventArgs e)
+        {
+            var command = await DoskerRunner.DockerExecute($"inspect {selectedContainer.ContainerId}", sshClientManager);
+
+            frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
+
+            if (existingForm != null)
+            {
+                existingForm.SetData(command.OperationResult);
+                existingForm.BringToFront();
+            }
+            else
+            {
+                frmWebView nuovoForm = new frmWebView(command.OperationResult);
+                nuovoForm.Show();
+            }
+        }
+
         private async void btnNetInspect_Click(object sender, EventArgs e)
         {
             if (GridNetwork.SelectedRows.Count > 0)
@@ -922,5 +941,7 @@ namespace DockerDesk
         }
 
         #endregion
+
+
     }
 }

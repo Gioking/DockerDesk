@@ -164,6 +164,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnShowContainerProcesses = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -842,6 +843,7 @@
             // 
             // tabContainers
             // 
+            this.tabContainers.Controls.Add(this.btnShowContainerProcesses);
             this.tabContainers.Controls.Add(this.btnDisconnect);
             this.tabContainers.Controls.Add(this.btnInspect);
             this.tabContainers.Controls.Add(this.btnConnectNetwork);
@@ -1696,6 +1698,18 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // btnShowContainerProcesses
+            // 
+            this.btnShowContainerProcesses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowContainerProcesses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnShowContainerProcesses.Location = new System.Drawing.Point(13, 427);
+            this.btnShowContainerProcesses.Name = "btnShowContainerProcesses";
+            this.btnShowContainerProcesses.Size = new System.Drawing.Size(140, 31);
+            this.btnShowContainerProcesses.TabIndex = 22;
+            this.btnShowContainerProcesses.Text = "See Processes";
+            this.btnShowContainerProcesses.UseVisualStyleBackColor = true;
+            this.btnShowContainerProcesses.Click += new System.EventHandler(this.btnShowContainerProcesses_Click);
+            // 
             // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1894,6 +1908,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnShowContainerProcesses;
     }
 }
 
