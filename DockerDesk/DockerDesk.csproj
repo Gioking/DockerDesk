@@ -71,6 +71,12 @@
     <Compile Include="frmHelp.Designer.cs">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProcesses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcesses.Designer.cs">
+      <DependentUpon>frmProcesses.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRemote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,7 @@
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Helpers\SshClientManager.cs" />
     <Compile Include="Models\ContainerConfig.cs" />
+    <Compile Include="Models\DockerProcess.cs" />
     <Compile Include="Models\RemoteMachine.cs" />
     <Compile Include="Models\DockerContainer.cs" />
     <Compile Include="Models\DockerJsonContainer.cs" />
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmHelp.resx">
       <DependentUpon>frmHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcesses.resx">
+      <DependentUpon>frmProcesses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRemote.resx">
       <DependentUpon>frmRemote.cs</DependentUpon>

@@ -356,5 +356,43 @@ namespace DockerDesk.Helpers
             return resultModel;
         }
 
+        public static async Task<List<DockerProcess>> ParseDockerTopOutputAsync(string output)
+        {
+            return await Task.Run(() =>
+            {
+                var processList = new List<DockerProcess>();
+                var lines = output.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (lines.Length <= 1)
+                {
+                    Console.WriteLine("Nessun processo da elaborare.");
+                    return processList;
+                }
+
+                foreach (var line in lines.Skip(1))
+                {
+                    var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (columns.Length >= 8)
+                    {
+                        var process = new DockerProcess
+                        {
+                            Id = processList.Count + 1,
+                            UID = columns[0],
+                            PID = int.Parse(columns[1]),
+                            PPID = int.Parse(columns[2]),
+                            C = int.Parse(columns[3]),
+                            STIME = columns[4],
+                            TTY = columns[5],
+                            TIME = columns[6],
+                            CMD = string.Join(" ", columns.Skip(7))
+                        };
+                        processList.Add(process);
+                    }
+                }
+
+                return processList;
+            });
+        }
+
     }
 }

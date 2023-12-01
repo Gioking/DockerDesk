@@ -677,21 +677,25 @@ namespace DockerDesk
             }
         }
 
-        //Inspect processes docker top containerid
+        //docker top containerid
         private async void btnShowContainerProcesses_Click(object sender, EventArgs e)
         {
-            var command = await DoskerRunner.DockerExecute($"inspect {selectedContainer.ContainerId}", sshClientManager);
+            var command = await DoskerRunner.DockerExecute($"top {selectedContainer.ContainerId}", sshClientManager);
 
-            frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
+            frmProcesses existingForm = Application.OpenForms.OfType<frmProcesses>().FirstOrDefault();
+
+            var processList = await DoskerRunner.ParseDockerTopOutputAsync(command.OperationResult);
+
+            var jsonData = JsonConvert.SerializeObject(processList, Formatting.Indented);
 
             if (existingForm != null)
             {
-                existingForm.SetData(command.OperationResult);
+                existingForm.SetData(jsonData);
                 existingForm.BringToFront();
             }
             else
             {
-                frmWebView nuovoForm = new frmWebView(command.OperationResult);
+                frmProcesses nuovoForm = new frmProcesses(jsonData);
                 nuovoForm.Show();
             }
         }
