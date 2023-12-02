@@ -388,6 +388,7 @@
             // btnClearLog
             // 
             this.btnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnClearLog.Location = new System.Drawing.Point(8, 542);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(142, 35);
@@ -769,7 +770,7 @@
             // btnCreateVolume
             // 
             this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnCreateVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateVolume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVolume.ImageKey = "accept-database-32.png";
             this.btnCreateVolume.ImageList = this.imageList1;
@@ -894,6 +895,7 @@
             // btnDisconnect
             // 
             this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDisconnect.Location = new System.Drawing.Point(779, 395);
             this.btnDisconnect.Name = "btnDisconnect";
@@ -918,6 +920,7 @@
             // btnConnectNetwork
             // 
             this.btnConnectNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConnectNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnConnectNetwork.Location = new System.Drawing.Point(698, 395);
             this.btnConnectNetwork.Name = "btnConnectNetwork";
             this.btnConnectNetwork.Size = new System.Drawing.Size(75, 26);
@@ -1107,6 +1110,7 @@
             // 
             // chkUseVariables
             // 
+            this.chkUseVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkUseVariables.AutoSize = true;
             this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkUseVariables.Location = new System.Drawing.Point(70, 242);
@@ -1118,7 +1122,7 @@
             // 
             // btnCreateVariables
             // 
-            this.btnCreateVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariables.ImageKey = "arrow-213-32.png";
@@ -1133,18 +1137,19 @@
             // 
             // txtHostPathName
             // 
+            this.txtHostPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtHostPathName.Location = new System.Drawing.Point(68, 201);
             this.txtHostPathName.Multiline = true;
             this.txtHostPathName.Name = "txtHostPathName";
-            this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
+            this.txtHostPathName.Size = new System.Drawing.Size(220, 27);
             this.txtHostPathName.TabIndex = 20;
             this.txtHostPathName.Text = "C:\\Shared";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 196);
+            this.label19.Location = new System.Drawing.Point(17, 207);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 19;
@@ -1152,6 +1157,7 @@
             // 
             // chkShareVolumeToHost
             // 
+            this.chkShareVolumeToHost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkShareVolumeToHost.AutoSize = true;
             this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 175);
@@ -1172,6 +1178,7 @@
             // 
             // cmbVolumes
             // 
+            this.cmbVolumes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbVolumes.DataSource = this.dockerNetworkBindingSource;
             this.cmbVolumes.DisplayMember = "VolumeName";
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1186,6 +1193,7 @@
             // 
             // btnRunContainer
             // 
+            this.btnRunContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRunContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRunContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRunContainer.ImageKey = "gear-2-32.png";
@@ -1209,6 +1217,7 @@
             // 
             // chkHasVolume
             // 
+            this.chkHasVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkHasVolume.AutoSize = true;
             this.chkHasVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkHasVolume.Location = new System.Drawing.Point(70, 28);
@@ -1220,6 +1229,7 @@
             // 
             // txtHostPort
             // 
+            this.txtHostPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtHostPort.Location = new System.Drawing.Point(70, 51);
             this.txtHostPort.Multiline = true;
@@ -1231,6 +1241,7 @@
             // 
             // txtContainerPathName
             // 
+            this.txtContainerPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtContainerPathName.Location = new System.Drawing.Point(69, 136);
             this.txtContainerPathName.Multiline = true;
@@ -1241,6 +1252,7 @@
             // 
             // txtContainerPort
             // 
+            this.txtContainerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtContainerPort.Location = new System.Drawing.Point(215, 51);
             this.txtContainerPort.Multiline = true;
@@ -1252,6 +1264,8 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(17, 141);
             this.label6.Name = "label6";
@@ -1270,6 +1284,7 @@
             // 
             // txtContainerName
             // 
+            this.txtContainerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.txtContainerName.Location = new System.Drawing.Point(69, 79);
             this.txtContainerName.Multiline = true;
@@ -1406,6 +1421,7 @@
             // btnDeleteImage
             // 
             this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnDeleteImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDeleteImage.Location = new System.Drawing.Point(161, 191);
             this.btnDeleteImage.Name = "btnDeleteImage";
@@ -1475,6 +1491,7 @@
             // btnCreateImage
             // 
             this.btnCreateImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateImage.ImageKey = "hexagon-32.png";
             this.btnCreateImage.ImageList = this.imageList1;

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DockerDesk
@@ -40,46 +41,39 @@ namespace DockerDesk
 
         private async void ReloadAll()
         {
+            if (await CheckIfConnection())
+            {
+                LoadImages();
+                LoadContainers();
+                LoadVolumes();
+                LoadNetworks();
+                LoadVariables();
+            }
+        }
+
+        #region Region Loadding
+
+        private async Task<bool> CheckIfConnection()
+        {
             bool isRunning = await DoskerRunner.IsDockerRunningAsync();
             if (!isRunning)
             {
                 imageStatusLabel.Text = "Il servizio Docker non è attivo. Per favore, avvialo prima di procedere.";
                 toolStripStatus.Image = imageList1.Images["red-button.png"];
-                return;
+                return false;
             }
             else
             {
                 imageStatusLabel.Text = "Servizio Docker Attivo.";
                 toolStripStatus.Image = imageList1.Images["green-button.png"];
+                return true;
             }
-
-            LoadImages();
-            LoadContainers();
-            LoadVolumes();
-            LoadNetworks();
-            LoadVariables();
         }
-
-        #region Region Loadding
 
         private async void LoadImages()
         {
             try
             {
-                // Verifica se Docker è in esecuzione
-                bool isRunning = await DoskerRunner.IsDockerRunningAsync();
-                if (!isRunning)
-                {
-                    imageStatusLabel.Text = "Il servizio Docker non è attivo. Per favore, avvialo prima di procedere.";
-                    toolStripStatus.Image = imageList1.Images["red-button.png"];
-                    return;
-                }
-                else
-                {
-                    imageStatusLabel.Text = "Servizio Docker Attivo.";
-                    toolStripStatus.Image = imageList1.Images["green-button.png"];
-                }
-
                 try
                 {
                     //SpinnerHelper.ToggleSpinner(pBar, true);
@@ -88,6 +82,7 @@ namespace DockerDesk
                     if (!string.IsNullOrEmpty(command.Error))
                     {
                         txtLog.Text = LogHelper.LogError(command.Error);
+                        return;
                     }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
@@ -114,6 +109,7 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
+                    return;
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
@@ -136,6 +132,7 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
+                    return;
                 }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
@@ -158,6 +155,7 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.Error))
                 {
                     txtLog.Text = LogHelper.LogError(command.Error);
+                    return;
                 }
 
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
