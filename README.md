@@ -14,6 +14,23 @@ Conclusione: In sintesi, DockerDesk è un'applicazione indispensabile per chiunq
 <p><strong>Progetto Sperimentale - Versione Beta:</strong> È importante notare che DockerDesk è attualmente un progetto sperimentale e si trova ancora nella sua fase beta. Questo significa che, sebbene sia pienamente funzionale, c'è spazio per miglioramenti e ulteriori sviluppi. Sto lavorando continuamente per migliorare le sue funzionalità e capacità. Man mano che il progetto si evolve, gli utenti possono aspettarsi aggiornamenti regolari e perfezionamenti per garantire che DockerDesk soddisfi i più elevati standard di efficienza ed esperienza utente.</p>
 
 
+Requisiti per la Compilazione di DockerDesk
+Per compilare e eseguire DockerDesk, sono necessari i seguenti componenti e versioni specifiche:
+
+Ambiente di Sviluppo
+.NET Framework: La soluzione è costruita utilizzando .NET Framework versione 4.7.2. Assicurati di avere questa versione installata sul tuo sistema.
+Visual Studio: DockerDesk è sviluppato con Visual Studio, versione 15.0 o superiore.
+Dipendenze
+L'applicazione richiede le seguenti librerie, elencate con le loro versioni specifiche:
+
+Newtonsoft.Json: Versione 13.0.0.0 (NuGet package versione 13.0.3)
+Renci.SshNet: Versione 2023.0.0.0 (NuGet package versione 2023.0.0)
+System.IO.Compression: Versione 4.1.2.0 (NuGet package versione 4.3.0)
+Altre Considerazioni
+Assicurati di avere tutte le dipendenze necessarie installate. Queste includono riferimenti standard a .NET come System, System.Core, System.Data, ecc.
+Il progetto include diverse risorse come file di aiuto HTML, immagini e file di configurazione che devono essere inclusi nella compilazione.
+Struttura del Progetto
+Il progetto contiene diverse forme e classi helper, ognuna con un ruolo specifico nell'applicazione. Assicurati di esaminare la struttura del progetto per comprendere come le varie parti interagiscono tra loro.
 
 --------------------------------------------------------------------------------
 
