@@ -1440,7 +1440,7 @@
             this.txtWorkDirPath.Name = "txtWorkDirPath";
             this.txtWorkDirPath.Size = new System.Drawing.Size(708, 22);
             this.txtWorkDirPath.TabIndex = 5;
-            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\aspdockerapi\\";
+            this.txtWorkDirPath.Text = "C:\\SourceFilesPath\\";
             // 
             // label17
             // 
