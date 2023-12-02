@@ -1,4 +1,4 @@
-IT
+# IT
 DockerDesk: Il Tuo Assistente Personale per la Gestione di Docker
 Descrizione Generale: DockerDesk è un'applicazione rivoluzionaria progettata per semplificare e ottimizzare la gestione di Docker, uno degli strumenti più potenti e diffusi per la creazione e la gestione di container. Questo software è stato creato con l'obiettivo di rendere più accessibili e gestibili le operazioni complesse associate a Docker, offrendo un'interfaccia utente intuitiva e un'ampia gamma di funzionalità avanzate.
 
@@ -14,7 +14,8 @@ Conclusione: In sintesi, DockerDesk è un'applicazione indispensabile per chiunq
 <p><strong>Progetto Sperimentale - Versione Beta:</strong> È importante notare che DockerDesk è attualmente un progetto sperimentale e si trova ancora nella sua fase beta. Questo significa che, sebbene sia pienamente funzionale, c'è spazio per miglioramenti e ulteriori sviluppi. Sto lavorando continuamente per migliorare le sue funzionalità e capacità. Man mano che il progetto si evolve, gli utenti possono aspettarsi aggiornamenti regolari e perfezionamenti per garantire che DockerDesk soddisfi i più elevati standard di efficienza ed esperienza utente.</p>
 
 
-Requisiti per la Compilazione di DockerDesk
+# Requisiti per la Compilazione di DockerDesk
+
 Per compilare e eseguire DockerDesk, sono necessari i seguenti componenti e versioni specifiche:
 
 Ambiente di Sviluppo
@@ -34,7 +35,7 @@ Il progetto contiene diverse forme e classi helper, ognuna con un ruolo specific
 
 --------------------------------------------------------------------------------
 
-EN
+# EN
 DockerDesk: Your Personal Assistant for Docker Management
 General Description: DockerDesk is a revolutionary application designed to simplify and optimize the management of Docker, one of the most powerful and widely used tools for creating and managing containers. This software was created with the goal of making complex Docker operations more accessible and manageable, offering an intuitive user interface and a wide range of advanced features.
 
@@ -49,3 +50,23 @@ Configuration of Docker Networks: Finally, DockerDesk offers advanced tools for 
 Conclusion: In summary, DockerDesk is an indispensable application for anyone using Docker in their development routine. With its intuitive interface and robust features, DockerDesk eliminates the complexity of Docker management, making the creation and management of images, containers, volumes, and networks simpler and more accessible. Whether you're an experienced developer or a beginner in the world of containers, DockerDesk is the tool that will help you make the most of Docker's capabilities.
 <p><strong>Experimental Project - Beta Version:</strong> It's important to note that DockerDesk is currently an experimental project and still in its beta phase. This means that while it is fully functional, there's room for improvement and further development. I am continuously working on enhancing its features and capabilities. As the project evolves, users can expect regular updates and refinements to ensure DockerDesk meets the highest standards of efficiency and user experience.</p>
 
+DockerDesk Compilation Requirements
+To compile and run DockerDesk, the following specific components and versions are required:
+
+# Development Environment
+
+.NET Framework: The solution is built using .NET Framework version 4.7.2. Ensure you have this version installed on your system.
+Visual Studio: DockerDesk is developed with Visual Studio, version 15.0 or higher.
+Dependencies
+The application requires the following libraries, listed with their specific versions:
+
+Newtonsoft.Json: Version 13.0.0.0 (NuGet package version 13.0.3)
+Renci.SshNet: Version 2023.0.0.0 (NuGet package version 2023.0.0)
+System.IO.Compression: Version 4.1.2.0 (NuGet package version 4.3.0)
+Additional Considerations
+
+Ensure all necessary dependencies are installed. These include standard .NET references like System, System.Core, System.Data, etc.
+The project includes various resources like HTML help files, images, and configuration files that need to be included in the build.
+Project Structure
+
+The project contains various forms and helper classes, each with a specific role in the application. Make sure to review the project structure to understand how the various parts interact with each other.
