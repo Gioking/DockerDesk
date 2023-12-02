@@ -38,8 +38,21 @@ namespace DockerDesk
             ReloadAll();
         }
 
-        private void ReloadAll()
+        private async void ReloadAll()
         {
+            bool isRunning = await DoskerRunner.IsDockerRunningAsync();
+            if (!isRunning)
+            {
+                imageStatusLabel.Text = "Il servizio Docker non è attivo. Per favore, avvialo prima di procedere.";
+                toolStripStatus.Image = imageList1.Images["red-button.png"];
+                return;
+            }
+            else
+            {
+                imageStatusLabel.Text = "Servizio Docker Attivo.";
+                toolStripStatus.Image = imageList1.Images["green-button.png"];
+            }
+
             LoadImages();
             LoadContainers();
             LoadVolumes();
