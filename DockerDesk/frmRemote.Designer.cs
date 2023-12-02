@@ -85,6 +85,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabContainers = new System.Windows.Forms.TabPage();
+            this.btnShowContainerProcesses = new System.Windows.Forms.Button();
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.btnInspect = new System.Windows.Forms.Button();
             this.btnConnectNetwork = new System.Windows.Forms.Button();
@@ -164,7 +165,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnShowContainerProcesses = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -290,9 +290,9 @@
             this.txtRemotePort.Location = new System.Drawing.Point(24, 120);
             this.txtRemotePort.Multiline = true;
             this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(57, 26);
+            this.txtRemotePort.Size = new System.Drawing.Size(66, 26);
             this.txtRemotePort.TabIndex = 9;
-            this.txtRemotePort.Text = "8787";
+            this.txtRemotePort.Text = "5000";
             this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnConnectToRemote
@@ -317,7 +317,7 @@
             this.txtRemoteUsername.Name = "txtRemoteUsername";
             this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
             this.txtRemoteUsername.TabIndex = 7;
-            this.txtRemoteUsername.Text = "root@38.242.198.151";
+            this.txtRemoteUsername.Text = "root@ipaddress";
             // 
             // label21
             // 
@@ -861,6 +861,18 @@
             this.tabContainers.TabIndex = 1;
             this.tabContainers.Text = "Containers";
             this.tabContainers.UseVisualStyleBackColor = true;
+            // 
+            // btnShowContainerProcesses
+            // 
+            this.btnShowContainerProcesses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShowContainerProcesses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnShowContainerProcesses.Location = new System.Drawing.Point(13, 427);
+            this.btnShowContainerProcesses.Name = "btnShowContainerProcesses";
+            this.btnShowContainerProcesses.Size = new System.Drawing.Size(140, 31);
+            this.btnShowContainerProcesses.TabIndex = 22;
+            this.btnShowContainerProcesses.Text = "See Processes";
+            this.btnShowContainerProcesses.UseVisualStyleBackColor = true;
+            this.btnShowContainerProcesses.Click += new System.EventHandler(this.btnShowContainerProcesses_Click);
             // 
             // btnDisconnect
             // 
@@ -1697,18 +1709,6 @@
             this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
-            // 
-            // btnShowContainerProcesses
-            // 
-            this.btnShowContainerProcesses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnShowContainerProcesses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnShowContainerProcesses.Location = new System.Drawing.Point(13, 427);
-            this.btnShowContainerProcesses.Name = "btnShowContainerProcesses";
-            this.btnShowContainerProcesses.Size = new System.Drawing.Size(140, 31);
-            this.btnShowContainerProcesses.TabIndex = 22;
-            this.btnShowContainerProcesses.Text = "See Processes";
-            this.btnShowContainerProcesses.UseVisualStyleBackColor = true;
-            this.btnShowContainerProcesses.Click += new System.EventHandler(this.btnShowContainerProcesses_Click);
             // 
             // frmRemote
             // 
