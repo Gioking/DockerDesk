@@ -115,6 +115,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbIpAddresses = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
@@ -1090,6 +1091,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.cmbIpAddresses);
             this.groupBox4.Controls.Add(this.label30);
             this.groupBox4.Controls.Add(this.txtRemoteMappedIpAddress);
             this.groupBox4.Controls.Add(this.chkUseVariables);
@@ -1115,6 +1117,16 @@
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
+            // 
+            // cmbIpAddresses
+            // 
+            this.cmbIpAddresses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cmbIpAddresses.FormattingEnabled = true;
+            this.cmbIpAddresses.Location = new System.Drawing.Point(70, 26);
+            this.cmbIpAddresses.Name = "cmbIpAddresses";
+            this.cmbIpAddresses.Size = new System.Drawing.Size(220, 23);
+            this.cmbIpAddresses.TabIndex = 29;
+            this.cmbIpAddresses.TextChanged += new System.EventHandler(this.cmbIpAddresses_TextChanged);
             // 
             // label30
             // 
@@ -1764,6 +1776,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
+        private System.Windows.Forms.ComboBox cmbIpAddresses;
     }
 }
 

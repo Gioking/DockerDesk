@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -142,7 +143,19 @@ namespace DockerDesk.Helpers
             return port >= 0 && port <= 65535;
         }
 
-
+        public static List<string> GetAllLocalIPv4Addresses()
+        {
+            List<string> ipAddresses = new List<string>();
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipAddresses.Add(ip.ToString());
+                }
+            }
+            return ipAddresses;
+        }
     }
 
 }

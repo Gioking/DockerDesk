@@ -28,6 +28,7 @@ namespace DockerDesk
         private List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
         private List<DockerVariable> envVariableList;
         private StringBuilder sb = new StringBuilder();
+        string remoteMappedIpAddress = string.Empty;
 
         public frmLocal()
         {
@@ -37,6 +38,7 @@ namespace DockerDesk
         private void frmMain_Load(object sender, EventArgs e)
         {
             ReloadAll();
+            PopulateComboBoxWithIPs();
         }
 
         private async void ReloadAll()
@@ -48,6 +50,15 @@ namespace DockerDesk
                 LoadVolumes();
                 LoadNetworks();
                 LoadVariables();
+            }
+        }
+
+        public void PopulateComboBoxWithIPs()
+        {
+            List<string> ipAddresses = DockerNetWorkChecker.GetAllLocalIPv4Addresses();
+            foreach (string ip in ipAddresses)
+            {
+                cmbIpAddresses.Items.Add(ip);
             }
         }
 
@@ -257,7 +268,6 @@ namespace DockerDesk
                 string hostPort = txtHostPort.Text;
                 string containerPort = txtContainerPort.Text;
                 string workDirPath = txtWorkDirPath.Text;
-                string remoteMappedIpAddress = txtRemoteMappedIpAddress.Text;
 
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 string result = string.Empty;
@@ -744,6 +754,12 @@ namespace DockerDesk
             ReloadAll();
         }
 
+        private void cmbIpAddresses_TextChanged(object sender, EventArgs e)
+        {
+            remoteMappedIpAddress = cmbIpAddresses.Text;
+        }
+
         #endregion
+
     }
 }
