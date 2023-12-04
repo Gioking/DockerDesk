@@ -7,32 +7,56 @@ public class SshClientManager
 {
     private string host;
     private string username;
+    private string password;
     private string pathToPrivateKey;
     private int port;
     private SshClient client;
     public delegate void ProgressChangedHandler(int percentage);
     public event ProgressChangedHandler ProgressChanged;
 
-    public SshClientManager(string host, string username, string pathToPrivateKey, int port = 22)
+    public SshClientManager(string host, string username, string password, string pathToPrivateKey, int port = 22)
     {
         this.host = host;
         this.username = username;
+        this.password = password;
         this.pathToPrivateKey = pathToPrivateKey;
         this.port = port;
         this.client = null;
     }
 
-    public void Connect()
+    public async Task ConnectAsync()
     {
-        var keyFile = new PrivateKeyFile(pathToPrivateKey);
-        var connectionInfo = new ConnectionInfo(host, port, username,
-            new AuthenticationMethod[] {
-                new PrivateKeyAuthenticationMethod(username, new[] { keyFile })
-            });
+        try
+        {
+            AuthenticationMethod[] authenticationMethods;
+            if (!string.IsNullOrEmpty(password))
+            {
+                authenticationMethods = new AuthenticationMethod[] { new PasswordAuthenticationMethod(username, password) };
+            }
+            else if (!string.IsNullOrEmpty(pathToPrivateKey))
+            {
+                var keyFile = new PrivateKeyFile(pathToPrivateKey);
+                authenticationMethods = new AuthenticationMethod[] { new PrivateKeyAuthenticationMethod(username, new[] { keyFile }) };
+            }
+            else
+            {
+                throw new InvalidOperationException("No valid authentication method provided.");
+            }
 
-        this.client = new SshClient(connectionInfo);
-        this.client.Connect();
+            var connectionInfo = new ConnectionInfo(host, port, username, authenticationMethods);
+
+            this.client = new SshClient(connectionInfo);
+
+            // Esegui la connessione in un task separato
+            await Task.Run(() => this.client.Connect());
+        }
+        catch (Exception ex)
+        {
+            // Gestisci l'eccezione qui. Ad esempio, puoi loggare l'errore o mostrare un messaggio.
+            Console.WriteLine($"Failed to connect: {ex.Message}");
+        }
     }
+
 
     public SshClient GetClient()
     {
@@ -58,11 +82,6 @@ public class SshClientManager
             return true;
         }
         return false;
-    }
-
-    protected virtual void OnProgressChanged(int percentage)
-    {
-        ProgressChanged?.Invoke(percentage);
     }
 
     public async Task<string> UploadAndDecompressFileAsync(string localFilePath, string remoteFilePath, string remoteExtractionPath)
@@ -119,10 +138,5 @@ public class SshClientManager
 
         return commandResult;
     }
-
-
-
-
-
 
 }

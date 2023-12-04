@@ -32,17 +32,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRemote));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabRemote = new System.Windows.Forms.TabPage();
+            this.panelAccesAccount = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtRemoteHostIp = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtRemotePort2 = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.panelAccessKey = new System.Windows.Forms.Panel();
+            this.txtRemoteUsername = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtRemotePort = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.rdoAccessByPassword = new System.Windows.Forms.RadioButton();
             this.rdoAccessByKeys = new System.Windows.Forms.RadioButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.btnDisconnectSsh = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txtRemotePort = new System.Windows.Forms.TextBox();
             this.btnConnectToRemote = new System.Windows.Forms.Button();
-            this.txtRemoteUsername = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -168,18 +178,10 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panelAccessKey = new System.Windows.Forms.Panel();
-            this.panelAccesAccount = new System.Windows.Forms.Panel();
-            this.txtRemoteHostIp = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtRemotePort2 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
+            this.panelAccesAccount.SuspendLayout();
+            this.panelAccessKey.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabImages.SuspendLayout();
@@ -206,8 +208,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
-            this.panelAccessKey.SuspendLayout();
-            this.panelAccesAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -247,6 +247,149 @@
             this.tabRemote.Text = "Remote";
             this.tabRemote.UseVisualStyleBackColor = true;
             // 
+            // panelAccesAccount
+            // 
+            this.panelAccesAccount.BackColor = System.Drawing.Color.Silver;
+            this.panelAccesAccount.Controls.Add(this.label29);
+            this.panelAccesAccount.Controls.Add(this.txtPassword);
+            this.panelAccesAccount.Controls.Add(this.label28);
+            this.panelAccesAccount.Controls.Add(this.txtUsername);
+            this.panelAccesAccount.Controls.Add(this.txtRemoteHostIp);
+            this.panelAccesAccount.Controls.Add(this.label26);
+            this.panelAccesAccount.Controls.Add(this.txtRemotePort2);
+            this.panelAccesAccount.Controls.Add(this.label27);
+            this.panelAccesAccount.Enabled = false;
+            this.panelAccesAccount.Location = new System.Drawing.Point(24, 192);
+            this.panelAccesAccount.Name = "panelAccesAccount";
+            this.panelAccesAccount.Size = new System.Drawing.Size(403, 192);
+            this.panelAccesAccount.TabIndex = 19;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(14, 122);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(78, 20);
+            this.label29.TabIndex = 17;
+            this.label29.Text = "Password";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(18, 145);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(247, 26);
+            this.txtPassword.TabIndex = 16;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(14, 70);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(83, 20);
+            this.label28.TabIndex = 15;
+            this.label28.Text = "Username";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(18, 93);
+            this.txtUsername.Multiline = true;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(247, 26);
+            this.txtUsername.TabIndex = 14;
+            // 
+            // txtRemoteHostIp
+            // 
+            this.txtRemoteHostIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteHostIp.Location = new System.Drawing.Point(18, 41);
+            this.txtRemoteHostIp.Multiline = true;
+            this.txtRemoteHostIp.Name = "txtRemoteHostIp";
+            this.txtRemoteHostIp.Size = new System.Drawing.Size(247, 26);
+            this.txtRemoteHostIp.TabIndex = 7;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(14, 18);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(178, 20);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "Remote host ip address";
+            // 
+            // txtRemotePort2
+            // 
+            this.txtRemotePort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePort2.Location = new System.Drawing.Point(271, 41);
+            this.txtRemotePort2.Multiline = true;
+            this.txtRemotePort2.Name = "txtRemotePort2";
+            this.txtRemotePort2.Size = new System.Drawing.Size(66, 26);
+            this.txtRemotePort2.TabIndex = 9;
+            this.txtRemotePort2.Text = "5000";
+            this.txtRemotePort2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(267, 18);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(42, 20);
+            this.label27.TabIndex = 13;
+            this.label27.Text = "Port:";
+            // 
+            // panelAccessKey
+            // 
+            this.panelAccessKey.BackColor = System.Drawing.Color.Silver;
+            this.panelAccessKey.Controls.Add(this.txtRemoteUsername);
+            this.panelAccessKey.Controls.Add(this.label21);
+            this.panelAccessKey.Controls.Add(this.txtRemotePort);
+            this.panelAccessKey.Controls.Add(this.label25);
+            this.panelAccessKey.Location = new System.Drawing.Point(24, 99);
+            this.panelAccessKey.Name = "panelAccessKey";
+            this.panelAccessKey.Size = new System.Drawing.Size(403, 87);
+            this.panelAccessKey.TabIndex = 18;
+            // 
+            // txtRemoteUsername
+            // 
+            this.txtRemoteUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteUsername.Location = new System.Drawing.Point(18, 41);
+            this.txtRemoteUsername.Multiline = true;
+            this.txtRemoteUsername.Name = "txtRemoteUsername";
+            this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
+            this.txtRemoteUsername.TabIndex = 7;
+            this.txtRemoteUsername.Text = "root@ipaddress";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(14, 18);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(165, 20);
+            this.label21.TabIndex = 6;
+            this.label21.Text = "username@ipaddress";
+            // 
+            // txtRemotePort
+            // 
+            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemotePort.Location = new System.Drawing.Point(271, 41);
+            this.txtRemotePort.Multiline = true;
+            this.txtRemotePort.Name = "txtRemotePort";
+            this.txtRemotePort.Size = new System.Drawing.Size(66, 26);
+            this.txtRemotePort.TabIndex = 9;
+            this.txtRemotePort.Text = "5000";
+            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(267, 18);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(42, 20);
+            this.label25.TabIndex = 13;
+            this.label25.Text = "Port:";
+            // 
             // rdoAccessByPassword
             // 
             this.rdoAccessByPassword.AutoSize = true;
@@ -256,6 +399,7 @@
             this.rdoAccessByPassword.TabIndex = 17;
             this.rdoAccessByPassword.Text = "Access by User and Password";
             this.rdoAccessByPassword.UseVisualStyleBackColor = true;
+            this.rdoAccessByPassword.CheckedChanged += new System.EventHandler(this.rdoCredChanged);
             // 
             // rdoAccessByKeys
             // 
@@ -268,6 +412,7 @@
             this.rdoAccessByKeys.TabStop = true;
             this.rdoAccessByKeys.Text = "Access by using keys";
             this.rdoAccessByKeys.UseVisualStyleBackColor = true;
+            this.rdoAccessByKeys.CheckedChanged += new System.EventHandler(this.rdoKeyChanged);
             // 
             // pictureBox2
             // 
@@ -279,15 +424,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(267, 18);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(42, 20);
-            this.label25.TabIndex = 13;
-            this.label25.Text = "Port:";
             // 
             // label22
             // 
@@ -305,7 +441,7 @@
             this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisconnectSsh.ImageKey = "red-button.png";
             this.btnDisconnectSsh.ImageList = this.imageList1;
-            this.btnDisconnectSsh.Location = new System.Drawing.Point(24, 540);
+            this.btnDisconnectSsh.Location = new System.Drawing.Point(24, 447);
             this.btnDisconnectSsh.Name = "btnDisconnectSsh";
             this.btnDisconnectSsh.Size = new System.Drawing.Size(247, 35);
             this.btnDisconnectSsh.TabIndex = 10;
@@ -334,49 +470,19 @@
             this.imageList1.Images.SetKeyName(14, "computer-32.png");
             this.imageList1.Images.SetKeyName(15, "info-2-32 (1).png");
             // 
-            // txtRemotePort
-            // 
-            this.txtRemotePort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemotePort.Location = new System.Drawing.Point(271, 41);
-            this.txtRemotePort.Multiline = true;
-            this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(66, 26);
-            this.txtRemotePort.TabIndex = 9;
-            this.txtRemotePort.Text = "5000";
-            this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // btnConnectToRemote
             // 
             this.btnConnectToRemote.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConnectToRemote.ImageKey = "green-button.png";
             this.btnConnectToRemote.ImageList = this.imageList1;
-            this.btnConnectToRemote.Location = new System.Drawing.Point(24, 499);
+            this.btnConnectToRemote.Location = new System.Drawing.Point(24, 406);
             this.btnConnectToRemote.Name = "btnConnectToRemote";
             this.btnConnectToRemote.Size = new System.Drawing.Size(247, 35);
             this.btnConnectToRemote.TabIndex = 8;
             this.btnConnectToRemote.Text = "Connect";
             this.btnConnectToRemote.UseVisualStyleBackColor = true;
             this.btnConnectToRemote.Click += new System.EventHandler(this.btnConnectToRemote_Click);
-            // 
-            // txtRemoteUsername
-            // 
-            this.txtRemoteUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteUsername.Location = new System.Drawing.Point(18, 41);
-            this.txtRemoteUsername.Multiline = true;
-            this.txtRemoteUsername.Name = "txtRemoteUsername";
-            this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
-            this.txtRemoteUsername.TabIndex = 7;
-            this.txtRemoteUsername.Text = "root@ipaddress";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 18);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(165, 20);
-            this.label21.TabIndex = 6;
-            this.label21.Text = "username@ipaddress";
             // 
             // pictureBox1
             // 
@@ -1768,109 +1874,6 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // panelAccessKey
-            // 
-            this.panelAccessKey.BackColor = System.Drawing.Color.Silver;
-            this.panelAccessKey.Controls.Add(this.txtRemoteUsername);
-            this.panelAccessKey.Controls.Add(this.label21);
-            this.panelAccessKey.Controls.Add(this.txtRemotePort);
-            this.panelAccessKey.Controls.Add(this.label25);
-            this.panelAccessKey.Location = new System.Drawing.Point(24, 99);
-            this.panelAccessKey.Name = "panelAccessKey";
-            this.panelAccessKey.Size = new System.Drawing.Size(403, 87);
-            this.panelAccessKey.TabIndex = 18;
-            // 
-            // panelAccesAccount
-            // 
-            this.panelAccesAccount.BackColor = System.Drawing.Color.Silver;
-            this.panelAccesAccount.Controls.Add(this.label29);
-            this.panelAccesAccount.Controls.Add(this.txtPassword);
-            this.panelAccesAccount.Controls.Add(this.label28);
-            this.panelAccesAccount.Controls.Add(this.txtUsername);
-            this.panelAccesAccount.Controls.Add(this.txtRemoteHostIp);
-            this.panelAccesAccount.Controls.Add(this.label26);
-            this.panelAccesAccount.Controls.Add(this.txtRemotePort2);
-            this.panelAccesAccount.Controls.Add(this.label27);
-            this.panelAccesAccount.Location = new System.Drawing.Point(24, 192);
-            this.panelAccesAccount.Name = "panelAccesAccount";
-            this.panelAccesAccount.Size = new System.Drawing.Size(403, 192);
-            this.panelAccesAccount.TabIndex = 19;
-            // 
-            // txtRemoteHostIp
-            // 
-            this.txtRemoteHostIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteHostIp.Location = new System.Drawing.Point(18, 41);
-            this.txtRemoteHostIp.Multiline = true;
-            this.txtRemoteHostIp.Name = "txtRemoteHostIp";
-            this.txtRemoteHostIp.Size = new System.Drawing.Size(247, 26);
-            this.txtRemoteHostIp.TabIndex = 7;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(14, 18);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(178, 20);
-            this.label26.TabIndex = 6;
-            this.label26.Text = "Remote host ip address";
-            // 
-            // txtRemotePort2
-            // 
-            this.txtRemotePort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemotePort2.Location = new System.Drawing.Point(271, 41);
-            this.txtRemotePort2.Multiline = true;
-            this.txtRemotePort2.Name = "txtRemotePort2";
-            this.txtRemotePort2.Size = new System.Drawing.Size(66, 26);
-            this.txtRemotePort2.TabIndex = 9;
-            this.txtRemotePort2.Text = "5000";
-            this.txtRemotePort2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(267, 18);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(42, 20);
-            this.label27.TabIndex = 13;
-            this.label27.Text = "Port:";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(18, 93);
-            this.txtUsername.Multiline = true;
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(247, 26);
-            this.txtUsername.TabIndex = 14;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(14, 70);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(83, 20);
-            this.label28.TabIndex = 15;
-            this.label28.Text = "Username";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(14, 122);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(78, 20);
-            this.label29.TabIndex = 17;
-            this.label29.Text = "Password";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(18, 145);
-            this.txtPassword.Multiline = true;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(247, 26);
-            this.txtPassword.TabIndex = 16;
-            // 
             // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1890,6 +1893,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabRemote.ResumeLayout(false);
             this.tabRemote.PerformLayout();
+            this.panelAccesAccount.ResumeLayout(false);
+            this.panelAccesAccount.PerformLayout();
+            this.panelAccessKey.ResumeLayout(false);
+            this.panelAccessKey.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabImages.ResumeLayout(false);
@@ -1929,10 +1936,6 @@
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.panelAccessKey.ResumeLayout(false);
-            this.panelAccessKey.PerformLayout();
-            this.panelAccesAccount.ResumeLayout(false);
-            this.panelAccesAccount.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

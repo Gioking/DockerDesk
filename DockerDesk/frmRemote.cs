@@ -29,7 +29,7 @@ namespace DockerDesk
         private List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
         private List<DockerVariable> envVariableList;
         private StringBuilder sb = new StringBuilder();
-        private SshClientManager sshClientManager = new SshClientManager("", "", "", 22);
+        private SshClientManager sshClientManager = new SshClientManager("", "", "", "", 22);
 
         public frmRemote()
         {
@@ -209,10 +209,24 @@ namespace DockerDesk
 
         #region Commands
 
-        private void btnConnectToRemote_Click(object sender, EventArgs e)
+        private void rdoKeyChanged(object sender, EventArgs e)
+        {
+            panelAccessKey.Enabled = true;
+            panelAccesAccount.Enabled = false;
+        }
+
+        private void rdoCredChanged(object sender, EventArgs e)
+        {
+            panelAccessKey.Enabled = false;
+            panelAccesAccount.Enabled = true;
+        }
+
+        private async void btnConnectToRemote_Click(object sender, EventArgs e)
         {
             try
             {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+
                 if (!DockerNetWorkChecker.IsValidIPAddress(txtRemoteUsername.Text))
                 {
                     MessageBox.Show("Warning... the remote ip address is not a valid ip address.");
@@ -240,8 +254,8 @@ namespace DockerDesk
                     string host = parts[1];
                     int port = int.Parse(txtRemotePort.Text);
 
-                    sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
-                    sshClientManager.Connect();
+                    sshClientManager = new SshClientManager(host, username, "", privateKeyFile, port);
+                    await sshClientManager.ConnectAsync();
                 }
                 else
                 {
@@ -250,20 +264,23 @@ namespace DockerDesk
 
                     string username = txtUsername.Text;
                     string password = txtPassword.Text;
-                    string remotehost = txtRemoteHostIp.Text;
+                    string host = txtRemoteHostIp.Text;
                     int port = int.Parse(txtRemotePort2.Text);
 
-                    //sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
-                    sshClientManager.Connect();
+                    sshClientManager = new SshClientManager(host, username, password, "", port);
+                    await sshClientManager.ConnectAsync();
                 }
 
                 ReloadAll();
 
                 CheckIfConnection();
 
+                SpinnerHelper.ToggleSpinner(pBar, false);
+
             }
             catch (Exception ex)
             {
+                SpinnerHelper.ToggleSpinner(pBar, false);
                 Console.WriteLine("Errore: " + ex.Message);
             }
         }
@@ -1001,6 +1018,7 @@ namespace DockerDesk
         }
 
         #endregion
+
 
     }
 }
