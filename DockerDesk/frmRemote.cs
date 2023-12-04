@@ -225,22 +225,42 @@ namespace DockerDesk
                     return;
                 }
 
-                //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
-                string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
+                if (rdoAccessByKeys.Checked)
+                {
+                    panelAccessKey.Visible = true;
+                    panelAccesAccount.Visible = false;
 
-                string sshConnection = txtRemoteUsername.Text;
-                string[] parts = sshConnection.Split('@');
+                    //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
+                    string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
 
-                string username = parts[0];
-                string host = parts[1];
-                int port = int.Parse(txtRemotePort.Text);
+                    string sshConnection = txtRemoteUsername.Text;
+                    string[] parts = sshConnection.Split('@');
 
-                sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
-                sshClientManager.Connect();
+                    string username = parts[0];
+                    string host = parts[1];
+                    int port = int.Parse(txtRemotePort.Text);
+
+                    sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
+                    sshClientManager.Connect();
+                }
+                else
+                {
+                    panelAccessKey.Visible = false;
+                    panelAccesAccount.Visible = true;
+
+                    string username = txtUsername.Text;
+                    string password = txtPassword.Text;
+                    string remotehost = txtRemoteHostIp.Text;
+                    int port = int.Parse(txtRemotePort2.Text);
+
+                    //sshClientManager = new SshClientManager(host, username, privateKeyFile, port);
+                    sshClientManager.Connect();
+                }
 
                 ReloadAll();
 
                 CheckIfConnection();
+
             }
             catch (Exception ex)
             {
