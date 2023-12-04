@@ -76,13 +76,11 @@ namespace DockerDesk
             {
                 try
                 {
-                    //SpinnerHelper.ToggleSpinner(pBar, true);
                     imagesList.Clear();
                     var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
                     if (!string.IsNullOrEmpty(command.OperationResult))
                     {
                         txtLog.Text = LogHelper.LogError(command.OperationResult);
-                        return;
                     }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
@@ -109,7 +107,6 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
                     txtLog.Text = LogHelper.LogError(command.OperationResult);
-                    return;
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
@@ -132,7 +129,6 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
                     txtLog.Text = LogHelper.LogError(command.OperationResult);
-                    return;
                 }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
@@ -155,7 +151,6 @@ namespace DockerDesk
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
                     txtLog.Text = LogHelper.LogError(command.OperationResult);
-                    return;
                 }
 
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
