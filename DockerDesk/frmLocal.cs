@@ -505,6 +505,17 @@ namespace DockerDesk
             }
         }
 
+        private void CreateVars(object sender, EventArgs e)
+        {
+            if (selectedImage == null)
+            {
+                MessageBox.Show("Please select an image first.");
+                return;
+            }
+            Form form = new frmVariables(selectedImage.Image, selectedImage.ImageId);
+            form.Show();
+        }
+
         #endregion
 
         #region Various
@@ -691,19 +702,6 @@ namespace DockerDesk
             Form form = new frmHelp();
             form.ShowDialog();
         }
-
-        private void btnCreateVariables_Click(object sender, EventArgs e)
-        {
-            if (selectedImage == null)
-            {
-                MessageBox.Show("Please select an image first.");
-                return;
-            }
-            Form form = new frmVariables(selectedImage.Image, selectedImage.ImageId);
-            form.Show();
-        }
-
-
 
 
         private void GridImages_DataError(object sender, DataGridViewDataErrorEventArgs e)

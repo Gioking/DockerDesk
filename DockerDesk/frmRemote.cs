@@ -940,7 +940,7 @@ namespace DockerDesk
             form.ShowDialog();
         }
 
-        private void btnCreateVariables_Click(object sender, EventArgs e)
+        private void CreateVars(object sender, EventArgs e)
         {
             if (selectedImage == null)
             {

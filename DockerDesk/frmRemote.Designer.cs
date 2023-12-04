@@ -420,7 +420,7 @@
             this.btnCreateVariables.TabIndex = 23;
             this.btnCreateVariables.Text = "Edit container variables";
             this.btnCreateVariables.UseVisualStyleBackColor = true;
-            this.btnCreateVariables.Click += new System.EventHandler(this.btnCreateVariables_Click);
+            this.btnCreateVariables.Click += new System.EventHandler(this.CreateVars);
             // 
             // txtHostPathName
             // 
