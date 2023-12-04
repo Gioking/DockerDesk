@@ -414,6 +414,13 @@ namespace DockerDesk
         {
             try
             {
+                string containerName = txtContainerName.Text;
+                string hostPathName = txtHostPathName.Text;
+                string hostPort = txtHostPort.Text;
+                string containerPort = txtContainerPort.Text;
+                string containerPathName = txtContainerPathName.Text;
+                string remoteMappedIpAddress = txtRemoteMappedIpAddress.Text;
+
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 string result = string.Empty;
                 if (selectedImage == null || string.IsNullOrEmpty(txtContainerName.Text))
@@ -423,19 +430,19 @@ namespace DockerDesk
                     return;
                 }
 
-                var isContainer = containersList.FirstOrDefault(c => c.Names == txtContainerName.Text);
+                var isContainer = containersList.FirstOrDefault(c => c.Names == containerName);
                 if (isContainer != null)
                 {
-                    MessageBox.Show($"Warning.. a container with same name: {txtContainerName.Text} already exist!");
+                    MessageBox.Show($"Warning.. a container with same name: {containerName} already exist!");
                     SpinnerHelper.ToggleSpinner(pBar, false);
                     return;
                 }
 
-                int port = int.Parse(txtHostPort.Text);
+                int port = int.Parse(hostPort);
                 bool isPortInUse = await DockerPortChecker.IsRemotePortInUseByDockerContainerAsync(port, sshClientManager);
                 if (isPortInUse)
                 {
-                    MessageBox.Show($"Warning.. the host port: {txtHostPort.Text} is already in use!");
+                    MessageBox.Show($"Warning.. the host port: {hostPort} is already in use!");
                     SpinnerHelper.ToggleSpinner(pBar, false);
                     return;
                 }
@@ -452,31 +459,34 @@ namespace DockerDesk
 
                 if (envVars != null)
                 {
-                    baseDockerCommand = $"run -d {envVars} --name {txtContainerName.Text}";
+                    baseDockerCommand = $"run -d {envVars} --name {containerName}";
                 }
                 else
                 {
-                    baseDockerCommand = $"run -d --name {txtContainerName.Text}";
+                    baseDockerCommand = $"run -d --name {containerName}";
                 }
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {txtHostPort.Text}:{txtContainerPort.Text}", sshClientManager);
+                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", sshClientManager);
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
+                    string portMapping = string.IsNullOrEmpty(remoteMappedIpAddress) ? $"{hostPort}:{containerPort}" : $"{remoteMappedIpAddress}:{hostPort}:{containerPort}";
+
                     if (!chkHasVolume.Checked)
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {txtHostPort.Text}:{txtContainerPort.Text} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
                         txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
+
 
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -937,6 +947,8 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", sshClientManager);
+
+                if (command == null) { return; }
 
                 if (command.OperationResult == null && command.OperationResult == null)
                 {

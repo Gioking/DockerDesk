@@ -56,6 +56,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.txtHostPathName = new System.Windows.Forms.TextBox();
@@ -514,6 +516,8 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.txtRemoteMappedIpAddress);
             this.groupBox4.Controls.Add(this.chkUseVariables);
             this.groupBox4.Controls.Add(this.btnCreateVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
@@ -538,11 +542,30 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(17, 58);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(30, 13);
+            this.label30.TabIndex = 25;
+            this.label30.Text = "C.Ip";
+            // 
+            // txtRemoteMappedIpAddress
+            // 
+            this.txtRemoteMappedIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteMappedIpAddress.Location = new System.Drawing.Point(70, 53);
+            this.txtRemoteMappedIpAddress.Multiline = true;
+            this.txtRemoteMappedIpAddress.Name = "txtRemoteMappedIpAddress";
+            this.txtRemoteMappedIpAddress.Size = new System.Drawing.Size(219, 22);
+            this.txtRemoteMappedIpAddress.TabIndex = 26;
+            this.txtRemoteMappedIpAddress.Text = "10.0.0.9";
+            // 
             // chkUseVariables
             // 
             this.chkUseVariables.AutoSize = true;
             this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkUseVariables.Location = new System.Drawing.Point(70, 242);
+            this.chkUseVariables.Location = new System.Drawing.Point(69, 297);
             this.chkUseVariables.Name = "chkUseVariables";
             this.chkUseVariables.Size = new System.Drawing.Size(214, 20);
             this.chkUseVariables.TabIndex = 24;
@@ -556,7 +579,7 @@
             this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariables.ImageKey = "arrow-213-32.png";
             this.btnCreateVariables.ImageList = this.imageList1;
-            this.btnCreateVariables.Location = new System.Drawing.Point(68, 268);
+            this.btnCreateVariables.Location = new System.Drawing.Point(67, 323);
             this.btnCreateVariables.Name = "btnCreateVariables";
             this.btnCreateVariables.Size = new System.Drawing.Size(220, 35);
             this.btnCreateVariables.TabIndex = 23;
@@ -567,7 +590,7 @@
             // txtHostPathName
             // 
             this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPathName.Location = new System.Drawing.Point(68, 201);
+            this.txtHostPathName.Location = new System.Drawing.Point(67, 256);
             this.txtHostPathName.Multiline = true;
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
@@ -577,7 +600,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 196);
+            this.label19.Location = new System.Drawing.Point(16, 251);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 19;
@@ -587,7 +610,7 @@
             // 
             this.chkShareVolumeToHost.AutoSize = true;
             this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 175);
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(68, 230);
             this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
             this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
             this.chkShareVolumeToHost.TabIndex = 18;
@@ -597,7 +620,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 110);
+            this.label16.Location = new System.Drawing.Point(16, 165);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 17;
@@ -610,7 +633,7 @@
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVolumes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVolumes.FormattingEnabled = true;
-            this.cmbVolumes.Location = new System.Drawing.Point(69, 107);
+            this.cmbVolumes.Location = new System.Drawing.Point(68, 162);
             this.cmbVolumes.Name = "cmbVolumes";
             this.cmbVolumes.Size = new System.Drawing.Size(220, 24);
             this.cmbVolumes.TabIndex = 16;
@@ -639,7 +662,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 56);
+            this.label3.Location = new System.Drawing.Point(17, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 7;
@@ -649,7 +672,7 @@
             // 
             this.chkHasVolume.AutoSize = true;
             this.chkHasVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkHasVolume.Location = new System.Drawing.Point(70, 28);
+            this.chkHasVolume.Location = new System.Drawing.Point(68, 137);
             this.chkHasVolume.Name = "chkHasVolume";
             this.chkHasVolume.Size = new System.Drawing.Size(165, 19);
             this.chkHasVolume.TabIndex = 15;
@@ -659,7 +682,7 @@
             // txtHostPort
             // 
             this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPort.Location = new System.Drawing.Point(70, 51);
+            this.txtHostPort.Location = new System.Drawing.Point(70, 81);
             this.txtHostPort.Multiline = true;
             this.txtHostPort.Name = "txtHostPort";
             this.txtHostPort.Size = new System.Drawing.Size(81, 22);
@@ -670,7 +693,7 @@
             // txtContainerPathName
             // 
             this.txtContainerPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPathName.Location = new System.Drawing.Point(69, 136);
+            this.txtContainerPathName.Location = new System.Drawing.Point(68, 191);
             this.txtContainerPathName.Multiline = true;
             this.txtContainerPathName.Name = "txtContainerPathName";
             this.txtContainerPathName.Size = new System.Drawing.Size(220, 22);
@@ -680,7 +703,7 @@
             // txtContainerPort
             // 
             this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPort.Location = new System.Drawing.Point(215, 51);
+            this.txtContainerPort.Location = new System.Drawing.Point(215, 81);
             this.txtContainerPort.Multiline = true;
             this.txtContainerPort.Name = "txtContainerPort";
             this.txtContainerPort.Size = new System.Drawing.Size(74, 22);
@@ -691,7 +714,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 141);
+            this.label6.Location = new System.Drawing.Point(16, 196);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
@@ -700,7 +723,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(167, 56);
+            this.label4.Location = new System.Drawing.Point(167, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 10;
@@ -709,7 +732,7 @@
             // txtContainerName
             // 
             this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerName.Location = new System.Drawing.Point(69, 79);
+            this.txtContainerName.Location = new System.Drawing.Point(69, 109);
             this.txtContainerName.Multiline = true;
             this.txtContainerName.Name = "txtContainerName";
             this.txtContainerName.Size = new System.Drawing.Size(220, 22);
@@ -719,7 +742,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 83);
+            this.label5.Location = new System.Drawing.Point(17, 113);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 11;
@@ -2091,6 +2114,8 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
     }
 }
 
