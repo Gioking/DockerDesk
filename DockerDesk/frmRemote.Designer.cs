@@ -595,6 +595,7 @@
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridImages.Size = new System.Drawing.Size(900, 314);
             this.GridImages.TabIndex = 16;
+            this.GridImages.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridImages_DataError);
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
             // idDataGridViewTextBoxColumn
@@ -730,6 +731,7 @@
             // btnDeleteImage
             // 
             this.btnDeleteImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnDeleteImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDeleteImage.Location = new System.Drawing.Point(161, 191);
             this.btnDeleteImage.Name = "btnDeleteImage";
@@ -800,6 +802,7 @@
             // btnCreateImage
             // 
             this.btnCreateImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateImage.ImageKey = "hexagon-32.png";
             this.btnCreateImage.ImageList = this.imageList1;
@@ -877,6 +880,7 @@
             // btnDisconnect
             // 
             this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnDisconnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDisconnect.Location = new System.Drawing.Point(852, 395);
             this.btnDisconnect.Name = "btnDisconnect";
@@ -901,6 +905,7 @@
             // btnConnectNetwork
             // 
             this.btnConnectNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConnectNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnConnectNetwork.Location = new System.Drawing.Point(771, 395);
             this.btnConnectNetwork.Name = "btnConnectNetwork";
             this.btnConnectNetwork.Size = new System.Drawing.Size(75, 26);
@@ -976,6 +981,7 @@
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridContainers.Size = new System.Drawing.Size(1207, 359);
             this.gridContainers.TabIndex = 7;
+            this.gridContainers.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gridContainers_DataError);
             this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
             // 
             // containerIdDataGridViewTextBoxColumn
@@ -1080,7 +1086,7 @@
             // btnCreateVolume
             // 
             this.btnCreateVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnCreateVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateVolume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVolume.ImageKey = "accept-database-32.png";
             this.btnCreateVolume.ImageList = this.imageList1;
@@ -1147,6 +1153,7 @@
             this.GridVolumes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVolumes.Size = new System.Drawing.Size(856, 502);
             this.GridVolumes.TabIndex = 10;
+            this.GridVolumes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVolumes_DataError);
             this.GridVolumes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridVolumes_MouseClick);
             // 
             // idDataGridViewTextBoxColumn2
@@ -1227,7 +1234,7 @@
             // btnRemoveNetwork
             // 
             this.btnRemoveNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnRemoveNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnRemoveNetwork.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnRemoveNetwork.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRemoveNetwork.ImageKey = "(none)";
@@ -1243,7 +1250,7 @@
             // btnNetInspect
             // 
             this.btnNetInspect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnNetInspect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnNetInspect.Location = new System.Drawing.Point(118, 270);
             this.btnNetInspect.Name = "btnNetInspect";
             this.btnNetInspect.Size = new System.Drawing.Size(210, 31);
@@ -1316,7 +1323,7 @@
             // btnCreateNetwork
             // 
             this.btnCreateNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnCreateNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnCreateNetwork.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateNetwork.ImageKey = "arrow-96-32.png";
             this.btnCreateNetwork.ImageList = this.imageList1;
@@ -1370,6 +1377,7 @@
             this.GridNetwork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridNetwork.Size = new System.Drawing.Size(856, 360);
             this.GridNetwork.TabIndex = 18;
+            this.GridNetwork.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridNetwork_DataError);
             this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
             // idDataGridViewTextBoxColumn1
@@ -1500,6 +1508,7 @@
             this.GridVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVariables.Size = new System.Drawing.Size(880, 360);
             this.GridVariables.TabIndex = 20;
+            this.GridVariables.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVariables_DataError);
             // 
             // keyDataGridViewTextBoxColumn
             // 
