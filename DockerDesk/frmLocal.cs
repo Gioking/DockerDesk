@@ -611,7 +611,7 @@ namespace DockerDesk
             selectedNetwork = (DockerNetwork)cmbNetworksConnect.SelectedItem;
         }
 
-        private async void btnNetInspect_Click(object sender, EventArgs e)
+        private async void NetworkInspect(object sender, EventArgs e)
         {
             if (GridNetwork.SelectedRows.Count > 0)
             {

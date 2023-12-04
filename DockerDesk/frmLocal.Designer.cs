@@ -570,7 +570,7 @@
             this.btnNetInspect.TabIndex = 21;
             this.btnNetInspect.Text = "Inspect";
             this.btnNetInspect.UseVisualStyleBackColor = true;
-            this.btnNetInspect.Click += new System.EventHandler(this.btnNetInspect_Click);
+            this.btnNetInspect.Click += new System.EventHandler(this.NetworkInspect);
             // 
             // txtGateway
             // 
