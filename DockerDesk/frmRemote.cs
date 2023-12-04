@@ -227,22 +227,19 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
 
-                if (!DockerNetWorkChecker.IsValidIPAddress(txtRemoteUsername.Text))
-                {
-                    MessageBox.Show("Warning... the remote ip address is not a valid ip address.");
-                    return;
-                }
-
-                if (!DockerNetWorkChecker.IsValidPort(txtRemotePort.Text))
-                {
-                    MessageBox.Show("Warning... the remote port is not a valid.");
-                    return;
-                }
-
                 if (rdoAccessByKeys.Checked)
                 {
-                    panelAccessKey.Visible = true;
-                    panelAccesAccount.Visible = false;
+                    if (!DockerNetWorkChecker.IsValidIPAddress(txtRemoteUsername.Text))
+                    {
+                        MessageBox.Show("Warning... the remote ip address is not a valid ip address.");
+                        return;
+                    }
+
+                    if (!DockerNetWorkChecker.IsValidPort(txtRemotePort.Text))
+                    {
+                        MessageBox.Show("Warning... the remote port is not a valid.");
+                        return;
+                    }
 
                     //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
                     string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
@@ -259,9 +256,6 @@ namespace DockerDesk
                 }
                 else
                 {
-                    panelAccessKey.Visible = false;
-                    panelAccesAccount.Visible = true;
-
                     string username = txtUsername.Text;
                     string password = txtPassword.Text;
                     string host = txtRemoteHostIp.Text;

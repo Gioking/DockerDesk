@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 public class SshClientManager
 {
@@ -52,7 +53,7 @@ public class SshClientManager
         }
         catch (Exception ex)
         {
-            // Gestisci l'eccezione qui. Ad esempio, puoi loggare l'errore o mostrare un messaggio.
+            MessageBox.Show($"Failed to connect: {ex.Message}");
             Console.WriteLine($"Failed to connect: {ex.Message}");
         }
     }
