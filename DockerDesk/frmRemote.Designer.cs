@@ -338,9 +338,9 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(20, 42);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(207, 20);
+            this.label21.Size = new System.Drawing.Size(165, 20);
             this.label21.TabIndex = 6;
-            this.label21.Text = "Username: user@ipaddress";
+            this.label21.Text = "username@ipaddress";
             // 
             // pictureBox1
             // 

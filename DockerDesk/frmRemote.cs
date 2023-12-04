@@ -81,7 +81,7 @@ namespace DockerDesk
             }
         }
 
-        #region Region Loadding
+        #region Loadding
         private async void LoadImages()
         {
             try
@@ -216,6 +216,12 @@ namespace DockerDesk
                 if (!DockerNetWorkChecker.IsValidIPAddress(txtRemoteUsername.Text))
                 {
                     MessageBox.Show("Warning... the remote ip address is not a valid ip address.");
+                    return;
+                }
+
+                if (!DockerNetWorkChecker.IsValidPort(txtRemotePort.Text))
+                {
+                    MessageBox.Show("Warning... the remote port is not a valid.");
                     return;
                 }
 

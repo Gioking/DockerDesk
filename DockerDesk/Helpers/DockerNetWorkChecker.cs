@@ -127,6 +127,21 @@ namespace DockerDesk.Helpers
             return IPAddress.TryParse(ipAddress, out _);
         }
 
+        public static bool IsValidPort(string portString)
+        {
+            if (string.IsNullOrWhiteSpace(portString))
+            {
+                return false;
+            }
+
+            if (!int.TryParse(portString, out int port))
+            {
+                return false;
+            }
+
+            return port >= 0 && port <= 65535;
+        }
+
 
     }
 
