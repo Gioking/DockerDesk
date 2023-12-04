@@ -115,6 +115,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.txtHostPathName = new System.Windows.Forms.TextBox();
@@ -152,8 +154,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -1116,6 +1116,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(18, 59);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(30, 13);
+            this.label30.TabIndex = 27;
+            this.label30.Text = "C.Ip";
+            // 
+            // txtRemoteMappedIpAddress
+            // 
+            this.txtRemoteMappedIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtRemoteMappedIpAddress.Location = new System.Drawing.Point(71, 53);
+            this.txtRemoteMappedIpAddress.Multiline = true;
+            this.txtRemoteMappedIpAddress.Name = "txtRemoteMappedIpAddress";
+            this.txtRemoteMappedIpAddress.Size = new System.Drawing.Size(219, 22);
+            this.txtRemoteMappedIpAddress.TabIndex = 28;
+            this.txtRemoteMappedIpAddress.Text = "10.0.0.9";
+            // 
             // chkUseVariables
             // 
             this.chkUseVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1560,25 +1579,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(18, 59);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(30, 13);
-            this.label30.TabIndex = 27;
-            this.label30.Text = "C.Ip";
-            // 
-            // txtRemoteMappedIpAddress
-            // 
-            this.txtRemoteMappedIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteMappedIpAddress.Location = new System.Drawing.Point(69, 53);
-            this.txtRemoteMappedIpAddress.Multiline = true;
-            this.txtRemoteMappedIpAddress.Name = "txtRemoteMappedIpAddress";
-            this.txtRemoteMappedIpAddress.Size = new System.Drawing.Size(219, 22);
-            this.txtRemoteMappedIpAddress.TabIndex = 28;
-            this.txtRemoteMappedIpAddress.Text = "10.0.0.9";
             // 
             // frmLocal
             // 
