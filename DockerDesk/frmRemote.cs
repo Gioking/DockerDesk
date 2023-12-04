@@ -27,7 +27,7 @@ namespace DockerDesk
         private List<DockerVolume> volumeList = new List<DockerVolume>();
         private List<DockerNetwork> networkList = new List<DockerNetwork>();
         private List<DockerNetwork> customNetworkList = new List<DockerNetwork>();
-        private List<DockerVariable> EnvVariable;
+        private List<DockerVariable> envVariableList;
         private StringBuilder sb = new StringBuilder();
         private SshClientManager sshClientManager = new SshClientManager("", "", "", 22);
 

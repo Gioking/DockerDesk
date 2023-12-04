@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRemote));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabRemote = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.btnDisconnectSsh = new System.Windows.Forms.Button();
@@ -167,6 +168,7 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabImages.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -214,6 +216,7 @@
             // 
             // tabRemote
             // 
+            this.tabRemote.Controls.Add(this.pictureBox2);
             this.tabRemote.Controls.Add(this.label25);
             this.tabRemote.Controls.Add(this.label22);
             this.tabRemote.Controls.Add(this.btnDisconnectSsh);
@@ -229,6 +232,17 @@
             this.tabRemote.TabIndex = 6;
             this.tabRemote.Text = "Remote";
             this.tabRemote.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(527, 24);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(600, 510);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
             // 
             // label25
             // 
@@ -331,7 +345,6 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1226, 593);
@@ -1738,6 +1751,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabRemote.ResumeLayout(false);
             this.tabRemote.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabImages.ResumeLayout(false);
             this.tabImages.PerformLayout();
@@ -1918,6 +1932,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnShowContainerProcesses;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
