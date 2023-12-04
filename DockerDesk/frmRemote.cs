@@ -91,9 +91,9 @@ namespace DockerDesk
                     imagesList.Clear();
                     await Task.Delay(100);
                     var command = await DoskerRunner.DockerExecute("images", sshClientManager);
-                    if (!string.IsNullOrEmpty(command.Error))
+                    if (!string.IsNullOrEmpty(command.OperationResult))
                     {
-                        txtLog.Text = LogHelper.LogError(command.Error);
+                        txtLog.Text = LogHelper.LogError(command.OperationResult);
                     }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
@@ -118,9 +118,9 @@ namespace DockerDesk
                 containersList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("ps -a", sshClientManager);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
@@ -141,9 +141,9 @@ namespace DockerDesk
                 volumeList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("volume ls", sshClientManager);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
@@ -164,9 +164,9 @@ namespace DockerDesk
                 networkList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("network ls", sshClientManager);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
 
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
@@ -317,7 +317,7 @@ namespace DockerDesk
                 //Execute ssh command on remote machine
                 command = await DoskerRunner.DockerCreateImage(dockerCommand, sshClientManager);
 
-                if (command.Error == null && command.OperationResult == null)
+                if (command.OperationResult == null && command.OperationResult == null)
                 {
                     return;
                 }
@@ -608,7 +608,7 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
                 {
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
@@ -634,7 +634,7 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
                 {
                     txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
@@ -901,7 +901,7 @@ namespace DockerDesk
 
                 var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", sshClientManager);
 
-                if (command.Error == null && command.OperationResult == null)
+                if (command.OperationResult == null && command.OperationResult == null)
                 {
                     SpinnerHelper.ToggleSpinner(pBar, false);
                     return;

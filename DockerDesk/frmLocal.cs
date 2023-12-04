@@ -79,9 +79,9 @@ namespace DockerDesk
                     //SpinnerHelper.ToggleSpinner(pBar, true);
                     imagesList.Clear();
                     var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
-                    if (!string.IsNullOrEmpty(command.Error))
+                    if (!string.IsNullOrEmpty(command.OperationResult))
                     {
-                        txtLog.Text = LogHelper.LogError(command.Error);
+                        txtLog.Text = LogHelper.LogError(command.OperationResult);
                         return;
                     }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
@@ -106,9 +106,9 @@ namespace DockerDesk
             {
                 containersList.Clear();
                 var command = await DoskerRunner.DockerExecute("ps -a", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                     return;
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
@@ -129,9 +129,9 @@ namespace DockerDesk
             {
                 volumeList.Clear();
                 var command = await DoskerRunner.DockerExecute("volume ls", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                     return;
                 }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
@@ -152,9 +152,9 @@ namespace DockerDesk
             {
                 networkList.Clear();
                 var command = await DoskerRunner.DockerExecute("network ls", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.Error))
+                if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.Error);
+                    txtLog.Text = LogHelper.LogError(command.OperationResult);
                     return;
                 }
 
@@ -226,7 +226,6 @@ namespace DockerDesk
                 }
                 if (command == null) { return; }
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                txtLog.Text = LogHelper.LogInfo(command.Error);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }

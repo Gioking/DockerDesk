@@ -287,7 +287,7 @@ namespace DockerDesk.Helpers
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
                 LogHelper.LogError($"Err: {e.Message}");
-                resultModel.Error = e.Message;
+                resultModel.OperationResult = e.Message;
                 return resultModel;
             }
 

@@ -36,9 +36,9 @@ namespace DockerDesk.Helpers
         {
             var result = await DoskerRunner.DockerExecute("ps -a --format \"{{.ID}}:{{.Names}}\"", "");
 
-            if (!string.IsNullOrEmpty(result.Error))
+            if (!string.IsNullOrEmpty(result.OperationResult))
             {
-                throw new Exception($"Errore durante l'esecuzione del comando Docker: {result.Error}");
+                throw new Exception($"Errore durante l'esecuzione del comando Docker: {result.OperationResult}");
             }
 
             var containers = new List<(string Id, string Name)>();
@@ -59,9 +59,9 @@ namespace DockerDesk.Helpers
             var command = $"inspect --format=\"{{{{json .Config.Env}}}}\" {containerId}";
             var result = await DoskerRunner.DockerExecute(command, "");
 
-            if (!string.IsNullOrEmpty(result.Error))
+            if (!string.IsNullOrEmpty(result.OperationResult))
             {
-                throw new Exception($"Errore durante l'esecuzione del comando Docker: {result.Error}");
+                throw new Exception($"Errore durante l'esecuzione del comando Docker: {result.OperationResult}");
             }
 
             var envVariables = JsonConvert.DeserializeObject<List<string>>(result.OperationResult);
