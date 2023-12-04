@@ -479,7 +479,7 @@
             this.btnRunContainer.TabIndex = 5;
             this.btnRunContainer.Text = "Run Countainer";
             this.btnRunContainer.UseVisualStyleBackColor = true;
-            this.btnRunContainer.Click += new System.EventHandler(this.btnRunContainer_Click);
+            this.btnRunContainer.Click += new System.EventHandler(this.CreateContainer);
             // 
             // label3
             // 
@@ -737,7 +737,7 @@
             this.btnDeleteImage.TabIndex = 5;
             this.btnDeleteImage.Text = "Delete Image";
             this.btnDeleteImage.UseVisualStyleBackColor = true;
-            this.btnDeleteImage.Click += new System.EventHandler(this.btnDeleteImage_Click);
+            this.btnDeleteImage.Click += new System.EventHandler(this.DeleteImage);
             // 
             // btnOpenFolder2
             // 
@@ -809,7 +809,7 @@
             this.btnCreateImage.TabIndex = 2;
             this.btnCreateImage.Text = "Create Image";
             this.btnCreateImage.UseVisualStyleBackColor = true;
-            this.btnCreateImage.Click += new System.EventHandler(this.btnCreateImage_Click);
+            this.btnCreateImage.Click += new System.EventHandler(this.CreateImage);
             // 
             // txtImageName
             // 
@@ -884,7 +884,7 @@
             this.btnDisconnect.TabIndex = 21;
             this.btnDisconnect.Text = "Disconnect";
             this.btnDisconnect.UseVisualStyleBackColor = true;
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            this.btnDisconnect.Click += new System.EventHandler(this.DisconnectNetwork);
             // 
             // btnInspect
             // 
@@ -896,7 +896,7 @@
             this.btnInspect.TabIndex = 20;
             this.btnInspect.Text = "Inspect container";
             this.btnInspect.UseVisualStyleBackColor = true;
-            this.btnInspect.Click += new System.EventHandler(this.btnInspect_Click);
+            this.btnInspect.Click += new System.EventHandler(this.InspectVolume);
             // 
             // btnConnectNetwork
             // 
@@ -907,7 +907,7 @@
             this.btnConnectNetwork.TabIndex = 19;
             this.btnConnectNetwork.Text = "Connect";
             this.btnConnectNetwork.UseVisualStyleBackColor = true;
-            this.btnConnectNetwork.Click += new System.EventHandler(this.btnConnectNetwork_Click);
+            this.btnConnectNetwork.Click += new System.EventHandler(this.ConnectNetwork);
             // 
             // label18
             // 
@@ -948,7 +948,7 @@
             this.btnRemoveContainer.TabIndex = 8;
             this.btnRemoveContainer.Text = "Remove Container";
             this.btnRemoveContainer.UseVisualStyleBackColor = true;
-            this.btnRemoveContainer.Click += new System.EventHandler(this.btnRemoveContainer_Click);
+            this.btnRemoveContainer.Click += new System.EventHandler(this.DeleteContainer);
             // 
             // gridContainers
             // 
@@ -1090,7 +1090,7 @@
             this.btnCreateVolume.TabIndex = 2;
             this.btnCreateVolume.Text = "Create Volume";
             this.btnCreateVolume.UseVisualStyleBackColor = true;
-            this.btnCreateVolume.Click += new System.EventHandler(this.btnCreateVolume_Click);
+            this.btnCreateVolume.Click += new System.EventHandler(this.CreateVolume);
             // 
             // txtNewVolumeName
             // 
@@ -1123,7 +1123,7 @@
             this.btnRemoveVolume.TabIndex = 11;
             this.btnRemoveVolume.Text = "Remove Volume";
             this.btnRemoveVolume.UseVisualStyleBackColor = true;
-            this.btnRemoveVolume.Click += new System.EventHandler(this.btnRemoveVolume_Click);
+            this.btnRemoveVolume.Click += new System.EventHandler(this.DeleteVolume);
             // 
             // GridVolumes
             // 
@@ -1238,7 +1238,7 @@
             this.btnRemoveNetwork.TabIndex = 20;
             this.btnRemoveNetwork.Text = "Remove Network";
             this.btnRemoveNetwork.UseVisualStyleBackColor = true;
-            this.btnRemoveNetwork.Click += new System.EventHandler(this.btnRemoveNetwork_Click);
+            this.btnRemoveNetwork.Click += new System.EventHandler(this.DeleteNetwork);
             // 
             // btnNetInspect
             // 
@@ -1326,7 +1326,7 @@
             this.btnCreateNetwork.TabIndex = 2;
             this.btnCreateNetwork.Text = "Create Network";
             this.btnCreateNetwork.UseVisualStyleBackColor = true;
-            this.btnCreateNetwork.Click += new System.EventHandler(this.btnCreateNetwork_Click);
+            this.btnCreateNetwork.Click += new System.EventHandler(this.CreateNetwork);
             // 
             // txtNetworkName
             // 
@@ -1540,7 +1540,7 @@
             this.btnClearLog.TabIndex = 3;
             this.btnClearLog.Text = "Clear Logs";
             this.btnClearLog.UseVisualStyleBackColor = true;
-            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLogs);
             // 
             // txtLog
             // 
@@ -1594,14 +1594,14 @@
             this.reloadAllToolStripMenuItem.Name = "reloadAllToolStripMenuItem";
             this.reloadAllToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.reloadAllToolStripMenuItem.Text = "Reload All";
-            this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.reloadAllToolStripMenuItem_Click);
+            this.reloadAllToolStripMenuItem.Click += new System.EventHandler(this.menuReloadAll);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.menuShowAbout);
             // 
             // helpToolStripMenuItem
             // 
@@ -1609,7 +1609,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.menuShowHelp);
             // 
             // folderBrowserDialog
             // 

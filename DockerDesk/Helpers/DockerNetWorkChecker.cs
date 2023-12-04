@@ -110,6 +110,23 @@ namespace DockerDesk.Helpers
         }
 
 
+        public static bool IsValidIPAddress(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return false;
+            }
+
+            var parts = input.Split('@');
+            if (parts.Length != 2)
+            {
+                return false;
+            }
+
+            string ipAddress = parts[1];
+            return IPAddress.TryParse(ipAddress, out _);
+        }
+
 
     }
 

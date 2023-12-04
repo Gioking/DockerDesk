@@ -213,6 +213,12 @@ namespace DockerDesk
         {
             try
             {
+                if (!DockerNetWorkChecker.IsValidIPAddress(txtRemoteUsername.Text))
+                {
+                    MessageBox.Show("Warning... the remote ip address is not a valid ip address.");
+                    return;
+                }
+
                 //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
                 string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
 
@@ -268,7 +274,7 @@ namespace DockerDesk
 
         //docker build -t myapp:1.0 .
         //docker build -t test-image-gio:v1 -f Dockerfile .
-        private async void btnCreateImage_Click(object sender, EventArgs e)
+        private async void CreateImage(object sender, EventArgs e)
         {
             try
             {
@@ -340,7 +346,7 @@ namespace DockerDesk
         }
 
         //docker rmi -f image:v1
-        private async void btnDeleteImage_Click(object sender, EventArgs e)
+        private async void DeleteImage(object sender, EventArgs e)
         {
             try
             {
@@ -367,7 +373,7 @@ namespace DockerDesk
         }
 
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
-        private async void btnRunContainer_Click(object sender, EventArgs e)
+        private async void CreateContainer(object sender, EventArgs e)
         {
             try
             {
@@ -445,7 +451,7 @@ namespace DockerDesk
         }
 
         //docker rm -f container_id_o_nome
-        private async void btnRemoveContainer_Click(object sender, EventArgs e)
+        private async void DeleteContainer(object sender, EventArgs e)
         {
             try
             {
@@ -477,7 +483,7 @@ namespace DockerDesk
         }
 
         //docker volume create hello
-        private async void btnCreateVolume_Click(object sender, EventArgs e)
+        private async void CreateVolume(object sender, EventArgs e)
         {
             try
             {
@@ -494,7 +500,7 @@ namespace DockerDesk
         }
 
         //docker volume rm hello
-        private async void btnRemoveVolume_Click(object sender, EventArgs e)
+        private async void DeleteVolume(object sender, EventArgs e)
         {
             try
             {
@@ -517,7 +523,7 @@ namespace DockerDesk
 
         //docker network create -d bridge my-bridge-network
         //docker network create --subnet=192.168.1.0/24 --gateway=192.168.1.1 --ip-range=192.168.1.4/32 my-custom-network
-        private async void btnCreateNetwork_Click(object sender, EventArgs e)
+        private async void CreateNetwork(object sender, EventArgs e)
         {
             try
             {
@@ -567,7 +573,7 @@ namespace DockerDesk
             }
         }
 
-        private async void btnRemoveNetwork_Click(object sender, EventArgs e)
+        private async void DeleteNetwork(object sender, EventArgs e)
         {
             try
             {
@@ -590,7 +596,7 @@ namespace DockerDesk
         }
 
         //docker network connect mia-rete mio-container
-        private async void btnConnectNetwork_Click(object sender, EventArgs e)
+        private async void ConnectNetwork(object sender, EventArgs e)
         {
             try
             {
@@ -616,7 +622,7 @@ namespace DockerDesk
         }
 
         //docker network disconnect mynetwork mycontainer  /Per disconnettere dalla network
-        private async void btnDisconnect_Click(object sender, EventArgs e)
+        private async void DisconnectNetwork(object sender, EventArgs e)
         {
             try
             {
@@ -641,7 +647,7 @@ namespace DockerDesk
             }
         }
 
-        private async void btnInspect_Click(object sender, EventArgs e)
+        private async void InspectVolume(object sender, EventArgs e)
         {
             if (gridContainers.SelectedRows.Count > 0)
             {
@@ -846,13 +852,13 @@ namespace DockerDesk
 
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuShowAbout(object sender, EventArgs e)
         {
             About about = new About();
             about.ShowDialog();
         }
 
-        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuReloadAll(object sender, EventArgs e)
         {
             ReloadAll();
         }
@@ -863,7 +869,7 @@ namespace DockerDesk
             selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
         }
 
-        private void btnClearLog_Click(object sender, EventArgs e)
+        private void btnClearLogs(object sender, EventArgs e)
         {
             txtLog.Text = "";
         }
@@ -922,7 +928,7 @@ namespace DockerDesk
             //tabControl1.SelectedTab = tabLog;
         }
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuShowHelp(object sender, EventArgs e)
         {
             Form form = new frmHelp();
             form.ShowDialog();

@@ -201,12 +201,13 @@ namespace DockerDesk
 
         //docker build -t myapp:1.0 .
         //docker build -t test-image-gio:v1 -f Dockerfile .
-        private async void btnCreateImage_Click(object sender, EventArgs e)
+        private async void CreateImage(object sender, EventArgs e)
         {
             try
             {
-                string dockerFilePath = Path.Combine(Application.StartupPath, txtWorkDirPath.Text, "dockerfile");
-                if (!File.Exists(dockerFilePath))
+                string dockerFilePath = Path.Combine(Application.StartupPath, txtWorkDirPath.Text);
+                string dockerfile = Path.Combine(dockerFilePath, "Dockerfile");
+                if (!File.Exists(dockerfile))
                 {
                     MessageBox.Show($"No dockerfile has been found in this path {dockerFilePath}");
                     return;
@@ -217,13 +218,15 @@ namespace DockerDesk
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))
                 {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", dockerFilePath);
                 }
                 else
                 {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", txtWorkDirPath.Text);
+                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", dockerFilePath);
                 }
+                if (command == null) { return; }
                 txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                txtLog.Text = LogHelper.LogInfo(command.Error);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -234,7 +237,7 @@ namespace DockerDesk
         }
 
         //docker image rm -f image
-        private async void btnDeleteImage_Click(object sender, EventArgs e)
+        private async void DeleteImage(object sender, EventArgs e)
         {
             try
             {
@@ -250,161 +253,8 @@ namespace DockerDesk
             }
         }
 
-        //docker rm -f container_id_o_nome
-        private async void btnRemoveContainer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                if (selectedContainer == null)
-                {
-                    MessageBox.Show("Please select the container to remove.");
-                    return;
-                }
-                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadContainers();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //docker volume create hello
-        private async void btnCreateVolume_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadVolumes();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        //docker network create -d bridge my-bridge-network
-        //docker network create --subnet=192.168.1.0/24 --gateway=192.168.1.1 --ip-range=192.168.1.4/32 my-custom-network
-        private async void btnCreateNetwork_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                if (string.IsNullOrEmpty(selectedDrive))
-                {
-                    var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(txtSubnet.Text))
-                    {
-                        MessageBox.Show("Warning... the subnet is required.");
-                        return;
-                    }
-                    var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                }
-                LoadNetworks();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private async void btnRemoveNetwork_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadNetworks();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        //docker volume rm hello
-        private async void btnRemoveVolume_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                LoadVolumes();
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        //docker network connect mia-rete mio-container
-        private async void btnConnectNetwork_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                if (selectedNetwork == null || selectedContainer == null)
-                {
-                    MessageBox.Show("Warning.. Select a container and the network to bind to.");
-                    return;
-                }
-
-                var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //docker network disconnect mynetwork mycontainer  /Per disconnettere dalla network
-        private async void btnDisconnect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SpinnerHelper.ToggleSpinner(pBar, true);
-                if (selectedNetwork == null || selectedContainer == null)
-                {
-                    MessageBox.Show("Warning.. Select a container and the network to bind to.");
-                    return;
-                }
-
-                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
-                SpinnerHelper.ToggleSpinner(pBar, false);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         // docker run -d --name webapi-container -p 9000:80 -v mio-volume:/percorso/nel/container webapi-image^
-        private async void btnRunContainer_Click(object sender, EventArgs e)
+        private async void CreateContainer(object sender, EventArgs e)
         {
             try
             {
@@ -472,8 +322,160 @@ namespace DockerDesk
             }
         }
 
+        //docker rm -f container_id_o_nome
+        private async void DeleteContainer(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (selectedContainer == null)
+                {
+                    MessageBox.Show("Please select the container to remove.");
+                    return;
+                }
+                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadContainers();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        private async void btnInspect_Click(object sender, EventArgs e)
+        //docker volume create hello
+        private async void CreateVolume(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadVolumes();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        //docker network create -d bridge my-bridge-network
+        //docker network create --subnet=192.168.1.0/24 --gateway=192.168.1.1 --ip-range=192.168.1.4/32 my-custom-network
+        private async void CreateNetwork(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (string.IsNullOrEmpty(selectedDrive))
+                {
+                    var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(txtSubnet.Text))
+                    {
+                        MessageBox.Show("Warning... the subnet is required.");
+                        return;
+                    }
+                    var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                }
+                LoadNetworks();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private async void DeleteNetwork(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadNetworks();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        //docker volume rm hello
+        private async void DeleteVolume(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                LoadVolumes();
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        //docker network connect mia-rete mio-container
+        private async void ConnectNetwork(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (selectedNetwork == null || selectedContainer == null)
+                {
+                    MessageBox.Show("Warning.. Select a container and the network to bind to.");
+                    return;
+                }
+
+                var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //docker network disconnect mynetwork mycontainer  /Per disconnettere dalla network
+        private async void DisconnectNetwork(object sender, EventArgs e)
+        {
+            try
+            {
+                SpinnerHelper.ToggleSpinner(pBar, true);
+                if (selectedNetwork == null || selectedContainer == null)
+                {
+                    MessageBox.Show("Warning.. Select a container and the network to bind to.");
+                    return;
+                }
+
+                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+
+                SpinnerHelper.ToggleSpinner(pBar, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void InspectVolume(object sender, EventArgs e)
         {
             if (gridContainers.SelectedRows.Count > 0)
             {
@@ -513,24 +515,6 @@ namespace DockerDesk
 
         #region Various
 
-        private void SelectWorkDir_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                WorkingFolderPath = folderBrowserDialog.SelectedPath;
-                txtWorkDirPath.Text = WorkingFolderPath;
-            }
-        }
-
-        private void btnOpenFolder2_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
-                txtWorkDirPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
-            }
-        }
-
         private void GridImages_MouseClick(object sender, MouseEventArgs e)
         {
             if (GridImages.SelectedRows.Count > 0)
@@ -548,11 +532,19 @@ namespace DockerDesk
             }
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SelectWorkDir(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                WorkingFolderPath = $@"{folderBrowserDialog.SelectedPath}\";
+                txtWorkDirPath.Text = $@"{folderBrowserDialog.SelectedPath}\";
+            }
+        }
+
+        private void menuShowAbout(object sender, EventArgs e)
         {
             About about = new About();
             about.ShowDialog();
-
         }
 
         private void GridVolumes_MouseClick(object sender, MouseEventArgs e)
@@ -588,7 +580,7 @@ namespace DockerDesk
             }
         }
 
-        private void reloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuReloadAll(object sender, EventArgs e)
         {
             ReloadAll();
         }
@@ -599,7 +591,7 @@ namespace DockerDesk
             selectedVolume = (DockerVolume)cmbVolumes.SelectedItem;
         }
 
-        private void btnClearLog_Click(object sender, EventArgs e)
+        private void btnClearLogs(object sender, EventArgs e)
         {
             txtLog.Text = "";
         }
@@ -700,7 +692,7 @@ namespace DockerDesk
             //tabControl1.SelectedTab = tabLog;
         }
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuShowHelp(object sender, EventArgs e)
         {
             Form form = new frmHelp();
             form.ShowDialog();
@@ -719,6 +711,7 @@ namespace DockerDesk
 
 
         #endregion
+
 
     }
 }
