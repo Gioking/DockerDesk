@@ -229,6 +229,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Tag = "Networks";
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabRemote
@@ -774,6 +775,7 @@
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridImages.Size = new System.Drawing.Size(900, 314);
             this.GridImages.TabIndex = 16;
+            this.GridImages.Tag = "Images";
             this.GridImages.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridImages_DataError);
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
@@ -1160,6 +1162,7 @@
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridContainers.Size = new System.Drawing.Size(1207, 359);
             this.gridContainers.TabIndex = 7;
+            this.gridContainers.Tag = "Containers";
             this.gridContainers.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gridContainers_DataError);
             this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
             // 
@@ -1332,6 +1335,7 @@
             this.GridVolumes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVolumes.Size = new System.Drawing.Size(856, 502);
             this.GridVolumes.TabIndex = 10;
+            this.GridVolumes.Tag = "Volumes";
             this.GridVolumes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVolumes_DataError);
             this.GridVolumes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridVolumes_MouseClick);
             // 
@@ -1687,6 +1691,7 @@
             this.GridVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVariables.Size = new System.Drawing.Size(880, 360);
             this.GridVariables.TabIndex = 20;
+            this.GridVariables.Tag = "Variables";
             this.GridVariables.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVariables_DataError);
             // 
             // keyDataGridViewTextBoxColumn
@@ -1721,10 +1726,11 @@
             // 
             // WBLog
             // 
+            this.WBLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBLog.Location = new System.Drawing.Point(0, 0);
             this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
             this.WBLog.Name = "WBLog";
-            this.WBLog.Size = new System.Drawing.Size(1226, 536);
+            this.WBLog.Size = new System.Drawing.Size(1226, 593);
             this.WBLog.TabIndex = 5;
             // 
             // btnClearLog

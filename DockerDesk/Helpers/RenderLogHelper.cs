@@ -1,205 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DockerDesk.Helpers
 {
     public static class RenderLogHelper
     {
-        public static string LogImages(string[] logLines)
-        {
-            var imagesContent = new StringBuilder();
-            bool isImageSection = false;
-            bool isTableHeader = false;
-
-            imagesContent.AppendLine("<style> .table { border-collapse: collapse; width:100% } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
-
-            foreach (var line in logLines)
-            {
-                if (line.Contains("> command: docker images"))
-                {
-                    isImageSection = true;
-                    isTableHeader = true;
-                    imagesContent.AppendLine("<br/>");
-                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
-                    imagesContent.AppendLine("<br/>");
-                    continue;
-                }
-
-                if (line.Contains("> command: docker build -t "))
-                {
-                    isImageSection = false;
-                    isTableHeader = false;
-                    imagesContent.AppendLine("<br/>");
-                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
-                    imagesContent.AppendLine("<br/>");
-                    continue;
-                }
-
-                if (line.Contains("> command: docker rmi "))
-                {
-                    isImageSection = false;
-                    isTableHeader = false;
-                    imagesContent.AppendLine("<br/>");
-                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
-                    imagesContent.AppendLine("<br/>");
-                    continue;
-                }
-
-                if (isImageSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isImageSection = false;
-                        imagesContent.AppendLine("</table>");
-                        continue;
-                    }
-
-                    if (isTableHeader)
-                    {
-                        imagesContent.AppendLine("<table class='table'><tr><th>REPOSITORY</th><th>TAG</th><th>IMAGE ID</th><th colspan=\"3\">CREATED</th>\r\n<th>SIZE</th></tr>");
-                        isTableHeader = false;
-                        continue;
-                    }
-
-                    // Uso di Regex per catturare le colonne tenendo conto di spazi multipli
-                    var columns = Regex.Matches(line, @"([^\s]+(?=\s|$))|(""[^""]*"")")
-                                       .Cast<Match>()
-                                       .Select(m => m.Value.Trim('"'))
-                                       .ToArray();
-
-                    if (columns.Length >= 5)
-                    {
-                        imagesContent.AppendLine("<tr>");
-                        for (int i = 0; i < columns.Length; i++)
-                        {
-                            imagesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
-                        }
-                        imagesContent.AppendLine("</tr>");
-                    }
-                }
-            }
-
-            return imagesContent.ToString();
-        }
-
-        public static string LogContainers(string[] logLines)
-        {
-            var containersContent = new StringBuilder();
-            bool isContainerSection = false;
-
-            containersContent.AppendLine("<style> ... </style>");
-
-            foreach (var line in logLines)
-            {
-                if (line.Contains("> command: docker ps -a"))
-                {
-                    isContainerSection = true;
-                    containersContent.AppendLine("<table class='table'><tr><th>CONTAINER ID</th><th>IMAGE</th><th>COMMAND</th><th>CREATED</th><th>STATUS</th><th>PORTS</th><th>NAMES</th></tr>");
-                    continue;
-                }
-
-                if (isContainerSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isContainerSection = false;
-                        containersContent.AppendLine("</table>");
-                        break;
-                    }
-
-                    // Salta le righe di intestazione non necessarie
-                    if (line.StartsWith("2023-12-05") || line.Contains("INFO") || line.Contains("CONTAINER ID"))
-                    {
-                        continue;
-                    }
-
-                    // Parsing della riga di log per estrarre i valori delle colonne
-                    var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
-                                       .Cast<Match>()
-                                       .Select(m => m.Value.Trim('"'))
-                                       .ToList();
-
-                    // Gestione delle colonne in base allo schema fornito
-                    if (columns.Count >= 6)
-                    {
-                        containersContent.AppendLine("<tr>");
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td>"); // CONTAINER ID
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[1])}</td>"); // IMAGE
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[2])}</td>"); // COMMAND
-
-                        // Gestione combinata di CREATED e STATUS
-                        var combinedStatus = string.Join(" ", columns.Skip(3).TakeWhile(col => !col.Contains("->") && !columns.Last().Equals(col)));
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(combinedStatus)}</td>"); // CREATED + STATUS
-
-                        // PORTS
-                        string ports = columns.Last().Contains("->") ? columns.Last() : "";
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(ports)}</td>");
-
-                        // NAMES
-                        string name = columns.Last().Contains("->") ? columns[columns.Count - 2] : columns.Last();
-                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(name)}</td>");
-
-                        containersContent.AppendLine("</tr>");
-                    }
-                }
-            }
-
-            return containersContent.ToString();
-        }
-
-
-        public static string LogVolumes(string[] logLines)
-        {
-            var volumesContent = new StringBuilder();
-            bool isVolumeSection = false;
-
-            volumesContent.AppendLine("<style> ... </style>"); // I tuoi stili CSS
-
-            foreach (var line in logLines)
-            {
-                if (line.Contains("> command: docker volume ls"))
-                {
-                    isVolumeSection = true;
-                    volumesContent.AppendLine("<br/>");
-                    volumesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-                    volumesContent.AppendLine("<br/>");
-
-                    volumesContent.AppendLine("<table class='table'><tr><th>DRIVER</th><th>VOLUME NAME</th></tr>");
-                    continue;
-                }
-
-                if (isVolumeSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isVolumeSection = false;
-                        volumesContent.AppendLine("</table>");
-                        break;
-                    }
-
-                    // Salta la riga di intestazione del risultato
-                    if (line.StartsWith("2023-12-05") && line.Contains("Result:DRIVER"))
-                    {
-                        continue;
-                    }
-
-                    // Parsing delle righe della tabella per i volumi
-                    var columns = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (columns.Length >= 2)
-                    {
-                        volumesContent.AppendLine("<tr>");
-                        volumesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td>"); // DRIVER
-                        volumesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[1])}</td>"); // VOLUME NAME
-                        volumesContent.AppendLine("</tr>");
-                    }
-                }
-            }
-
-            return volumesContent.ToString();
-        }
-
 
         public static string LogNetworks(string[] logLines)
         {
@@ -254,51 +61,67 @@ namespace DockerDesk.Helpers
         }
 
 
-        public static string LogVariables(string[] logLines)
+        //--------------------------------------------------------------
+
+        public static Task<string> ReportDataGridAsync(DataGridView grid)
         {
-            var variablesContent = new StringBuilder();
+            StringBuilder html = new StringBuilder();
 
-            // Aggiungi stile CSS per la lista
-            variablesContent.AppendLine("<style> ul { list-style-type: none; padding: 0; } li { padding: 5px; border: 1px solid #ddd; margin-bottom: 5px; } </style>");
+            // DOCTYPE e inizio del file HTML
+            html.Append("<!DOCTYPE html>");
+            html.Append("<html>");
 
-            bool isVariablesSection = false;
+            // CSS per garantire che la tabella sia larga al 100%
+            html.Append("<head>");
+            html.Append("<style>");
+            html.Append("html, body { width: 100%; margin: 0; padding: 0; }");
+            html.Append("table { width: 100%; border-collapse: collapse; }");
+            html.Append("th, td { border: 1px solid black; }");
+            html.Append("h3 { color:red; }");
+            html.Append("</style>");
+            html.Append("</head>");
 
-            foreach (var line in logLines)
+            // Inizio del corpo e della tabella
+            html.Append("<body>");
+
+            html.Append("<br/>");
+            html.Append($"<h3>{grid.Tag}</h3>");
+
+            html.Append("<table>");
+
+            // Aggiunta delle intestazioni
+            html.Append("<tr>");
+            foreach (DataGridViewColumn column in grid.Columns)
             {
-                if (line.Contains("> command: docker exec") && line.Contains(" env"))
+                html.Append("<th>");
+                html.Append(column.HeaderText);
+                html.Append("</th>");
+            }
+            html.Append("</tr>");
+
+            // Aggiunta delle righe dei dati
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                if (row.IsNewRow) continue; // Ignora la riga per l'inserimento di nuovi dati
+
+                html.Append("<tr>");
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    isVariablesSection = true;
-
-                    variablesContent.AppendLine("<br/>");
-                    variablesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-                    variablesContent.AppendLine("<br/>");
-
-                    variablesContent.AppendLine("<ul>");
-                    continue;
+                    html.Append("<td>");
+                    html.Append(cell.Value?.ToString() ?? String.Empty);
+                    html.Append("</td>");
                 }
-
-                if (isVariablesSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isVariablesSection = false;
-                        variablesContent.AppendLine("</ul>");
-                        break;
-                    }
-
-                    // Salta le righe non necessarie
-                    if (line.StartsWith("2023-12-05") || line.Contains("Result:"))
-                    {
-                        continue;
-                    }
-
-                    // Aggiungi la variabile corrente come un elemento della lista
-                    variablesContent.AppendLine($"<li>{System.Net.WebUtility.HtmlEncode(line)}</li>");
-                }
+                html.Append("</tr>");
             }
 
-            return variablesContent.ToString();
+            // Fine della tabella e del file HTML
+            html.Append("</table>");
+            html.Append("</body>");
+            html.Append("</html>");
+
+            return Task.FromResult(html.ToString());
         }
+
 
 
     }

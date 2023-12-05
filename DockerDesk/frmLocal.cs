@@ -747,20 +747,20 @@ namespace DockerDesk
 
                     var htmlContent = new StringBuilder("<html>...</html>");
 
-                    var logimages = RenderLogHelper.LogImages(logLines);
-                    htmlContent.AppendLine(logimages);
+                    //var logimages = RenderLogHelper.LogImages(logLines);
+                    //htmlContent.AppendLine(logimages);
 
-                    var logcontainers = RenderLogHelper.LogContainers(logLines);
-                    htmlContent.AppendLine(logcontainers);
+                    //var logcontainers = RenderLogHelper.LogContainers(logLines);
+                    //htmlContent.AppendLine(logcontainers);
 
-                    var logvolumes = RenderLogHelper.LogVolumes(logLines);
-                    htmlContent.AppendLine(logvolumes);
+                    //var logvolumes = RenderLogHelper.LogVolumes(logLines);
+                    //htmlContent.AppendLine(logvolumes);
 
-                    var lognetworks = RenderLogHelper.LogNetworks(logLines);
-                    htmlContent.AppendLine(lognetworks);
+                    //var lognetworks = RenderLogHelper.LogNetworks(logLines);
+                    //htmlContent.AppendLine(lognetworks);
 
-                    var logvariables = RenderLogHelper.LogVariables(logLines);
-                    htmlContent.AppendLine(logvariables);
+                    //var logvariables = RenderLogHelper.LogVariables(logLines);
+                    //htmlContent.AppendLine(logvariables);
 
 
 
