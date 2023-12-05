@@ -1,4 +1,5 @@
 ﻿using DockerDesk.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,6 +13,8 @@ namespace DockerDesk.Helpers
 {
     public static class DoskerRunner
     {
+        private static Logger logger = LogManager.GetLogger("CommandLogger");
+
         public static async Task<bool> IsDockerRunningAsync()
         {
             try

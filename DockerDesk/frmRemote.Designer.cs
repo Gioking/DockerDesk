@@ -159,8 +159,8 @@
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dockerVariableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.WBLog = new System.Windows.Forms.WebBrowser();
             this.btnClearLog = new System.Windows.Forms.Button();
-            this.txtLog = new System.Windows.Forms.TextBox();
             this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -229,6 +229,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabRemote
             // 
@@ -361,7 +362,7 @@
             this.txtRemoteUsername.Name = "txtRemoteUsername";
             this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
             this.txtRemoteUsername.TabIndex = 7;
-            this.txtRemoteUsername.Text = "root@ipaddress";
+            this.txtRemoteUsername.Text = "root@38.242.198.151";
             // 
             // label21
             // 
@@ -380,7 +381,7 @@
             this.txtRemotePort.Name = "txtRemotePort";
             this.txtRemotePort.Size = new System.Drawing.Size(66, 26);
             this.txtRemotePort.TabIndex = 9;
-            this.txtRemotePort.Text = "5000";
+            this.txtRemotePort.Text = "8787";
             this.txtRemotePort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label25
@@ -1708,8 +1709,8 @@
             // 
             // tabLog
             // 
+            this.tabLog.Controls.Add(this.WBLog);
             this.tabLog.Controls.Add(this.btnClearLog);
-            this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.ImageKey = "info-2-32 (1).png";
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
@@ -1717,6 +1718,15 @@
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // WBLog
+            // 
+            this.WBLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBLog.Location = new System.Drawing.Point(0, 0);
+            this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WBLog.Name = "WBLog";
+            this.WBLog.Size = new System.Drawing.Size(1226, 593);
+            this.WBLog.TabIndex = 5;
             // 
             // btnClearLog
             // 
@@ -1728,20 +1738,6 @@
             this.btnClearLog.Text = "Clear Logs";
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLogs);
-            // 
-            // txtLog
-            // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLog.Location = new System.Drawing.Point(0, 0);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(1218, 526);
-            this.txtLog.TabIndex = 0;
-            this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // remoteMachineBindingSource
             // 
@@ -1953,7 +1949,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
-            this.tabLog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -2029,7 +2024,6 @@
         private System.Windows.Forms.TextBox txtSubnet;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnRemoveNetwork;
-        public System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.ToolStripMenuItem reloadAllToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cmbVolumes;
@@ -2116,6 +2110,7 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
+        private System.Windows.Forms.WebBrowser WBLog;
     }
 }
 

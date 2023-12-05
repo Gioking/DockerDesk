@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -63,14 +64,14 @@ namespace DockerDesk
                 {
                     imageStatusLabel.Text = "Client ssh non connesso.";
                     toolStripStatus.Image = imageList1.Images["red-button.png"];
-                    txtLog.Text = LogHelper.LogInfo("Client ssh non connesso.");
+                    //txtLog.Text = LogHelper.LogInfo("Client ssh non connesso.");
                     return false;
                 }
                 else
                 {
                     imageStatusLabel.Text = "Client ssh connesso.";
                     toolStripStatus.Image = imageList1.Images["green-button.png"];
-                    txtLog.Text = LogHelper.LogInfo("Client ssh connesso.");
+                    //txtLog.Text = LogHelper.LogInfo("Client ssh connesso.");
                     return true;
                 }
             }
@@ -93,7 +94,7 @@ namespace DockerDesk
                     var command = await DoskerRunner.DockerExecute("images", sshClientManager);
                     if (!string.IsNullOrEmpty(command.OperationResult))
                     {
-                        txtLog.Text = LogHelper.LogError(command.OperationResult);
+                        //txtLog.Text = LogHelper.LogError(command.OperationResult);
                     }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
@@ -120,7 +121,7 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute("ps -a", sshClientManager);
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
@@ -143,7 +144,7 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute("volume ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
@@ -166,7 +167,7 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute("network ls", sshClientManager);
                 if (!string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
                 }
 
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
@@ -343,7 +344,7 @@ namespace DockerDesk
 
                 //Copy zip file to remote host
                 string result = await sshClientManager.UploadAndDecompressFileAsync(zipFilePath, $"{remotePath}{projectName}.zip", remotePath);
-                txtLog.Text = LogHelper.LogInfo(result);
+                //txtLog.Text = LogHelper.LogInfo(result);
 
                 ResultModel command;
 
@@ -372,7 +373,7 @@ namespace DockerDesk
                     }
                 }
 
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -398,7 +399,7 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadImages();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -469,7 +470,7 @@ namespace DockerDesk
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
                     var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -478,12 +479,12 @@ namespace DockerDesk
                     if (!chkHasVolume.Checked)
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                        //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                        //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
 
@@ -518,7 +519,7 @@ namespace DockerDesk
                         return;
                     }
                     var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadContainers();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -536,7 +537,7 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", sshClientManager);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -557,7 +558,7 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadVolumes();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -598,7 +599,7 @@ namespace DockerDesk
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
                     var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -608,7 +609,7 @@ namespace DockerDesk
                         return;
                     }
                     var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -630,7 +631,7 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadNetworks();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -657,7 +658,7 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
                 if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -683,7 +684,7 @@ namespace DockerDesk
                 var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
                 if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
                 {
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -918,7 +919,7 @@ namespace DockerDesk
 
         private void btnClearLogs(object sender, EventArgs e)
         {
-            txtLog.Text = "";
+            //txtLog.Text = "";
         }
 
         private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
@@ -959,7 +960,7 @@ namespace DockerDesk
                 var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
                 GridVariables.DataSource = result;
 
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
+                //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
 
                 selectedContainer = containersList.FirstOrDefault(c => c.ContainerId == container.ContainerId);
 
@@ -1022,6 +1023,250 @@ namespace DockerDesk
         {
             e.Cancel = true;
         }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage selectedTab = tabControl.SelectedTab;
+            if (selectedTab.Name == "tabLog")
+            {
+                UpdateCommandsLog();
+            }
+        }
+
+        //WBLog      
+
+        private void UpdateCommandsLog()
+        {
+            string pathToFile = Path.Combine(Application.StartupPath, "logs", "remote-commands.log");
+
+            if (File.Exists(pathToFile))
+            {
+                try
+                {
+                    string[] logLines = File.ReadAllLines(pathToFile);
+
+                    var htmlContent = new StringBuilder("<html>...</html>");
+
+                    // Elabora la sezione delle immagini e aggiungi il risultato a htmlContent
+                    var resultImages = LogImages(logLines);
+                    htmlContent.AppendLine(resultImages);
+
+                    // Qui puoi aggiungere ulteriori chiamate a funzioni simili per processare altre sezioni del log
+
+                    htmlContent.AppendLine("</pre></body></html>");
+
+
+                    //Render
+                    if (WBLog.InvokeRequired)
+                    {
+                        WBLog.Invoke(new Action(() => WBLog.DocumentText = htmlContent.ToString()));
+                    }
+                    else
+                    {
+                        WBLog.DocumentText = htmlContent.ToString();
+                    }
+
+                }
+                catch (IOException)
+                {
+                    // Gestione delle eccezioni
+                }
+            }
+        }
+
+
+        private string LogImages(string[] logLines)
+        {
+            var imagesContent = new StringBuilder();
+            bool isImageSection = false;
+            bool isTableHeader = false;
+
+            imagesContent.AppendLine("<style> .table { border-collapse: collapse; } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } </style>");
+
+            foreach (var line in logLines)
+            {
+                if (line.Contains("> command: docker images"))
+                {
+                    isImageSection = true;
+                    isTableHeader = true;
+                    imagesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+                    continue;
+                }
+
+                if (isImageSection)
+                {
+                    if (line.Contains("END ---"))
+                    {
+                        isImageSection = false;
+                        imagesContent.AppendLine("</table>");
+                        continue;
+                    }
+
+                    if (isTableHeader)
+                    {
+                        imagesContent.AppendLine("<table class='table'><tr><th style='text-align:left;'>REPOSITORY</th><th style='text-align:left;'>TAG</th><th style='text-align:left;'>IMAGE ID</th><th style='text-align:left;'>CREATED</th><th style='text-align:left;'>SIZE</th></tr>");
+                        isTableHeader = false;
+                        continue;
+                    }
+
+                    var columns = Regex.Matches(line, @"([^""\s]+|""[^""]*"")+")
+                                       .Cast<Match>()
+                                       .Select(m => m.Value.Trim('"'))
+                                       .ToArray();
+                    if (columns.Length >= 5)
+                    {
+                        imagesContent.AppendLine("<tr>");
+                        for (int i = 0; i < 5; i++)
+                        {
+                            imagesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
+                        }
+                        imagesContent.AppendLine("</tr>");
+                    }
+                }
+            }
+
+            return imagesContent.ToString();
+        }
+
+
+
+
+
+        //private void UpdateCommandsLog()
+        //{
+        //    string pathToFile = Path.Combine(Application.StartupPath, "logs", "remote-commands.log");
+        //    bool isTableMode = false;
+        //    bool isImageTableMode = false;
+        //    bool isNetworkTableMode = false;
+
+        //    var htmlContent = new StringBuilder("<html><head><style> .command { color: green; } .table { border-collapse: collapse; } .table td, .table th { border: 1px solid black; padding: 5px; } </style></head><body><pre>");
+
+        //    if (File.Exists(pathToFile))
+        //    {
+        //        try
+        //        {
+        //            using (FileStream fileStream = new FileStream(pathToFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        //            using (StreamReader reader = new StreamReader(fileStream))
+        //            {
+        //                while (!reader.EndOfStream)
+        //                {
+        //                    var line = reader.ReadLine();
+
+        //                    if (line.Contains("Result:REPOSITORY TAG IMAGE ID CREATED SIZE"))
+        //                    {
+        //                        isImageTableMode = true;
+        //                        htmlContent.AppendLine("<table class='table'><tr><th>REPOSITORY</th><th>TAG</th><th>IMAGE ID</th><th>CREATED</th><th>SIZE</th></tr>");
+        //                    }
+        //                    else if (line.Contains("END ---") && isImageTableMode)
+        //                    {
+        //                        isImageTableMode = false;
+        //                        htmlContent.AppendLine("</table>");
+        //                    }
+        //                    else if (isImageTableMode)
+        //                    {
+        //                        var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
+        //                                           .Cast<Match>()
+        //                                           .Select(m => m.Value.Trim('"'))
+        //                                           .ToArray();
+        //                        if (columns.Length >= 5)
+        //                        {
+        //                            htmlContent.AppendLine("<tr>");
+        //                            foreach (var column in columns)
+        //                            {
+        //                                htmlContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
+        //                            }
+        //                            htmlContent.AppendLine("</tr>");
+        //                        }
+        //                    }
+        //                    else if (line.Contains("> command:"))
+        //                    {
+        //                        htmlContent.AppendLine("<br/>");
+        //                        htmlContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
+        //                    }
+        //                    else if (line.Contains("Result:DRIVER VOLUME NAME"))
+        //                    {
+        //                        isTableMode = true;
+        //                        htmlContent.AppendLine("<table class='table'><tr><th>DRIVER</th><th>VOLUME NAME</th></tr>");
+        //                    }
+        //                    else if (line.Contains("END ---") && isTableMode)
+        //                    {
+        //                        isTableMode = false;
+        //                        htmlContent.AppendLine("</table>");
+        //                        htmlContent.AppendLine("<br/>");
+        //                    }
+        //                    else if (isTableMode)
+        //                    {
+        //                        var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        //                        if (columns.Length >= 2)
+        //                        {
+        //                            htmlContent.AppendLine($"<tr><td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td><td>{System.Net.WebUtility.HtmlEncode(string.Join(" ", columns.Skip(1)))}</td></tr>");
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        htmlContent.AppendLine($"{System.Net.WebUtility.HtmlEncode(line)}<br>");
+        //                    }
+
+
+        //                    //NETWORK
+        //                    if (line.Contains("Result:NETWORK ID NAME DRIVER SCOPE"))
+        //                    {
+        //                        isNetworkTableMode = true;
+
+        //                        htmlContent.AppendLine("<table class='table'><tr><th>NETWORK ID</th><th>NAME</th><th>DRIVER</th><th>SCOPE</th></tr>");
+        //                    }
+        //                    else if (line.Contains("END ---") && isNetworkTableMode)
+        //                    {
+        //                        isNetworkTableMode = false;
+        //                        htmlContent.AppendLine("</table>");
+        //                    }
+        //                    else if (isNetworkTableMode)
+        //                    {
+        //                        var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
+        //                                           .Cast<Match>()
+        //                                           .Select(m => m.Value.Trim('"'))
+        //                                           .ToArray();
+        //                        if (columns.Length >= 4)
+        //                        {
+        //                            htmlContent.AppendLine("<tr>");
+        //                            foreach (var column in columns.Take(4)) // Assicurati di prendere solo le prime 4 colonne
+        //                            {
+        //                                htmlContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
+        //                            }
+        //                            htmlContent.AppendLine("</tr>");
+        //                        }
+        //                    }
+
+        //                }
+        //            }
+
+        //            htmlContent.AppendLine("</pre></body></html>");
+
+        //            // Aggiorna il controllo WebBrowser nel thread della UI
+        //            if (WBLog.InvokeRequired)
+        //            {
+        //                WBLog.Invoke(new Action(() => WBLog.DocumentText = htmlContent.ToString()));
+        //            }
+        //            else
+        //            {
+        //                WBLog.DocumentText = htmlContent.ToString();
+        //            }
+        //        }
+        //        catch (IOException)
+        //        {
+        //            // Gestione delle eccezioni
+        //        }
+        //    }
+        //}
+
+
+
+
+
+
+
+
 
         #endregion
 

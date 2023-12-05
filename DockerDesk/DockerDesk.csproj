@@ -36,6 +36,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.2.7\lib\net46\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="Renci.SshNet, Version=2023.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2023.0.0\lib\net462\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -117,6 +120,7 @@
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Helpers\SshClientManager.cs" />
+    <Compile Include="Helpers\StringUtility.cs" />
     <Compile Include="Models\ContainerConfig.cs" />
     <Compile Include="Models\DockerProcess.cs" />
     <Compile Include="Models\RemoteMachine.cs" />
@@ -166,6 +170,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="OpenSshKey\20220202_Perfexia_CentOS_7_root.openssh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -201,6 +211,9 @@
     </Content>
     <None Include="Resources\info-2-32.png" />
     <None Include="Resources\info-6-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
