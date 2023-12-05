@@ -1033,7 +1033,6 @@ namespace DockerDesk
             }
         }
 
-        //WBLog      
 
         private void UpdateCommandsLog()
         {
@@ -1047,9 +1046,11 @@ namespace DockerDesk
 
                     var htmlContent = new StringBuilder("<html>...</html>");
 
-                    // Elabora la sezione delle immagini e aggiungi il risultato a htmlContent
-                    var resultImages = RenderLogHelper.LogImages(logLines);
-                    htmlContent.AppendLine(resultImages);
+                    var logimages = RenderLogHelper.LogImages(logLines);
+                    htmlContent.AppendLine(logimages);
+
+                    var logcontainers = RenderLogHelper.LogContainers(logLines);
+                    htmlContent.AppendLine(logcontainers);
 
                     // Qui puoi aggiungere ulteriori chiamate a funzioni simili per processare altre sezioni del log
 
@@ -1073,198 +1074,6 @@ namespace DockerDesk
                 }
             }
         }
-
-
-
-        //private string LogImages(string[] logLines)
-        //{
-        //    var imagesContent = new StringBuilder();
-        //    bool isImageSection = false;
-        //    bool isTableHeader = false;
-
-        //    imagesContent.AppendLine("<style> .table { border-collapse: collapse; } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
-
-        //    foreach (var line in logLines)
-        //    {
-        //        if (line.Contains("> command: docker images"))
-        //        {
-        //            isImageSection = true;
-        //            isTableHeader = true;
-        //            imagesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-        //            continue;
-        //        }
-
-        //        if (isImageSection)
-        //        {
-        //            if (line.Contains("END ---"))
-        //            {
-        //                isImageSection = false;
-        //                imagesContent.AppendLine("</table>");
-        //                continue;
-        //            }
-
-        //            if (isTableHeader)
-        //            {
-        //                imagesContent.AppendLine("<table class='table'><tr><th>REPOSITORY</th><th>TAG</th><th>IMAGE ID</th><th colspan=\"3\">CREATED</th>\r\n<th>SIZE</th></tr>");
-        //                isTableHeader = false;
-        //                continue;
-        //            }
-
-        //            // Uso di Regex per catturare le colonne tenendo conto di spazi multipli
-        //            var columns = Regex.Matches(line, @"([^\s]+(?=\s|$))|(""[^""]*"")")
-        //                               .Cast<Match>()
-        //                               .Select(m => m.Value.Trim('"'))
-        //                               .ToArray();
-
-        //            if (columns.Length >= 5)
-        //            {
-        //                imagesContent.AppendLine("<tr>");
-        //                for (int i = 0; i < columns.Length; i++)
-        //                {
-        //                    imagesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
-        //                }
-        //                imagesContent.AppendLine("</tr>");
-        //            }
-        //        }
-        //    }
-
-        //    return imagesContent.ToString();
-        //}
-
-
-
-        //private void UpdateCommandsLog()
-        //{
-        //    string pathToFile = Path.Combine(Application.StartupPath, "logs", "remote-commands.log");
-        //    bool isTableMode = false;
-        //    bool isImageTableMode = false;
-        //    bool isNetworkTableMode = false;
-
-        //    var htmlContent = new StringBuilder("<html><head><style> .command { color: green; } .table { border-collapse: collapse; } .table td, .table th { border: 1px solid black; padding: 5px; } </style></head><body><pre>");
-
-        //    if (File.Exists(pathToFile))
-        //    {
-        //        try
-        //        {
-        //            using (FileStream fileStream = new FileStream(pathToFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-        //            using (StreamReader reader = new StreamReader(fileStream))
-        //            {
-        //                while (!reader.EndOfStream)
-        //                {
-        //                    var line = reader.ReadLine();
-
-        //                    if (line.Contains("Result:REPOSITORY TAG IMAGE ID CREATED SIZE"))
-        //                    {
-        //                        isImageTableMode = true;
-        //                        htmlContent.AppendLine("<table class='table'><tr><th>REPOSITORY</th><th>TAG</th><th>IMAGE ID</th><th>CREATED</th><th>SIZE</th></tr>");
-        //                    }
-        //                    else if (line.Contains("END ---") && isImageTableMode)
-        //                    {
-        //                        isImageTableMode = false;
-        //                        htmlContent.AppendLine("</table>");
-        //                    }
-        //                    else if (isImageTableMode)
-        //                    {
-        //                        var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
-        //                                           .Cast<Match>()
-        //                                           .Select(m => m.Value.Trim('"'))
-        //                                           .ToArray();
-        //                        if (columns.Length >= 5)
-        //                        {
-        //                            htmlContent.AppendLine("<tr>");
-        //                            foreach (var column in columns)
-        //                            {
-        //                                htmlContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
-        //                            }
-        //                            htmlContent.AppendLine("</tr>");
-        //                        }
-        //                    }
-        //                    else if (line.Contains("> command:"))
-        //                    {
-        //                        htmlContent.AppendLine("<br/>");
-        //                        htmlContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
-        //                    }
-        //                    else if (line.Contains("Result:DRIVER VOLUME NAME"))
-        //                    {
-        //                        isTableMode = true;
-        //                        htmlContent.AppendLine("<table class='table'><tr><th>DRIVER</th><th>VOLUME NAME</th></tr>");
-        //                    }
-        //                    else if (line.Contains("END ---") && isTableMode)
-        //                    {
-        //                        isTableMode = false;
-        //                        htmlContent.AppendLine("</table>");
-        //                        htmlContent.AppendLine("<br/>");
-        //                    }
-        //                    else if (isTableMode)
-        //                    {
-        //                        var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        //                        if (columns.Length >= 2)
-        //                        {
-        //                            htmlContent.AppendLine($"<tr><td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td><td>{System.Net.WebUtility.HtmlEncode(string.Join(" ", columns.Skip(1)))}</td></tr>");
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        htmlContent.AppendLine($"{System.Net.WebUtility.HtmlEncode(line)}<br>");
-        //                    }
-
-
-        //                    //NETWORK
-        //                    if (line.Contains("Result:NETWORK ID NAME DRIVER SCOPE"))
-        //                    {
-        //                        isNetworkTableMode = true;
-
-        //                        htmlContent.AppendLine("<table class='table'><tr><th>NETWORK ID</th><th>NAME</th><th>DRIVER</th><th>SCOPE</th></tr>");
-        //                    }
-        //                    else if (line.Contains("END ---") && isNetworkTableMode)
-        //                    {
-        //                        isNetworkTableMode = false;
-        //                        htmlContent.AppendLine("</table>");
-        //                    }
-        //                    else if (isNetworkTableMode)
-        //                    {
-        //                        var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
-        //                                           .Cast<Match>()
-        //                                           .Select(m => m.Value.Trim('"'))
-        //                                           .ToArray();
-        //                        if (columns.Length >= 4)
-        //                        {
-        //                            htmlContent.AppendLine("<tr>");
-        //                            foreach (var column in columns.Take(4)) // Assicurati di prendere solo le prime 4 colonne
-        //                            {
-        //                                htmlContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
-        //                            }
-        //                            htmlContent.AppendLine("</tr>");
-        //                        }
-        //                    }
-
-        //                }
-        //            }
-
-        //            htmlContent.AppendLine("</pre></body></html>");
-
-        //            // Aggiorna il controllo WebBrowser nel thread della UI
-        //            if (WBLog.InvokeRequired)
-        //            {
-        //                WBLog.Invoke(new Action(() => WBLog.DocumentText = htmlContent.ToString()));
-        //            }
-        //            else
-        //            {
-        //                WBLog.DocumentText = htmlContent.ToString();
-        //            }
-        //        }
-        //        catch (IOException)
-        //        {
-        //            // Gestione delle eccezioni
-        //        }
-        //    }
-        //}
-
-
-
-
-
-
 
 
 

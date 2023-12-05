@@ -20,7 +20,9 @@ namespace DockerDesk.Helpers
                 {
                     isImageSection = true;
                     isTableHeader = true;
-                    imagesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+                    imagesContent.AppendLine("<br/>");
+                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
+                    imagesContent.AppendLine("<br/>");
                     continue;
                 }
 
@@ -60,6 +62,102 @@ namespace DockerDesk.Helpers
 
             return imagesContent.ToString();
         }
+
+        public static string LogContainers(string[] logLines)
+        {
+            var containersContent = new StringBuilder();
+            bool isContainerSection = false;
+
+            containersContent.AppendLine("<style> ... </style>"); // I tuoi stili CSS
+
+            foreach (var line in logLines)
+            {
+                if (line.Contains("> command: docker ps -a"))
+                {
+                    isContainerSection = true;
+                    containersContent.AppendLine("<br/>");
+                    containersContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
+                    containersContent.AppendLine("<br/>");
+
+                    containersContent.AppendLine("<table class='table'><tr><th>Container</th></tr>");
+                    continue;
+                }
+
+                if (isContainerSection)
+                {
+                    if (line.Contains("END ---"))
+                    {
+                        isContainerSection = false;
+                        containersContent.AppendLine("</table>");
+                        break;
+                    }
+
+                    // Salta la riga di intestazione del risultato
+                    if (line.StartsWith("2023-12-05") && line.Contains("Result:CONTAINER ID"))
+                    {
+                        continue;
+                    }
+
+                    // Inserisci l'intera riga sotto la colonna "Container"
+                    containersContent.AppendLine("<tr>");
+                    containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(line)}</td>");
+                    containersContent.AppendLine("</tr>");
+
+                }
+            }
+
+            return containersContent.ToString();
+        }
+
+        //public static string LogContainers(string[] logLines)
+        //{
+        //    var containersContent = new StringBuilder();
+        //    bool isContainerSection = false;
+
+        //    containersContent.AppendLine("<style> ... </style>"); // Aggiungi qui i tuoi stili CSS
+
+        //    foreach (var line in logLines)
+        //    {
+        //        if (line.Contains("> command: docker ps -a"))
+        //        {
+        //            isContainerSection = true;
+        //            containersContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+        //            containersContent.AppendLine("<table class='table'><tr><th>CONTAINER ID</th><th>IMAGE</th><th>COMMAND</th><th>CREATED</th><th>STATUS</th><th>PORTS</th><th>NAMES</th></tr>");
+        //            continue;
+        //        }
+
+        //        if (isContainerSection)
+        //        {
+        //            if (line.Contains("END ---"))
+        //            {
+        //                isContainerSection = false;
+        //                containersContent.AppendLine("</table>");
+        //                break;
+        //            }
+
+        //            // Parsing delle righe della tabella per i contenitori
+        //            var columns = Regex.Matches(line, @"([^\s\""]+|\""[^\""]*"")|\b\d+\s+\w+\s+ago")
+        //                               .Cast<Match>()
+        //                               .Select(m => m.Value.Trim('"'))
+        //                               .ToList();
+
+        //            if (columns.Count >= 7)
+        //            {
+        //                containersContent.AppendLine("<tr>");
+        //                foreach (var column in columns.Take(7))
+        //                {
+        //                    containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
+        //                }
+        //                containersContent.AppendLine("</tr>");
+        //            }
+        //        }
+        //    }
+
+        //    return containersContent.ToString();
+        //}
+
+
+
     }
 
 }
