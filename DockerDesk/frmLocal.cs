@@ -725,64 +725,32 @@ namespace DockerDesk
             remoteMappedIpAddress = cmbIpAddresses.Text;
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             TabControl tabControl = sender as TabControl;
             TabPage selectedTab = tabControl.SelectedTab;
             if (selectedTab.Name == "tabLog")
             {
-                UpdateCommandsLog();
-            }
-        }
+                StringBuilder sb = new StringBuilder();
 
-        private void UpdateCommandsLog()
-        {
-            string pathToFile = Path.Combine(Application.StartupPath, "logs", "local-commands.log");
+                sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridImages));
+                sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(gridContainers));
+                sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridVolumes));
+                sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridNetwork));
+                sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridVariables));
 
-            if (File.Exists(pathToFile))
-            {
-                try
+                if (WBLog.InvokeRequired)
                 {
-                    string[] logLines = File.ReadAllLines(pathToFile);
-
-                    var htmlContent = new StringBuilder("<html>...</html>");
-
-                    //var logimages = RenderLogHelper.LogImages(logLines);
-                    //htmlContent.AppendLine(logimages);
-
-                    //var logcontainers = RenderLogHelper.LogContainers(logLines);
-                    //htmlContent.AppendLine(logcontainers);
-
-                    //var logvolumes = RenderLogHelper.LogVolumes(logLines);
-                    //htmlContent.AppendLine(logvolumes);
-
-                    //var lognetworks = RenderLogHelper.LogNetworks(logLines);
-                    //htmlContent.AppendLine(lognetworks);
-
-                    //var logvariables = RenderLogHelper.LogVariables(logLines);
-                    //htmlContent.AppendLine(logvariables);
-
-
-
-                    htmlContent.AppendLine("</pre></body></html>");
-
-                    if (WBLog.InvokeRequired)
+                    WBLog.Invoke(new Action(() =>
                     {
-                        WBLog.Invoke(new Action(() =>
-                        {
-                            WBLog.DocumentText = htmlContent.ToString();
-                            WBLog.DocumentCompleted += WBLogDocumentCompleted;
-                        }));
-                    }
-                    else
-                    {
-                        WBLog.DocumentText = htmlContent.ToString();
+                        WBLog.DocumentText = sb.ToString();
                         WBLog.DocumentCompleted += WBLogDocumentCompleted;
-                    }
+                    }));
                 }
-                catch (IOException ex)
+                else
                 {
-                    // Gestione delle eccezioni
+                    WBLog.DocumentText = sb.ToString();
+                    WBLog.DocumentCompleted += WBLogDocumentCompleted;
                 }
             }
         }

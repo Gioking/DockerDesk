@@ -997,7 +997,6 @@ namespace DockerDesk
                 sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridNetwork));
                 sb.AppendLine(await RenderLogHelper.ReportDataGridAsync(GridVariables));
 
-
                 if (WBLog.InvokeRequired)
                 {
                     WBLog.Invoke(new Action(() =>
@@ -1011,7 +1010,6 @@ namespace DockerDesk
                     WBLog.DocumentText = sb.ToString();
                     WBLog.DocumentCompleted += WBLogDocumentCompleted;
                 }
-
             }
         }
 

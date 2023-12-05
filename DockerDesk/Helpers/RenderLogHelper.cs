@@ -77,15 +77,17 @@ namespace DockerDesk.Helpers
             html.Append("html, body { width: 100%; margin: 0; padding: 0; }");
             html.Append("table { width: 100%; border-collapse: collapse; }");
             html.Append("th, td { border: 1px solid black; }");
-            html.Append("h3 { color:red; }");
+            html.Append("th { background-color: blue; color: white; }"); // Stile per le celle di intestazione
+            html.Append("h3 { color:darkgreen; font-weight: bold; font-size: 20px; }");
             html.Append("</style>");
             html.Append("</head>");
+
 
             // Inizio del corpo e della tabella
             html.Append("<body>");
 
             html.Append("<br/>");
-            html.Append($"<h3>{grid.Tag}</h3>");
+            html.Append($"<h3>---{grid.Tag}</h3>");
 
             html.Append("<table>");
 

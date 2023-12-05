@@ -493,6 +493,7 @@
             this.GridVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVariables.Size = new System.Drawing.Size(880, 360);
             this.GridVariables.TabIndex = 20;
+            this.GridVariables.Tag = "Variables";
             this.GridVariables.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVariables_DataError);
             // 
             // keyDataGridViewTextBoxColumn
@@ -691,6 +692,7 @@
             this.GridNetwork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridNetwork.Size = new System.Drawing.Size(856, 360);
             this.GridNetwork.TabIndex = 18;
+            this.GridNetwork.Tag = "Networks";
             this.GridNetwork.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridNetwork_DataError);
             this.GridNetwork.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridNetwork_MouseClick);
             // 
@@ -838,6 +840,7 @@
             this.GridVolumes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridVolumes.Size = new System.Drawing.Size(856, 502);
             this.GridVolumes.TabIndex = 10;
+            this.GridVolumes.Tag = "Volumes";
             this.GridVolumes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridVolumes_DataError);
             this.GridVolumes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridVolumes_MouseClick);
             // 
@@ -1000,6 +1003,7 @@
             this.gridContainers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridContainers.Size = new System.Drawing.Size(1207, 359);
             this.gridContainers.TabIndex = 7;
+            this.gridContainers.Tag = "Containers";
             this.gridContainers.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gridContainers_DataError);
             this.gridContainers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridContainers_MouseClick);
             // 
@@ -1374,6 +1378,7 @@
             this.GridImages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridImages.Size = new System.Drawing.Size(900, 314);
             this.GridImages.TabIndex = 16;
+            this.GridImages.Tag = "Images";
             this.GridImages.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.GridImages_DataError);
             this.GridImages.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridImages_MouseClick);
             // 
@@ -1599,6 +1604,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Tag = "Networks";
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // frmLocal
