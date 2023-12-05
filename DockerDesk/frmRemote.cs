@@ -1052,10 +1052,17 @@ namespace DockerDesk
                     var logcontainers = RenderLogHelper.LogContainers(logLines);
                     htmlContent.AppendLine(logcontainers);
 
-                    // Qui puoi aggiungere ulteriori chiamate a funzioni simili per processare altre sezioni del log
+                    var logvolumes = RenderLogHelper.LogVolumes(logLines);
+                    htmlContent.AppendLine(logvolumes);
+
+                    var lognetworks = RenderLogHelper.LogNetworks(logLines);
+                    htmlContent.AppendLine(lognetworks);
+
+                    var logvariables = RenderLogHelper.LogVariables(logLines);
+                    htmlContent.AppendLine(logvariables);
+
 
                     htmlContent.AppendLine("</pre></body></html>");
-
 
                     //Render
                     if (WBLog.InvokeRequired)

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ namespace DockerDesk.Helpers
             bool isImageSection = false;
             bool isTableHeader = false;
 
-            imagesContent.AppendLine("<style> .table { border-collapse: collapse; } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
+            imagesContent.AppendLine("<style> .table { border-collapse: collapse; width:100% } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
 
             foreach (var line in logLines)
             {
@@ -69,6 +70,7 @@ namespace DockerDesk.Helpers
             bool isContainerSection = false;
 
             containersContent.AppendLine("<style> ... </style>"); // I tuoi stili CSS
+            containersContent.AppendLine("<style> .table { border-collapse: collapse; width:100% } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
 
             foreach (var line in logLines)
             {
@@ -109,53 +111,155 @@ namespace DockerDesk.Helpers
             return containersContent.ToString();
         }
 
-        //public static string LogContainers(string[] logLines)
-        //{
-        //    var containersContent = new StringBuilder();
-        //    bool isContainerSection = false;
+        public static string LogVolumes(string[] logLines)
+        {
+            var volumesContent = new StringBuilder();
+            bool isVolumeSection = false;
 
-        //    containersContent.AppendLine("<style> ... </style>"); // Aggiungi qui i tuoi stili CSS
+            volumesContent.AppendLine("<style> ... </style>"); // I tuoi stili CSS
 
-        //    foreach (var line in logLines)
-        //    {
-        //        if (line.Contains("> command: docker ps -a"))
-        //        {
-        //            isContainerSection = true;
-        //            containersContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-        //            containersContent.AppendLine("<table class='table'><tr><th>CONTAINER ID</th><th>IMAGE</th><th>COMMAND</th><th>CREATED</th><th>STATUS</th><th>PORTS</th><th>NAMES</th></tr>");
-        //            continue;
-        //        }
+            foreach (var line in logLines)
+            {
+                if (line.Contains("> command: docker volume ls"))
+                {
+                    isVolumeSection = true;
+                    volumesContent.AppendLine("<br/>");
+                    volumesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+                    volumesContent.AppendLine("<br/>");
 
-        //        if (isContainerSection)
-        //        {
-        //            if (line.Contains("END ---"))
-        //            {
-        //                isContainerSection = false;
-        //                containersContent.AppendLine("</table>");
-        //                break;
-        //            }
+                    volumesContent.AppendLine("<table class='table'><tr><th>DRIVER</th><th>VOLUME NAME</th></tr>");
+                    continue;
+                }
 
-        //            // Parsing delle righe della tabella per i contenitori
-        //            var columns = Regex.Matches(line, @"([^\s\""]+|\""[^\""]*"")|\b\d+\s+\w+\s+ago")
-        //                               .Cast<Match>()
-        //                               .Select(m => m.Value.Trim('"'))
-        //                               .ToList();
+                if (isVolumeSection)
+                {
+                    if (line.Contains("END ---"))
+                    {
+                        isVolumeSection = false;
+                        volumesContent.AppendLine("</table>");
+                        break;
+                    }
 
-        //            if (columns.Count >= 7)
-        //            {
-        //                containersContent.AppendLine("<tr>");
-        //                foreach (var column in columns.Take(7))
-        //                {
-        //                    containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(column)}</td>");
-        //                }
-        //                containersContent.AppendLine("</tr>");
-        //            }
-        //        }
-        //    }
+                    // Salta la riga di intestazione del risultato
+                    if (line.StartsWith("2023-12-05") && line.Contains("Result:DRIVER"))
+                    {
+                        continue;
+                    }
 
-        //    return containersContent.ToString();
-        //}
+                    // Parsing delle righe della tabella per i volumi
+                    var columns = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (columns.Length >= 2)
+                    {
+                        volumesContent.AppendLine("<tr>");
+                        volumesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td>"); // DRIVER
+                        volumesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[1])}</td>"); // VOLUME NAME
+                        volumesContent.AppendLine("</tr>");
+                    }
+                }
+            }
 
+            return volumesContent.ToString();
+        }
+
+
+        public static string LogNetworks(string[] logLines)
+        {
+            var networksContent = new StringBuilder();
+            bool isNetworkSection = false;
+
+            foreach (var line in logLines)
+            {
+                if (line.Contains("> command: docker network ls"))
+                {
+                    isNetworkSection = true;
+
+                    networksContent.AppendLine("<br/>");
+                    networksContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+                    networksContent.AppendLine("<br/>");
+
+                    networksContent.AppendLine("<table class='table'><tr><th>NETWORK ID</th><th>NAME</th><th>DRIVER</th><th>SCOPE</th></tr>");
+                    continue;
+                }
+
+                if (isNetworkSection)
+                {
+                    if (line.Contains("END ---"))
+                    {
+                        isNetworkSection = false;
+                        networksContent.AppendLine("</table>");
+                        break;
+                    }
+
+                    // Salta la riga di intestazione del risultato
+                    if (line.StartsWith("2023-12-05") && line.Contains("Result:NETWORK ID"))
+                    {
+                        continue;
+                    }
+
+                    // Parsing delle righe della tabella per le reti
+                    var columns = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (columns.Length >= 4)
+                    {
+                        networksContent.AppendLine("<tr>");
+                        // Aggiungi NETWORK ID, NAME, DRIVER e SCOPE
+                        for (int i = 0; i < 4; i++)
+                        {
+                            networksContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
+                        }
+                        networksContent.AppendLine("</tr>");
+                    }
+                }
+            }
+
+            return networksContent.ToString();
+        }
+
+
+        public static string LogVariables(string[] logLines)
+        {
+            var variablesContent = new StringBuilder();
+
+            // Aggiungi stile CSS per la lista
+            variablesContent.AppendLine("<style> ul { list-style-type: none; padding: 0; } li { padding: 5px; border: 1px solid #ddd; margin-bottom: 5px; } </style>");
+
+            bool isVariablesSection = false;
+
+            foreach (var line in logLines)
+            {
+                if (line.Contains("> command: docker exec") && line.Contains(" env"))
+                {
+                    isVariablesSection = true;
+
+                    variablesContent.AppendLine("<br/>");
+                    variablesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+                    variablesContent.AppendLine("<br/>");
+
+                    variablesContent.AppendLine("<ul>");
+                    continue;
+                }
+
+                if (isVariablesSection)
+                {
+                    if (line.Contains("END ---"))
+                    {
+                        isVariablesSection = false;
+                        variablesContent.AppendLine("</ul>");
+                        break;
+                    }
+
+                    // Salta le righe non necessarie
+                    if (line.StartsWith("2023-12-05") || line.Contains("Result:"))
+                    {
+                        continue;
+                    }
+
+                    // Aggiungi la variabile corrente come un elemento della lista
+                    variablesContent.AppendLine($"<li>{System.Net.WebUtility.HtmlEncode(line)}</li>");
+                }
+            }
+
+            return variablesContent.ToString();
+        }
 
 
     }
