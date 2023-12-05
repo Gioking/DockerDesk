@@ -155,6 +155,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -1091,6 +1092,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.cmbIpAddresses);
             this.groupBox4.Controls.Add(this.label30);
             this.groupBox4.Controls.Add(this.txtRemoteMappedIpAddress);
@@ -1131,7 +1133,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(18, 59);
+            this.label30.Location = new System.Drawing.Point(13, 59);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(30, 13);
             this.label30.TabIndex = 27;
@@ -1188,7 +1190,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(17, 264);
+            this.label19.Location = new System.Drawing.Point(12, 264);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 19;
@@ -1209,7 +1211,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 167);
+            this.label16.Location = new System.Drawing.Point(12, 167);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 17;
@@ -1248,7 +1250,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 88);
+            this.label3.Location = new System.Drawing.Point(13, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 7;
@@ -1306,7 +1308,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 198);
+            this.label6.Location = new System.Drawing.Point(12, 198);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
@@ -1335,7 +1337,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 115);
+            this.label5.Location = new System.Drawing.Point(13, 115);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 11;
@@ -1592,6 +1594,15 @@
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 31);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(52, 13);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "Local.Ip";
+            // 
             // frmLocal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1777,6 +1788,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.ComboBox cmbIpAddresses;
+        private System.Windows.Forms.Label label21;
     }
 }
 
