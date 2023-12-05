@@ -34,7 +34,7 @@ namespace DockerDesk.Helpers
 
         private static async Task<List<(string Id, string Name)>> GetDockerContainerIdsAndNamesAsync()
         {
-            var result = await DoskerRunner.DockerExecute("ps -a --format \"{{.ID}}:{{.Names}}\"", "");
+            var result = await DockerRunner.DockerExecute("ps -a --format \"{{.ID}}:{{.Names}}\"", "");
 
             if (string.IsNullOrEmpty(result.OperationResult))
             {
@@ -57,7 +57,7 @@ namespace DockerDesk.Helpers
         private static async Task<List<DockerJsonVariable>> GetDockerEnvVariablesAsync(string containerId)
         {
             var command = $"inspect --format=\"{{{{json .Config.Env}}}}\" {containerId}";
-            var result = await DoskerRunner.DockerExecute(command, "");
+            var result = await DockerRunner.DockerExecute(command, "");
 
             if (!string.IsNullOrEmpty(result.OperationResult))
             {

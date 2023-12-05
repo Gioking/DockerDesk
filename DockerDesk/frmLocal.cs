@@ -66,7 +66,7 @@ namespace DockerDesk
 
         private async Task<bool> CheckIfConnection()
         {
-            bool isRunning = await DoskerRunner.IsDockerRunningAsync();
+            bool isRunning = await DockerRunner.IsDockerRunningAsync();
             if (!isRunning)
             {
                 imageStatusLabel.Text = "Il servizio Docker non è attivo. Per favore, avvialo prima di procedere.";
@@ -88,8 +88,8 @@ namespace DockerDesk
                 try
                 {
                     imagesList.Clear();
-                    var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
-                    imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
+                    var command = await DockerRunner.DockerExecute("images", txtWorkDirPath.Text);
+                    imagesList = await DockerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
                     Font font = new Font("Arial", 12, FontStyle.Regular);
                     GridImages.Font = font;
@@ -110,8 +110,8 @@ namespace DockerDesk
             try
             {
                 containersList.Clear();
-                var command = await DoskerRunner.DockerExecute("ps -a", txtWorkDirPath.Text);
-                containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
+                var command = await DockerRunner.DockerExecute("ps -a", txtWorkDirPath.Text);
+                containersList = await DockerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
                 cmbContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -128,8 +128,8 @@ namespace DockerDesk
             try
             {
                 volumeList.Clear();
-                var command = await DoskerRunner.DockerExecute("volume ls", txtWorkDirPath.Text);
-                volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
+                var command = await DockerRunner.DockerExecute("volume ls", txtWorkDirPath.Text);
+                volumeList = await DockerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
                 cmbVolumes.DataSource = volumeList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -146,8 +146,8 @@ namespace DockerDesk
             try
             {
                 networkList.Clear();
-                var command = await DoskerRunner.DockerExecute("network ls", txtWorkDirPath.Text);
-                networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
+                var command = await DockerRunner.DockerExecute("network ls", txtWorkDirPath.Text);
+                networkList = await DockerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
                 GridNetwork.DataSource = networkList;
 
                 customNetworkList = new List<DockerNetwork>(networkList)
@@ -207,11 +207,11 @@ namespace DockerDesk
                 ResultModel command;
                 if (string.IsNullOrEmpty(txtTag.Text))
                 {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", dockerFilePath);
+                    command = await DockerRunner.DockerExecute($"build -t {txtImageName.Text} -f Dockerfile .", dockerFilePath);
                 }
                 else
                 {
-                    command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", dockerFilePath);
+                    command = await DockerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", dockerFilePath);
                 }
                 if (command == null) { return; }
                 LoadImages();
@@ -229,7 +229,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -288,7 +288,7 @@ namespace DockerDesk
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{containerPort}", txtWorkDirPath.Text);
+                    var command = await DockerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{containerPort}", txtWorkDirPath.Text);
                 }
                 else
                 {
@@ -296,11 +296,11 @@ namespace DockerDesk
 
                     if (!chkHasVolume.Checked)
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
+                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
                     }
                     else
                     {
-                        var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
+                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
                     }
                 }
 
@@ -325,7 +325,7 @@ namespace DockerDesk
                     MessageBox.Show("Please select the container to remove.");
                     return;
                 }
-                var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -341,7 +341,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -361,7 +361,7 @@ namespace DockerDesk
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
-                    var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                    var command = await DockerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
                 }
                 else
                 {
@@ -370,7 +370,7 @@ namespace DockerDesk
                         MessageBox.Show("Warning... the subnet is required.");
                         return;
                     }
-                    var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
+                    var command = await DockerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -387,7 +387,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -404,7 +404,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -427,7 +427,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -448,7 +448,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -476,7 +476,7 @@ namespace DockerDesk
 
                 //Inspect if container has a volume
                 //docker inspect --format '{{ .Mounts }}' nome_container
-                var command = await DoskerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", txtWorkDirPath.Text);
 
                 frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -615,7 +615,7 @@ namespace DockerDesk
 
             //docker network inspect my-custom-network
             //docker network inspect my-custom-network --format '{{json .}}' | jq
-            var command = await DoskerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
+            var command = await DockerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
 
             frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -661,9 +661,9 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DoskerRunner.DockerExecute($"exec {container.ContainerId} env", txtWorkDirPath.Text);
+                var command = await DockerRunner.DockerExecute($"exec {container.ContainerId} env", txtWorkDirPath.Text);
 
-                var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
+                var result = await DockerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
                 GridVariables.DataSource = result;
 
                 selectedContainer = containersList.FirstOrDefault(c => c.ContainerId == container.ContainerId);
@@ -761,6 +761,8 @@ namespace DockerDesk
 
                     var logvariables = RenderLogHelper.LogVariables(logLines);
                     htmlContent.AppendLine(logvariables);
+
+
 
                     htmlContent.AppendLine("</pre></body></html>");
 

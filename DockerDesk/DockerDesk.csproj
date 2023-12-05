@@ -115,7 +115,7 @@
     <Compile Include="Helpers\DockerNetWorkChecker.cs" />
     <Compile Include="Helpers\DockerImageHelpers.cs" />
     <Compile Include="Helpers\DockerPortChecker.cs" />
-    <Compile Include="Helpers\DoskerRunner.cs" />
+    <Compile Include="Helpers\DockerRunner.cs" />
     <Compile Include="Helpers\FileHelpers.cs" />
     <Compile Include="Helpers\RenderLogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />

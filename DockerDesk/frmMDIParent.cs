@@ -101,6 +101,12 @@ namespace DockerDesk
             {
                 File.Delete(pathToFile);
             }
+
+            pathToFile = Path.Combine(Application.StartupPath, "logs", "local-commands.log");
+            if (File.Exists(pathToFile))
+            {
+                File.Delete(pathToFile);
+            }
         }
 
     }

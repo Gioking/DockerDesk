@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DockerDesk.Helpers
 {
-    public static class DoskerRunner
+    public static class DockerRunner
     {
         private static Logger logger = LogManager.GetLogger("LocalCommandLogger");
 

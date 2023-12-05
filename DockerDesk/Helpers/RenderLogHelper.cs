@@ -27,6 +27,26 @@ namespace DockerDesk.Helpers
                     continue;
                 }
 
+                if (line.Contains("> command: docker build -t "))
+                {
+                    isImageSection = false;
+                    isTableHeader = false;
+                    imagesContent.AppendLine("<br/>");
+                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
+                    imagesContent.AppendLine("<br/>");
+                    continue;
+                }
+
+                if (line.Contains("> command: docker rmi "))
+                {
+                    isImageSection = false;
+                    isTableHeader = false;
+                    imagesContent.AppendLine("<br/>");
+                    imagesContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
+                    imagesContent.AppendLine("<br/>");
+                    continue;
+                }
+
                 if (isImageSection)
                 {
                     if (line.Contains("END ---"))
@@ -69,7 +89,6 @@ namespace DockerDesk.Helpers
             var containersContent = new StringBuilder();
             bool isContainerSection = false;
 
-            containersContent.AppendLine("<style> ... </style>"); // I tuoi stili CSS
             containersContent.AppendLine("<style> .table { border-collapse: collapse; width:100% } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
 
             foreach (var line in logLines)
@@ -80,7 +99,6 @@ namespace DockerDesk.Helpers
                     containersContent.AppendLine("<br/>");
                     containersContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
                     containersContent.AppendLine("<br/>");
-
                     containersContent.AppendLine("<table class='table'><tr><th>Container</th></tr>");
                     continue;
                 }
