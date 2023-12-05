@@ -89,17 +89,14 @@ namespace DockerDesk.Helpers
             var containersContent = new StringBuilder();
             bool isContainerSection = false;
 
-            containersContent.AppendLine("<style> .table { border-collapse: collapse; width:100% } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
+            containersContent.AppendLine("<style> ... </style>");
 
             foreach (var line in logLines)
             {
                 if (line.Contains("> command: docker ps -a"))
                 {
                     isContainerSection = true;
-                    containersContent.AppendLine("<br/>");
-                    containersContent.AppendLine($"<span class='command'><b>{System.Net.WebUtility.HtmlEncode(line)}<b/></span><br>");
-                    containersContent.AppendLine("<br/>");
-                    containersContent.AppendLine("<table class='table'><tr><th>Container</th></tr>");
+                    containersContent.AppendLine("<table class='table'><tr><th>CONTAINER ID</th><th>IMAGE</th><th>COMMAND</th><th>CREATED</th><th>STATUS</th><th>PORTS</th><th>NAMES</th></tr>");
                     continue;
                 }
 
@@ -112,22 +109,46 @@ namespace DockerDesk.Helpers
                         break;
                     }
 
-                    // Salta la riga di intestazione del risultato
-                    if (line.StartsWith("2023-12-05") && line.Contains("Result:CONTAINER ID"))
+                    // Salta le righe di intestazione non necessarie
+                    if (line.StartsWith("2023-12-05") || line.Contains("INFO") || line.Contains("CONTAINER ID"))
                     {
                         continue;
                     }
 
-                    // Inserisci l'intera riga sotto la colonna "Container"
-                    containersContent.AppendLine("<tr>");
-                    containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(line)}</td>");
-                    containersContent.AppendLine("</tr>");
+                    // Parsing della riga di log per estrarre i valori delle colonne
+                    var columns = Regex.Matches(line, @"[^\s\""]+|\""[^\""]*\""")
+                                       .Cast<Match>()
+                                       .Select(m => m.Value.Trim('"'))
+                                       .ToList();
 
+                    // Gestione delle colonne in base allo schema fornito
+                    if (columns.Count >= 6)
+                    {
+                        containersContent.AppendLine("<tr>");
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[0])}</td>"); // CONTAINER ID
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[1])}</td>"); // IMAGE
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[2])}</td>"); // COMMAND
+
+                        // Gestione combinata di CREATED e STATUS
+                        var combinedStatus = string.Join(" ", columns.Skip(3).TakeWhile(col => !col.Contains("->") && !columns.Last().Equals(col)));
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(combinedStatus)}</td>"); // CREATED + STATUS
+
+                        // PORTS
+                        string ports = columns.Last().Contains("->") ? columns.Last() : "";
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(ports)}</td>");
+
+                        // NAMES
+                        string name = columns.Last().Contains("->") ? columns[columns.Count - 2] : columns.Last();
+                        containersContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(name)}</td>");
+
+                        containersContent.AppendLine("</tr>");
+                    }
                 }
             }
 
             return containersContent.ToString();
         }
+
 
         public static string LogVolumes(string[] logLines)
         {
