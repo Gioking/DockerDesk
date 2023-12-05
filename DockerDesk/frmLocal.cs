@@ -89,10 +89,6 @@ namespace DockerDesk
                 {
                     imagesList.Clear();
                     var command = await DoskerRunner.DockerExecute("images", txtWorkDirPath.Text);
-                    if (!string.IsNullOrEmpty(command.OperationResult))
-                    {
-                        txtLog.Text = LogHelper.LogError(command.OperationResult);
-                    }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
                     Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -115,10 +111,6 @@ namespace DockerDesk
             {
                 containersList.Clear();
                 var command = await DoskerRunner.DockerExecute("ps -a", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
                 cmbContainers.DataSource = containersList;
@@ -137,10 +129,6 @@ namespace DockerDesk
             {
                 volumeList.Clear();
                 var command = await DoskerRunner.DockerExecute("volume ls", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
                 cmbVolumes.DataSource = volumeList;
@@ -159,11 +147,6 @@ namespace DockerDesk
             {
                 networkList.Clear();
                 var command = await DoskerRunner.DockerExecute("network ls", txtWorkDirPath.Text);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
-
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
                 GridNetwork.DataSource = networkList;
 
@@ -231,7 +214,6 @@ namespace DockerDesk
                     command = await DoskerRunner.DockerExecute($"build -t {txtImageName.Text}:{txtTag.Text} -f Dockerfile .", dockerFilePath);
                 }
                 if (command == null) { return; }
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -248,7 +230,6 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadImages();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -308,7 +289,6 @@ namespace DockerDesk
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
                     var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{containerPort}", txtWorkDirPath.Text);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -317,12 +297,10 @@ namespace DockerDesk
                     if (!chkHasVolume.Checked)
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", workDirPath);
-                        txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
 
@@ -348,7 +326,6 @@ namespace DockerDesk
                     return;
                 }
                 var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -365,7 +342,6 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -386,7 +362,6 @@ namespace DockerDesk
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
                     var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -396,7 +371,6 @@ namespace DockerDesk
                         return;
                     }
                     var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", txtWorkDirPath.Text);
-                    txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -414,7 +388,6 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -432,7 +405,6 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -456,8 +428,6 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -479,8 +449,6 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", txtWorkDirPath.Text);
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -618,7 +586,7 @@ namespace DockerDesk
 
         private void btnClearLogs(object sender, EventArgs e)
         {
-            txtLog.Text = "";
+
         }
 
         private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
@@ -698,8 +666,6 @@ namespace DockerDesk
                 var result = await DoskerRunner.ParseDockerEnvOutputAsync(command.OperationResult);
                 GridVariables.DataSource = result;
 
-                txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-
                 selectedContainer = containersList.FirstOrDefault(c => c.ContainerId == container.ContainerId);
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -757,6 +723,83 @@ namespace DockerDesk
         private void cmbIpAddresses_TextChanged(object sender, EventArgs e)
         {
             remoteMappedIpAddress = cmbIpAddresses.Text;
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage selectedTab = tabControl.SelectedTab;
+            if (selectedTab.Name == "tabLog")
+            {
+                UpdateCommandsLog();
+            }
+        }
+
+        private void UpdateCommandsLog()
+        {
+            string pathToFile = Path.Combine(Application.StartupPath, "logs", "local-commands.log");
+
+            if (File.Exists(pathToFile))
+            {
+                try
+                {
+                    string[] logLines = File.ReadAllLines(pathToFile);
+
+                    var htmlContent = new StringBuilder("<html>...</html>");
+
+                    var logimages = RenderLogHelper.LogImages(logLines);
+                    htmlContent.AppendLine(logimages);
+
+                    var logcontainers = RenderLogHelper.LogContainers(logLines);
+                    htmlContent.AppendLine(logcontainers);
+
+                    var logvolumes = RenderLogHelper.LogVolumes(logLines);
+                    htmlContent.AppendLine(logvolumes);
+
+                    var lognetworks = RenderLogHelper.LogNetworks(logLines);
+                    htmlContent.AppendLine(lognetworks);
+
+                    var logvariables = RenderLogHelper.LogVariables(logLines);
+                    htmlContent.AppendLine(logvariables);
+
+                    htmlContent.AppendLine("</pre></body></html>");
+
+                    if (WBLog.InvokeRequired)
+                    {
+                        WBLog.Invoke(new Action(() =>
+                        {
+                            WBLog.DocumentText = htmlContent.ToString();
+                            WBLog.DocumentCompleted += WBLogDocumentCompleted;
+                        }));
+                    }
+                    else
+                    {
+                        WBLog.DocumentText = htmlContent.ToString();
+                        WBLog.DocumentCompleted += WBLogDocumentCompleted;
+                    }
+                }
+                catch (IOException)
+                {
+                    // Gestione delle eccezioni
+                }
+            }
+        }
+
+        private void WBLogDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (e.Url.Equals(WBLog.Url))
+            {
+                ScrollToBottom();
+                WBLog.DocumentCompleted -= WBLogDocumentCompleted;
+            }
+        }
+
+        private void ScrollToBottom()
+        {
+            if (WBLog.Document != null)
+            {
+                WBLog.Document.Window.ScrollTo(0, WBLog.Document.Body.ScrollRectangle.Height);
+            }
         }
 
         #endregion

@@ -239,8 +239,6 @@ namespace DockerDesk.Helpers
 
             try
             {
-                LogHelper.LogInfo($"Command: docker {arguments}");
-
                 StringBuilder output = new StringBuilder();
                 StringBuilder error = new StringBuilder();
 
@@ -284,7 +282,6 @@ namespace DockerDesk.Helpers
             catch (Exception e)
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
-                LogHelper.LogError($"Err: {e.Message}");
                 resultModel.OperationResult = e.Message;
                 return resultModel;
             }
@@ -299,8 +296,6 @@ namespace DockerDesk.Helpers
 
             try
             {
-                LogHelper.LogInfo($"> Command: docker {arguments}");
-
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
                 string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);
 
@@ -312,7 +307,6 @@ namespace DockerDesk.Helpers
             catch (Exception e)
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
-                LogHelper.LogError($"Err: {e.Message}");
                 return null;
             }
 
@@ -326,9 +320,6 @@ namespace DockerDesk.Helpers
 
             try
             {
-                LogHelper.LogInfo($"Command: docker {arguments}");
-
-
                 var client = sshClientManager.GetClient();
 
                 if (client == null)
@@ -348,7 +339,6 @@ namespace DockerDesk.Helpers
             catch (Exception e)
             {
                 Console.WriteLine($"Si è verificato un errore: {e.Message}");
-                LogHelper.LogError($"Err: {e.Message}");
                 return null;
             }
 

@@ -57,7 +57,6 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.btnClearLog = new System.Windows.Forms.Button();
-            this.txtLog = new System.Windows.Forms.TextBox();
             this.tabVariables = new System.Windows.Forms.TabPage();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -115,6 +114,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tabImages = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.cmbIpAddresses = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
@@ -155,7 +155,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label21 = new System.Windows.Forms.Label();
+            this.WBLog = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -379,8 +379,8 @@
             // 
             // tabLog
             // 
+            this.tabLog.Controls.Add(this.WBLog);
             this.tabLog.Controls.Add(this.btnClearLog);
-            this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.ImageKey = "info-2-32 (1).png";
             this.tabLog.Location = new System.Drawing.Point(4, 29);
             this.tabLog.Name = "tabLog";
@@ -400,20 +400,6 @@
             this.btnClearLog.Text = "Clear Logs";
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLogs);
-            // 
-            // txtLog
-            // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLog.Location = new System.Drawing.Point(0, 0);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(1218, 526);
-            this.txtLog.TabIndex = 0;
-            this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // tabVariables
             // 
@@ -1120,6 +1106,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Container data";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 31);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(52, 13);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "Local.Ip";
+            // 
             // cmbIpAddresses
             // 
             this.cmbIpAddresses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
@@ -1594,14 +1589,16 @@
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
             // 
-            // label21
+            // WBLog
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 31);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(52, 13);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "Local.Ip";
+            this.WBLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WBLog.Location = new System.Drawing.Point(8, 3);
+            this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WBLog.Name = "WBLog";
+            this.WBLog.Size = new System.Drawing.Size(1210, 524);
+            this.WBLog.TabIndex = 6;
             // 
             // frmLocal
             // 
@@ -1629,7 +1626,6 @@
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.tabLog.ResumeLayout(false);
-            this.tabLog.PerformLayout();
             this.tabVariables.ResumeLayout(false);
             this.tabVariables.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1690,7 +1686,6 @@
         private System.Windows.Forms.BindingSource remoteMachineBindingSource;
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.Button btnClearLog;
-        public System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TabPage tabVariables;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -1789,6 +1784,7 @@
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.ComboBox cmbIpAddresses;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.WebBrowser WBLog;
     }
 }
 

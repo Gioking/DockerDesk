@@ -63,14 +63,12 @@ namespace DockerDesk
                 {
                     imageStatusLabel.Text = "Client ssh non connesso.";
                     toolStripStatus.Image = imageList1.Images["red-button.png"];
-                    //txtLog.Text = LogHelper.LogInfo("Client ssh non connesso.");
                     return false;
                 }
                 else
                 {
                     imageStatusLabel.Text = "Client ssh connesso.";
                     toolStripStatus.Image = imageList1.Images["green-button.png"];
-                    //txtLog.Text = LogHelper.LogInfo("Client ssh connesso.");
                     return true;
                 }
             }
@@ -91,10 +89,6 @@ namespace DockerDesk
                     imagesList.Clear();
                     await Task.Delay(100);
                     var command = await DoskerRunner.DockerExecute("images", sshClientManager);
-                    if (!string.IsNullOrEmpty(command.OperationResult))
-                    {
-                        //txtLog.Text = LogHelper.LogError(command.OperationResult);
-                    }
                     imagesList = await DoskerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
                     Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -118,10 +112,6 @@ namespace DockerDesk
                 containersList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("ps -a", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
                 containersList = await DoskerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
                 cmbContainers.DataSource = containersList;
@@ -141,10 +131,6 @@ namespace DockerDesk
                 volumeList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("volume ls", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
                 volumeList = await DoskerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
                 cmbVolumes.DataSource = volumeList;
@@ -164,11 +150,6 @@ namespace DockerDesk
                 networkList.Clear();
                 await Task.Delay(100);
                 var command = await DoskerRunner.DockerExecute("network ls", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult))
-                {
-                    //txtLog.Text = LogHelper.LogError(command.OperationResult);
-                }
-
                 networkList = await DoskerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
                 GridNetwork.DataSource = networkList;
 
@@ -270,7 +251,6 @@ namespace DockerDesk
                 CheckIfConnection();
 
                 SpinnerHelper.ToggleSpinner(pBar, false);
-
             }
             catch (Exception ex)
             {
@@ -398,7 +378,6 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadImages();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -469,7 +448,6 @@ namespace DockerDesk
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
                     var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -478,12 +456,10 @@ namespace DockerDesk
                     if (!chkHasVolume.Checked)
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                        //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                     else
                     {
                         var command = await DoskerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
-                        //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     }
                 }
 
@@ -518,7 +494,6 @@ namespace DockerDesk
                         return;
                     }
                     var command = await DoskerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadContainers();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -536,7 +511,6 @@ namespace DockerDesk
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
                 var command = await DoskerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", sshClientManager);
-                //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -557,7 +531,6 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadVolumes();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -598,7 +571,6 @@ namespace DockerDesk
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
                     var command = await DoskerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 else
                 {
@@ -608,7 +580,6 @@ namespace DockerDesk
                         return;
                     }
                     var command = await DoskerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -630,7 +601,6 @@ namespace DockerDesk
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
                     var command = await DoskerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
                     LoadNetworks();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -655,11 +625,6 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
-                {
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                }
-
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -681,11 +646,6 @@ namespace DockerDesk
                 }
 
                 var command = await DoskerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
-                if (!string.IsNullOrEmpty(command.OperationResult) || !string.IsNullOrEmpty(command.OperationResult))
-                {
-                    //txtLog.Text = LogHelper.LogInfo(command.OperationResult);
-                }
-
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -1032,7 +992,6 @@ namespace DockerDesk
                 UpdateCommandsLog();
             }
         }
-
 
         private void UpdateCommandsLog()
         {

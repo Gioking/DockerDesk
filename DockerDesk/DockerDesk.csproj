@@ -117,7 +117,6 @@
     <Compile Include="Helpers\DockerPortChecker.cs" />
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\FileHelpers.cs" />
-    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\RenderLogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Helpers\SshClientManager.cs" />
@@ -133,8 +132,8 @@
     <Compile Include="Models\DockerVolume.cs" />
     <Compile Include="Models\DockerImage.cs" />
     <Compile Include="Models\EnvVariable.cs" />
-    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\ImageConfig.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="About.resx">
