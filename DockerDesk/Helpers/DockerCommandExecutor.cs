@@ -1,6 +1,7 @@
 ﻿using DockerDesk.Helpers;
 using NLog;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 public class DockerCommandExecutor
 {
@@ -14,19 +15,27 @@ public class DockerCommandExecutor
 
     public async Task<string> SendDockerCommandAsync(string dockerCommand)
     {
-        var client = sshClientManager.GetClient();
-        var cmd = client.CreateCommand($"docker {dockerCommand}");
+        try
+        {
+            var client = sshClientManager.GetClient();
+            var cmd = client.CreateCommand($"docker {dockerCommand}");
 
-        var result = await Task.Run(() => cmd.Execute());
+            var result = await Task.Run(() => cmd.Execute());
 
-        var textwithnospace = StringUtility.NormalizeDockerOutput(result);
+            var textwithnospace = StringUtility.NormalizeDockerOutput(result);
 
-        logger.Info($"> host:{client.ConnectionInfo.Host}:{client.ConnectionInfo.Port} > command: {cmd.CommandText}");
-        logger.Info($"Result:{textwithnospace}");
-        logger.Info($"END ---");
+            logger.Info($"> host:{client.ConnectionInfo.Host}:{client.ConnectionInfo.Port} > command: {cmd.CommandText}");
+            logger.Info($"Result:{textwithnospace}");
+            logger.Info($"END ---");
 
+            return result;
+        }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show($"Error on SendDockerCommandAsync: {ex.Message}");
+            return string.Empty;
+        }
 
-        return result;
     }
 }
 

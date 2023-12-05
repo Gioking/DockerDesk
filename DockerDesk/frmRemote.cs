@@ -1061,24 +1061,44 @@ namespace DockerDesk
                     var logvariables = RenderLogHelper.LogVariables(logLines);
                     htmlContent.AppendLine(logvariables);
 
-
                     htmlContent.AppendLine("</pre></body></html>");
 
-                    //Render
                     if (WBLog.InvokeRequired)
                     {
-                        WBLog.Invoke(new Action(() => WBLog.DocumentText = htmlContent.ToString()));
+                        WBLog.Invoke(new Action(() =>
+                        {
+                            WBLog.DocumentText = htmlContent.ToString();
+                            WBLog.DocumentCompleted += WBLogDocumentCompleted;
+                        }));
                     }
                     else
                     {
                         WBLog.DocumentText = htmlContent.ToString();
+                        WBLog.DocumentCompleted += WBLogDocumentCompleted;
                     }
-
                 }
                 catch (IOException)
                 {
                     // Gestione delle eccezioni
                 }
+            }
+        }
+
+        private void WBLogDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            // Assicurati che l'evento sia per il caricamento completo della pagina
+            if (e.Url.Equals(WBLog.Url))
+            {
+                ScrollToBottom();
+                WBLog.DocumentCompleted -= WBLogDocumentCompleted; // Rimuovi il gestore dell'evento dopo l'uso
+            }
+        }
+
+        private void ScrollToBottom()
+        {
+            if (WBLog.Document != null)
+            {
+                WBLog.Document.Window.ScrollTo(0, WBLog.Document.Body.ScrollRectangle.Height);
             }
         }
 

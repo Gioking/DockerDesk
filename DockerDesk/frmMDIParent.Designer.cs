@@ -287,6 +287,7 @@
             this.Name = "frmMDIParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DockerDesk v.1.0 for visual studio containers By F.G.";
+            this.Load += new System.EventHandler(this.frmMDIParent_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
