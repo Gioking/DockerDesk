@@ -36,7 +36,7 @@ namespace DockerDesk.Helpers
         {
             var result = await DoskerRunner.DockerExecute("ps -a --format \"{{.ID}}:{{.Names}}\"", "");
 
-            if (!string.IsNullOrEmpty(result.OperationResult))
+            if (string.IsNullOrEmpty(result.OperationResult))
             {
                 throw new Exception($"Errore durante l'esecuzione del comando Docker: {result.OperationResult}");
             }

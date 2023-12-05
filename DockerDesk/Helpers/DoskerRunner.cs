@@ -1,4 +1,5 @@
 ﻿using DockerDesk.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,6 +13,8 @@ namespace DockerDesk.Helpers
 {
     public static class DoskerRunner
     {
+        private static Logger logger = LogManager.GetLogger("LocalCommandLogger");
+
         public static async Task<bool> IsDockerRunningAsync()
         {
             try
@@ -269,6 +272,11 @@ namespace DockerDesk.Helpers
                     string OperationResult = output.ToString();
                     string ErrorResult = error.ToString();
 
+                    logger.Info($"> command: {arguments}");
+                    logger.Info($"{OperationResult}");
+                    logger.Info($"END ---");
+                    logger.Error($"{ErrorResult}");
+
                     if (!string.IsNullOrEmpty(OperationResult))
                     {
                         resultModel.OperationResult = OperationResult;
@@ -277,6 +285,8 @@ namespace DockerDesk.Helpers
                     {
                         resultModel.OperationResult = ErrorResult;
                     }
+
+                    return resultModel;
                 }
             }
             catch (Exception e)
@@ -299,14 +309,18 @@ namespace DockerDesk.Helpers
                 var dockerCommandExecutor = new DockerCommandExecutor(sshClientManager);
                 string result = await dockerCommandExecutor.SendDockerCommandAsync(arguments);
 
+                logger.Info($"> command: {arguments}");
+                logger.Info($"{result}");
+                logger.Info($"END ---");
+
                 if (!string.IsNullOrEmpty(result))
                 {
                     resultModel.OperationResult = result;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Si è verificato un errore: {e.Message}");
+                logger.Error(ex.Message);
                 return null;
             }
 
@@ -330,6 +344,10 @@ namespace DockerDesk.Helpers
 
                 var cmd = client.CreateCommand(arguments);
                 var result = await Task.Run(() => cmd.Execute());
+
+                logger.Info($"> command: {arguments}");
+                logger.Info($"{result}");
+                logger.Info($"END ---");
 
                 if (!string.IsNullOrEmpty(result))
                 {
@@ -358,6 +376,8 @@ namespace DockerDesk.Helpers
                     return processList;
                 }
 
+                logger.Info($"> command: docker top");
+
                 foreach (var line in lines.Skip(1))
                 {
                     var columns = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -376,9 +396,12 @@ namespace DockerDesk.Helpers
                             CMD = string.Join(" ", columns.Skip(7))
                         };
                         processList.Add(process);
+
+                        logger.Info($"{process}");
                     }
                 }
 
+                logger.Info($"END ---");
                 return processList;
             });
         }
