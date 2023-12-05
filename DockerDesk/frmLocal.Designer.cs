@@ -156,6 +156,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabHistory = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -386,7 +387,7 @@
             this.tabLog.Name = "tabLog";
             this.tabLog.Size = new System.Drawing.Size(1226, 593);
             this.tabLog.TabIndex = 4;
-            this.tabLog.Text = "Logs";
+            this.tabLog.Text = "Report";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
             // WBLog
@@ -1596,6 +1597,7 @@
             this.tabControl1.Controls.Add(this.tabNetwork);
             this.tabControl1.Controls.Add(this.tabVariables);
             this.tabControl1.Controls.Add(this.tabLog);
+            this.tabControl1.Controls.Add(this.tabHistory);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
@@ -1606,6 +1608,16 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Networks";
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabHistory
+            // 
+            this.tabHistory.ImageKey = "server-yellow-32.png";
+            this.tabHistory.Location = new System.Drawing.Point(4, 29);
+            this.tabHistory.Name = "tabHistory";
+            this.tabHistory.Size = new System.Drawing.Size(1226, 593);
+            this.tabHistory.TabIndex = 6;
+            this.tabHistory.Text = "Cmd History";
+            this.tabHistory.UseVisualStyleBackColor = true;
             // 
             // frmLocal
             // 
@@ -1792,6 +1804,7 @@
         private System.Windows.Forms.ComboBox cmbIpAddresses;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.WebBrowser WBLog;
+        private System.Windows.Forms.TabPage tabHistory;
     }
 }
 

@@ -180,6 +180,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabHistory = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             this.panelAccesAccount.SuspendLayout();
@@ -221,6 +222,7 @@
             this.tabControl1.Controls.Add(this.tabNetwork);
             this.tabControl1.Controls.Add(this.tabVariables);
             this.tabControl1.Controls.Add(this.tabLog);
+            this.tabControl1.Controls.Add(this.tabHistory);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
@@ -1721,7 +1723,7 @@
             this.tabLog.Name = "tabLog";
             this.tabLog.Size = new System.Drawing.Size(1226, 593);
             this.tabLog.TabIndex = 4;
-            this.tabLog.Text = "Logs";
+            this.tabLog.Text = "Report";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
             // WBLog
@@ -1897,6 +1899,16 @@
             this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
+            // 
+            // tabHistory
+            // 
+            this.tabHistory.ImageKey = "server-yellow-32.png";
+            this.tabHistory.Location = new System.Drawing.Point(4, 29);
+            this.tabHistory.Name = "tabHistory";
+            this.tabHistory.Size = new System.Drawing.Size(1226, 593);
+            this.tabHistory.TabIndex = 7;
+            this.tabHistory.Text = "Cmd History";
+            this.tabHistory.UseVisualStyleBackColor = true;
             // 
             // frmRemote
             // 
@@ -2116,6 +2128,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.WebBrowser WBLog;
+        private System.Windows.Forms.TabPage tabHistory;
     }
 }
 
