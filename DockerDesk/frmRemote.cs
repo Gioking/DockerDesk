@@ -8,7 +8,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -1049,7 +1048,7 @@ namespace DockerDesk
                     var htmlContent = new StringBuilder("<html>...</html>");
 
                     // Elabora la sezione delle immagini e aggiungi il risultato a htmlContent
-                    var resultImages = LogImages(logLines);
+                    var resultImages = RenderLogHelper.LogImages(logLines);
                     htmlContent.AppendLine(resultImages);
 
                     // Qui puoi aggiungere ulteriori chiamate a funzioni simili per processare altre sezioni del log
@@ -1076,60 +1075,61 @@ namespace DockerDesk
         }
 
 
-        private string LogImages(string[] logLines)
-        {
-            var imagesContent = new StringBuilder();
-            bool isImageSection = false;
-            bool isTableHeader = false;
 
-            imagesContent.AppendLine("<style> .table { border-collapse: collapse; } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } </style>");
+        //private string LogImages(string[] logLines)
+        //{
+        //    var imagesContent = new StringBuilder();
+        //    bool isImageSection = false;
+        //    bool isTableHeader = false;
 
-            foreach (var line in logLines)
-            {
-                if (line.Contains("> command: docker images"))
-                {
-                    isImageSection = true;
-                    isTableHeader = true;
-                    imagesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-                    continue;
-                }
+        //    imagesContent.AppendLine("<style> .table { border-collapse: collapse; } .table, .table th, .table td { border: 1px solid black; } th, td { text-align: left; padding: 8px; } .command { color: green; font-weight: bold; } </style>");
 
-                if (isImageSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isImageSection = false;
-                        imagesContent.AppendLine("</table>");
-                        continue;
-                    }
+        //    foreach (var line in logLines)
+        //    {
+        //        if (line.Contains("> command: docker images"))
+        //        {
+        //            isImageSection = true;
+        //            isTableHeader = true;
+        //            imagesContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
+        //            continue;
+        //        }
 
-                    if (isTableHeader)
-                    {
-                        imagesContent.AppendLine("<table class='table'><tr><th style='text-align:left;'>REPOSITORY</th><th style='text-align:left;'>TAG</th><th style='text-align:left;'>IMAGE ID</th><th style='text-align:left;'>CREATED</th><th style='text-align:left;'>SIZE</th></tr>");
-                        isTableHeader = false;
-                        continue;
-                    }
+        //        if (isImageSection)
+        //        {
+        //            if (line.Contains("END ---"))
+        //            {
+        //                isImageSection = false;
+        //                imagesContent.AppendLine("</table>");
+        //                continue;
+        //            }
 
-                    var columns = Regex.Matches(line, @"([^""\s]+|""[^""]*"")+")
-                                       .Cast<Match>()
-                                       .Select(m => m.Value.Trim('"'))
-                                       .ToArray();
-                    if (columns.Length >= 5)
-                    {
-                        imagesContent.AppendLine("<tr>");
-                        for (int i = 0; i < 5; i++)
-                        {
-                            imagesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
-                        }
-                        imagesContent.AppendLine("</tr>");
-                    }
-                }
-            }
+        //            if (isTableHeader)
+        //            {
+        //                imagesContent.AppendLine("<table class='table'><tr><th>REPOSITORY</th><th>TAG</th><th>IMAGE ID</th><th colspan=\"3\">CREATED</th>\r\n<th>SIZE</th></tr>");
+        //                isTableHeader = false;
+        //                continue;
+        //            }
 
-            return imagesContent.ToString();
-        }
+        //            // Uso di Regex per catturare le colonne tenendo conto di spazi multipli
+        //            var columns = Regex.Matches(line, @"([^\s]+(?=\s|$))|(""[^""]*"")")
+        //                               .Cast<Match>()
+        //                               .Select(m => m.Value.Trim('"'))
+        //                               .ToArray();
 
+        //            if (columns.Length >= 5)
+        //            {
+        //                imagesContent.AppendLine("<tr>");
+        //                for (int i = 0; i < columns.Length; i++)
+        //                {
+        //                    imagesContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
+        //                }
+        //                imagesContent.AppendLine("</tr>");
+        //            }
+        //        }
+        //    }
 
+        //    return imagesContent.ToString();
+        //}
 
 
 

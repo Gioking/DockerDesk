@@ -118,6 +118,7 @@
     <Compile Include="Helpers\DoskerRunner.cs" />
     <Compile Include="Helpers\FileHelpers.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\RenderLogHelper.cs" />
     <Compile Include="Helpers\SpinnerHelper.cs" />
     <Compile Include="Helpers\SshClientManager.cs" />
     <Compile Include="Helpers\StringUtility.cs" />
