@@ -878,7 +878,7 @@ namespace DockerDesk
 
         private void btnClearLogs(object sender, EventArgs e)
         {
-            //txtLog.Text = "";
+            WBLog.DocumentText = string.Empty;
         }
 
         private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)

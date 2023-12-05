@@ -272,7 +272,7 @@ namespace DockerDesk.Helpers
                     string OperationResult = output.ToString();
                     string ErrorResult = error.ToString();
 
-                    logger.Info($"> command: {arguments}");
+                    logger.Info($"> command: docker {arguments}");
                     logger.Info($"{OperationResult}");
                     logger.Info($"END ---");
                     logger.Error($"{ErrorResult}");

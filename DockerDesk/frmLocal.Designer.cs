@@ -56,6 +56,7 @@
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.WBLog = new System.Windows.Forms.WebBrowser();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.tabVariables = new System.Windows.Forms.TabPage();
             this.label24 = new System.Windows.Forms.Label();
@@ -155,7 +156,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.WBLog = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -388,6 +388,17 @@
             this.tabLog.TabIndex = 4;
             this.tabLog.Text = "Logs";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // WBLog
+            // 
+            this.WBLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WBLog.Location = new System.Drawing.Point(8, 3);
+            this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WBLog.Name = "WBLog";
+            this.WBLog.Size = new System.Drawing.Size(1210, 533);
+            this.WBLog.TabIndex = 6;
             // 
             // btnClearLog
             // 
@@ -1494,7 +1505,7 @@
             this.txtWorkDirPath.Name = "txtWorkDirPath";
             this.txtWorkDirPath.Size = new System.Drawing.Size(708, 22);
             this.txtWorkDirPath.TabIndex = 5;
-            this.txtWorkDirPath.Text = "C:\\SourceFilesPath\\";
+            this.txtWorkDirPath.Text = "D:\\Dev\\AppDemos\\ConsoleApp1";
             this.txtWorkDirPath.TextChanged += new System.EventHandler(this.txtWorkDirPath_TextChanged);
             // 
             // label17
@@ -1588,17 +1599,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1234, 626);
             this.tabControl1.TabIndex = 0;
-            // 
-            // WBLog
-            // 
-            this.WBLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WBLog.Location = new System.Drawing.Point(8, 3);
-            this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
-            this.WBLog.Name = "WBLog";
-            this.WBLog.Size = new System.Drawing.Size(1210, 524);
-            this.WBLog.TabIndex = 6;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // frmLocal
             // 

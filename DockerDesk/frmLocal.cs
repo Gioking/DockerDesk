@@ -586,7 +586,7 @@ namespace DockerDesk
 
         private void btnClearLogs(object sender, EventArgs e)
         {
-
+            WBLog.DocumentText = string.Empty;
         }
 
         private void comboDrive_SelectedIndexChanged(object sender, EventArgs e)
@@ -725,7 +725,7 @@ namespace DockerDesk
             remoteMappedIpAddress = cmbIpAddresses.Text;
         }
 
-        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             TabControl tabControl = sender as TabControl;
             TabPage selectedTab = tabControl.SelectedTab;
@@ -778,7 +778,7 @@ namespace DockerDesk
                         WBLog.DocumentCompleted += WBLogDocumentCompleted;
                     }
                 }
-                catch (IOException)
+                catch (IOException ex)
                 {
                     // Gestione delle eccezioni
                 }
@@ -803,6 +803,7 @@ namespace DockerDesk
         }
 
         #endregion
+
 
     }
 }

@@ -1721,11 +1721,10 @@
             // 
             // WBLog
             // 
-            this.WBLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBLog.Location = new System.Drawing.Point(0, 0);
             this.WBLog.MinimumSize = new System.Drawing.Size(20, 20);
             this.WBLog.Name = "WBLog";
-            this.WBLog.Size = new System.Drawing.Size(1226, 593);
+            this.WBLog.Size = new System.Drawing.Size(1226, 536);
             this.WBLog.TabIndex = 5;
             // 
             // btnClearLog
