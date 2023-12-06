@@ -1015,7 +1015,6 @@ namespace DockerDesk
             }
         }
 
-
         private void WBLogDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             // Assicurati che l'evento sia per il caricamento completo della pagina
