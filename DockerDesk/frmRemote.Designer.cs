@@ -32,17 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRemote));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabRemote = new System.Windows.Forms.TabPage();
-            this.panelAccesAccount = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtRemoteHostIp = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtRemotePort2 = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.panelAccessKey = new System.Windows.Forms.Panel();
+            this.panelLogin = new System.Windows.Forms.Panel();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.txtRemoteUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtRemotePort = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -183,8 +176,7 @@
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
-            this.panelAccesAccount.SuspendLayout();
-            this.panelAccessKey.SuspendLayout();
+            this.panelLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabImages.SuspendLayout();
@@ -236,8 +228,7 @@
             // 
             // tabRemote
             // 
-            this.tabRemote.Controls.Add(this.panelAccesAccount);
-            this.tabRemote.Controls.Add(this.panelAccessKey);
+            this.tabRemote.Controls.Add(this.panelLogin);
             this.tabRemote.Controls.Add(this.rdoAccessByPassword);
             this.tabRemote.Controls.Add(this.rdoAccessByKeys);
             this.tabRemote.Controls.Add(this.pictureBox2);
@@ -253,109 +244,28 @@
             this.tabRemote.Text = "Remote";
             this.tabRemote.UseVisualStyleBackColor = true;
             // 
-            // panelAccesAccount
+            // panelLogin
             // 
-            this.panelAccesAccount.BackColor = System.Drawing.Color.Silver;
-            this.panelAccesAccount.Controls.Add(this.label29);
-            this.panelAccesAccount.Controls.Add(this.txtPassword);
-            this.panelAccesAccount.Controls.Add(this.label28);
-            this.panelAccesAccount.Controls.Add(this.txtUsername);
-            this.panelAccesAccount.Controls.Add(this.txtRemoteHostIp);
-            this.panelAccesAccount.Controls.Add(this.label26);
-            this.panelAccesAccount.Controls.Add(this.txtRemotePort2);
-            this.panelAccesAccount.Controls.Add(this.label27);
-            this.panelAccesAccount.Enabled = false;
-            this.panelAccesAccount.Location = new System.Drawing.Point(24, 192);
-            this.panelAccesAccount.Name = "panelAccesAccount";
-            this.panelAccesAccount.Size = new System.Drawing.Size(403, 192);
-            this.panelAccesAccount.TabIndex = 19;
+            this.panelLogin.BackColor = System.Drawing.Color.Silver;
+            this.panelLogin.Controls.Add(this.labelPassword);
+            this.panelLogin.Controls.Add(this.txtRemoteUsername);
+            this.panelLogin.Controls.Add(this.txtPassword);
+            this.panelLogin.Controls.Add(this.label21);
+            this.panelLogin.Controls.Add(this.txtRemotePort);
+            this.panelLogin.Controls.Add(this.label25);
+            this.panelLogin.Location = new System.Drawing.Point(24, 99);
+            this.panelLogin.Name = "panelLogin";
+            this.panelLogin.Size = new System.Drawing.Size(352, 154);
+            this.panelLogin.TabIndex = 18;
             // 
-            // label29
+            // labelPassword
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(14, 122);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(78, 20);
-            this.label29.TabIndex = 17;
-            this.label29.Text = "Password";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(18, 145);
-            this.txtPassword.Multiline = true;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(247, 26);
-            this.txtPassword.TabIndex = 16;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(14, 70);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(83, 20);
-            this.label28.TabIndex = 15;
-            this.label28.Text = "Username";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(18, 93);
-            this.txtUsername.Multiline = true;
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(247, 26);
-            this.txtUsername.TabIndex = 14;
-            // 
-            // txtRemoteHostIp
-            // 
-            this.txtRemoteHostIp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteHostIp.Location = new System.Drawing.Point(18, 41);
-            this.txtRemoteHostIp.Multiline = true;
-            this.txtRemoteHostIp.Name = "txtRemoteHostIp";
-            this.txtRemoteHostIp.Size = new System.Drawing.Size(247, 26);
-            this.txtRemoteHostIp.TabIndex = 7;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(14, 18);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(178, 20);
-            this.label26.TabIndex = 6;
-            this.label26.Text = "Remote host ip address";
-            // 
-            // txtRemotePort2
-            // 
-            this.txtRemotePort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemotePort2.Location = new System.Drawing.Point(271, 41);
-            this.txtRemotePort2.Multiline = true;
-            this.txtRemotePort2.Name = "txtRemotePort2";
-            this.txtRemotePort2.Size = new System.Drawing.Size(66, 26);
-            this.txtRemotePort2.TabIndex = 9;
-            this.txtRemotePort2.Text = "5000";
-            this.txtRemotePort2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(267, 18);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(42, 20);
-            this.label27.TabIndex = 13;
-            this.label27.Text = "Port:";
-            // 
-            // panelAccessKey
-            // 
-            this.panelAccessKey.BackColor = System.Drawing.Color.Silver;
-            this.panelAccessKey.Controls.Add(this.txtRemoteUsername);
-            this.panelAccessKey.Controls.Add(this.label21);
-            this.panelAccessKey.Controls.Add(this.txtRemotePort);
-            this.panelAccessKey.Controls.Add(this.label25);
-            this.panelAccessKey.Location = new System.Drawing.Point(24, 99);
-            this.panelAccessKey.Name = "panelAccessKey";
-            this.panelAccessKey.Size = new System.Drawing.Size(403, 87);
-            this.panelAccessKey.TabIndex = 18;
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(14, 80);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(78, 20);
+            this.labelPassword.TabIndex = 17;
+            this.labelPassword.Text = "Password";
             // 
             // txtRemoteUsername
             // 
@@ -366,6 +276,17 @@
             this.txtRemoteUsername.Size = new System.Drawing.Size(247, 26);
             this.txtRemoteUsername.TabIndex = 7;
             this.txtRemoteUsername.Text = "root@38.242.198.151";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(18, 103);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(247, 26);
+            this.txtPassword.TabIndex = 16;
+            this.txtPassword.Text = "P@ssword0i";
             // 
             // label21
             // 
@@ -399,7 +320,7 @@
             // rdoAccessByPassword
             // 
             this.rdoAccessByPassword.AutoSize = true;
-            this.rdoAccessByPassword.Location = new System.Drawing.Point(218, 55);
+            this.rdoAccessByPassword.Location = new System.Drawing.Point(207, 55);
             this.rdoAccessByPassword.Name = "rdoAccessByPassword";
             this.rdoAccessByPassword.Size = new System.Drawing.Size(241, 24);
             this.rdoAccessByPassword.TabIndex = 17;
@@ -447,9 +368,9 @@
             this.btnDisconnectSsh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDisconnectSsh.ImageKey = "red-button.png";
             this.btnDisconnectSsh.ImageList = this.imageList1;
-            this.btnDisconnectSsh.Location = new System.Drawing.Point(24, 447);
+            this.btnDisconnectSsh.Location = new System.Drawing.Point(207, 275);
             this.btnDisconnectSsh.Name = "btnDisconnectSsh";
-            this.btnDisconnectSsh.Size = new System.Drawing.Size(247, 35);
+            this.btnDisconnectSsh.Size = new System.Drawing.Size(166, 35);
             this.btnDisconnectSsh.TabIndex = 10;
             this.btnDisconnectSsh.Text = "Disconnect";
             this.btnDisconnectSsh.UseVisualStyleBackColor = true;
@@ -482,9 +403,9 @@
             this.btnConnectToRemote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConnectToRemote.ImageKey = "green-button.png";
             this.btnConnectToRemote.ImageList = this.imageList1;
-            this.btnConnectToRemote.Location = new System.Drawing.Point(24, 406);
+            this.btnConnectToRemote.Location = new System.Drawing.Point(24, 275);
             this.btnConnectToRemote.Name = "btnConnectToRemote";
-            this.btnConnectToRemote.Size = new System.Drawing.Size(247, 35);
+            this.btnConnectToRemote.Size = new System.Drawing.Size(165, 35);
             this.btnConnectToRemote.TabIndex = 8;
             this.btnConnectToRemote.Text = "Connect";
             this.btnConnectToRemote.UseVisualStyleBackColor = true;
@@ -1929,10 +1850,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabRemote.ResumeLayout(false);
             this.tabRemote.PerformLayout();
-            this.panelAccesAccount.ResumeLayout(false);
-            this.panelAccesAccount.PerformLayout();
-            this.panelAccessKey.ResumeLayout(false);
-            this.panelAccessKey.PerformLayout();
+            this.panelLogin.ResumeLayout(false);
+            this.panelLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabImages.ResumeLayout(false);
@@ -2115,16 +2034,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.RadioButton rdoAccessByKeys;
         private System.Windows.Forms.RadioButton rdoAccessByPassword;
-        private System.Windows.Forms.Panel panelAccesAccount;
-        private System.Windows.Forms.TextBox txtRemoteHostIp;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtRemotePort2;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Panel panelAccessKey;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Panel panelLogin;
+        private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.WebBrowser WBLog;

@@ -57,6 +57,11 @@ namespace DockerDesk.Helpers
 
         public static async Task<List<DockerImage>> ParseDockerImagesOutputAsync(string output)
         {
+            if (output == null)
+            {
+                return null;
+            }
+
             return await Task.Run(() =>
             {
                 var imagesList = new List<DockerImage>();
@@ -96,6 +101,11 @@ namespace DockerDesk.Helpers
 
         public static async Task<List<DockerContainer>> ParseDockerContainersOutputAsync(string output)
         {
+            if (output == null)
+            {
+                return null;
+            }
+
             return await Task.Run(() =>
             {
                 var containersList = new List<DockerContainer>();
@@ -139,6 +149,11 @@ namespace DockerDesk.Helpers
 
         public static async Task<List<DockerVolume>> ParseDockerVolumesOutputAsync(string output)
         {
+            if (output == null)
+            {
+                return null;
+            }
+
             return await Task.Run(() =>
             {
                 int ids = 0;
@@ -175,6 +190,11 @@ namespace DockerDesk.Helpers
 
         public static async Task<List<DockerNetwork>> ParseDockerNetworksOutputAsync(string output)
         {
+            if (output == null)
+            {
+                return null;
+            }
+
             return await Task.Run(() =>
             {
                 int ids = 0;
@@ -212,6 +232,11 @@ namespace DockerDesk.Helpers
 
         public static async Task<List<DockerVariable>> ParseDockerEnvOutputAsync(string output)
         {
+            if (output == null)
+            {
+                return null;
+            }
+
             return await Task.Run(() =>
             {
                 var variableList = new List<DockerVariable>();

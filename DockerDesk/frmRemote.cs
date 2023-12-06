@@ -39,7 +39,13 @@ namespace DockerDesk
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Init();
             ReloadAll();
+        }
+
+        private void Init()
+        {
+            panelLogin.Height = 80;
         }
 
         private void ReloadAll()
@@ -192,14 +198,12 @@ namespace DockerDesk
 
         private void rdoKeyChanged(object sender, EventArgs e)
         {
-            panelAccessKey.Enabled = true;
-            panelAccesAccount.Enabled = false;
+            panelLogin.Height = 88;
         }
 
         private void rdoCredChanged(object sender, EventArgs e)
         {
-            panelAccessKey.Enabled = false;
-            panelAccesAccount.Enabled = true;
+            panelLogin.Height = 154;
         }
 
         private async void btnConnectToRemote_Click(object sender, EventArgs e)
@@ -207,6 +211,10 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
+
+                string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
+                string sshUserName = txtRemoteUsername.Text;
+                string[] parts = sshUserName.Split('@');
 
                 if (rdoAccessByKeys.Checked)
                 {
@@ -222,12 +230,6 @@ namespace DockerDesk
                         return;
                     }
 
-                    //string privateKeyFile = Path.Combine(Application.StartupPath, "OpenSshKey", "20220202_Perfexia_CentOS_7_root.openssh");
-                    string privateKeyFile = ConfigurationManager.AppSettings["OpenSshKeyPath"];
-
-                    string sshConnection = txtRemoteUsername.Text;
-                    string[] parts = sshConnection.Split('@');
-
                     string username = parts[0];
                     string host = parts[1];
                     int port = int.Parse(txtRemotePort.Text);
@@ -237,10 +239,10 @@ namespace DockerDesk
                 }
                 else
                 {
-                    string username = txtUsername.Text;
+                    string username = parts[0];
+                    string host = parts[1];
+                    int port = int.Parse(txtRemotePort.Text);
                     string password = txtPassword.Text;
-                    string host = txtRemoteHostIp.Text;
-                    int port = int.Parse(txtRemotePort2.Text);
 
                     sshClientManager = new SshClientManager(host, username, password, "", port);
                     await sshClientManager.ConnectAsync();
