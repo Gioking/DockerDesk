@@ -35,8 +35,12 @@ namespace DockerDesk.Helpers
 
             html.Append($"<li class='command'>Command</li>");
             html.Append($"<li class='outtext'>docker {command}</li>");
-            html.Append($"<li class='result'>Result</li>");
-            html.Append($"<li class='outtext'>{resultModel.OperationResult}</li>");
+
+            if (Properties.Settings.Default.ShowCommandResult)
+            {
+                html.Append($"<li class='result'>Result</li>");
+                html.Append($"<li class='outtext'>{resultModel.OperationResult}</li>");
+            }
 
             html.Append("</ul>");
 

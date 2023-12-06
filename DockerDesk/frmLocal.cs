@@ -41,6 +41,11 @@ namespace DockerDesk
             PopulateComboBoxWithIPs();
         }
 
+        private void Init()
+        {
+            chkShowCommandResult.Checked = Properties.Settings.Default.ShowCommandResult;
+        }
+
         private async void ReloadAll()
         {
             if (await CheckIfConnection())
@@ -116,6 +121,7 @@ namespace DockerDesk
                 cmbContainers.DataSource = containersList;
                 Font font = new Font("Arial", 12, FontStyle.Regular);
                 gridContainers.Font = font;
+                SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception e)
             {
@@ -282,27 +288,38 @@ namespace DockerDesk
                     return;
                 }
 
-                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
-                string baseDockerCommand = $"run -d {envVars} --name {containerName}";
+                // Comando base
+                string baseDockerCommand = "run -d";
 
+                // Aggiungi variabili di ambiente se necessario
+                if (chkUseVariables.Checked)
+                {
+                    string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
+                    baseDockerCommand += $" {envVars}";
+                }
+
+                // Aggiungi il nome del container
+                baseDockerCommand += $" --name {containerName}";
+
+                // Costruisci il resto del comando in base alle condizioni dei volumi e delle porte
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    var command = await DockerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{containerPort}", WBCmd, txtWorkDirPath.Text);
+                    baseDockerCommand += $" --mount type=bind,source={txtHostPathName.Text},target={txtContainerPathName.Text}";
                 }
-                else
+                else if (chkHasVolume.Checked)
                 {
-                    string portMapping = string.IsNullOrEmpty(remoteMappedIpAddress) ? $"{hostPort}:{containerPort}" : $"{remoteMappedIpAddress}:{hostPort}:{containerPort}";
-
-                    if (!chkHasVolume.Checked)
-                    {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, workDirPath);
-                    }
-                    else
-                    {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{txtContainerPathName.Text}"} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, workDirPath);
-                    }
+                    baseDockerCommand += $" -v {selectedVolume.VolumeName}:{txtContainerPathName.Text}";
                 }
 
+                // Aggiungi mappatura delle porte
+                string portMapping = string.IsNullOrEmpty(remoteMappedIpAddress) ? $"{hostPort}:{containerPort}" : $"{remoteMappedIpAddress}:{hostPort}:{containerPort}";
+                baseDockerCommand += $" -p {portMapping}";
+
+                // Completa il comando con l'immagine e il tag
+                baseDockerCommand += $" {selectedImage.Image}:{selectedImage.Tag}";
+
+                // Esegui il comando
+                var command = await DockerRunner.DockerExecute(baseDockerCommand, WBCmd, workDirPath);
 
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -771,8 +788,13 @@ namespace DockerDesk
             }
         }
 
+
         #endregion
 
-
+        private void chkShowCommandResult_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShowCommandResult = chkShowCommandResult.Checked;
+            Properties.Settings.Default.Save();
+        }
     }
 }

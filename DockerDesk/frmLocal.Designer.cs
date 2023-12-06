@@ -117,8 +117,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cmbIpAddresses = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtRemoteMappedIpAddress = new System.Windows.Forms.TextBox();
             this.chkUseVariables = new System.Windows.Forms.CheckBox();
             this.btnCreateVariables = new System.Windows.Forms.Button();
             this.txtHostPathName = new System.Windows.Forms.TextBox();
@@ -158,6 +156,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabHistory = new System.Windows.Forms.TabPage();
             this.WBCmd = new System.Windows.Forms.WebBrowser();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.chkShowCommandResult = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -185,6 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabHistory.SuspendLayout();
+            this.tabOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -1098,8 +1099,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.cmbIpAddresses);
-            this.groupBox4.Controls.Add(this.label30);
-            this.groupBox4.Controls.Add(this.txtRemoteMappedIpAddress);
             this.groupBox4.Controls.Add(this.chkUseVariables);
             this.groupBox4.Controls.Add(this.btnCreateVariables);
             this.groupBox4.Controls.Add(this.txtHostPathName);
@@ -1137,37 +1136,18 @@
             // 
             this.cmbIpAddresses.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbIpAddresses.FormattingEnabled = true;
-            this.cmbIpAddresses.Location = new System.Drawing.Point(70, 26);
+            this.cmbIpAddresses.Location = new System.Drawing.Point(71, 26);
             this.cmbIpAddresses.Name = "cmbIpAddresses";
-            this.cmbIpAddresses.Size = new System.Drawing.Size(220, 23);
+            this.cmbIpAddresses.Size = new System.Drawing.Size(219, 23);
             this.cmbIpAddresses.TabIndex = 29;
             this.cmbIpAddresses.TextChanged += new System.EventHandler(this.cmbIpAddresses_TextChanged);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(13, 59);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(30, 13);
-            this.label30.TabIndex = 27;
-            this.label30.Text = "C.Ip";
-            // 
-            // txtRemoteMappedIpAddress
-            // 
-            this.txtRemoteMappedIpAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtRemoteMappedIpAddress.Location = new System.Drawing.Point(71, 53);
-            this.txtRemoteMappedIpAddress.Multiline = true;
-            this.txtRemoteMappedIpAddress.Name = "txtRemoteMappedIpAddress";
-            this.txtRemoteMappedIpAddress.Size = new System.Drawing.Size(219, 22);
-            this.txtRemoteMappedIpAddress.TabIndex = 28;
-            this.txtRemoteMappedIpAddress.Text = "10.0.0.9";
             // 
             // chkUseVariables
             // 
             this.chkUseVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkUseVariables.AutoSize = true;
             this.chkUseVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkUseVariables.Location = new System.Drawing.Point(70, 299);
+            this.chkUseVariables.Location = new System.Drawing.Point(70, 273);
             this.chkUseVariables.Name = "chkUseVariables";
             this.chkUseVariables.Size = new System.Drawing.Size(214, 20);
             this.chkUseVariables.TabIndex = 24;
@@ -1181,7 +1161,7 @@
             this.btnCreateVariables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateVariables.ImageKey = "arrow-213-32.png";
             this.btnCreateVariables.ImageList = this.imageList1;
-            this.btnCreateVariables.Location = new System.Drawing.Point(68, 325);
+            this.btnCreateVariables.Location = new System.Drawing.Point(68, 299);
             this.btnCreateVariables.Name = "btnCreateVariables";
             this.btnCreateVariables.Size = new System.Drawing.Size(220, 35);
             this.btnCreateVariables.TabIndex = 23;
@@ -1193,7 +1173,7 @@
             // 
             this.txtHostPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPathName.Location = new System.Drawing.Point(68, 258);
+            this.txtHostPathName.Location = new System.Drawing.Point(68, 232);
             this.txtHostPathName.Multiline = true;
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 27);
@@ -1203,7 +1183,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 264);
+            this.label19.Location = new System.Drawing.Point(12, 238);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 19;
@@ -1214,7 +1194,7 @@
             this.chkShareVolumeToHost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkShareVolumeToHost.AutoSize = true;
             this.chkShareVolumeToHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 232);
+            this.chkShareVolumeToHost.Location = new System.Drawing.Point(69, 206);
             this.chkShareVolumeToHost.Name = "chkShareVolumeToHost";
             this.chkShareVolumeToHost.Size = new System.Drawing.Size(184, 20);
             this.chkShareVolumeToHost.TabIndex = 18;
@@ -1224,7 +1204,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 167);
+            this.label16.Location = new System.Drawing.Point(12, 141);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 17;
@@ -1238,7 +1218,7 @@
             this.cmbVolumes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVolumes.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cmbVolumes.FormattingEnabled = true;
-            this.cmbVolumes.Location = new System.Drawing.Point(69, 164);
+            this.cmbVolumes.Location = new System.Drawing.Point(69, 138);
             this.cmbVolumes.Name = "cmbVolumes";
             this.cmbVolumes.Size = new System.Drawing.Size(220, 24);
             this.cmbVolumes.TabIndex = 16;
@@ -1263,7 +1243,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 88);
+            this.label3.Location = new System.Drawing.Point(13, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 7;
@@ -1274,7 +1254,7 @@
             this.chkHasVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkHasVolume.AutoSize = true;
             this.chkHasVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkHasVolume.Location = new System.Drawing.Point(69, 139);
+            this.chkHasVolume.Location = new System.Drawing.Point(69, 113);
             this.chkHasVolume.Name = "chkHasVolume";
             this.chkHasVolume.Size = new System.Drawing.Size(165, 19);
             this.chkHasVolume.TabIndex = 15;
@@ -1285,7 +1265,7 @@
             // 
             this.txtHostPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHostPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtHostPort.Location = new System.Drawing.Point(71, 83);
+            this.txtHostPort.Location = new System.Drawing.Point(71, 57);
             this.txtHostPort.Multiline = true;
             this.txtHostPort.Name = "txtHostPort";
             this.txtHostPort.Size = new System.Drawing.Size(81, 22);
@@ -1297,7 +1277,7 @@
             // 
             this.txtContainerPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerPathName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPathName.Location = new System.Drawing.Point(69, 193);
+            this.txtContainerPathName.Location = new System.Drawing.Point(69, 167);
             this.txtContainerPathName.Multiline = true;
             this.txtContainerPathName.Name = "txtContainerPathName";
             this.txtContainerPathName.Size = new System.Drawing.Size(220, 22);
@@ -1308,7 +1288,7 @@
             // 
             this.txtContainerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerPort.Location = new System.Drawing.Point(216, 83);
+            this.txtContainerPort.Location = new System.Drawing.Point(216, 57);
             this.txtContainerPort.Multiline = true;
             this.txtContainerPort.Name = "txtContainerPort";
             this.txtContainerPort.Size = new System.Drawing.Size(74, 22);
@@ -1321,7 +1301,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 198);
+            this.label6.Location = new System.Drawing.Point(12, 172);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 13;
@@ -1330,7 +1310,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(168, 88);
+            this.label4.Location = new System.Drawing.Point(168, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 10;
@@ -1340,7 +1320,7 @@
             // 
             this.txtContainerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContainerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtContainerName.Location = new System.Drawing.Point(70, 111);
+            this.txtContainerName.Location = new System.Drawing.Point(70, 85);
             this.txtContainerName.Multiline = true;
             this.txtContainerName.Name = "txtContainerName";
             this.txtContainerName.Size = new System.Drawing.Size(220, 22);
@@ -1350,7 +1330,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 115);
+            this.label5.Location = new System.Drawing.Point(13, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 11;
@@ -1600,6 +1580,7 @@
             this.tabControl1.Controls.Add(this.tabVariables);
             this.tabControl1.Controls.Add(this.tabLog);
             this.tabControl1.Controls.Add(this.tabHistory);
+            this.tabControl1.Controls.Add(this.tabOptions);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
@@ -1630,6 +1611,27 @@
             this.WBCmd.Name = "WBCmd";
             this.WBCmd.Size = new System.Drawing.Size(1226, 593);
             this.WBCmd.TabIndex = 7;
+            // 
+            // tabOptions
+            // 
+            this.tabOptions.Controls.Add(this.chkShowCommandResult);
+            this.tabOptions.Location = new System.Drawing.Point(4, 29);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Size = new System.Drawing.Size(1226, 593);
+            this.tabOptions.TabIndex = 7;
+            this.tabOptions.Text = "Options";
+            this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // chkShowCommandResult
+            // 
+            this.chkShowCommandResult.AutoSize = true;
+            this.chkShowCommandResult.Location = new System.Drawing.Point(82, 51);
+            this.chkShowCommandResult.Name = "chkShowCommandResult";
+            this.chkShowCommandResult.Size = new System.Drawing.Size(374, 24);
+            this.chkShowCommandResult.TabIndex = 1;
+            this.chkShowCommandResult.Text = "Show docker command result in Cmd History Tab";
+            this.chkShowCommandResult.UseVisualStyleBackColor = true;
+            this.chkShowCommandResult.CheckedChanged += new System.EventHandler(this.chkShowCommandResult_CheckedChanged);
             // 
             // frmLocal
             // 
@@ -1685,6 +1687,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabHistory.ResumeLayout(false);
+            this.tabOptions.ResumeLayout(false);
+            this.tabOptions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1812,13 +1816,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.ComboBox cmbIpAddresses;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.WebBrowser WBLog;
         private System.Windows.Forms.TabPage tabHistory;
         private System.Windows.Forms.WebBrowser WBCmd;
+        private System.Windows.Forms.TabPage tabOptions;
+        private System.Windows.Forms.CheckBox chkShowCommandResult;
     }
 }
 

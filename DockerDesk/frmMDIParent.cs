@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace DockerDesk
@@ -96,17 +95,17 @@ namespace DockerDesk
 
         private void DeleteOldLogs()
         {
-            string pathToFile = Path.Combine(Application.StartupPath, "logs", "remote-commands.log");
-            if (File.Exists(pathToFile))
-            {
-                File.Delete(pathToFile);
-            }
+            //string pathToFile = Path.Combine(Application.StartupPath, "logs", "remote-commands.log");
+            //if (File.Exists(pathToFile))
+            //{
+            //    File.Delete(pathToFile);
+            //}
 
-            pathToFile = Path.Combine(Application.StartupPath, "logs", "local-commands.log");
-            if (File.Exists(pathToFile))
-            {
-                File.Delete(pathToFile);
-            }
+            //pathToFile = Path.Combine(Application.StartupPath, "logs", "local-commands.log");
+            //if (File.Exists(pathToFile))
+            //{
+            //    File.Delete(pathToFile);
+            //}
         }
 
     }

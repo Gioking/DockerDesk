@@ -46,6 +46,7 @@ namespace DockerDesk
         private void Init()
         {
             panelLogin.Height = 80;
+            chkShowCommandResult.Checked = Properties.Settings.Default.ShowCommandResult;
         }
 
         private void ReloadAll()
@@ -1057,8 +1058,13 @@ namespace DockerDesk
 
 
 
+
         #endregion
 
-
+        private void chkShowCommandResult_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShowCommandResult = chkShowCommandResult.Checked;
+            Properties.Settings.Default.Save();
+        }
     }
 }
