@@ -261,7 +261,7 @@ namespace DockerDesk
             }
         }
 
-        private void btnDisconnectSsh_Click(object sender, EventArgs e)
+        private void DisconnectSsh(object sender, EventArgs e)
         {
             DisconnectSshClient();
         }
@@ -334,7 +334,7 @@ namespace DockerDesk
                     $"cd {remotePath} && docker build -t {txtImageName.Text} ." : $"cd {remotePath} && docker build -t {txtImageName.Text}:{txtTag.Text} .";
 
                 //Execute ssh command on remote machine
-                command = await DockerRunner.DockerCreateImage(dockerCommand, sshClientManager);
+                command = await DockerRunner.DockerCreateImage(dockerCommand, WBCmd, sshClientManager);
 
                 if (command.OperationResult == null && command.OperationResult == null)
                 {

@@ -174,6 +174,7 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
+            this.WBCmd = new System.Windows.Forms.WebBrowser();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -200,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
             this.tabLog.SuspendLayout();
+            this.tabHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -374,7 +376,7 @@
             this.btnDisconnectSsh.TabIndex = 10;
             this.btnDisconnectSsh.Text = "Disconnect";
             this.btnDisconnectSsh.UseVisualStyleBackColor = true;
-            this.btnDisconnectSsh.Click += new System.EventHandler(this.btnDisconnectSsh_Click);
+            this.btnDisconnectSsh.Click += new System.EventHandler(this.DisconnectSsh);
             // 
             // imageList1
             // 
@@ -1669,6 +1671,7 @@
             // 
             // tabHistory
             // 
+            this.tabHistory.Controls.Add(this.WBCmd);
             this.tabHistory.ImageKey = "server-yellow-32.png";
             this.tabHistory.Location = new System.Drawing.Point(4, 29);
             this.tabHistory.Name = "tabHistory";
@@ -1831,6 +1834,15 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
+            // WBCmd
+            // 
+            this.WBCmd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBCmd.Location = new System.Drawing.Point(0, 0);
+            this.WBCmd.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WBCmd.Name = "WBCmd";
+            this.WBCmd.Size = new System.Drawing.Size(1226, 593);
+            this.WBCmd.TabIndex = 6;
+            // 
             // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1885,6 +1897,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridVariables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
+            this.tabHistory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -2041,6 +2054,7 @@
         private System.Windows.Forms.TextBox txtRemoteMappedIpAddress;
         private System.Windows.Forms.WebBrowser WBLog;
         private System.Windows.Forms.TabPage tabHistory;
+        private System.Windows.Forms.WebBrowser WBCmd;
     }
 }
 

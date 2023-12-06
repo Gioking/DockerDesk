@@ -353,7 +353,7 @@ namespace DockerDesk.Helpers
         }
 
         //Remote Docker
-        public static async Task<ResultModel> DockerCreateImage(string arguments, SshClientManager sshClientManager)
+        public static async Task<ResultModel> DockerCreateImage(string arguments, WebBrowser wbCmd, SshClientManager sshClientManager)
         {
             ResultModel resultModel = new ResultModel();
 
@@ -378,6 +378,9 @@ namespace DockerDesk.Helpers
                 {
                     resultModel.OperationResult = result;
                 }
+
+                wbCmd.DocumentText = await RenderLogHelper.ReportDockerCommandsAsync(arguments, resultModel);
+
             }
             catch (Exception e)
             {

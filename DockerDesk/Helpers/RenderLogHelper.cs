@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DockerDesk.Models;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -7,63 +8,7 @@ namespace DockerDesk.Helpers
 {
     public static class RenderLogHelper
     {
-
-        public static string LogNetworks(string[] logLines)
-        {
-            var networksContent = new StringBuilder();
-            bool isNetworkSection = false;
-
-            foreach (var line in logLines)
-            {
-                if (line.Contains("> command: docker network ls"))
-                {
-                    isNetworkSection = true;
-
-                    networksContent.AppendLine("<br/>");
-                    networksContent.AppendLine($"<span class='command'>{System.Net.WebUtility.HtmlEncode(line)}</span><br>");
-                    networksContent.AppendLine("<br/>");
-
-                    networksContent.AppendLine("<table class='table'><tr><th>NETWORK ID</th><th>NAME</th><th>DRIVER</th><th>SCOPE</th></tr>");
-                    continue;
-                }
-
-                if (isNetworkSection)
-                {
-                    if (line.Contains("END ---"))
-                    {
-                        isNetworkSection = false;
-                        networksContent.AppendLine("</table>");
-                        break;
-                    }
-
-                    // Salta la riga di intestazione del risultato
-                    if (line.StartsWith("2023-12-05") && line.Contains("Result:NETWORK ID"))
-                    {
-                        continue;
-                    }
-
-                    // Parsing delle righe della tabella per le reti
-                    var columns = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (columns.Length >= 4)
-                    {
-                        networksContent.AppendLine("<tr>");
-                        // Aggiungi NETWORK ID, NAME, DRIVER e SCOPE
-                        for (int i = 0; i < 4; i++)
-                        {
-                            networksContent.AppendLine($"<td>{System.Net.WebUtility.HtmlEncode(columns[i])}</td>");
-                        }
-                        networksContent.AppendLine("</tr>");
-                    }
-                }
-            }
-
-            return networksContent.ToString();
-        }
-
-
-        //--------------------------------------------------------------
-
-        public static Task<string> ReportDockerCommandsAsync(string command)
+        public static Task<string> ReportDockerCommandsAsync(string command, ResultModel resultModel)
         {
             StringBuilder html = new StringBuilder();
 
@@ -90,7 +35,8 @@ namespace DockerDesk.Helpers
 
             html.Append("<ul>");
 
-            html.Append($"<li>{command}</li>");
+            html.Append($"<li>Command: {command}</li>");
+            html.Append($"<li>Result:  {resultModel.OperationResult}</li>");
 
             html.Append("</ul>");
 
