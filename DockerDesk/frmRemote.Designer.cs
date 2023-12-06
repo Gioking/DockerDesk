@@ -161,6 +161,7 @@
             this.tabLog = new System.Windows.Forms.TabPage();
             this.WBLog = new System.Windows.Forms.WebBrowser();
             this.btnClearLog = new System.Windows.Forms.Button();
+            this.tabHistory = new System.Windows.Forms.TabPage();
             this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -180,7 +181,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabHistory = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             this.panelAccesAccount.SuspendLayout();
@@ -599,7 +599,7 @@
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
             this.txtHostPathName.TabIndex = 20;
-            this.txtHostPathName.Text = "C:\\Shared";
+            this.txtHostPathName.Text = "/share/";
             // 
             // label19
             // 
@@ -1746,6 +1746,16 @@
             this.btnClearLog.UseVisualStyleBackColor = true;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLogs);
             // 
+            // tabHistory
+            // 
+            this.tabHistory.ImageKey = "server-yellow-32.png";
+            this.tabHistory.Location = new System.Drawing.Point(4, 29);
+            this.tabHistory.Name = "tabHistory";
+            this.tabHistory.Size = new System.Drawing.Size(1226, 593);
+            this.tabHistory.TabIndex = 7;
+            this.tabHistory.Text = "Cmd History";
+            this.tabHistory.UseVisualStyleBackColor = true;
+            // 
             // remoteMachineBindingSource
             // 
             this.remoteMachineBindingSource.DataSource = typeof(DockerDesk.Models.RemoteMachine);
@@ -1899,16 +1909,6 @@
             this.toolStripSelectedNetwork.Name = "toolStripSelectedNetwork";
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
-            // 
-            // tabHistory
-            // 
-            this.tabHistory.ImageKey = "server-yellow-32.png";
-            this.tabHistory.Location = new System.Drawing.Point(4, 29);
-            this.tabHistory.Name = "tabHistory";
-            this.tabHistory.Size = new System.Drawing.Size(1226, 593);
-            this.tabHistory.TabIndex = 7;
-            this.tabHistory.Text = "Cmd History";
-            this.tabHistory.UseVisualStyleBackColor = true;
             // 
             // frmRemote
             // 

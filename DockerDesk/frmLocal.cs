@@ -244,7 +244,6 @@ namespace DockerDesk
         {
             try
             {
-
                 string containerName = txtContainerName.Text;
                 string hostPort = txtHostPort.Text;
                 string containerPort = txtContainerPort.Text;
