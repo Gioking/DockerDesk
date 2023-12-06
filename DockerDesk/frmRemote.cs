@@ -206,7 +206,7 @@ namespace DockerDesk
             panelLogin.Height = 154;
         }
 
-        private async void btnConnectToRemote_Click(object sender, EventArgs e)
+        private async void ConnectToRemote(object sender, EventArgs e)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace DockerDesk
                     int port = int.Parse(txtRemotePort.Text);
                     string password = txtPassword.Text;
 
-                    sshClientManager = new SshClientManager(host, username, password, "", port);
+                    sshClientManager = new SshClientManager(host, username, password, privateKeyFile, port);
                     await sshClientManager.ConnectAsync();
                 }
 

@@ -409,7 +409,7 @@
             this.btnConnectToRemote.TabIndex = 8;
             this.btnConnectToRemote.Text = "Connect";
             this.btnConnectToRemote.UseVisualStyleBackColor = true;
-            this.btnConnectToRemote.Click += new System.EventHandler(this.btnConnectToRemote_Click);
+            this.btnConnectToRemote.Click += new System.EventHandler(this.ConnectToRemote);
             // 
             // pictureBox1
             // 
