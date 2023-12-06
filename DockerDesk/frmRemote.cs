@@ -94,7 +94,7 @@ namespace DockerDesk
                 {
                     imagesList.Clear();
                     await Task.Delay(100);
-                    var command = await DockerRunner.DockerExecute("images", sshClientManager);
+                    var command = await DockerRunner.DockerExecute("images", WBCmd, sshClientManager);
                     imagesList = await DockerRunner.ParseDockerImagesOutputAsync(command.OperationResult);
                     GridImages.DataSource = imagesList;
                     Font font = new Font("Arial", 12, FontStyle.Regular);
@@ -117,7 +117,7 @@ namespace DockerDesk
             {
                 containersList.Clear();
                 await Task.Delay(100);
-                var command = await DockerRunner.DockerExecute("ps -a", sshClientManager);
+                var command = await DockerRunner.DockerExecute("ps -a", WBCmd, sshClientManager);
                 containersList = await DockerRunner.ParseDockerContainersOutputAsync(command.OperationResult);
                 gridContainers.DataSource = containersList;
                 cmbContainers.DataSource = containersList;
@@ -136,7 +136,7 @@ namespace DockerDesk
             {
                 volumeList.Clear();
                 await Task.Delay(100);
-                var command = await DockerRunner.DockerExecute("volume ls", sshClientManager);
+                var command = await DockerRunner.DockerExecute("volume ls", WBCmd, sshClientManager);
                 volumeList = await DockerRunner.ParseDockerVolumesOutputAsync(command.OperationResult);
                 GridVolumes.DataSource = volumeList;
                 cmbVolumes.DataSource = volumeList;
@@ -155,7 +155,7 @@ namespace DockerDesk
             {
                 networkList.Clear();
                 await Task.Delay(100);
-                var command = await DockerRunner.DockerExecute("network ls", sshClientManager);
+                var command = await DockerRunner.DockerExecute("network ls", WBCmd, sshClientManager);
                 networkList = await DockerRunner.ParseDockerNetworksOutputAsync(command.OperationResult);
                 GridNetwork.DataSource = networkList;
 
@@ -379,7 +379,7 @@ namespace DockerDesk
                 if (chose == DialogResult.Yes)
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
-                    var command = await DockerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"rmi {selectedImage.Image}:{selectedImage.Tag}", WBCmd, sshClientManager);
                     LoadImages();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -449,7 +449,7 @@ namespace DockerDesk
 
                 if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
                 {
-                    var command = await DockerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", WBCmd, sshClientManager);
                 }
                 else
                 {
@@ -457,11 +457,11 @@ namespace DockerDesk
 
                     if (!chkHasVolume.Checked)
                     {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, sshClientManager);
                     }
                     else
                     {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", sshClientManager);
+                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, sshClientManager);
                     }
                 }
 
@@ -495,7 +495,7 @@ namespace DockerDesk
                         MessageBox.Show("Please select the container to remove.");
                         return;
                     }
-                    var command = await DockerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"rm -f {selectedContainer.ContainerId}", WBCmd, sshClientManager);
                     LoadContainers();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -512,7 +512,7 @@ namespace DockerDesk
             try
             {
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DockerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", sshClientManager);
+                var command = await DockerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", WBCmd, sshClientManager);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -532,7 +532,7 @@ namespace DockerDesk
                 if (chose == DialogResult.Yes)
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
-                    var command = await DockerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"volume rm {selectedVolume.VolumeName}", WBCmd, sshClientManager);
                     LoadVolumes();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -572,7 +572,7 @@ namespace DockerDesk
 
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
-                    var command = await DockerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", WBCmd, sshClientManager);
                 }
                 else
                 {
@@ -581,7 +581,7 @@ namespace DockerDesk
                         MessageBox.Show("Warning... the subnet is required.");
                         return;
                     }
-                    var command = await DockerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", WBCmd, sshClientManager);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);
@@ -602,7 +602,7 @@ namespace DockerDesk
                 if (chose == DialogResult.Yes)
                 {
                     SpinnerHelper.ToggleSpinner(pBar, true);
-                    var command = await DockerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"network rm {selectedNetwork.NetworkId}", WBCmd, sshClientManager);
                     LoadNetworks();
                     SpinnerHelper.ToggleSpinner(pBar, false);
                 }
@@ -626,7 +626,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DockerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
+                var command = await DockerRunner.DockerExecute($"network connect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", WBCmd, sshClientManager);
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -647,7 +647,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DockerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", sshClientManager);
+                var command = await DockerRunner.DockerExecute($"network disconnect {selectedNetwork.NetworkId} {selectedContainer.ContainerId}", WBCmd, sshClientManager);
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
             catch (Exception ex)
@@ -675,7 +675,7 @@ namespace DockerDesk
 
                 //Inspect if container has a volume
                 //docker inspect --format '{{ .Mounts }}' nome_container
-                var command = await DockerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", sshClientManager);
+                var command = await DockerRunner.DockerExecute($"inspect {dockerContainer.ContainerId}", WBCmd, sshClientManager);
 
                 frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -695,7 +695,7 @@ namespace DockerDesk
         //docker top containerid
         private async void btnShowContainerProcesses_Click(object sender, EventArgs e)
         {
-            var command = await DockerRunner.DockerExecute($"top {selectedContainer.ContainerId}", sshClientManager);
+            var command = await DockerRunner.DockerExecute($"top {selectedContainer.ContainerId}", WBCmd, sshClientManager);
 
             frmProcesses existingForm = Application.OpenForms.OfType<frmProcesses>().FirstOrDefault();
 
@@ -731,7 +731,7 @@ namespace DockerDesk
 
             //docker network inspect my-custom-network
             //docker network inspect my-custom-network --format '{{json .}}' | jq
-            var command = await DockerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", sshClientManager);
+            var command = await DockerRunner.DockerExecute($"network inspect {selectedNetwork.NetworkId}", WBCmd, sshClientManager);
 
             frmWebView existingForm = Application.OpenForms.OfType<frmWebView>().FirstOrDefault();
 
@@ -908,7 +908,7 @@ namespace DockerDesk
                     return;
                 }
 
-                var command = await DockerRunner.DockerExecute($"exec {container.ContainerId} env", sshClientManager);
+                var command = await DockerRunner.DockerExecute($"exec {container.ContainerId} env", WBCmd, sshClientManager);
 
                 if (command == null) { return; }
 
@@ -1013,25 +1013,47 @@ namespace DockerDesk
                     WBLog.DocumentCompleted += WBLogDocumentCompleted;
                 }
             }
+
+            if (selectedTab.Name == "tabHistory")
+            {
+                if (WBCmd.InvokeRequired)
+                {
+                    WBCmd.Invoke(new Action(() =>
+                    {
+                        WBCmd.DocumentCompleted += WBCmdDocumentCompleted;
+                    }));
+                }
+                else
+                {
+                    WBCmd.DocumentCompleted += WBCmdDocumentCompleted;
+                }
+            }
+        }
+
+        private void WBCmdDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (e.Url.Equals(WBCmd.Url))
+            {
+                if (WBCmd.Document != null)
+                {
+                    WBCmd.Document.Window.ScrollTo(0, WBCmd.Document.Body.ScrollRectangle.Height);
+                }
+                WBCmd.DocumentCompleted -= WBCmdDocumentCompleted; // Rimuovi il gestore dell'evento dopo l'uso
+            }
         }
 
         private void WBLogDocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            // Assicurati che l'evento sia per il caricamento completo della pagina
             if (e.Url.Equals(WBLog.Url))
             {
-                ScrollToBottom();
+                if (WBLog.Document != null)
+                {
+                    WBLog.Document.Window.ScrollTo(0, WBLog.Document.Body.ScrollRectangle.Height);
+                }
                 WBLog.DocumentCompleted -= WBLogDocumentCompleted; // Rimuovi il gestore dell'evento dopo l'uso
             }
         }
 
-        private void ScrollToBottom()
-        {
-            if (WBLog.Document != null)
-            {
-                WBLog.Document.Window.ScrollTo(0, WBLog.Document.Body.ScrollRectangle.Height);
-            }
-        }
 
 
 

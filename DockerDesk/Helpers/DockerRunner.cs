@@ -98,7 +98,6 @@ namespace DockerDesk.Helpers
             });
         }
 
-
         public static async Task<List<DockerContainer>> ParseDockerContainersOutputAsync(string output)
         {
             if (output == null)
@@ -146,7 +145,6 @@ namespace DockerDesk.Helpers
             });
         }
 
-
         public static async Task<List<DockerVolume>> ParseDockerVolumesOutputAsync(string output)
         {
             if (output == null)
@@ -186,7 +184,6 @@ namespace DockerDesk.Helpers
                 return volumesList;
             });
         }
-
 
         public static async Task<List<DockerNetwork>> ParseDockerNetworksOutputAsync(string output)
         {
@@ -261,7 +258,7 @@ namespace DockerDesk.Helpers
         }
 
         //Local Docker
-        public static async Task<ResultModel> DockerExecute(string arguments, string workdir)
+        public static async Task<ResultModel> DockerExecute(string arguments, WebBrowser wbCmd, string workdir = null)
         {
             ResultModel resultModel = new ResultModel();
 
@@ -311,6 +308,11 @@ namespace DockerDesk.Helpers
                         resultModel.OperationResult = ErrorResult;
                     }
 
+                    if (wbCmd != null)
+                    {
+                        wbCmd.DocumentText = await RenderLogHelper.ReportDockerCommandsAsync(arguments, resultModel);
+                    }
+
                     return resultModel;
                 }
             }
@@ -324,8 +326,9 @@ namespace DockerDesk.Helpers
             return resultModel;
         }
 
+
         //Remote Docker
-        public static async Task<ResultModel> DockerExecute(string arguments, SshClientManager sshClientManager)
+        public static async Task<ResultModel> DockerExecute(string arguments, WebBrowser wbCmd, SshClientManager sshClientManager)
         {
             ResultModel resultModel = new ResultModel();
 
@@ -342,6 +345,9 @@ namespace DockerDesk.Helpers
                 {
                     resultModel.OperationResult = result;
                 }
+
+                wbCmd.DocumentText = await RenderLogHelper.ReportDockerCommandsAsync(arguments, resultModel);
+
             }
             catch (Exception ex)
             {

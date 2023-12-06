@@ -157,6 +157,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabHistory = new System.Windows.Forms.TabPage();
+            this.WBCmd = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerContainerBindingSource)).BeginInit();
@@ -183,6 +184,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabHistory.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -1611,6 +1613,7 @@
             // 
             // tabHistory
             // 
+            this.tabHistory.Controls.Add(this.WBCmd);
             this.tabHistory.ImageKey = "server-yellow-32.png";
             this.tabHistory.Location = new System.Drawing.Point(4, 29);
             this.tabHistory.Name = "tabHistory";
@@ -1618,6 +1621,15 @@
             this.tabHistory.TabIndex = 6;
             this.tabHistory.Text = "Cmd History";
             this.tabHistory.UseVisualStyleBackColor = true;
+            // 
+            // WBCmd
+            // 
+            this.WBCmd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBCmd.Location = new System.Drawing.Point(0, 0);
+            this.WBCmd.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WBCmd.Name = "WBCmd";
+            this.WBCmd.Size = new System.Drawing.Size(1226, 593);
+            this.WBCmd.TabIndex = 7;
             // 
             // frmLocal
             // 
@@ -1672,6 +1684,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabHistory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1805,6 +1818,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.WebBrowser WBLog;
         private System.Windows.Forms.TabPage tabHistory;
+        private System.Windows.Forms.WebBrowser WBCmd;
     }
 }
 
