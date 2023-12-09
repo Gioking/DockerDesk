@@ -52,10 +52,39 @@ Visita il sito web di DockerDesk
 Per scaricare la versione già compilata di DockerDesk, puoi visitare la sezione "Releases" del nostro repository GitHub. Qui troverai le ultime versioni stabili del software, pronte per essere scaricate e installate sul tuo sistema. Assicurati di scegliere la versione che meglio si adatta alle tue esigenze e alla configurazione del tuo sistema.
 Scarica l'ultima versione di DockerDesk
 
-## Supporta il Progetto
+## Installazione
+Per compilare e avviare l'applicazione "DockerDesk" utilizzando Visual Studio 2022 Community Edition e .NET Framework 4.7, segui queste istruzioni:
+
+1 Installazione di Visual Studio 2022 Community Edition:
+Se non hai già installato Visual Studio 2022, scaricalo dal sito ufficiale di Microsoft e segui la procedura di installazione.
+Durante l'installazione, assicurati di selezionare il carico di lavoro ".NET desktop development" per includere il supporto per il .NET Framework 4.7.
+Installazione del .NET Framework 4.7:
+
+2 Se il tuo sistema non ha già il .NET Framework 4.7, puoi scaricarlo dal sito ufficiale di Microsoft.
+Esegui il file di installazione e segui le istruzioni.
+Clonare o scaricare il progetto DockerDesk:
+
+3 Il codice sorgente è disponibile su un repository Git, puoi clonarlo utilizzando il comando git clone https://github.com/Gioking/DockerDesk.git da un terminale.
+In alternativa, scarica il codice sorgente come file ZIP e decomprimilo.
+Aprire il progetto in Visual Studio:
+
+4 Avvia Visual Studio 2022.
+Vai su "File" > "Apri" > "Progetto/Soluzione" e naviga fino alla cartella dove hai clonato o estratto il progetto DockerDesk.
+Seleziona il file della soluzione (con estensione .sln) e apri il progetto.
+Impostazioni del progetto:
+
+5 Una volta aperto il progetto, verifica che il framework di destinazione sia impostato su .NET Framework 4.7. Puoi farlo cliccando con il tasto destro sul progetto all'interno dell'Esplora soluzioni e selezionando "Proprietà", quindi vai nella scheda "Applicazione" e controlla il framework di destinazione.
+Compilazione del progetto:
+
+6 Nel menu di Visual Studio, vai su "Compila" e poi clicca su "Compila soluzione" per compilare il progetto. Assicurati che non ci siano errori di compilazione.
+Esecuzione dell'applicazione:
+
+7 Dopo aver compilato con successo, puoi eseguire l'applicazione premendo F5 o cliccando su "Debug" > "Avvia debug" nel menu di Visual Studio.
+
+### Supporta il Progetto
 Se ti piace usare DockerDesk, considera di supportare il progetto con una donazione. Il tuo contributo, per quanto piccolo possa essere, è estremamente prezioso. Esso mi aiuta a continuare a dedicare tempo al progetto, a gestire le nuove richieste di funzionalità e a rilasciare aggiornamenti. Ogni forma di supporto contribuisce in modo significativo a mantenere DockerDesk in crescita e in evoluzione.
 
-[![Dona](https://img.shields.io/badge/Donate-PayPal-green.svg)](LINK_DEL_TUO_SERVIZIO_DI_DONAZIONE)
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/dockerdesk)
 
 
 --------------------------------------------------------------------------------
@@ -104,6 +133,34 @@ Project Structure
 
 The project contains various forms and helper classes, each with a specific role in the application. Make sure to review the project structure to understand how the various parts interact with each other.
 
+## Setup
+To compile and launch the "DockerDesk" application using Visual Studio 2022 Community Edition and .NET Framework 4.7, follow these instructions:
+1 Installation of Visual Studio 2022 Community Edition:
+If you haven't already installed Visual Studio 2022, download it from the official Microsoft website and follow the installation procedure.
+During the installation, make sure to select the ".NET desktop development" workload to include support for the .NET Framework 4.7.
+Installation of .NET Framework 4.7:
+
+2 If your system doesn't already have the .NET Framework 4.7, you can download it from the official Microsoft website.
+Run the installation file and follow the instructions.
+Cloning or Downloading the DockerDesk Project:
+
+3 The source code is available on a Git repository, you can clone it using the command git clone https://github.com/Gioking/DockerDesk.git from a terminal.
+Alternatively, download the source code as a ZIP file and extract it.
+Opening the Project in Visual Studio:
+
+4 Launch Visual Studio 2022.
+Go to "File" > "Open" > "Project/Solution" and navigate to the folder where you have cloned or extracted the DockerDesk project.
+Select the solution file (with .sln extension) and open the project.
+Project Settings:
+
+5 Once the project is open, verify that the target framework is set to .NET Framework 4.7. You can do this by right-clicking on the project within the Solution Explorer and selecting "Properties", then go to the "Application" tab and check the target framework.
+Compiling the Project:
+
+6 In the Visual Studio menu, go to "Build" and then click on "Build Solution" to compile the project. Make sure there are no compilation errors.
+Running the Application:
+
+7 After successfully compiling, you can run the application by pressing F5 or clicking on "Debug" > "Start Debugging" in the Visual Studio menu.
+
 ## Disclaimer
 The author of DockerDesk is not responsible in any way for improper use or any damages that may arise from the use of this software. DockerDesk is provided "as is" without any warranty. The user assumes full responsibility for the use of the software and should be aware that improper use or incorrect configuration can cause damage or data loss. It is recommended to use DockerDesk in testing or development environments before deploying it in production environments.
 
@@ -120,5 +177,5 @@ Download the latest version of DockerDesk
 ## Support the Project
 If you enjoy using DockerDesk, please consider supporting the project with a donation. Your contributions, no matter how small, are immensely valuable. They help me to continue dedicating time to the project, addressing new feature requests, and releasing updates. Every bit of support goes a long way in keeping DockerDesk thriving and evolving.
 
-[![Dona](https://img.shields.io/badge/Donate-PayPal-green.svg)](LINK_DEL_TUO_SERVIZIO_DI_DONAZIONE)
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/dockerdesk)
 
