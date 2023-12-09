@@ -84,7 +84,7 @@ Esecuzione dell'applicazione:
 ### Supporta il Progetto
 Se ti piace usare DockerDesk, considera di supportare il progetto con una donazione. Il tuo contributo, per quanto piccolo possa essere, è estremamente prezioso. Esso mi aiuta a continuare a dedicare tempo al progetto, a gestire le nuove richieste di funzionalità e a rilasciare aggiornamenti. Ogni forma di supporto contribuisce in modo significativo a mantenere DockerDesk in crescita e in evoluzione.
 
-[![Dona](https://img.shields.io/badge/Donate-PayPal-green.svg)](LINK_DEL_TUO_SERVIZIO_DI_DONAZIONE)
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/dockerdesk)
 
 
 --------------------------------------------------------------------------------
@@ -177,5 +177,5 @@ Download the latest version of DockerDesk
 ## Support the Project
 If you enjoy using DockerDesk, please consider supporting the project with a donation. Your contributions, no matter how small, are immensely valuable. They help me to continue dedicating time to the project, addressing new feature requests, and releasing updates. Every bit of support goes a long way in keeping DockerDesk thriving and evolving.
 
-[![Dona](https://img.shields.io/badge/Donate-PayPal-green.svg)](LINK_DEL_TUO_SERVIZIO_DI_DONAZIONE)
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/dockerdesk)
 
