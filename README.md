@@ -53,9 +53,10 @@ Per scaricare la versione già compilata di DockerDesk, puoi visitare la sezione
 Scarica l'ultima versione di DockerDesk
 
 ## Installazione
-Installazione di Visual Studio 2022 Community Edition:
+Per compilare e avviare l'applicazione "DockerDesk" utilizzando Visual Studio 2022 Community Edition e .NET Framework 4.7, segui queste istruzioni:
 
-1 Se non hai già installato Visual Studio 2022, scaricalo dal sito ufficiale di Microsoft e segui la procedura di installazione.
+1 Installazione di Visual Studio 2022 Community Edition:
+Se non hai già installato Visual Studio 2022, scaricalo dal sito ufficiale di Microsoft e segui la procedura di installazione.
 Durante l'installazione, assicurati di selezionare il carico di lavoro ".NET desktop development" per includere il supporto per il .NET Framework 4.7.
 Installazione del .NET Framework 4.7:
 
@@ -131,6 +132,34 @@ The project includes various resources like HTML help files, images, and configu
 Project Structure
 
 The project contains various forms and helper classes, each with a specific role in the application. Make sure to review the project structure to understand how the various parts interact with each other.
+
+## Setup
+To compile and launch the "DockerDesk" application using Visual Studio 2022 Community Edition and .NET Framework 4.7, follow these instructions:
+1 Installation of Visual Studio 2022 Community Edition:
+If you haven't already installed Visual Studio 2022, download it from the official Microsoft website and follow the installation procedure.
+During the installation, make sure to select the ".NET desktop development" workload to include support for the .NET Framework 4.7.
+Installation of .NET Framework 4.7:
+
+2 If your system doesn't already have the .NET Framework 4.7, you can download it from the official Microsoft website.
+Run the installation file and follow the instructions.
+Cloning or Downloading the DockerDesk Project:
+
+3 The source code is available on a Git repository, you can clone it using the command git clone https://github.com/Gioking/DockerDesk.git from a terminal.
+Alternatively, download the source code as a ZIP file and extract it.
+Opening the Project in Visual Studio:
+
+4 Launch Visual Studio 2022.
+Go to "File" > "Open" > "Project/Solution" and navigate to the folder where you have cloned or extracted the DockerDesk project.
+Select the solution file (with .sln extension) and open the project.
+Project Settings:
+
+5 Once the project is open, verify that the target framework is set to .NET Framework 4.7. You can do this by right-clicking on the project within the Solution Explorer and selecting "Properties", then go to the "Application" tab and check the target framework.
+Compiling the Project:
+
+6 In the Visual Studio menu, go to "Build" and then click on "Build Solution" to compile the project. Make sure there are no compilation errors.
+Running the Application:
+
+7 After successfully compiling, you can run the application by pressing F5 or clicking on "Debug" > "Start Debugging" in the Visual Studio menu.
 
 ## Disclaimer
 The author of DockerDesk is not responsible in any way for improper use or any damages that may arise from the use of this software. DockerDesk is provided "as is" without any warranty. The user assumes full responsibility for the use of the software and should be aware that improper use or incorrect configuration can cause damage or data loss. It is recommended to use DockerDesk in testing or development environments before deploying it in production environments.
