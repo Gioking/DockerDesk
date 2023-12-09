@@ -52,7 +52,35 @@ Visita il sito web di DockerDesk
 Per scaricare la versione già compilata di DockerDesk, puoi visitare la sezione "Releases" del nostro repository GitHub. Qui troverai le ultime versioni stabili del software, pronte per essere scaricate e installate sul tuo sistema. Assicurati di scegliere la versione che meglio si adatta alle tue esigenze e alla configurazione del tuo sistema.
 Scarica l'ultima versione di DockerDesk
 
-## Supporta il Progetto
+## Installazione
+Installazione di Visual Studio 2022 Community Edition:
+
+1 Se non hai già installato Visual Studio 2022, scaricalo dal sito ufficiale di Microsoft e segui la procedura di installazione.
+Durante l'installazione, assicurati di selezionare il carico di lavoro ".NET desktop development" per includere il supporto per il .NET Framework 4.7.
+Installazione del .NET Framework 4.7:
+
+2 Se il tuo sistema non ha già il .NET Framework 4.7, puoi scaricarlo dal sito ufficiale di Microsoft.
+Esegui il file di installazione e segui le istruzioni.
+Clonare o scaricare il progetto DockerDesk:
+
+3 Il codice sorgente è disponibile su un repository Git, puoi clonarlo utilizzando il comando git clone https://github.com/Gioking/DockerDesk.git da un terminale.
+In alternativa, scarica il codice sorgente come file ZIP e decomprimilo.
+Aprire il progetto in Visual Studio:
+
+4 Avvia Visual Studio 2022.
+Vai su "File" > "Apri" > "Progetto/Soluzione" e naviga fino alla cartella dove hai clonato o estratto il progetto DockerDesk.
+Seleziona il file della soluzione (con estensione .sln) e apri il progetto.
+Impostazioni del progetto:
+
+5 Una volta aperto il progetto, verifica che il framework di destinazione sia impostato su .NET Framework 4.7. Puoi farlo cliccando con il tasto destro sul progetto all'interno dell'Esplora soluzioni e selezionando "Proprietà", quindi vai nella scheda "Applicazione" e controlla il framework di destinazione.
+Compilazione del progetto:
+
+6 Nel menu di Visual Studio, vai su "Compila" e poi clicca su "Compila soluzione" per compilare il progetto. Assicurati che non ci siano errori di compilazione.
+Esecuzione dell'applicazione:
+
+7 Dopo aver compilato con successo, puoi eseguire l'applicazione premendo F5 o cliccando su "Debug" > "Avvia debug" nel menu di Visual Studio.
+
+### Supporta il Progetto
 Se ti piace usare DockerDesk, considera di supportare il progetto con una donazione. Il tuo contributo, per quanto piccolo possa essere, è estremamente prezioso. Esso mi aiuta a continuare a dedicare tempo al progetto, a gestire le nuove richieste di funzionalità e a rilasciare aggiornamenti. Ogni forma di supporto contribuisce in modo significativo a mantenere DockerDesk in crescita e in evoluzione.
 
 [![Dona](https://img.shields.io/badge/Donate-PayPal-green.svg)](LINK_DEL_TUO_SERVIZIO_DI_DONAZIONE)
