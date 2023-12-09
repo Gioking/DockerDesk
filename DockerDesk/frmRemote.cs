@@ -436,39 +436,49 @@ namespace DockerDesk
                     return;
                 }
 
-                string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
-                string baseDockerCommand = string.Empty;
+                // Comando base
+                string baseDockerCommand = "run -d";
 
-                if (envVars != null)
+                // Aggiungi variabili di ambiente se necessario
+                if (chkUseVariables.Checked)
                 {
-                    baseDockerCommand = $"run -d {envVars} --name {containerName}";
-                }
-                else
-                {
-                    baseDockerCommand = $"run -d --name {containerName}";
-                }
-
-                if (chkHasVolume.Checked && chkShareVolumeToHost.Checked)
-                {
-                    var command = await DockerRunner.DockerExecute($"{baseDockerCommand} --mount type=bind,source={hostPathName},target={containerPathName} {selectedImage.Image}:{selectedImage.Tag} -p {hostPort}:{txtContainerPort.Text}", WBCmd, sshClientManager);
-                }
-                else
-                {
-                    string portMapping = string.IsNullOrEmpty(remoteMappedIpAddress) ? $"{hostPort}:{containerPort}" : $"{remoteMappedIpAddress}:{hostPort}:{containerPort}";
-
-                    if (!chkHasVolume.Checked)
+                    string envVars = DockerEnvHelper.GetEnvVariablesFromJson(pathToFile);
+                    if (envVars != null)
                     {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, sshClientManager);
+                        baseDockerCommand += $" {envVars}";
+                    }
+                }
+
+                // Aggiungi il nome del container
+                baseDockerCommand += $" --name {containerName}";
+
+                // Gestione dei volumi
+                if (chkHasVolume.Checked)
+                {
+                    if (chkShareVolumeToHost.Checked)
+                    {
+                        baseDockerCommand += $" --mount type=bind,source={hostPathName},target={containerPathName}";
                     }
                     else
                     {
-                        var command = await DockerRunner.DockerExecute($"{baseDockerCommand} -p {portMapping} -v {$"{selectedVolume.VolumeName}:{containerPathName}"} {selectedImage.Image}:{selectedImage.Tag}", WBCmd, sshClientManager);
+                        baseDockerCommand += $" -v {selectedVolume.VolumeName}:{containerPathName}";
                     }
                 }
 
+                // Aggiungi mappatura delle porte
+                string portMapping = string.IsNullOrEmpty(remoteMappedIpAddress) ? $"{hostPort}:{containerPort}" : $"{remoteMappedIpAddress}:{hostPort}:{containerPort}";
+                baseDockerCommand += $" -p {portMapping}";
+
+                // Completa il comando con l'immagine e il tag
+                baseDockerCommand += $" {selectedImage.Image}:{selectedImage.Tag}";
+
+                // Esegui il comando
+                var command = await DockerRunner.DockerExecute(baseDockerCommand, WBCmd, sshClientManager);
 
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
+
+                //MessageBox.Show($"The Container {containerName} has been created!");
             }
             catch (Exception ex)
             {
@@ -512,8 +522,10 @@ namespace DockerDesk
         {
             try
             {
+                string volumeName = txtNewVolumeName.Text;
+
                 SpinnerHelper.ToggleSpinner(pBar, true);
-                var command = await DockerRunner.DockerExecute($"volume create {txtNewVolumeName.Text}", WBCmd, sshClientManager);
+                var command = await DockerRunner.DockerExecute($"volume create {volumeName}", WBCmd, sshClientManager);
                 LoadVolumes();
                 SpinnerHelper.ToggleSpinner(pBar, false);
             }
@@ -550,15 +562,18 @@ namespace DockerDesk
         {
             try
             {
-                if (string.IsNullOrEmpty(txtSubnet.Text) || string.IsNullOrEmpty(comboDrive.Text) || string.IsNullOrEmpty(txtGateway.Text))
+                string drive = comboDrive.Text;
+                string gateway = txtGateway.Text;
+                string subnet = txtSubnet.Text;
+                string networkName = txtNetworkName.Text;
+
+                if (string.IsNullOrEmpty(txtSubnet.Text) || string.IsNullOrEmpty(drive) || string.IsNullOrEmpty(gateway))
                 {
                     MessageBox.Show("Missing network information: Subnet, Drive, Gateway");
                     return;
                 }
 
                 SpinnerHelper.ToggleSpinner(pBar, true);
-
-                string subnet = txtSubnet.Text;
                 var (suggestedSubnet, suggestedGateway) = await DockerNetWorkChecker.IsNetworkRangeInUseAsync(subnet, sshClientManager);
 
                 if (!string.IsNullOrEmpty(suggestedSubnet))
@@ -573,7 +588,7 @@ namespace DockerDesk
 
                 if (string.IsNullOrEmpty(selectedDrive))
                 {
-                    var command = await DockerRunner.DockerExecute($"network create -d {comboDrive.Text} {txtNetworkName.Text}", WBCmd, sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"network create -d {comboDrive.Text} {networkName}", WBCmd, sshClientManager);
                 }
                 else
                 {
@@ -582,7 +597,7 @@ namespace DockerDesk
                         MessageBox.Show("Warning... the subnet is required.");
                         return;
                     }
-                    var command = await DockerRunner.DockerExecute($"network create --subnet={txtSubnet.Text} --gateway={txtGateway.Text} {txtNetworkName.Text}", WBCmd, sshClientManager);
+                    var command = await DockerRunner.DockerExecute($"network create --subnet={subnet} --gateway={gateway} {networkName}", WBCmd, sshClientManager);
                 }
                 LoadNetworks();
                 SpinnerHelper.ToggleSpinner(pBar, false);

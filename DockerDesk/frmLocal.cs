@@ -323,6 +323,8 @@ namespace DockerDesk
 
                 LoadContainers();
                 SpinnerHelper.ToggleSpinner(pBar, false);
+
+                //MessageBox.Show($"The Container {containerName} has been created!");
             }
             catch (Exception ex)
             {

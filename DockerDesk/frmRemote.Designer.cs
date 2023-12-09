@@ -156,6 +156,8 @@
             this.btnClearLog = new System.Windows.Forms.Button();
             this.tabHistory = new System.Windows.Forms.TabPage();
             this.WBCmd = new System.Windows.Forms.WebBrowser();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.chkShowCommandResult = new System.Windows.Forms.CheckBox();
             this.remoteMachineBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -175,8 +177,6 @@
             this.toolStripSelectedVolume = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripSelectedNetwork = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabOptions = new System.Windows.Forms.TabPage();
-            this.chkShowCommandResult = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabRemote.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -204,10 +204,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).BeginInit();
             this.tabLog.SuspendLayout();
             this.tabHistory.SuspendLayout();
+            this.tabOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusBar.SuspendLayout();
-            this.tabOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -526,7 +526,7 @@
             this.txtHostPathName.Name = "txtHostPathName";
             this.txtHostPathName.Size = new System.Drawing.Size(220, 22);
             this.txtHostPathName.TabIndex = 20;
-            this.txtHostPathName.Text = "/share/";
+            this.txtHostPathName.Text = "/root/shared/";
             // 
             // label19
             // 
@@ -1693,6 +1693,27 @@
             this.WBCmd.Size = new System.Drawing.Size(1226, 593);
             this.WBCmd.TabIndex = 6;
             // 
+            // tabOptions
+            // 
+            this.tabOptions.Controls.Add(this.chkShowCommandResult);
+            this.tabOptions.Location = new System.Drawing.Point(4, 29);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Size = new System.Drawing.Size(1226, 593);
+            this.tabOptions.TabIndex = 8;
+            this.tabOptions.Text = "Options";
+            this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // chkShowCommandResult
+            // 
+            this.chkShowCommandResult.AutoSize = true;
+            this.chkShowCommandResult.Location = new System.Drawing.Point(68, 52);
+            this.chkShowCommandResult.Name = "chkShowCommandResult";
+            this.chkShowCommandResult.Size = new System.Drawing.Size(374, 24);
+            this.chkShowCommandResult.TabIndex = 0;
+            this.chkShowCommandResult.Text = "Show docker command result in Cmd History Tab";
+            this.chkShowCommandResult.UseVisualStyleBackColor = true;
+            this.chkShowCommandResult.CheckedChanged += new System.EventHandler(this.chkShowCommandResult_CheckedChanged);
+            // 
             // remoteMachineBindingSource
             // 
             this.remoteMachineBindingSource.DataSource = typeof(DockerDesk.Models.RemoteMachine);
@@ -1847,27 +1868,6 @@
             this.toolStripSelectedNetwork.Size = new System.Drawing.Size(126, 20);
             this.toolStripSelectedNetwork.Text = "Selected Network";
             // 
-            // tabOptions
-            // 
-            this.tabOptions.Controls.Add(this.chkShowCommandResult);
-            this.tabOptions.Location = new System.Drawing.Point(4, 29);
-            this.tabOptions.Name = "tabOptions";
-            this.tabOptions.Size = new System.Drawing.Size(1226, 593);
-            this.tabOptions.TabIndex = 8;
-            this.tabOptions.Text = "Options";
-            this.tabOptions.UseVisualStyleBackColor = true;
-            // 
-            // chkShowCommandResult
-            // 
-            this.chkShowCommandResult.AutoSize = true;
-            this.chkShowCommandResult.Location = new System.Drawing.Point(68, 52);
-            this.chkShowCommandResult.Name = "chkShowCommandResult";
-            this.chkShowCommandResult.Size = new System.Drawing.Size(374, 24);
-            this.chkShowCommandResult.TabIndex = 0;
-            this.chkShowCommandResult.Text = "Show docker command result in Cmd History Tab";
-            this.chkShowCommandResult.UseVisualStyleBackColor = true;
-            this.chkShowCommandResult.CheckedChanged += new System.EventHandler(this.chkShowCommandResult_CheckedChanged);
-            // 
             // frmRemote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1923,13 +1923,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dockerVariableBindingSource)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabHistory.ResumeLayout(false);
+            this.tabOptions.ResumeLayout(false);
+            this.tabOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.remoteMachineBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.tabOptions.ResumeLayout(false);
-            this.tabOptions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
