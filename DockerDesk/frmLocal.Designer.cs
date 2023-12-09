@@ -157,6 +157,7 @@
             this.tabHistory = new System.Windows.Forms.TabPage();
             this.WBCmd = new System.Windows.Forms.WebBrowser();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.chkShowCommandResult = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dockerNetworkBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockerImageBindingSource)).BeginInit();
@@ -186,6 +187,7 @@
             this.tabControl1.SuspendLayout();
             this.tabHistory.SuspendLayout();
             this.tabOptions.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -1614,7 +1616,7 @@
             // 
             // tabOptions
             // 
-            this.tabOptions.Controls.Add(this.chkShowCommandResult);
+            this.tabOptions.Controls.Add(this.groupBox6);
             this.tabOptions.Location = new System.Drawing.Point(4, 29);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Size = new System.Drawing.Size(1226, 593);
@@ -1622,10 +1624,20 @@
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chkShowCommandResult);
+            this.groupBox6.Location = new System.Drawing.Point(26, 25);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(467, 153);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Commands history options";
+            // 
             // chkShowCommandResult
             // 
             this.chkShowCommandResult.AutoSize = true;
-            this.chkShowCommandResult.Location = new System.Drawing.Point(82, 51);
+            this.chkShowCommandResult.Location = new System.Drawing.Point(18, 41);
             this.chkShowCommandResult.Name = "chkShowCommandResult";
             this.chkShowCommandResult.Size = new System.Drawing.Size(374, 24);
             this.chkShowCommandResult.TabIndex = 1;
@@ -1688,7 +1700,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabHistory.ResumeLayout(false);
             this.tabOptions.ResumeLayout(false);
-            this.tabOptions.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1823,6 +1836,7 @@
         private System.Windows.Forms.WebBrowser WBCmd;
         private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.CheckBox chkShowCommandResult;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }
 
