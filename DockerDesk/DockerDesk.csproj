@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FCF8D41-2102-4880-A903-3301A1512B4D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DockerDesk</RootNamespace>
+    <AssemblyName>DockerDesk</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>network-32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.2.7\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2023.0.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2023.0.0\lib\net462\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHelp.Designer.cs">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProcesses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcesses.Designer.cs">
+      <DependentUpon>frmProcesses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRemote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemote.Designer.cs">
+      <DependentUpon>frmRemote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLocal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocal.Designer.cs">
+      <DependentUpon>frmLocal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMDIParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMDIParent.Designer.cs">
+      <DependentUpon>frmMDIParent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVariables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVariables.Designer.cs">
+      <DependentUpon>frmVariables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWebView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWebView.Designer.cs">
+      <DependentUpon>frmWebView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DockerCommandExecutor.cs" />
+    <Compile Include="Helpers\DockerEnvHelper.cs" />
+    <Compile Include="Helpers\DockerNetWorkChecker.cs" />
+    <Compile Include="Helpers\DockerImageHelpers.cs" />
+    <Compile Include="Helpers\DockerPortChecker.cs" />
+    <Compile Include="Helpers\DockerRunner.cs" />
+    <Compile Include="Helpers\FileHelpers.cs" />
+    <Compile Include="Helpers\RenderLogHelper.cs" />
+    <Compile Include="Helpers\SpinnerHelper.cs" />
+    <Compile Include="Helpers\SshClientManager.cs" />
+    <Compile Include="Helpers\StringUtility.cs" />
+    <Compile Include="Models\ContainerConfig.cs" />
+    <Compile Include="Models\DockerProcess.cs" />
+    <Compile Include="Models\RemoteMachine.cs" />
+    <Compile Include="Models\DockerContainer.cs" />
+    <Compile Include="Models\DockerJsonContainer.cs" />
+    <Compile Include="Models\DockerJsonVariable.cs" />
+    <Compile Include="Models\DockerNetwork.cs" />
+    <Compile Include="Models\DockerVariable.cs" />
+    <Compile Include="Models\DockerVolume.cs" />
+    <Compile Include="Models\DockerImage.cs" />
+    <Compile Include="Models\EnvVariable.cs" />
+    <Compile Include="Models\ImageConfig.cs" />
+    <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHelp.resx">
+      <DependentUpon>frmHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcesses.resx">
+      <DependentUpon>frmProcesses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRemote.resx">
+      <DependentUpon>frmRemote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLocal.resx">
+      <DependentUpon>frmLocal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMDIParent.resx">
+      <DependentUpon>frmMDIParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVariables.resx">
+      <DependentUpon>frmVariables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWebView.resx">
+      <DependentUpon>frmWebView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Content Include="network-32.ico" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OpenSshKey\20220202_Perfexia_CentOS_7_root.openssh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\DataSources\DockerDesk.Models.RemoteMachine.datasource" />
+    <None Include="variables\templatevar.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerContainer.datasource" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerImage.datasource" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerNetwork.datasource" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerVariable.datasource" />
+    <None Include="Properties\DataSources\DockerDesk.Models.DockerVolume.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="variables\containersvariables.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="help.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\info-2-32.png" />
+    <None Include="Resources\info-6-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

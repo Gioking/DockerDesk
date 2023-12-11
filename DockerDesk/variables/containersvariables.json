@@ -1,0 +1,23 @@
+{
+  "c.nginx": {
+    "Name": "d587994afe8a",
+    "EnvVariable": [
+      {
+        "name": "PATH",
+        "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      {
+        "name": "NGINX_VERSION",
+        "value": "1.25.3"
+      },
+      {
+        "name": "NJS_VERSION",
+        "value": "0.8.2"
+      },
+      {
+        "name": "PKG_RELEASE",
+        "value": "1~bookworm"
+      }
+    ]
+  }
+}
